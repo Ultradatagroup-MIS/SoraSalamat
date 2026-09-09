@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "FO_rpt_FaktorMamorPakhshGNoePardakht", "FO_rpt_FaktorMamorPakhshGNoePardakht.vbproj", "{AB0DA01C-8669-44E3-9CF4-24ECAB4367FD}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 1
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://192.168.0.73:8080/
+		SccProjectUniqueName0 = FO_rpt_FaktorMamorPakhshGNoePardakht.vbproj
+		SccProjectName0 = .
+		SccAuxPath0 = http://192.168.0.73:8080
+		SccLocalPath0 = .
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB0DA01C-8669-44E3-9CF4-24ECAB4367FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB0DA01C-8669-44E3-9CF4-24ECAB4367FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB0DA01C-8669-44E3-9CF4-24ECAB4367FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB0DA01C-8669-44E3-9CF4-24ECAB4367FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
