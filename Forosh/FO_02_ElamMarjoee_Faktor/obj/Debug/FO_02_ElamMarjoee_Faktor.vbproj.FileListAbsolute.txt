@@ -1,0 +1,13 @@
+E:\BuildZar\FO_ElamMarjoee_Faktor.exe
+E:\BuildZar\FO_ElamMarjoee_Faktor.pdb
+E:\BuildZar\FO_ElamMarjoee_Faktor.xml
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_ElamMarjoee_Faktor\obj\Debug\FO_ElamMarjoee_Faktor.frmFO_ElamMarjoee_Faktor.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_ElamMarjoee_Faktor\obj\Debug\FO_ElamMarjoee_Faktor.frmFO_UpdateElat.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_ElamMarjoee_Faktor\obj\Debug\FO_ElamMarjoee_Faktor.Resources.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_ElamMarjoee_Faktor\obj\Debug\FO_02_ElamMarjoee_Faktor.vbproj.GenerateResource.Cache
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_ElamMarjoee_Faktor\obj\Debug\FO_ElamMarjoee_Faktor.exe
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_ElamMarjoee_Faktor\obj\Debug\FO_ElamMarjoee_Faktor.xml
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_ElamMarjoee_Faktor\obj\Debug\FO_ElamMarjoee_Faktor.pdb
+E:\builds\FO_ElamMarjoee_Faktor.exe
+E:\builds\FO_ElamMarjoee_Faktor.pdb
+E:\builds\FO_ElamMarjoee_Faktor.xml
