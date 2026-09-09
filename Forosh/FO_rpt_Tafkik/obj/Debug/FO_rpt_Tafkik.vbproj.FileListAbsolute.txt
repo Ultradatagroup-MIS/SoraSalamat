@@ -1,0 +1,12 @@
+F:\Builds\FO_rpt_Tafkik.exe
+F:\Builds\FO_rpt_Tafkik.pdb
+F:\Builds\FO_rpt_Tafkik.xml
+F:\Sources_new\PasargadJahrom\Forosh\FO_rpt_Tafkik\obj\Debug\FO_rpt_Tafkik.vbproj.AssemblyReference.cache
+F:\Sources_new\PasargadJahrom\Forosh\FO_rpt_Tafkik\obj\Debug\FO_rpt_Tafkik.frmFO_ReportTafkik.resources
+F:\Sources_new\PasargadJahrom\Forosh\FO_rpt_Tafkik\obj\Debug\FO_rpt_Tafkik.Resources.resources
+F:\Sources_new\PasargadJahrom\Forosh\FO_rpt_Tafkik\obj\Debug\FO_rpt_Tafkik.vbproj.GenerateResource.cache
+F:\Sources_new\PasargadJahrom\Forosh\FO_rpt_Tafkik\obj\Debug\FO_rpt_Tafkik.vbproj.CoreCompileInputs.cache
+F:\Sources_new\PasargadJahrom\Forosh\FO_rpt_Tafkik\obj\Debug\FO_rpt_Tafkik.vbproj.CopyComplete
+F:\Sources_new\PasargadJahrom\Forosh\FO_rpt_Tafkik\obj\Debug\FO_rpt_Tafkik.exe
+F:\Sources_new\PasargadJahrom\Forosh\FO_rpt_Tafkik\obj\Debug\FO_rpt_Tafkik.xml
+F:\Sources_new\PasargadJahrom\Forosh\FO_rpt_Tafkik\obj\Debug\FO_rpt_Tafkik.pdb

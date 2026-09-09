@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "FO_rpt_PishFaktorTaeedShodehModir", "FO_rpt_PishFaktorTaeedShodehModir.vbproj", "{6D59843A-6DFE-4015-8806-031B31514E66}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "FO_K_PishFaktorTaeedModir", "..\..\Global\Kartabl\FO_K_PishFaktorTaeedModir\FO_K_PishFaktorTaeedModir.vbproj", "{B3744E30-7D33-4726-A176-1C61E5E82B8A}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://172.16.0.73:8080/
+		SccProjectUniqueName0 = FO_rpt_PishFaktorTaeedShodehModir.vbproj
+		SccProjectName0 = .
+		SccAuxPath0 = http://172.16.0.73:8080
+		SccLocalPath0 = .
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = ..\\..\\Global\\Kartabl\\FO_K_PishFaktorTaeedModir\\FO_K_PishFaktorTaeedModir.vbproj
+		SccProjectName1 = ../../Global/Kartabl/FO_K_PishFaktorTaeedModir
+		SccAuxPath1 = http://172.16.0.73:8080
+		SccLocalPath1 = ..\\..\\Global\\Kartabl\\FO_K_PishFaktorTaeedModir
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D59843A-6DFE-4015-8806-031B31514E66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D59843A-6DFE-4015-8806-031B31514E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D59843A-6DFE-4015-8806-031B31514E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D59843A-6DFE-4015-8806-031B31514E66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3744E30-7D33-4726-A176-1C61E5E82B8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3744E30-7D33-4726-A176-1C61E5E82B8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3744E30-7D33-4726-A176-1C61E5E82B8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3744E30-7D33-4726-A176-1C61E5E82B8A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
