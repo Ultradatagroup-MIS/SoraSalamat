@@ -1,0 +1,11 @@
+E:\Builds\Fo_rpt_DaftarTaminkonandehNew.exe
+E:\Builds\Fo_rpt_DaftarTaminkonandehNew.pdb
+E:\Builds\Fo_rpt_DaftarTaminkonandehNew.xml
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_rpt_DaftarTaminkonanadeh_New\fo_rpt_DaftarTaminkonanadeh\obj\Debug\Fo_rpt_DaftarTaminkonandehNew.frmDP_ReportTaminkonandeh_Daftar.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_rpt_DaftarTaminkonanadeh_New\fo_rpt_DaftarTaminkonanadeh\obj\Debug\Fo_rpt_DaftarTaminkonandehNew.frmLevel1.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_rpt_DaftarTaminkonanadeh_New\fo_rpt_DaftarTaminkonanadeh\obj\Debug\Fo_rpt_DaftarTaminkonandehNew.frmLevel2.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_rpt_DaftarTaminkonanadeh_New\fo_rpt_DaftarTaminkonanadeh\obj\Debug\Fo_rpt_DaftarTaminkonandehNew.Resources.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_rpt_DaftarTaminkonanadeh_New\fo_rpt_DaftarTaminkonanadeh\obj\Debug\Fo_Rpt_DaftarTaminKonandeh.vbproj.GenerateResource.Cache
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_rpt_DaftarTaminkonanadeh_New\fo_rpt_DaftarTaminkonanadeh\obj\Debug\Fo_rpt_DaftarTaminkonandehNew.exe
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_rpt_DaftarTaminkonanadeh_New\fo_rpt_DaftarTaminkonanadeh\obj\Debug\Fo_rpt_DaftarTaminkonandehNew.xml
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_rpt_DaftarTaminkonanadeh_New\fo_rpt_DaftarTaminkonanadeh\obj\Debug\Fo_rpt_DaftarTaminkonandehNew.pdb

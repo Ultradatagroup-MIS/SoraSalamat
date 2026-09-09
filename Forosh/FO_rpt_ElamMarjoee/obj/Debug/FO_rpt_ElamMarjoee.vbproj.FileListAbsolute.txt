@@ -1,0 +1,9 @@
+C:\builds\FO_rpt_ElamMarjoee.exe
+C:\builds\FO_rpt_ElamMarjoee.pdb
+C:\builds\FO_rpt_ElamMarjoee.xml
+C:\Git\PasargadJahrom\Forosh\FO_rpt_ElamMarjoee\obj\Debug\FO_rpt_ElamMarjoee.frmFO_ReportElamMarjoee.resources
+C:\Git\PasargadJahrom\Forosh\FO_rpt_ElamMarjoee\obj\Debug\FO_rpt_ElamMarjoee.Resources.resources
+C:\Git\PasargadJahrom\Forosh\FO_rpt_ElamMarjoee\obj\Debug\FO_rpt_ElamMarjoee.vbproj.GenerateResource.Cache
+C:\Git\PasargadJahrom\Forosh\FO_rpt_ElamMarjoee\obj\Debug\FO_rpt_ElamMarjoee.exe
+C:\Git\PasargadJahrom\Forosh\FO_rpt_ElamMarjoee\obj\Debug\FO_rpt_ElamMarjoee.xml
+C:\Git\PasargadJahrom\Forosh\FO_rpt_ElamMarjoee\obj\Debug\FO_rpt_ElamMarjoee.pdb
