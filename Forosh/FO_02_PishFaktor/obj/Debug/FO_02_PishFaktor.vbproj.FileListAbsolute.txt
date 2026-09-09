@@ -1,0 +1,39 @@
+C:\builds\FO_PishFaktor.exe
+C:\builds\FO_PishFaktor.pdb
+C:\builds\FO_PishFaktor.xml
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_KalaMoshabeh.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_AdamTaeed.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_InsertAllKala.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_InsertKala.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_MojodyDarHalForosh.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_PishFaktor.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_PishFaktorMojodiKalaErrorList.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.InsertAllKala_WithBachNumber.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.Resources.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_02_PishFaktor.vbproj.GenerateResource.Cache
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.exe.licenses
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.exe
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.xml
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.pdb
+E:\builds\FO_PishFaktor.exe
+E:\builds\FO_PishFaktor.pdb
+E:\builds\FO_PishFaktor.xml
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktor\obj\Debug\FO_02_PishFaktor.vbprojResolveAssemblyReference.cache
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.exe
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.xml
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.pdb
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_KalaMoshabeh.resources
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_AdamTaeed.resources
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_InsertAllKala.resources
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_InsertKala.resources
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_MojodyDarHalForosh.resources
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_MoshahedehJavayez.resources
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_PishFaktor.resources
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_PishFaktorMojodiKalaErrorList.resources
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.InsertAllKala_WithBachNumber.resources
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.Resources.resources
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_02_PishFaktor.vbproj.GenerateResource.Cache
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.exe.licenses
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_02_PishFaktor.vbproj.AssemblyReference.cache
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_02_PishFaktor.vbproj.CoreCompileInputs.cache
+C:\Git\PasargadJahrom\Forosh\FO_02_PishFaktor\obj\Debug\FO_02_Pi.10101ED5.Up2Date

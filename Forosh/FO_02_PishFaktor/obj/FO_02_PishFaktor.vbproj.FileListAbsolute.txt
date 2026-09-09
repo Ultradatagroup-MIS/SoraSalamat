@@ -1,0 +1,18 @@
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.exe
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.xml
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.pdb
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_KalaMoshabeh.resources
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_AdamTaeed.resources
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_InsertAllKala.resources
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_InsertKala.resources
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_MojodyDarHalForosh.resources
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_PishFaktor.resources
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.frmFO_PishFaktorMojodiKalaErrorList.resources
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.InsertAllKala_WithBachNumber.resources
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.Resources.resources
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\FO_02_PishFaktor.vbproj.GenerateResource.Cache
+C:\Documents and Settings\Administrator\Desktop\rad\FO_02_PishFaktor\obj\Debug\FO_PishFaktor.exe.licenses
+C:\builds\FO_PishFaktor.exe
+C:\builds\FO_PishFaktor.pdb
+C:\builds\FO_PishFaktor.xml
