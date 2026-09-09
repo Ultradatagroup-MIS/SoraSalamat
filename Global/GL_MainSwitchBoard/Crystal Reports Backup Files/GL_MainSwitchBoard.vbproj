@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{050654AA-32C8-4A6C-8BB5-1A649C347246}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>GL_MainSwitchBoard.My.MyApplication</StartupObject>
+    <RootNamespace>GL_MainSwitchBoard</RootNamespace>
+    <AssemblyName>GL_MainSwitchBoard</AssemblyName>
+    <MyType>WindowsForms</MyType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\..\..\..\..\Builds\</OutputPath>
+    <DocumentationFile>GL_MainSwitchBoard.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\..\Builds\</OutputPath>
+    <DocumentationFile>GL_MainSwitchBoard.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Enterprise.Framework, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.InfoStore, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Forms_dll, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Builds\Forms_dll.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+    <Reference Include="UD_Dll, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Builds\UD_Dll.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Data.SqlClient" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frm_SelectFavorit.designer.vb">
+      <DependentUpon>frm_SelectFavorit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_SelectFavorit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAbout.Designer.vb">
+      <DependentUpon>frmAbout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAbout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Report.designer.vb">
+      <DependentUpon>frm_Report.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Report.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainSwitchBoard\frmGL_TaeenMahal.Designer.vb">
+      <DependentUpon>frmGL_TaeenMahal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MainSwitchBoard\frmGL_TaeenMahal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDIParent.designer.vb">
+      <DependentUpon>MDIParent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MDIParent.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mdlPublic.vb" />
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Login\frmGL_Login.Designer.vb">
+      <DependentUpon>frmGL_Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Login\frmGL_Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\frmGL_SplashScreen.Designer.vb">
+      <DependentUpon>frmGL_SplashScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Login\frmGL_SplashScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainSwitchBoard\frmGL_TaeenDoreh.Designer.vb">
+      <DependentUpon>frmGL_TaeenDoreh.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MainSwitchBoard\frmGL_TaeenDoreh.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="Chart.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Chart.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frm_SelectFavorit.resx">
+      <DependentUpon>frm_SelectFavorit.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAbout.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmAbout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Report.resx">
+      <DependentUpon>frm_Report.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainSwitchBoard\frmGL_TaeenMahal.resx">
+      <DependentUpon>frmGL_TaeenMahal.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDIParent.resx">
+      <DependentUpon>MDIParent.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\frmGL_Login.resx">
+      <DependentUpon>frmGL_Login.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\frmGL_SplashScreen.resx">
+      <DependentUpon>frmGL_SplashScreen.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainSwitchBoard\frmGL_TaeenDoreh.resx">
+      <DependentUpon>frmGL_TaeenDoreh.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Chart.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Chart.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UD.png" />
+    <None Include="Resources\UD3.png" />
+    <None Include="Resources\UD1.png" />
+    <None Include="Resources\UD2.png" />
+    <None Include="Resources\blue-chart-icon.png" />
+    <None Include="Resources\blue-star-icon.png" />
+    <None Include="Resources\blue-user-icon.png" />
+    <None Include="Resources\blue-calendar-icon.png" />
+    <None Include="Resources\blue-27.png" />
+    <None Include="Resources\web integrated supply %281%29.jpg" />
+    <None Include="Resources\blue185 %283%29.jpg" />
+    <None Include="Resources\blue-plus-icon.png" />
+    <None Include="Resources\blue-star-icon1.png" />
+    <None Include="Resources\blue-02.png" />
+    <None Include="Resources\blue-38.png" />
+    <None Include="Resources\blue-381.png" />
+    <None Include="Resources\blue-09.png" />
+    <None Include="Resources\blue-021.png" />
+    <None Include="Resources\blue-23.png" />
+    <None Include="Resources\blue-24.png" />
+    <None Include="Resources\blue-01.png" />
+    <None Include="Resources\blue-16.png" />
+    <None Include="Resources\splashPic1.jpg" />
+    <None Include="Resources\lgrey082.gif" />
+    <None Include="Resources\blue-cross-icon.png" />
+    <None Include="Resources\Log-Out-icon.png" />
+    <Content Include="splashPic.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

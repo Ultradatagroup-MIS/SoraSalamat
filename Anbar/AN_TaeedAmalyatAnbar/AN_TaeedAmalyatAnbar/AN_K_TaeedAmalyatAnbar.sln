@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AN_K_TaeedAmalyatAnbar", "AN_K_TaeedAmalyatAnbar.vbproj", "{7C5FF7E9-1AB5-4D47-9CB6-57F973C054F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C5FF7E9-1AB5-4D47-9CB6-57F973C054F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C5FF7E9-1AB5-4D47-9CB6-57F973C054F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C5FF7E9-1AB5-4D47-9CB6-57F973C054F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C5FF7E9-1AB5-4D47-9CB6-57F973C054F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 1
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://172.16.0.60:8080/tfs/pasargadjahrom
+		SccProjectUniqueName0 = AN_K_TaeedAmalyatAnbar.vbproj
+		SccProjectName0 = .
+		SccAuxPath0 = http://172.16.0.60:8080/tfs/pasargadjahrom
+		SccLocalPath0 = .
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://statistics.ttac.ir/StatisticsService?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" />
+  <xs:import schemaLocation="http://statistics.ttac.ir/StatisticsService?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:element name="Capture">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="events" nillable="true" type="q1:ArrayOfEpcisEvent" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="authentication" nillable="true" type="q2:Authentication" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="callbackService" nillable="true" type="q3:CallbackService" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CaptureResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CaptureWithResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="events" nillable="true" type="q4:ArrayOfEpcisEvent" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="authentication" nillable="true" type="q5:Authentication" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CaptureWithResponseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="CaptureWithResponseResult" nillable="true" type="q6:CaptureResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCaptureStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="eventId" type="q7:guid" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="authentication" nillable="true" type="q8:Authentication" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="callbackService" nillable="true" type="q9:CallbackService" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCaptureStatusResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCaptureStatusWithResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="eventId" type="q10:guid" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="authentication" nillable="true" type="q11:Authentication" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCaptureStatusWithResponseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="GetCaptureStatusWithResponseResult" nillable="true" type="q12:CaptureResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="newPassword" nillable="true" type="xs:string" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="authentication" nillable="true" type="q13:Authentication" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="callbackService" nillable="true" type="q14:CallbackService" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePasswordResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePasswordWithResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="newPassword" nillable="true" type="xs:string" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="authentication" nillable="true" type="q15:Authentication" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePasswordWithResponseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="ChangePasswordWithResponseResult" nillable="true" type="q16:CaptureResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelCapture">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="eventId" type="q17:guid" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="authentication" nillable="true" type="q18:Authentication" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="callbackService" nillable="true" type="q19:CallbackService" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelCaptureResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelCaptureWithResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="eventId" type="q20:guid" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="authentication" nillable="true" type="q21:Authentication" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelCaptureWithResponseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="CancelCaptureWithResponseResult" nillable="true" type="q22:CaptureResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchProductsWithResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="searchProductParameter" nillable="true" type="q23:SearchProductParameter" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="authentication" nillable="true" type="q24:Authentication" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchProductsWithResponseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="SearchProductsWithResponseResult" nillable="true" type="q25:ArrayOfSearchProductResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchPharmaciesWithResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="searchPharmacyParameter" nillable="true" type="q26:SearchPharmacyParameter" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="authentication" nillable="true" type="q27:Authentication" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchPharmaciesWithResponseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="SearchPharmaciesWithResponseResult" nillable="true" type="q28:ArrayOfSearchPharmacyResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchProducersWithResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="searchProducerParameter" nillable="true" type="q29:SearchProducerParameter" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="authentication" nillable="true" type="q30:Authentication" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchProducersWithResponseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="SearchProducersWithResponseResult" nillable="true" type="q31:ArrayOfSearchProducerResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchBranchesWithResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="searchBranchParameter" nillable="true" type="q32:SearchBranchParameter" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="authentication" nillable="true" type="q33:Authentication" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchBranchesWithResponseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="SearchBranchesWithResponseResult" nillable="true" type="q34:ArrayOfSearchBranchResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchStockWithResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="searchStockParameter" nillable="true" type="q35:SearchStockParameter" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="authentication" nillable="true" type="q36:Authentication" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SearchStockWithResponseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="SearchStockWithResponseResult" nillable="true" type="q37:ArrayOfSearchStockResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendPartnerProblemWithResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="partnerProblem" nillable="true" type="q38:PartnerProblemParameter" />
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="authentication" nillable="true" type="q39:Authentication" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendPartnerProblemWithResponseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" minOccurs="0" name="SendPartnerProblemWithResponseResult" nillable="true" type="q40:CaptureResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

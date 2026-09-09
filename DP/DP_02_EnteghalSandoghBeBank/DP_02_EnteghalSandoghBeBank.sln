@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DP_02_EnteghalSandoghBeBank", "DP_02_EnteghalSandoghBeBank.vbproj", "{2BDB2D8D-9EA5-43EF-B60D-6C5D7DEF9085}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 1
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://172.16.0.60:8080/tfs/db_pakhsh
+		SccProjectUniqueName0 = DP_02_EnteghalSandoghBeBank.vbproj
+		SccProjectName0 = .
+		SccAuxPath0 = http://172.16.0.60:8080/tfs/db_pakhsh
+		SccLocalPath0 = .
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BDB2D8D-9EA5-43EF-B60D-6C5D7DEF9085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BDB2D8D-9EA5-43EF-B60D-6C5D7DEF9085}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BDB2D8D-9EA5-43EF-B60D-6C5D7DEF9085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BDB2D8D-9EA5-43EF-B60D-6C5D7DEF9085}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

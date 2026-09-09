@@ -1,0 +1,34 @@
+Module mdlPublic
+    '---Global----------------------------------------------------
+    Public objTools As New UD_DLL.mdlUtility
+    Public objTarikh As New UD_Dll.Tarikh
+    Public objSec As New UD_DLL.Security
+    'Public objSearch As New Search.Search
+    Public ObjCode As New UD_Dll.Code
+
+    Public ConnectionString As String = objTools.GetConnectionString
+
+    ' Input Parameter 
+    Public UserName As String '1
+    Public UserCode As Long  '2   CodeFard
+    Public UserPassWord As String   '3
+    Public NameMahalFaal As String = "" '4 
+    Public CodeMahalFaal As Long = 0 '5    
+    Public PersonelCode As Long  '6       ShomarehPersonely
+    Public PersonelName As String  '7
+    Public CodeDoreh As Long = 0 '8    
+
+    Public TarikhEmrooz As String = objTarikh.Mi2Sh(Today)
+    Public EmSal As Integer = objTarikh.ShamsiYear(TarikhEmrooz)
+    Public CodeSherkat As Long = 1
+    Public Taraf_afrad As Long ' 1 Moshtary , 2 TaminKonandeh
+
+    ''---Forosh----------------------------------------------------
+    
+    Public ccTaminKonandeh As Integer
+    Public NameTaminKonandeh As String
+
+    Public cntSandogh As Integer = 54
+
+
+End Module

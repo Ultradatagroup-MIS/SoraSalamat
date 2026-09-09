@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://statistics.ttac.ir/StatisticsService?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ObjectEvent">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EpcisEvent">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Action" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BizLocation" nillable="true" type="tns:BusinessLocation" />
+          <xs:element minOccurs="0" name="BizStep" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Disposition" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Extension" nillable="true" type="tns:ObjectEventExtension" />
+          <xs:element minOccurs="0" name="ReadPoint" nillable="true" type="tns:ReadPoint" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ObjectEvent" nillable="true" type="tns:ObjectEvent" />
+  <xs:complexType name="EpcisEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EventID" type="ser:guid" />
+      <xs:element minOccurs="0" name="EventTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EpcisEvent" nillable="true" type="tns:EpcisEvent" />
+  <xs:complexType name="BusinessLocation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BusinessLocation" nillable="true" type="tns:BusinessLocation" />
+  <xs:complexType name="ObjectEventExtension">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DestinationList" nillable="true" type="tns:ArrayOfDestination" />
+      <xs:element minOccurs="0" name="QuantityList" nillable="true" type="tns:ArrayOfQuantityElement" />
+      <xs:element minOccurs="0" name="SSCC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceList" nillable="true" type="tns:ArrayOfSource" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ObjectEventExtension" nillable="true" type="tns:ObjectEventExtension" />
+  <xs:complexType name="ArrayOfDestination">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Destination" nillable="true" type="tns:Destination" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDestination" nillable="true" type="tns:ArrayOfDestination" />
+  <xs:complexType name="Destination">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Destination" nillable="true" type="tns:Destination" />
+  <xs:complexType name="ArrayOfQuantityElement">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="QuantityElement" nillable="true" type="tns:QuantityElement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQuantityElement" nillable="true" type="tns:ArrayOfQuantityElement" />
+  <xs:complexType name="QuantityElement">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EpcClass" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ILMD" nillable="true" type="tns:Ilmd" />
+      <xs:element minOccurs="0" name="IRC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Quantity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UOM" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QuantityElement" nillable="true" type="tns:QuantityElement" />
+  <xs:complexType name="Ilmd">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LotNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MD" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="XD" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Ilmd" nillable="true" type="tns:Ilmd" />
+  <xs:complexType name="ArrayOfSource">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Source" nillable="true" type="tns:Source" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSource" nillable="true" type="tns:ArrayOfSource" />
+  <xs:complexType name="Source">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Source" nillable="true" type="tns:Source" />
+  <xs:complexType name="ReadPoint">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReadPoint" nillable="true" type="tns:ReadPoint" />
+  <xs:complexType name="ArrayOfEpcisEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EpcisEvent" nillable="true" type="tns:EpcisEvent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEpcisEvent" nillable="true" type="tns:ArrayOfEpcisEvent" />
+  <xs:complexType name="Authentication">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Authentication" nillable="true" type="tns:Authentication" />
+  <xs:complexType name="CallbackService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CallbackService" nillable="true" type="tns:CallbackService" />
+  <xs:complexType name="CaptureResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EventId" type="ser:guid" />
+      <xs:element minOccurs="0" name="IsCanceled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatusCode" type="xs:int" />
+      <xs:element minOccurs="0" name="Successed" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CaptureResponse" nillable="true" type="tns:CaptureResponse" />
+  <xs:complexType name="SearchProductParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SearchItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GTIN" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="GenericName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IRC" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RegistrantOwnerNationalCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SearchProductParameter" nillable="true" type="tns:SearchProductParameter" />
+  <xs:complexType name="SearchItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PageNumber" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchItem" nillable="true" type="tns:SearchItem" />
+  <xs:complexType name="ArrayOfSearchProductResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchProductResult" nillable="true" type="tns:SearchProductResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSearchProductResult" nillable="true" type="tns:ArrayOfSearchProductResult" />
+  <xs:complexType name="SearchProductResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EnBrandName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaBrandName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GTIN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GenericCode" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="GenericName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IRC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsBulk" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OfficialCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PackageCount" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RegistrantOwnerEnName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegistrantOwnerFaName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegistrantOwnerNationalCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchProductResult" nillable="true" type="tns:SearchProductResult" />
+  <xs:complexType name="SearchPharmacyParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SearchItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GLN" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OwnerNationalCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SearchPharmacyParameter" nillable="true" type="tns:SearchPharmacyParameter" />
+  <xs:complexType name="ArrayOfSearchPharmacyResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchPharmacyResult" nillable="true" type="tns:SearchPharmacyResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSearchPharmacyResult" nillable="true" type="tns:ArrayOfSearchPharmacyResult" />
+  <xs:complexType name="SearchPharmacyResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="County" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HIXCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Latitude" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="Longitude" nillable="true" type="xs:double" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerNationalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PharmacyType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Provice" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TellNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UniversityName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchPharmacyResult" nillable="true" type="tns:SearchPharmacyResult" />
+  <xs:complexType name="SearchProducerParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SearchItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GLN" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NationalCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SearchProducerParameter" nillable="true" type="tns:SearchProducerParameter" />
+  <xs:complexType name="ArrayOfSearchProducerResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchProducerResult" nillable="true" type="tns:SearchProducerResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSearchProducerResult" nillable="true" type="tns:ArrayOfSearchProducerResult" />
+  <xs:complexType name="SearchProducerResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="County" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NationalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Provice" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchProducerResult" nillable="true" type="tns:SearchProducerResult" />
+  <xs:complexType name="SearchBranchParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SearchItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GLN" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SearchBranchParameter" nillable="true" type="tns:SearchBranchParameter" />
+  <xs:complexType name="ArrayOfSearchBranchResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchBranchResult" nillable="true" type="tns:SearchBranchResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSearchBranchResult" nillable="true" type="tns:ArrayOfSearchBranchResult" />
+  <xs:complexType name="SearchBranchResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="County" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GLN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Provice" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchBranchResult" nillable="true" type="tns:SearchBranchResult" />
+  <xs:complexType name="SearchStockParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SearchItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IRC" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LocationGLN" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LotNumber" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SearchStockParameter" nillable="true" type="tns:SearchStockParameter" />
+  <xs:complexType name="ArrayOfSearchStockResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SearchStockResult" nillable="true" type="tns:SearchStockResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSearchStockResult" nillable="true" type="tns:ArrayOfSearchStockResult" />
+  <xs:complexType name="SearchStockResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DamagedQuantity" type="xs:long" />
+      <xs:element minOccurs="0" name="DisposedQuantity" type="xs:long" />
+      <xs:element minOccurs="0" name="EventTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IRC" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LocationGLN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LocationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LotNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerCompanyGLN" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerCompanyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProductName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecalledQuantity" type="xs:long" />
+      <xs:element minOccurs="0" name="ReturnedQuantity" type="xs:long" />
+      <xs:element minOccurs="0" name="StockQuantity" type="xs:long" />
+      <xs:element minOccurs="0" name="StolenQuantity" type="xs:long" />
+      <xs:element minOccurs="0" name="UsableQuantity" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SearchStockResult" nillable="true" type="tns:SearchStockResult" />
+  <xs:complexType name="PartnerProblemParameter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodeType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DescriptionProblem" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PartnerProblemParameter" nillable="true" type="tns:PartnerProblemParameter" />
+</xs:schema>

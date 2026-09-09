@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "AN_rpt_Anbar_Kardexs", "AN_rpt_Anbar_Kardexs.vbproj", "{F3B00203-62FC-4741-A1F1-8B8BC9E35250}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 1
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://172.16.0.73:8080/
+		SccProjectUniqueName0 = AN_rpt_Anbar_Kardexs.vbproj
+		SccProjectName0 = .
+		SccAuxPath0 = http://172.16.0.73:8080
+		SccLocalPath0 = .
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3B00203-62FC-4741-A1F1-8B8BC9E35250}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3B00203-62FC-4741-A1F1-8B8BC9E35250}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3B00203-62FC-4741-A1F1-8B8BC9E35250}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3B00203-62FC-4741-A1F1-8B8BC9E35250}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

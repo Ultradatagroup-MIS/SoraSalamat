@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HO_DarkhastVamTaeed", "HO_DarkhastVamTaeed.vbproj", "{54C42353-5E1C-402A-9935-6908D63F26B9}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://192.168.0.73:8080/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = HO_DarkhastVamTaeed.vbproj
+		SccLocalPath1 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54C42353-5E1C-402A-9935-6908D63F26B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54C42353-5E1C-402A-9935-6908D63F26B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54C42353-5E1C-402A-9935-6908D63F26B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54C42353-5E1C-402A-9935-6908D63F26B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

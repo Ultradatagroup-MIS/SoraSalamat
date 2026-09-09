@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="StatisticsService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="StatisticsService_Soap1.1_Endpoint_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="StatisticsService_Soap1.2_Endpoint_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://statistics.ttac.ir/StatisticsService?xsd=xsd2" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://statistics.ttac.ir/StatisticsService?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://statistics.ttac.ir/StatisticsService?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/SamanSalamat.Statistics.Common.Models.DataContracts" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IStatisticsService_Capture_InputMessage">
+    <wsdl:part name="parameters" element="tns:Capture" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_Capture_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CaptureResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_CaptureWithResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:CaptureWithResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_CaptureWithResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CaptureWithResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_GetCaptureStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCaptureStatus" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_GetCaptureStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCaptureStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_GetCaptureStatusWithResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCaptureStatusWithResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_GetCaptureStatusWithResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCaptureStatusWithResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_ChangePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_ChangePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_ChangePasswordWithResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordWithResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_ChangePasswordWithResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordWithResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_CancelCapture_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelCapture" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_CancelCapture_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelCaptureResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_CancelCaptureWithResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelCaptureWithResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_CancelCaptureWithResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelCaptureWithResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_SearchProductsWithResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchProductsWithResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_SearchProductsWithResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchProductsWithResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_SearchPharmaciesWithResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchPharmaciesWithResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_SearchPharmaciesWithResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchPharmaciesWithResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_SearchProducersWithResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchProducersWithResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_SearchProducersWithResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchProducersWithResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_SearchBranchesWithResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchBranchesWithResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_SearchBranchesWithResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchBranchesWithResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_SearchStockWithResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchStockWithResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_SearchStockWithResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchStockWithResponseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_SendPartnerProblemWithResponse_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendPartnerProblemWithResponse" />
+  </wsdl:message>
+  <wsdl:message name="IStatisticsService_SendPartnerProblemWithResponse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendPartnerProblemWithResponseResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IStatisticsService">
+    <wsdl:operation name="Capture">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStatisticsService/Capture" message="tns:IStatisticsService_Capture_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStatisticsService/CaptureResponse" message="tns:IStatisticsService_Capture_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CaptureWithResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStatisticsService/CaptureWithResponse" message="tns:IStatisticsService_CaptureWithResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStatisticsService/CaptureWithResponseResponse" message="tns:IStatisticsService_CaptureWithResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCaptureStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStatisticsService/GetCaptureStatus" message="tns:IStatisticsService_GetCaptureStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStatisticsService/GetCaptureStatusResponse" message="tns:IStatisticsService_GetCaptureStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCaptureStatusWithResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStatisticsService/GetCaptureStatusWithResponse" message="tns:IStatisticsService_GetCaptureStatusWithResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStatisticsService/GetCaptureStatusWithResponseResponse" message="tns:IStatisticsService_GetCaptureStatusWithResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStatisticsService/ChangePassword" message="tns:IStatisticsService_ChangePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStatisticsService/ChangePasswordResponse" message="tns:IStatisticsService_ChangePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePasswordWithResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStatisticsService/ChangePasswordWithResponse" message="tns:IStatisticsService_ChangePasswordWithResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStatisticsService/ChangePasswordWithResponseResponse" message="tns:IStatisticsService_ChangePasswordWithResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelCapture">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStatisticsService/CancelCapture" message="tns:IStatisticsService_CancelCapture_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStatisticsService/CancelCaptureResponse" message="tns:IStatisticsService_CancelCapture_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelCaptureWithResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStatisticsService/CancelCaptureWithResponse" message="tns:IStatisticsService_CancelCaptureWithResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStatisticsService/CancelCaptureWithResponseResponse" message="tns:IStatisticsService_CancelCaptureWithResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchProductsWithResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStatisticsService/SearchProductsWithResponse" message="tns:IStatisticsService_SearchProductsWithResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStatisticsService/SearchProductsWithResponseResponse" message="tns:IStatisticsService_SearchProductsWithResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchPharmaciesWithResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStatisticsService/SearchPharmaciesWithResponse" message="tns:IStatisticsService_SearchPharmaciesWithResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStatisticsService/SearchPharmaciesWithResponseResponse" message="tns:IStatisticsService_SearchPharmaciesWithResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchProducersWithResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStatisticsService/SearchProducersWithResponse" message="tns:IStatisticsService_SearchProducersWithResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStatisticsService/SearchProducersWithResponseResponse" message="tns:IStatisticsService_SearchProducersWithResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchBranchesWithResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStatisticsService/SearchBranchesWithResponse" message="tns:IStatisticsService_SearchBranchesWithResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStatisticsService/SearchBranchesWithResponseResponse" message="tns:IStatisticsService_SearchBranchesWithResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchStockWithResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStatisticsService/SearchStockWithResponse" message="tns:IStatisticsService_SearchStockWithResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStatisticsService/SearchStockWithResponseResponse" message="tns:IStatisticsService_SearchStockWithResponse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendPartnerProblemWithResponse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStatisticsService/SendPartnerProblemWithResponse" message="tns:IStatisticsService_SendPartnerProblemWithResponse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStatisticsService/SendPartnerProblemWithResponseResponse" message="tns:IStatisticsService_SendPartnerProblemWithResponse_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="StatisticsService_Soap1.1_Endpoint" type="tns:IStatisticsService">
+    <wsp:PolicyReference URI="#StatisticsService_Soap1.1_Endpoint_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Capture">
+      <soap:operation soapAction="http://tempuri.org/IStatisticsService/Capture" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CaptureWithResponse">
+      <soap:operation soapAction="http://tempuri.org/IStatisticsService/CaptureWithResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCaptureStatus">
+      <soap:operation soapAction="http://tempuri.org/IStatisticsService/GetCaptureStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCaptureStatusWithResponse">
+      <soap:operation soapAction="http://tempuri.org/IStatisticsService/GetCaptureStatusWithResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap:operation soapAction="http://tempuri.org/IStatisticsService/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePasswordWithResponse">
+      <soap:operation soapAction="http://tempuri.org/IStatisticsService/ChangePasswordWithResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelCapture">
+      <soap:operation soapAction="http://tempuri.org/IStatisticsService/CancelCapture" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelCaptureWithResponse">
+      <soap:operation soapAction="http://tempuri.org/IStatisticsService/CancelCaptureWithResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchProductsWithResponse">
+      <soap:operation soapAction="http://tempuri.org/IStatisticsService/SearchProductsWithResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchPharmaciesWithResponse">
+      <soap:operation soapAction="http://tempuri.org/IStatisticsService/SearchPharmaciesWithResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchProducersWithResponse">
+      <soap:operation soapAction="http://tempuri.org/IStatisticsService/SearchProducersWithResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBranchesWithResponse">
+      <soap:operation soapAction="http://tempuri.org/IStatisticsService/SearchBranchesWithResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchStockWithResponse">
+      <soap:operation soapAction="http://tempuri.org/IStatisticsService/SearchStockWithResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPartnerProblemWithResponse">
+      <soap:operation soapAction="http://tempuri.org/IStatisticsService/SendPartnerProblemWithResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StatisticsService_Soap1.2_Endpoint" type="tns:IStatisticsService">
+    <wsp:PolicyReference URI="#StatisticsService_Soap1.2_Endpoint_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Capture">
+      <soap12:operation soapAction="http://tempuri.org/IStatisticsService/Capture" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CaptureWithResponse">
+      <soap12:operation soapAction="http://tempuri.org/IStatisticsService/CaptureWithResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCaptureStatus">
+      <soap12:operation soapAction="http://tempuri.org/IStatisticsService/GetCaptureStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCaptureStatusWithResponse">
+      <soap12:operation soapAction="http://tempuri.org/IStatisticsService/GetCaptureStatusWithResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap12:operation soapAction="http://tempuri.org/IStatisticsService/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePasswordWithResponse">
+      <soap12:operation soapAction="http://tempuri.org/IStatisticsService/ChangePasswordWithResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelCapture">
+      <soap12:operation soapAction="http://tempuri.org/IStatisticsService/CancelCapture" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelCaptureWithResponse">
+      <soap12:operation soapAction="http://tempuri.org/IStatisticsService/CancelCaptureWithResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchProductsWithResponse">
+      <soap12:operation soapAction="http://tempuri.org/IStatisticsService/SearchProductsWithResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchPharmaciesWithResponse">
+      <soap12:operation soapAction="http://tempuri.org/IStatisticsService/SearchPharmaciesWithResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchProducersWithResponse">
+      <soap12:operation soapAction="http://tempuri.org/IStatisticsService/SearchProducersWithResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBranchesWithResponse">
+      <soap12:operation soapAction="http://tempuri.org/IStatisticsService/SearchBranchesWithResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchStockWithResponse">
+      <soap12:operation soapAction="http://tempuri.org/IStatisticsService/SearchStockWithResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPartnerProblemWithResponse">
+      <soap12:operation soapAction="http://tempuri.org/IStatisticsService/SendPartnerProblemWithResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StatisticsService">
+    <wsdl:port name="StatisticsService_Soap1.1_Endpoint" binding="tns:StatisticsService_Soap1.1_Endpoint">
+      <soap:address location="https://statistics.ttac.ir/StatisticsService/Soap1.1" />
+    </wsdl:port>
+    <wsdl:port name="StatisticsService_Soap1.2_Endpoint" binding="tns:StatisticsService_Soap1.2_Endpoint">
+      <soap12:address location="https://statistics.ttac.ir/StatisticsService/Soap1.2" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>https://statistics.ttac.ir/StatisticsService/Soap1.2</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

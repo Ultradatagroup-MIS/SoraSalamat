@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c925282d-295a-4973-8757-6e7c3e80eba3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://statistics.ttac.ir/StatisticsService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="StatisticsService.xsd" MetadataType="Schema" ID="bc1945f5-314a-4faa-97e9-6f4ad758fd60" SourceId="1" SourceUrl="http://statistics.ttac.ir/StatisticsService?xsd=xsd1" />
+    <MetadataFile FileName="StatisticsService1.xsd" MetadataType="Schema" ID="18d52b8b-8066-40d5-a744-3ada480efe78" SourceId="1" SourceUrl="http://statistics.ttac.ir/StatisticsService?xsd=xsd0" />
+    <MetadataFile FileName="StatisticsService.wsdl" MetadataType="Wsdl" ID="26cb496a-d5a1-4b00-ade0-6864c9731653" SourceId="1" SourceUrl="http://statistics.ttac.ir/StatisticsService?wsdl" />
+    <MetadataFile FileName="StatisticsService2.xsd" MetadataType="Schema" ID="5c73678a-a777-46b0-850d-0ec7b397a730" SourceId="1" SourceUrl="http://statistics.ttac.ir/StatisticsService?xsd=xsd2" />
+    <MetadataFile FileName="StatisticsService.disco" MetadataType="Disco" ID="d4e87ef4-a6ab-4710-b8c1-b11939959ad3" SourceId="1" SourceUrl="http://statistics.ttac.ir/StatisticsService?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

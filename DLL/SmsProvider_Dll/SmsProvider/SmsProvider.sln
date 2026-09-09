@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SmsProvider", "SmsProvider\SmsProvider.vbproj", "{7BA5B61B-3DD2-4CE8-B590-D9DF72A5A93C}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DP_02_VosoolFaktor", "..\..\..\Sources\DP\DP_02_VosoolFaktor\DP_02_VosoolFaktor.vbproj", "{849435E1-1719-4F73-84FD-B771305470E6}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://mainserver:8080/tfs/dp_pakhsh
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = SmsProvider\\SmsProvider.vbproj
+		SccProjectName1 = SmsProvider
+		SccLocalPath1 = SmsProvider
+		SccProjectUniqueName2 = ..\\..\\..\\Sources\\DP\\DP_02_VosoolFaktor\\DP_02_VosoolFaktor.vbproj
+		SccProjectName2 = ../../../Sources/DP/DP_02_VosoolFaktor
+		SccLocalPath2 = ..\\..\\..\\Sources\\DP\\DP_02_VosoolFaktor
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BA5B61B-3DD2-4CE8-B590-D9DF72A5A93C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BA5B61B-3DD2-4CE8-B590-D9DF72A5A93C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BA5B61B-3DD2-4CE8-B590-D9DF72A5A93C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BA5B61B-3DD2-4CE8-B590-D9DF72A5A93C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{849435E1-1719-4F73-84FD-B771305470E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{849435E1-1719-4F73-84FD-B771305470E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{849435E1-1719-4F73-84FD-B771305470E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{849435E1-1719-4F73-84FD-B771305470E6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

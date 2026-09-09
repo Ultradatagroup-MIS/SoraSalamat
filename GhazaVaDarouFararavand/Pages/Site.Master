@@ -1,0 +1,33 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="GhazaVaDarouFararavand.Pages.Site1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>آمارنامه سازمان غذا و دارو</title>
+    <link href="../BootStrap/Image/FaraIcon.ico" rel="shortcut icon" />
+    <link href="../BootStrap/Content/bootstrap.css" rel="stylesheet" />
+    <link href="../BootStrap/Content/bootstrap-theme.css" rel="stylesheet" />
+    <script src="../BootStrap/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="../BootStrap/Scripts/bootstrap.min.js"></script>
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body  style="background-color:#a9beff ">
+    <form id="form1" runat="server" dir="rtl">
+        <div id="Main" >
+            
+            <div class="container">
+                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/BootStrap/Image/off.png" OnClick="ImageButton1_Click" ToolTip="خروج" />
+                <br />
+
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+
+            </div>
+        </div>
+    </form>
+</body>
+</html>
