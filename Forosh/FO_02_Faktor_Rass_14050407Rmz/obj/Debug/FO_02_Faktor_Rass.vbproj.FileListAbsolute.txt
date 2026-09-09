@@ -1,0 +1,13 @@
+C:\Builds\FO_02_Faktor_Rass.exe.config
+C:\Builds\FO_02_Faktor_Rass.exe
+C:\Builds\FO_02_Faktor_Rass.pdb
+C:\Builds\FO_02_Faktor_Rass.xml
+C:\Git\PasargadJahrom\Forosh\FO_02_Faktor_Rass\obj\Debug\FO_02_Faktor_Rass.vbproj.AssemblyReference.cache
+C:\Git\PasargadJahrom\Forosh\FO_02_Faktor_Rass\obj\Debug\FO_02_Faktor_Rass.frmFO_RassChek.resources
+C:\Git\PasargadJahrom\Forosh\FO_02_Faktor_Rass\obj\Debug\FO_02_Faktor_Rass.Resources.resources
+C:\Git\PasargadJahrom\Forosh\FO_02_Faktor_Rass\obj\Debug\FO_02_Faktor_Rass.vbproj.GenerateResource.cache
+C:\Git\PasargadJahrom\Forosh\FO_02_Faktor_Rass\obj\Debug\FO_02_Faktor_Rass.vbproj.CoreCompileInputs.cache
+C:\Git\PasargadJahrom\Forosh\FO_02_Faktor_Rass\obj\Debug\FO_02_Fa.F198E4B8.Up2Date
+C:\Git\PasargadJahrom\Forosh\FO_02_Faktor_Rass\obj\Debug\FO_02_Faktor_Rass.exe
+C:\Git\PasargadJahrom\Forosh\FO_02_Faktor_Rass\obj\Debug\FO_02_Faktor_Rass.xml
+C:\Git\PasargadJahrom\Forosh\FO_02_Faktor_Rass\obj\Debug\FO_02_Faktor_Rass.pdb
