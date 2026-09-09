@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "FO_01_MoshtaryMoreInfo", "FO_01_MoshtaryMoreInfo.vbproj", "{5BE40221-3A35-4E15-954E-94C00E5D226B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BE40221-3A35-4E15-954E-94C00E5D226B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BE40221-3A35-4E15-954E-94C00E5D226B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BE40221-3A35-4E15-954E-94C00E5D226B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BE40221-3A35-4E15-954E-94C00E5D226B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
