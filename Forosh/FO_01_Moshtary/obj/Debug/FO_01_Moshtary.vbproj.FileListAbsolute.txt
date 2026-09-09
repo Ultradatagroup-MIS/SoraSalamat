@@ -1,0 +1,45 @@
+E:\Builds\FO_Moshtary.exe.config
+E:\Builds\FO_Moshtary.exe
+E:\Builds\FO_Moshtary.pdb
+E:\Builds\FO_Moshtary.xml
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_01_Moshtary\obj\Debug\FO_01_Moshtary.vbprojResolveAssemblyReference.cache
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.frmFO_ElatTagheirVazeiat.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.frmFO_MasirPopup.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.frmFO_Moshtary.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.frmFO_MoshtaryAddress.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.Resources.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_01_Moshtary\obj\Debug\FO_01_Moshtary.vbproj.GenerateResource.Cache
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.exe
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.xml
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.pdb
+C:\Builds\FO_Moshtary.exe.config
+C:\Git\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.exe
+C:\Git\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.xml
+C:\Git\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.pdb
+C:\Builds\FO_Moshtary.exe
+C:\Builds\FO_Moshtary.pdb
+C:\Builds\FO_Moshtary.xml
+C:\Git\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.frmFO_ElatTagheirVazeiat.resources
+C:\Git\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.frmFO_MasirPopup.resources
+C:\Git\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.frmFO_Moshtary.resources
+C:\Git\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.frmFO_MoshtaryAddress.resources
+C:\Git\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.Resources.resources
+C:\Git\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_01_Moshtary.vbproj.GenerateResource.Cache
+C:\Git\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_01_Moshtary.vbproj.CoreCompileInputs.cache
+C:\Git\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_01_Moshtary.vbproj.CopyComplete
+C:\Git\Builds\builds\FO_Moshtary.exe.config
+C:\Git\Builds\builds\FO_Moshtary.exe
+C:\Git\Builds\builds\FO_Moshtary.pdb
+C:\Git\Builds\builds\FO_Moshtary.xml
+C:\Git\MIS\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_01_Moshtary.vbproj.AssemblyReference.cache
+C:\Git\MIS\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.frmFO_ElatTagheirVazeiat.resources
+C:\Git\MIS\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.frmFO_MasirPopup.resources
+C:\Git\MIS\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.frmFO_Moshtary.resources
+C:\Git\MIS\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.frmFO_MoshtaryAddress.resources
+C:\Git\MIS\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.Resources.resources
+C:\Git\MIS\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_01_Moshtary.vbproj.GenerateResource.cache
+C:\Git\MIS\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_01_Moshtary.vbproj.CoreCompileInputs.cache
+C:\Git\MIS\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_01_Mo.5D620419.Up2Date
+C:\Git\MIS\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.exe
+C:\Git\MIS\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.xml
+C:\Git\MIS\PasargadJahrom\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.pdb
