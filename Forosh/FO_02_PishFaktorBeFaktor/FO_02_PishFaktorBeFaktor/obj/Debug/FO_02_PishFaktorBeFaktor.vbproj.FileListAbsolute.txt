@@ -1,0 +1,25 @@
+E:\builds\FO_PishFaktorBeFaktor.exe
+E:\builds\FO_PishFaktorBeFaktor.pdb
+E:\builds\FO_PishFaktorBeFaktor.xml
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.frmFO_PishFaktor2Faktor.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.frmFO_PishFaktorMojodiKalaErrorList.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.Resources.resources
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_02_PishFaktorBeFaktor.vbproj.GenerateResource.Cache
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.exe.licenses
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.exe
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.xml
+E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.pdb
+C:\Builds\FO_PishFaktorBeFaktor.exe
+C:\Builds\FO_PishFaktorBeFaktor.pdb
+C:\Builds\FO_PishFaktorBeFaktor.xml
+C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_02_PishFaktorBeFaktor.vbproj.AssemblyReference.cache
+C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.frmFO_PishFaktor2Faktor.resources
+C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.frmFO_PishFaktorMojodiKalaErrorList.resources
+C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.Resources.resources
+C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_02_PishFaktorBeFaktor.vbproj.GenerateResource.cache
+C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.exe.licenses
+C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_02_PishFaktorBeFaktor.vbproj.CoreCompileInputs.cache
+C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.exe
+C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.xml
+C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.pdb
+C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_02_Pi.279B9781.Up2Date
