@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{40739CDC-3C0D-4727-A0AC-CF3D5A23B7CB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>FO_BargeTafkik.My.MyApplication</StartupObject>
+    <RootNamespace>FO_BargeTafkik</RootNamespace>
+    <AssemblyName>FO_BargeTafkik</AssemblyName>
+    <MyType>WindowsForms</MyType>
+    <SccProjectName>%24/Win_Sourses/Forosh/FO_02_BargeTafkik-Karami</SccProjectName>
+    <SccLocalPath>.</SccLocalPath>
+    <SccAuxPath>http://172.16.0.60:8080/tfs/db_pakhsh</SccAuxPath>
+    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\..\..\..\Builds\</OutputPath>
+    <DocumentationFile>FO_BargeTafkik.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\builds\</OutputPath>
+    <DocumentationFile>FO_BargeTafkik.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="clsMaskNumber, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31608f845547a161, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Projects\P_System\APP\clsMaskNumber.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Enterprise.Framework, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.InfoStore, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Forms_dll, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\builds\Forms_dll.dll</HintPath>
+    </Reference>
+    <Reference Include="SmsProvider, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\builds\SmsProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\WINDOWS\assembly\GAC_MSIL\System.Web.Services\2.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UD_Dll, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="CrystalDecisions.CrystalReports.Engine" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Data.SqlClient" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmFO_TafkikJozeTahvilPopup.designer.vb">
+      <DependentUpon>frmFO_TafkikJozeTahvilPopup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFO_TafkikJozeTahvilPopup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFO_FaktorSodor.designer.vb">
+      <DependentUpon>frmFO_FaktorSodor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFO_FaktorSodor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFO_TafkikJozeBaresiMojodiKalaErrorList.designer.vb">
+      <DependentUpon>frmFO_TafkikJozeBaresiMojodiKalaErrorList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFO_TafkikJozeBaresiMojodiKalaErrorList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFO_TafkikJozeBaresi.designer.vb">
+      <DependentUpon>frmFO_TafkikJozeBaresi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFO_TafkikJozeBaresi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFO_TafkikJozeBaresiAddFaktor.designer.vb">
+      <DependentUpon>frmFO_TafkikJozeBaresiAddFaktor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFO_TafkikJozeBaresiAddFaktor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFO_TafkikJozeBaresiPopup.designer.vb">
+      <DependentUpon>frmFO_TafkikJozeBaresiPopup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFO_TafkikJozeBaresiPopup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mdlPublic.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="frmFO_PrintTafkikJozSatrKoli.Designer.vb">
+      <DependentUpon>frmFO_PrintTafkikJozSatrKoli.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFO_PrintTafkikJozSatrKoli.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rptFO_GozareshBargehTafkik.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptFO_GozareshBargehTafkik.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptFO_GozareshBargehTafkik_Dooka.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptFO_GozareshBargehTafkik_Dooka.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptFO_GozareshBargehTafkik_Hana.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptFO_GozareshBargehTafkik_Hana.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptFO_GozareshBargehTafkik_KamardGostar.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptFO_GozareshBargehTafkik_KamardGostar.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptFO_GozareshBargehTafkik_SHZ.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptFO_GozareshBargehTafkik_SHZ.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frmFO_TafkikJozeTahvilPopup.resx">
+      <DependentUpon>frmFO_TafkikJozeTahvilPopup.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFO_FaktorSodor.resx">
+      <DependentUpon>frmFO_FaktorSodor.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFO_TafkikJozeBaresiMojodiKalaErrorList.resx">
+      <DependentUpon>frmFO_TafkikJozeBaresiMojodiKalaErrorList.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFO_TafkikJozeBaresi.resx">
+      <DependentUpon>frmFO_TafkikJozeBaresi.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFO_TafkikJozeBaresiAddFaktor.resx">
+      <DependentUpon>frmFO_TafkikJozeBaresiAddFaktor.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFO_TafkikJozeBaresiPopup.resx">
+      <DependentUpon>frmFO_TafkikJozeBaresiPopup.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFO_PrintTafkikJozSatrKoli.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmFO_PrintTafkikJozSatrKoli.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptFO_GozareshBargehTafkik.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptFO_GozareshBargehTafkik.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptFO_GozareshBargehTafkik_Dooka.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptFO_GozareshBargehTafkik_Dooka.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptFO_GozareshBargehTafkik_Hana.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptFO_GozareshBargehTafkik_Hana.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptFO_GozareshBargehTafkik_KamardGostar.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptFO_GozareshBargehTafkik_KamardGostar.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptFO_GozareshBargehTafkik_SHZ.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptFO_GozareshBargehTafkik_SHZ.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
