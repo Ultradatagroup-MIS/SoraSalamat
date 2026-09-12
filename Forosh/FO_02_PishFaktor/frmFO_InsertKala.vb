@@ -14,6 +14,7 @@
     Public frm_ccPishFaktor As Integer
     Public frm_PishFaktorTarikh As String = ""
     Public frm_ccMoshtary As Integer = 0
+    Public frm_sNoePardakht As Integer = 0
 #End Region
     Private Sub frmFO_InsertKala_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
@@ -340,7 +341,7 @@
             If GridEXInsertKala.CurrentColumn.Index = 4 And GridEXInsertKala.CurrentRow.Cells(3).Text <> "" Then
                 NameKala_G = objTools.ConvertNulls(objTools.DLookup("NameKala", "tblAN_kala", "CodeKala = " & GridEXInsertKala.CurrentRow.Cells(3).Text), "---")
                 ccKala_G = objTools.ConvertNulls(objTools.DLookup("ccKala", "tblAN_kala", "CodeKala = " & GridEXInsertKala.CurrentRow.Cells(3).Text), 0)
-                Fee_G = ObjCode.GetMablaghForosh(ccKala_G, frm_PishFaktorTarikh, CodeMahalFaal, frm_ccMoshtary)
+                Fee_G = ObjCode.GetMablaghForosh_NoePardakht(ccKala_G, frm_PishFaktorTarikh, CodeMahalFaal, frm_ccMoshtary, frm_sNoePardakht)
                 ZaribForosh_G = objTools.ConvertNulls(objTools.DLookup("ZaribForosh", "tblAN_Kala", "ccKala =" & ccKala_G), 0)
 
                 If Not IsValidKala("All", ccKala_G) Then
@@ -468,7 +469,7 @@
                 End If
             End If
 
-            Dim Fee As Integer = ObjCode.GetMablaghForosh(CK, frm_PishFaktorTarikh, CodeMahalFaal, frm_ccMoshtary)
+            Dim Fee As Integer = ObjCode.GetMablaghForosh_NoePardakht(CK, frm_PishFaktorTarikh, CodeMahalFaal, frm_ccMoshtary, frm_sNoePardakht)
             If chkField = "txtfee" Or chkField = "All" Then
                 If Fee <= 0 Then
                     MsgBox("قیمت کالا را وارد کنيد.", MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, "ذخيره")

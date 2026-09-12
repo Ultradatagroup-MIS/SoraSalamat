@@ -782,7 +782,7 @@ Public Class Code
     End Function
 #End Region
 #Region " Forosh "
-    Public Function GetMablaghForosh(ByVal ccKala As Integer, ByVal Tarikh As String, _
+    Public Function GetMablaghForosh(ByVal ccKala As Integer, ByVal Tarikh As String,
         ByVal ccMarkazPakhsh As Integer, ByVal ccMoshtary As Integer) As Double
 
         GetMablaghForosh = 0
@@ -809,6 +809,38 @@ Public Class Code
         cmSQL.Parameters.AddWithValue("sNoeMoshtary", sNoeMoshtary)
 
         GetMablaghForosh = objTools.ConvertNulls(cmSQL.ExecuteScalar(), 0)
+
+        cnSQL.Close()
+        cmSQL = Nothing : cnSQL = Nothing
+    End Function
+    Public Function GetMablaghForosh_NoePardakht(ByVal ccKala As Integer, ByVal Tarikh As String,
+        ByVal ccMarkazPakhsh As Integer, ByVal ccMoshtary As Integer, ByVal sNoePardakht As Integer) As Double
+
+        GetMablaghForosh_NoePardakht = 0
+
+        Dim cnSQL As SqlConnection
+        Dim cmSQL As SqlCommand
+        Dim strSQL As String
+
+        Dim sNoeMoshtary As Integer = objTools.ConvertNulls(objTools.DLookup("sNoeMoshtary", "tblFO_Moshtary", "ccMoshtary=" & ccMoshtary), 0)
+
+        cnSQL = New SqlConnection(ConnectionString)
+        cnSQL.Open()
+
+        strSQL = "Global.spUD_Dll_GetMablaghForosh_NoePardakht"
+
+        cmSQL = New SqlCommand(strSQL, cnSQL)
+        cmSQL.CommandType = CommandType.StoredProcedure
+        cmSQL.Parameters.Clear()
+
+        cmSQL.Parameters.AddWithValue("ccKala", ccKala)
+        cmSQL.Parameters.AddWithValue("Tarikh", Tarikh)
+        cmSQL.Parameters.AddWithValue("ccMarkazPakhsh", ccMarkazPakhsh)
+        cmSQL.Parameters.AddWithValue("ccMoshtary", ccMoshtary)
+        cmSQL.Parameters.AddWithValue("sNoeMoshtary", sNoeMoshtary)
+        cmSQL.Parameters.AddWithValue("sNoePardakht", sNoePardakht)
+
+        GetMablaghForosh_NoePardakht = objTools.ConvertNulls(cmSQL.ExecuteScalar(), 0)
 
         cnSQL.Close()
         cmSQL = Nothing : cnSQL = Nothing

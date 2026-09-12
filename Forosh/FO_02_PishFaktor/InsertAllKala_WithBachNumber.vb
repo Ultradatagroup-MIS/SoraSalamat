@@ -14,6 +14,7 @@
     Public frm_ccPishFaktor As Integer
     Public frm_PishFaktorTarikh As String = ""
     Public frm_ccMoshtary As Integer = 0
+    Public frm_sNoePardakht As Integer = 0
     Dim strKala As String = ""
 
     Dim Flg_Load As Boolean = True
@@ -490,7 +491,7 @@
                 End If
             End If
 
-            Dim Fee As Integer = ObjCode.GetMablaghForosh(CK, frm_PishFaktorTarikh, CodeMahalFaal, frm_ccMoshtary)
+            Dim Fee As Integer = ObjCode.GetMablaghForosh_NoePardakht(CK, frm_PishFaktorTarikh, CodeMahalFaal, frm_ccMoshtary, frm_sNoePardakht)
             If chkField = "txtfee" Or chkField = "All" Then
                 If Fee <= 0 Then
                     MsgBox("قیمت کالا را وارد کنيد.", MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, "ذخيره")
