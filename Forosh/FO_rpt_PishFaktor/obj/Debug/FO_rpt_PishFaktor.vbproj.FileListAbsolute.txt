@@ -1,1 +1,13 @@
 E:\source 2012\builds\FO_rpt_PishFaktor.exe.config
+F:\builds\FO_rpt_PishFaktor.exe.config
+F:\builds\FO_rpt_PishFaktor.exe
+F:\builds\FO_rpt_PishFaktor.pdb
+F:\builds\FO_rpt_PishFaktor.xml
+F:\backup.sherkaht\sora\FO_rpt_PishFaktor\obj\Debug\FO_rpt_PishFaktor.frmFO_ReportPishFaktor.resources
+F:\backup.sherkaht\sora\FO_rpt_PishFaktor\obj\Debug\FO_rpt_PishFaktor.Resources.resources
+F:\backup.sherkaht\sora\FO_rpt_PishFaktor\obj\Debug\FO_rpt_PishFaktor.vbproj.GenerateResource.cache
+F:\backup.sherkaht\sora\FO_rpt_PishFaktor\obj\Debug\FO_rpt_PishFaktor.vbproj.CoreCompileInputs.cache
+F:\backup.sherkaht\sora\FO_rpt_PishFaktor\obj\Debug\FO_rpt_PishFaktor.vbproj.CopyComplete
+F:\backup.sherkaht\sora\FO_rpt_PishFaktor\obj\Debug\FO_rpt_PishFaktor.exe
+F:\backup.sherkaht\sora\FO_rpt_PishFaktor\obj\Debug\FO_rpt_PishFaktor.xml
+F:\backup.sherkaht\sora\FO_rpt_PishFaktor\obj\Debug\FO_rpt_PishFaktor.pdb
