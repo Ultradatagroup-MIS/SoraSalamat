@@ -491,6 +491,9 @@
                 End If
             End If
 
+
+
+
             Dim Fee As Integer = ObjCode.GetMablaghForosh_NoePardakht(CK, frm_PishFaktorTarikh, CodeMahalFaal, frm_ccMoshtary, frm_sNoePardakht)
             If chkField = "txtfee" Or chkField = "All" Then
                 If Fee <= 0 Then
