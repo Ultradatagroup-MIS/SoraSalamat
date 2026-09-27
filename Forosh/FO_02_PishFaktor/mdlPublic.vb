@@ -4,7 +4,7 @@ Module mdlPublic
     Public objTarikh As New UD_Dll.Tarikh
     Public objSec As New UD_Dll.Security
     Public ObjCode As New UD_Dll.Code
-
+    Public Mode As UD_Dll.Enums.GL_ModeForms = UD_Dll.Enums.GL_ModeForms.AddNewRecord
     ' Public objSearch As New mdlSearch
     Public ccKalaMoshabeh As Integer = 0
     Public ConnectionString As String = objTools.GetConnectionString
