@@ -59,4 +59,47 @@
 
         SetGridSatr()
     End Sub
+
+    Private Sub GridEXSatr_KeyDown(sender As Object, e As KeyEventArgs) Handles GridEXSatr.KeyDown
+        If e.KeyCode = Keys.F2 Then
+
+            If GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
+
+            If GridEXSatr.CurrentColumn.Key = "CodeKala" Then
+
+                Dim objKala As New Forms_dll.frmAN_KalaSearch
+                Dim StrSqlKala As String
+
+
+
+                'If objTools.DLookup("PishFaktorAmani", "tblFO_PishFaktor", "ccPishFaktorTitr = " & Val(GridEXTitr.CurrentRow.Cells("ccPishFaktorTitr").Text.Replace(",", ""))) = True Then
+                '    ccAnbarForosh = objTools.DLookup("ccAnbar", "tblFO_PishFaktor", "ccPishFaktorTitr = " & Val(GridEXTitr.CurrentRow.Cells("ccPishFaktorTitr").Text.Replace(",", "")))
+                'Else
+                '    ccAnbarForosh = objTools.ConvertNulls(objTools.DLookup("CodeAnbar", "tblAN_Anbar", "AnbarAsly = 1 And CodeMahal = " & CodeMahalFaal), 0)
+                'End If
+
+                'Dim ccLine As Integer = 0
+                'ccLine = objTools.ConvertNulls(objTools.DLookup("ccLine", "Sales.LineSatr", "Type = 3 AND PK = " & Val(GridEXTitr.CurrentRow.Cells("ccForoshandeh").Text.Replace(",", ""))), 0)
+
+                StrSqlKala = "Select  CodeKala,NameKala,ccKala,txtsVahedeShomaresh,sVahedeShomaresh,NameBrand,RadifBrand,0 as IsSabadKala "
+
+                StrSqlKala &= " from qryAN_Kala"
+                StrSqlKala &= " Where Faal = 1  AND ccKala in (Select ccKala from tblAN_KalaGheymat where ccKala =qryAN_Kala.ccKala )  "
+
+
+
+
+                MultiSelection = False
+                SearchItem = "CodeKala"
+                objKala.SetForm(StrSqlKala)
+                objKala.ShowDialog()
+
+
+                MultiSelection = False
+
+
+            End If
+
+        End If
+    End Sub
 End Class
