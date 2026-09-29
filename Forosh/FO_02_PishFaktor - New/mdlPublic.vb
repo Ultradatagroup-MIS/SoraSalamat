@@ -90,6 +90,13 @@ Module mdlPublic
     Public tFaktorCodeDoreh As String
     Public tFaktorccForoshandeh As String
     Public tFaktorccMoshtary As String
+
+    '--------------------------------------
+
+    Public dt_SearchSatr As Data.DataTable = Nothing
+
+
+    '-------------------------------
     Public Sub GetMojodyDarHalForosh_Bach(ByVal ccKala As Long, ByVal ccAnbar As Integer,ByRef TedadPishFaktor As Double, ByRef MojodiFely As Double, ByRef MojodiGhabelForosh As Double, ByVal ShomarehBach As String)
 
 

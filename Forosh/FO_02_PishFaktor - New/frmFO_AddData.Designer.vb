@@ -55,6 +55,7 @@ Partial Class frmFO_AddData
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.GridEXSatr = New Janus.Windows.GridEX.GridEX()
+        Me.btnSaveSanad = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -75,6 +76,7 @@ Partial Class frmFO_AddData
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.btnSaveSanad)
         Me.GroupBox2.Controls.Add(Me.cmbAddress)
         Me.GroupBox2.Controls.Add(Me.lblNameMoshtary)
         Me.GroupBox2.Controls.Add(Me.Label18)
@@ -384,6 +386,17 @@ Partial Class frmFO_AddData
         Me.GridEXSatr.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
         Me.GridEXSatr.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
+        'btnSaveSanad
+        '
+        Me.btnSaveSanad.AccessibleDescription = ""
+        Me.btnSaveSanad.AccessibleName = ""
+        Me.btnSaveSanad.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.btnSaveSanad.Location = New System.Drawing.Point(292, 56)
+        Me.btnSaveSanad.Name = "btnSaveSanad"
+        Me.btnSaveSanad.Size = New System.Drawing.Size(79, 177)
+        Me.btnSaveSanad.TabIndex = 101
+        Me.btnSaveSanad.Text = "&ذخيره"
+        '
         'frmFO_AddData
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -430,4 +443,5 @@ Partial Class frmFO_AddData
     Friend WithEvents Label1 As Label
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents GridEXSatr As Janus.Windows.GridEX.GridEX
+    Friend WithEvents btnSaveSanad As Button
 End Class
