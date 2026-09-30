@@ -69,3 +69,4 @@ F:\Sources_new\SoraSalamat\Forosh\FO_01_Moshtary\obj\Debug\FO_01_Moshtary.vbproj
 F:\Sources_new\SoraSalamat\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.exe
 F:\Sources_new\SoraSalamat\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.xml
 F:\Sources_new\SoraSalamat\Forosh\FO_01_Moshtary\obj\Debug\FO_Moshtary.pdb
+F:\Sources_new\SoraSalamat\Forosh\FO_01_Moshtary\obj\Debug\FO_01_Moshtary.vbproj.AssemblyReference.cache
