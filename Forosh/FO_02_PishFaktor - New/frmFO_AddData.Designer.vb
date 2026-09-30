@@ -30,7 +30,20 @@ Partial Class frmFO_AddData
         Dim GridEXSatr_Layout_4 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim GridEXSatr_Layout_5 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.GridEXSatr = New Janus.Windows.GridEX.GridEX()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.txtCodeMoshtaryS = New System.Windows.Forms.TextBox()
+        Me.cmbBazaryabS = New System.Windows.Forms.ComboBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txtShomarehS = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.btnSaveSanad = New System.Windows.Forms.Button()
+        Me.cmbAddress = New System.Windows.Forms.ComboBox()
+        Me.lblNameMoshtary = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.mskTarikh = New System.Windows.Forms.MaskedTextBox()
@@ -43,24 +56,11 @@ Partial Class frmFO_AddData
         Me.Label26 = New System.Windows.Forms.Label()
         Me.lblModatCheck = New System.Windows.Forms.Label()
         Me.txtModatCheck = New System.Windows.Forms.TextBox()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.lblNameMoshtary = New System.Windows.Forms.Label()
-        Me.cmbAddress = New System.Windows.Forms.ComboBox()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.Label28 = New System.Windows.Forms.Label()
-        Me.txtCodeMoshtaryS = New System.Windows.Forms.TextBox()
-        Me.cmbBazaryabS = New System.Windows.Forms.ComboBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.txtShomarehS = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.GridEXSatr = New Janus.Windows.GridEX.GridEX()
-        Me.btnSaveSanad = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         CType(Me.GridEXSatr, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox3.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -73,6 +73,129 @@ Partial Class frmFO_AddData
         Me.GroupBox1.Size = New System.Drawing.Size(1295, 827)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.GridEXSatr)
+        Me.GroupBox4.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox4.Location = New System.Drawing.Point(6, 342)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(1289, 479)
+        Me.GroupBox4.TabIndex = 2
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "ورود اطلاعات کالا"
+        '
+        'GridEXSatr
+        '
+        Me.GridEXSatr.AllowAddNew = Janus.Windows.GridEX.InheritableBoolean.[True]
+        Me.GridEXSatr.AllowChildTableGroups = True
+        Me.GridEXSatr.AllowColumnDrag = False
+        Me.GridEXSatr.AllowDrop = True
+        Me.GridEXSatr.AllowRemoveColumns = Janus.Windows.GridEX.InheritableBoolean.[True]
+        Me.GridEXSatr.AlternatingRowFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+        Me.GridEXSatr.BorderStyle = Janus.Windows.GridEX.BorderStyle.RaisedLight3D
+        Me.GridEXSatr.BuiltInTextsData = resources.GetString("GridEXSatr.BuiltInTextsData")
+        Me.GridEXSatr.CardCaptionFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+        Me.GridEXSatr.CardColumnHeaderFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+        Me.GridEXSatr.ColumnSetNavigation = Janus.Windows.GridEX.ColumnSetNavigation.ColumnSet
+        Me.GridEXSatr.DefaultFilterRowComparison = Janus.Windows.GridEX.FilterConditionOperator.Contains
+        Me.GridEXSatr.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridEXSatr.DynamicFiltering = True
+        Me.GridEXSatr.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic
+        Me.GridEXSatr.FilterRowButtonStyle = Janus.Windows.GridEX.FilterRowButtonStyle.ConditionOperatorDropDown
+        Me.GridEXSatr.FilterRowFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+        Me.GridEXSatr.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges
+        Me.GridEXSatr.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.GridEXSatr.GroupByBoxVisible = False
+        Me.GridEXSatr.GroupRowVisualStyle = Janus.Windows.GridEX.GroupRowVisualStyle.Outlook2003
+        Me.GridEXSatr.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always
+        Me.GridEXSatr.KeepRowSettings = True
+        GridEXSatr_Layout_0.Key = "Layout1"
+        GridEXSatr_Layout_1.Key = "Layout2"
+        GridEXSatr_Layout_2.Key = "Layout3"
+        GridEXSatr_Layout_3.Key = "Layout4"
+        GridEXSatr_Layout_4.Key = "Layout5"
+        GridEXSatr_Layout_5.Key = "Layout6"
+        Me.GridEXSatr.Layouts.AddRange(New Janus.Windows.GridEX.GridEXLayout() {GridEXSatr_Layout_0, GridEXSatr_Layout_1, GridEXSatr_Layout_2, GridEXSatr_Layout_3, GridEXSatr_Layout_4, GridEXSatr_Layout_5})
+        Me.GridEXSatr.Location = New System.Drawing.Point(3, 19)
+        Me.GridEXSatr.Name = "GridEXSatr"
+        Me.GridEXSatr.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Blue
+        Me.GridEXSatr.RecordNavigator = True
+        Me.GridEXSatr.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.[True]
+        Me.GridEXSatr.Size = New System.Drawing.Size(1283, 457)
+        Me.GridEXSatr.TabIndex = 100
+        Me.GridEXSatr.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
+        Me.GridEXSatr.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.Label28)
+        Me.GroupBox3.Controls.Add(Me.txtCodeMoshtaryS)
+        Me.GroupBox3.Controls.Add(Me.cmbBazaryabS)
+        Me.GroupBox3.Controls.Add(Me.Label7)
+        Me.GroupBox3.Controls.Add(Me.txtShomarehS)
+        Me.GroupBox3.Controls.Add(Me.Label1)
+        Me.GroupBox3.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox3.Location = New System.Drawing.Point(6, 11)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(1283, 57)
+        Me.GroupBox3.TabIndex = 1
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "جستجو"
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(547, 22)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(54, 16)
+        Me.Label28.TabIndex = 17
+        Me.Label28.Text = "مشتری:"
+        '
+        'txtCodeMoshtaryS
+        '
+        Me.txtCodeMoshtaryS.BackColor = System.Drawing.Color.LightGoldenrodYellow
+        Me.txtCodeMoshtaryS.Location = New System.Drawing.Point(481, 19)
+        Me.txtCodeMoshtaryS.MaxLength = 12
+        Me.txtCodeMoshtaryS.Name = "txtCodeMoshtaryS"
+        Me.txtCodeMoshtaryS.Size = New System.Drawing.Size(63, 23)
+        Me.txtCodeMoshtaryS.TabIndex = 18
+        Me.txtCodeMoshtaryS.Text = "  "
+        '
+        'cmbBazaryabS
+        '
+        Me.cmbBazaryabS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbBazaryabS.Location = New System.Drawing.Point(633, 22)
+        Me.cmbBazaryabS.MaxDropDownItems = 20
+        Me.cmbBazaryabS.Name = "cmbBazaryabS"
+        Me.cmbBazaryabS.Size = New System.Drawing.Size(237, 24)
+        Me.cmbBazaryabS.TabIndex = 16
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(873, 25)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(58, 16)
+        Me.Label7.TabIndex = 15
+        Me.Label7.Text = "فروشنده:"
+        '
+        'txtShomarehS
+        '
+        Me.txtShomarehS.Location = New System.Drawing.Point(340, 19)
+        Me.txtShomarehS.MaxLength = 5
+        Me.txtShomarehS.Name = "txtShomarehS"
+        Me.txtShomarehS.Size = New System.Drawing.Size(59, 23)
+        Me.txtShomarehS.TabIndex = 20
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(400, 23)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(48, 16)
+        Me.Label1.TabIndex = 19
+        Me.Label1.Text = "شماره:"
         '
         'GroupBox2
         '
@@ -99,6 +222,49 @@ Partial Class frmFO_AddData
         Me.GroupBox2.TabIndex = 0
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "ورود اطلاعات اصلی"
+        '
+        'btnSaveSanad
+        '
+        Me.btnSaveSanad.AccessibleDescription = ""
+        Me.btnSaveSanad.AccessibleName = ""
+        Me.btnSaveSanad.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.btnSaveSanad.Location = New System.Drawing.Point(292, 56)
+        Me.btnSaveSanad.Name = "btnSaveSanad"
+        Me.btnSaveSanad.Size = New System.Drawing.Size(79, 177)
+        Me.btnSaveSanad.TabIndex = 101
+        Me.btnSaveSanad.Text = "&ذخيره"
+        '
+        'cmbAddress
+        '
+        Me.cmbAddress.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbAddress.Location = New System.Drawing.Point(456, 85)
+        Me.cmbAddress.MaxDropDownItems = 20
+        Me.cmbAddress.Name = "cmbAddress"
+        Me.cmbAddress.Size = New System.Drawing.Size(541, 24)
+        Me.cmbAddress.TabIndex = 34
+        '
+        'lblNameMoshtary
+        '
+        Me.lblNameMoshtary.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblNameMoshtary.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblNameMoshtary.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.lblNameMoshtary.Location = New System.Drawing.Point(456, 59)
+        Me.lblNameMoshtary.Name = "lblNameMoshtary"
+        Me.lblNameMoshtary.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.lblNameMoshtary.Size = New System.Drawing.Size(414, 21)
+        Me.lblNameMoshtary.TabIndex = 33
+        Me.lblNameMoshtary.Text = "  "
+        Me.lblNameMoshtary.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.Location = New System.Drawing.Point(1001, 85)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(92, 16)
+        Me.Label18.TabIndex = 32
+        Me.Label18.Text = "آدرس مشتری :"
         '
         'Label3
         '
@@ -231,172 +397,6 @@ Partial Class frmFO_AddData
         Me.txtModatCheck.TabIndex = 29
         Me.txtModatCheck.Visible = False
         '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(1001, 85)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(92, 16)
-        Me.Label18.TabIndex = 32
-        Me.Label18.Text = "آدرس مشتری :"
-        '
-        'lblNameMoshtary
-        '
-        Me.lblNameMoshtary.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lblNameMoshtary.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNameMoshtary.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblNameMoshtary.Location = New System.Drawing.Point(456, 59)
-        Me.lblNameMoshtary.Name = "lblNameMoshtary"
-        Me.lblNameMoshtary.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.lblNameMoshtary.Size = New System.Drawing.Size(414, 21)
-        Me.lblNameMoshtary.TabIndex = 33
-        Me.lblNameMoshtary.Text = "  "
-        Me.lblNameMoshtary.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'cmbAddress
-        '
-        Me.cmbAddress.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbAddress.Location = New System.Drawing.Point(456, 85)
-        Me.cmbAddress.MaxDropDownItems = 20
-        Me.cmbAddress.Name = "cmbAddress"
-        Me.cmbAddress.Size = New System.Drawing.Size(541, 24)
-        Me.cmbAddress.TabIndex = 34
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.Label28)
-        Me.GroupBox3.Controls.Add(Me.txtCodeMoshtaryS)
-        Me.GroupBox3.Controls.Add(Me.cmbBazaryabS)
-        Me.GroupBox3.Controls.Add(Me.Label7)
-        Me.GroupBox3.Controls.Add(Me.txtShomarehS)
-        Me.GroupBox3.Controls.Add(Me.Label1)
-        Me.GroupBox3.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(6, 11)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(1283, 57)
-        Me.GroupBox3.TabIndex = 1
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "جستجو"
-        '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(547, 22)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(54, 16)
-        Me.Label28.TabIndex = 17
-        Me.Label28.Text = "مشتری:"
-        '
-        'txtCodeMoshtaryS
-        '
-        Me.txtCodeMoshtaryS.BackColor = System.Drawing.Color.LightGoldenrodYellow
-        Me.txtCodeMoshtaryS.Location = New System.Drawing.Point(481, 19)
-        Me.txtCodeMoshtaryS.MaxLength = 12
-        Me.txtCodeMoshtaryS.Name = "txtCodeMoshtaryS"
-        Me.txtCodeMoshtaryS.Size = New System.Drawing.Size(63, 23)
-        Me.txtCodeMoshtaryS.TabIndex = 18
-        Me.txtCodeMoshtaryS.Text = "  "
-        '
-        'cmbBazaryabS
-        '
-        Me.cmbBazaryabS.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbBazaryabS.Location = New System.Drawing.Point(633, 22)
-        Me.cmbBazaryabS.MaxDropDownItems = 20
-        Me.cmbBazaryabS.Name = "cmbBazaryabS"
-        Me.cmbBazaryabS.Size = New System.Drawing.Size(237, 24)
-        Me.cmbBazaryabS.TabIndex = 16
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(873, 25)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(58, 16)
-        Me.Label7.TabIndex = 15
-        Me.Label7.Text = "فروشنده:"
-        '
-        'txtShomarehS
-        '
-        Me.txtShomarehS.Location = New System.Drawing.Point(340, 19)
-        Me.txtShomarehS.MaxLength = 5
-        Me.txtShomarehS.Name = "txtShomarehS"
-        Me.txtShomarehS.Size = New System.Drawing.Size(59, 23)
-        Me.txtShomarehS.TabIndex = 20
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(400, 23)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(48, 16)
-        Me.Label1.TabIndex = 19
-        Me.Label1.Text = "شماره:"
-        '
-        'GroupBox4
-        '
-        Me.GroupBox4.Controls.Add(Me.GridEXSatr)
-        Me.GroupBox4.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(6, 342)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(1289, 479)
-        Me.GroupBox4.TabIndex = 2
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "ورود اطلاعات کالا"
-        '
-        'GridEXSatr
-        '
-        Me.GridEXSatr.AllowAddNew = Janus.Windows.GridEX.InheritableBoolean.[True]
-        Me.GridEXSatr.AllowChildTableGroups = True
-        Me.GridEXSatr.AllowColumnDrag = False
-        Me.GridEXSatr.AllowDrop = True
-        Me.GridEXSatr.AllowRemoveColumns = Janus.Windows.GridEX.InheritableBoolean.[True]
-        Me.GridEXSatr.AlternatingRowFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-        Me.GridEXSatr.BorderStyle = Janus.Windows.GridEX.BorderStyle.RaisedLight3D
-        Me.GridEXSatr.BuiltInTextsData = resources.GetString("GridEXSatr.BuiltInTextsData")
-        Me.GridEXSatr.CardCaptionFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-        Me.GridEXSatr.CardColumnHeaderFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-        Me.GridEXSatr.ColumnSetNavigation = Janus.Windows.GridEX.ColumnSetNavigation.ColumnSet
-        Me.GridEXSatr.DefaultFilterRowComparison = Janus.Windows.GridEX.FilterConditionOperator.Contains
-        Me.GridEXSatr.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridEXSatr.DynamicFiltering = True
-        Me.GridEXSatr.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic
-        Me.GridEXSatr.FilterRowButtonStyle = Janus.Windows.GridEX.FilterRowButtonStyle.ConditionOperatorDropDown
-        Me.GridEXSatr.FilterRowFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-        Me.GridEXSatr.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges
-        Me.GridEXSatr.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.GridEXSatr.GroupByBoxVisible = False
-        Me.GridEXSatr.GroupRowVisualStyle = Janus.Windows.GridEX.GroupRowVisualStyle.Outlook2003
-        Me.GridEXSatr.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always
-        Me.GridEXSatr.KeepRowSettings = True
-        GridEXSatr_Layout_0.Key = "Layout1"
-        GridEXSatr_Layout_1.Key = "Layout2"
-        GridEXSatr_Layout_2.Key = "Layout3"
-        GridEXSatr_Layout_3.Key = "Layout4"
-        GridEXSatr_Layout_4.Key = "Layout5"
-        GridEXSatr_Layout_5.Key = "Layout6"
-        Me.GridEXSatr.Layouts.AddRange(New Janus.Windows.GridEX.GridEXLayout() {GridEXSatr_Layout_0, GridEXSatr_Layout_1, GridEXSatr_Layout_2, GridEXSatr_Layout_3, GridEXSatr_Layout_4, GridEXSatr_Layout_5})
-        Me.GridEXSatr.Location = New System.Drawing.Point(3, 19)
-        Me.GridEXSatr.Name = "GridEXSatr"
-        Me.GridEXSatr.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Blue
-        Me.GridEXSatr.RecordNavigator = True
-        Me.GridEXSatr.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.[True]
-        Me.GridEXSatr.Size = New System.Drawing.Size(1283, 457)
-        Me.GridEXSatr.TabIndex = 100
-        Me.GridEXSatr.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
-        Me.GridEXSatr.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
-        '
-        'btnSaveSanad
-        '
-        Me.btnSaveSanad.AccessibleDescription = ""
-        Me.btnSaveSanad.AccessibleName = ""
-        Me.btnSaveSanad.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.btnSaveSanad.Location = New System.Drawing.Point(292, 56)
-        Me.btnSaveSanad.Name = "btnSaveSanad"
-        Me.btnSaveSanad.Size = New System.Drawing.Size(79, 177)
-        Me.btnSaveSanad.TabIndex = 101
-        Me.btnSaveSanad.Text = "&ذخيره"
-        '
         'frmFO_AddData
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -407,12 +407,12 @@ Partial Class frmFO_AddData
         Me.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.Text = "ورود اطلاعات پیش فاکتور"
         Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         CType(Me.GridEXSatr, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

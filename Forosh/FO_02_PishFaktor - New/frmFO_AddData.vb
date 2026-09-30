@@ -19,7 +19,9 @@
             End With
             For i As Integer = 0 To GridEXSatr.CurrentTable.Columns.Count - 1
                 GridEXSatr.CurrentTable.Columns.Item(i).Width = 150
-
+                GridEXSatr.CurrentTable.Columns.Item("ccKala").Visible = False
+                GridEXSatr.CurrentTable.Columns.Item("MKOL3").Visible = False
+                'GridEXTitr.CurrentTable.Columns.Item("ccPishFaktor").Visible = False
             Next
 
 
@@ -36,6 +38,39 @@
         'AddNewRecord()
         SearchSatr()
 
+    End Sub
+
+    Private Sub AddNewRecord()
+
+
+
+        Dim da As SqlDataAdapter = New SqlDataAdapter
+
+        'Using cn As New SqlConnection(ConnectionString)
+        '    Using cm As SqlCommand = cn.CreateCommand()
+        '        cn.Open()
+        '        cm.Parameters.Clear()
+        '        cm.CommandType = CommandType.StoredProcedure
+        '        cm.CommandText = "[Sales].[spPishFaktorVorodKoli_InsertTitr]"
+        '        cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishFaktorTitr)
+        '        cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishFaktorTitr)
+        '        cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishFaktorTitr)
+        '        cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishFaktorTitr)
+        '        cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishFaktorTitr)
+        '        cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishFaktorTitr)
+        '        cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishFaktorTitr)
+        '        cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishFaktorTitr)
+        '        cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishFaktorTitr)
+        '        cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishFaktorTitr)
+        '        cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishFaktorTitr)
+        '        da.SelectCommand = cm
+        '        cm.CommandTimeout = 999999
+        '        dt_SearchSatr = New DataTable
+        '        da.Fill(dt_SearchSatr)
+        '    End Using
+        'End Using
+
+        SetGridSatr()
     End Sub
     Private Sub SearchSatr()
 
@@ -94,12 +129,47 @@
                 objKala.SetForm(StrSqlKala)
                 objKala.ShowDialog()
 
-
+                GridEXSatr.CurrentRow.Cells("CodeKala").Value = objKala.tcodeKala
+                GridEXSatr.CurrentRow.Cells("ccKala").Value = objKala.tccKala
+                'GridEXSatr.CurrentRow.Cells("Fee").Value = ObjCode.GetMablaghForosh_NoePardakht(objKala.tccKala, GridEXTitr.CurrentRow.Cells("PishFaktorTarikh").Text _
+                '          , CodeMahalFaal, GridEXTitr.CurrentRow.Cells("ccMoshtary").Value, GridEXTitr.CurrentRow.Cells("sNoePardakht").Value)
+                GridEXSatr.CurrentRow.Cells("Fee").Value = 50000
                 MultiSelection = False
 
 
             End If
 
         End If
+        If e.KeyCode = Keys.Tab Then
+
+            If GridEXSatr.CurrentRow Is Nothing Then Exit Sub
+            If GridEXSatr.CurrentColumn.Key = "CodeKala" Then
+
+
+                Dim ccKala = GridEXSatr.CurrentRow.Cells("ccKala").Value
+
+
+                If ccKala Is Nothing OrElse ccKala.ToString().Trim() = "" Then
+                    MessageBox.Show("کد کالا را وارد کنید")
+                    e.Handled = True
+                    Exit Sub
+                End If
+            End If
+
+            If GridEXSatr.CurrentColumn.Key = "Tedad3" Then
+                Dim tedad = GridEXSatr.CurrentRow.Cells("Tedad3").Value.
+
+                If tedad Is Nothing OrElse tedad.ToString().Trim() = "" Then
+                    MessageBox.Show("تعداد را وارد کنید")
+                    e.Handled = True
+                    Exit Sub
+                End If
+            End If
+
+
+        End If
+
     End Sub
+
+
 End Class
