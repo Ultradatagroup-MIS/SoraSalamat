@@ -171,5 +171,7 @@
 
     End Sub
 
+    Private Sub GridEXSatr_CellEdited(sender As Object, e As Janus.Windows.GridEX.ColumnActionEventArgs) Handles GridEXSatr.CellEdited
 
+    End Sub
 End Class
