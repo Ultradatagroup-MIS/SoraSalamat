@@ -120,7 +120,9 @@
     <Compile Include="frmFO_AddData.Designer.vb">
       <DependentUpon>frmFO_AddData.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmFO_AddData.vb" />
+    <Compile Include="frmFO_AddData.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmFO_KalaMoshabeh.designer.vb">
       <DependentUpon>frmFO_KalaMoshabeh.vb</DependentUpon>
     </Compile>

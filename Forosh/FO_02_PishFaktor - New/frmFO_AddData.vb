@@ -1,4 +1,24 @@
-﻿Public Class frmFO_AddData
+﻿
+
+
+Public Class frmFO_AddData
+
+#Region "Variable AND Constant Declration"
+    'Const cntCodeSubSystem As Long = 625
+
+    Dim cmTitr As CurrencyManager
+    Dim ErrPro As New ErrorProvider
+    Dim dsForm As New DataSet
+    Dim dtP As New DataTable
+    Dim dr As DataRow
+    Dim dvForm As DataTable
+    Private SN As Integer
+    Dim txtCaption As String
+    Private WithEvents BS As New UD_Dll.PassString
+
+    Private LastRowIndex As Integer = -1
+
+#End Region
     Private Sub frmFO_AddData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -156,22 +176,58 @@
                 End If
             End If
 
-            If GridEXSatr.CurrentColumn.Key = "Tedad3" Then
-                Dim tedad = GridEXSatr.CurrentRow.Cells("Tedad3").Value.
+            'If GridEXSatr.CurrentColumn.Key = "Tedad3" Then
+            '    Dim tedad = GridEXSatr.CurrentRow.Cells("Tedad3").Value.
 
-                If tedad Is Nothing OrElse tedad.ToString().Trim() = "" Then
-                    MessageBox.Show("تعداد را وارد کنید")
-                    e.Handled = True
-                    Exit Sub
-                End If
-            End If
+            '    If tedad Is Nothing OrElse tedad.ToString().Trim() = "" Then
+            '        MessageBox.Show("تعداد را وارد کنید")
+            '        e.Handled = True
+            '        Exit Sub
+            '    End If
+            'End If
 
 
         End If
 
     End Sub
 
-    Private Sub GridEXSatr_CellEdited(sender As Object, e As Janus.Windows.GridEX.ColumnActionEventArgs) Handles GridEXSatr.CellEdited
+    Private Sub GridEXSatr_CurrentCellChanged(sender As Object, e As EventArgs) Handles GridEXSatr.CurrentCellChanged
+        'Dim CurrentRowIndex As Integer = GridEXSatr.CurrentRow.RowIndex
 
+        ''اگر ردیف عوض شده
+        'If LastRowIndex <> -1 AndAlso CurrentRowIndex <> LastRowIndex Then
+
+        '    'اینجا Validation ردیف قبلی
+        '    Dim OldRow As Janus.Windows.GridEX.GridEXRow =
+        '        GridEXSatr.GetRow(LastRowIndex)
+
+        '    'فعلاً برای تست
+        '    MessageBox.Show("Validation ردیف " & LastRowIndex)
+
+        'End If
+
+        ''ردیف فعلی را ذخیره کن
+        'LastRowIndex = CurrentRowIndex
+
+
+        If GridEXSatr.CurrentRow.Selected = False Then
+            ' میره ردیف بدی
+        End If
+
+        If GridEXSatr.CurrentRow.Selected = True Then
+            If GridEXSatr.CurrentRow.RowType = Janus.Windows.GridEX.RowType.NewRecord Then
+                If GridEXSatr.CurrentColumn.Index = 3 And GridEXSatr.CurrentRow.Cells(2).Value = 0 Then
+                    MessageBox.Show("کد کالا را وارد کنید")
+                    Exit Sub
+                End If
+
+            End If
+        End If
+
+
+        'If GridEXSatr.CurrentRow.RowType = Janus.Windows.GridEX.RowType.Record Then
+        '    MessageBox.Show("فعلی ردیف " & LastRowIndex)
+        'End If
     End Sub
+
 End Class
