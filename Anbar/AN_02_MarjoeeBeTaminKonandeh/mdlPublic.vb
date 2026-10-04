@@ -35,7 +35,7 @@ Module mdlPublic
     Public tccMoshtary As String
     Public tNameMoshtary As String
     Public Sub GetMojodyDarHalForosh(ByVal ccKala As Long, ByVal ccAnbar As Integer,
-    ByRef TedadPishFaktor As Double, ByRef MojodiFely As Double, ByRef MojodiGhabelForosh As Double, ByVal TedadAnbarBeAnbar As Double, ByVal TedadHavaleh As Double, ByVal ShomarehBach As String)
+    ByRef TedadPishFaktor As Double, ByRef MojodiFely As Double, ByRef MojodiGhabelForosh As Double, ByVal TedadAnbarBeAnbar As Double, ByVal TedadHavaleh As Double, ByVal ShomarehBach As String, ByVal TarikhTolid As String, ByVal TarikhEngheza As String)
 
 
         Dim strSqL As String = ""
@@ -47,7 +47,7 @@ Module mdlPublic
 
             cnSQL = New SqlConnection(ConnectionString)
 
-            strSqL = " SELECT [dbo].[fnAN_GetMojodiDarHalForosh_bach] (" & ccAnbar & ", " & ccKala & ", " & CodeMahalFaal & ", " & CodeDoreh & ", " & TarikhEmrooz & ",replace('" & ShomarehBach & "','','')) "
+            strSqL = " SELECT [dbo].[fnAN_GetMojodiDarHalForosh_bachTarikh] (" & ccAnbar & ", " & ccKala & ", " & TarikhTolid & "," & TarikhEngheza & "," & CodeMahalFaal & ", " & CodeDoreh & ", " & TarikhEmrooz & ",replace('" & ShomarehBach & "','','')) "
 
 
             cmSQL = New SqlCommand(strSqL, cnSQL)
