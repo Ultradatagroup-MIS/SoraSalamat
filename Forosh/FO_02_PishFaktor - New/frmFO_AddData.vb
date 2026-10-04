@@ -46,8 +46,7 @@ Public Class frmFO_AddData
             For i As Integer = 0 To GridEXSatr.CurrentTable.Columns.Count - 1
                 GridEXSatr.CurrentTable.Columns.Item(i).Width = 150
                 GridEXSatr.CurrentTable.Columns.Item("ccKala").Visible = False
-                GridEXSatr.CurrentTable.Columns.Item("MKOL3").Visible = False
-
+                GridEXSatr.CurrentTable.Columns.Item("ccPishFaktorSatr").Visible = False
             Next
 
 
@@ -92,8 +91,8 @@ Public Class frmFO_AddData
                 cm.Parameters.AddWithValue("sNoePardakht", cmbNoePardakht.SelectedValue)
                 cm.Parameters.AddWithValue("ModatCheck", Val(txtModatCheck.Text))
                 cm.Parameters.AddWithValue("Malyat", 1)
-                cm.Parameters.AddWithValue("PishFaktorAmani", 1)
-                cm.Parameters.AddWithValue("PishFaktorGheireGhateei", 1)
+                cm.Parameters.AddWithValue("PishFaktorAmani", 0)
+                cm.Parameters.AddWithValue("PishFaktorGheireGhateei", 0)
                 cm.Parameters.AddWithValue("Tozihat", txtTozihat.Text.TrimEnd)
                 cm.Parameters.AddWithValue("NoeVorod", 1)
                 cm.Parameters.AddWithValue("ccAnbar", 1)
@@ -194,6 +193,57 @@ Public Class frmFO_AddData
 
 
 
+
+
+    Private Sub GridEXSatr_AddingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles GridEXSatr.AddingRecord
+        If Not SaveRow(GridEXSatr.GetRow(), True) Then e.Cancel = True
+    End Sub
+    Private Sub GridEX1_UpdatingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles GridEXSatr.UpdatingRecord
+        If Not SaveRow(GridEXSatr.GetRow(), False) Then e.Cancel = True
+    End Sub
+
+    Private Function SaveRow(row As Janus.Windows.GridEX.GridEXRow, isNew As Boolean) As Boolean
+        ' اعتبارسنجی
+        If row.Cells("ccKala").Value Is Nothing OrElse IsDBNull(row.Cells("ccKala").Value) Then
+            MessageBox.Show("کالا را انتخاب کنید")
+            Return False
+        End If
+
+        Try
+            Using con As New SqlConnection(ConnectionString)
+                Using cmd As SqlCommand = con.CreateCommand()
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = "[Sales].[spPishFaktorVorodKoli_InsertSatr]"
+                    cmd.Parameters.AddWithValue("ccPishfaktorTitr", ccPishfaktorTitr)
+                    cmd.Parameters.AddWithValue("ccPishfaktorSatr", If(row.Cells("ccPishfaktorSatr").Value, DBNull.Value))
+                    cmd.Parameters.AddWithValue("ccKala", row.Cells("ccKala").Value)
+                    cmd.Parameters.AddWithValue("Tedad3", If(row.Cells("Tedad3").Value, DBNull.Value))
+                    cmd.Parameters.AddWithValue("Fee", If(row.Cells("Fee").Value, DBNull.Value))
+                    cmd.Parameters.AddWithValue("DarsadTakhfif", If(row.Cells("DarsadTakhfif").Value, DBNull.Value))
+
+
+
+                    Dim outId As New SqlParameter("@NewccPishfaktorSatr", SqlDbType.Int) With {
+                        .Direction = ParameterDirection.Output}
+                    cmd.Parameters.Add(outId)
+
+                    con.Open()
+                    cmd.ExecuteNonQuery()
+
+                    If isNew AndAlso Not IsDBNull(outId.Value) Then
+                        row.Cells("ccPishfaktorSatr").Value = outId.Value
+                    End If
+                End Using
+            End Using
+            dt_SearchSatr.AcceptChanges()
+            Return True
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return False
+        End Try
+    End Function
+
+
     Private Sub AddNewSatr()
 
 
@@ -214,9 +264,6 @@ Public Class frmFO_AddData
             End Using
         End Using
     End Sub
-
-
-
 
 
 End Class
