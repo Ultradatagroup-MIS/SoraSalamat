@@ -29,6 +29,12 @@ Public Class frmFO_AddData
         LoadCombo()
         ClearForm()
         With GridEXSatr
+            .TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ColumnNavigation
+            .UpdateMode = Janus.Windows.GridEX.UpdateMode.RowUpdate
+            .AllowEdit = Janus.Windows.GridEX.InheritableBoolean.True
+            .AllowAddNew = Janus.Windows.GridEX.InheritableBoolean.True
+        End With
+        With GridEXSatr
             .AllowEdit = Janus.Windows.GridEX.InheritableBoolean.True
             .AllowAddNew = Janus.Windows.GridEX.InheritableBoolean.True
             .UpdateMode = Janus.Windows.GridEX.UpdateMode.RowUpdate
@@ -36,7 +42,48 @@ Public Class frmFO_AddData
             .Enabled = False          ' تا قبل از ذخیره‌ی هدر غیرفعال
         End With
     End Sub
+    Private Sub ClearForm()
+        Try
+            txtCodeMoshtaryS.Text = ""
+            txtCodeMoshtaryS.Tag = ""
+            txtShomarehS.Text = ""
 
+            txtModatCheck.Text = ""
+
+            cmbBazaryab.SelectedIndex = -1
+            cmbBazaryab.SelectedIndex = -1
+            txtCodeMoshtary.Text = ""
+            txtCodeMoshtary.Tag = ""
+            lblNameMoshtary.Text = ""
+            txtTozihat.Text = ""
+
+
+
+
+
+            cmbAddress.SelectedIndex = -1
+            cmbAddress.SelectedIndex = -1
+            cmbAddress.DataSource = Nothing
+            cmbAddress.Items.Clear()
+
+
+            ObjCode.UserName = UserName
+
+
+
+            'lblGorohForosh.Visible = False
+            'cmbGorohForosh.Visible = False
+            'lblAnbar.Visible = False
+            'cmbAnbar.Visible = False
+
+            ErrPro.Dispose()
+
+        Catch sqlExc As SqlException
+            MsgBox(sqlExc.Message, MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, " Error IN DataBase ---->ClearForm")
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading, " Error IN ---->ClearForm")
+        End Try
+    End Sub
     Private Sub LoadCombo()
         Try
             Dim Strsql As String
@@ -294,6 +341,12 @@ Public Class frmFO_AddData
                 .RetrieveStructure()
 
             End With
+            With GridEXSatr
+                .TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ColumnNavigation
+                .UpdateMode = Janus.Windows.GridEX.UpdateMode.RowUpdate
+                .AllowEdit = Janus.Windows.GridEX.InheritableBoolean.True
+                .AllowAddNew = Janus.Windows.GridEX.InheritableBoolean.True
+            End With
             For i As Integer = 0 To GridEXSatr.CurrentTable.Columns.Count - 1
                 GridEXSatr.CurrentTable.Columns.Item(i).Width = 150
                 GridEXSatr.CurrentTable.Columns.Item("ccKala").Visible = False
@@ -348,9 +401,9 @@ Public Class frmFO_AddData
                 cm.Parameters.AddWithValue("CodeDoreh", CodeDoreh)
                 cm.Parameters.AddWithValue("PishFaktorTarikh", mskTarikh.Text)
                 cm.Parameters.AddWithValue("ccMoshtary", txtCodeMoshtary.Tag)
-                cm.Parameters.AddWithValue("ccMoshtaryAddress", ccMoshtaryAddress)
+                cm.Parameters.AddWithValue("ccMoshtaryAddress", cmbAddress.SelectedValue)
                 cm.Parameters.AddWithValue("ccForoshandeh", cmbBazaryab.SelectedValue)
-                cm.Parameters.AddWithValue("CodeFard", CodeFard)
+                cm.Parameters.AddWithValue("CodeFard", objTools.ConvertNulls(objTools.DLookup("CodeFard", "tblFO_Foroshandeh", "ccForoshandeh = " & cmbBazaryab.SelectedValue), 0))
                 cm.Parameters.AddWithValue("sNoePardakht", cmbNoePardakht.SelectedValue)
                 cm.Parameters.AddWithValue("ModatCheck", Val(txtModatCheck.Text))
                 cm.Parameters.AddWithValue("Malyat", 1)
@@ -358,7 +411,7 @@ Public Class frmFO_AddData
                 cm.Parameters.AddWithValue("PishFaktorGheireGhateei", 0)
                 cm.Parameters.AddWithValue("Tozihat", txtTozihat.Text.TrimEnd)
                 cm.Parameters.AddWithValue("NoeVorod", 1)
-                cm.Parameters.AddWithValue("ccAnbar", 1)
+                cm.Parameters.AddWithValue("ccAnbar", DBNull.Value)
                 cm.Parameters.AddWithValue("UserName", UserName)
 
                 Dim pOut As SqlParameter = cm.Parameters.Add("@ccPishFaktorTitr", SqlDbType.Int)
@@ -441,6 +494,7 @@ Public Class frmFO_AddData
     Private Sub GridEXSatr_AddingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) _
     Handles GridEXSatr.AddingRecord
         If Not SaveRow(GridEXSatr.CurrentRow, True) Then e.Cancel = True
+        GridEXSatr.Col = GridEXSatr.RootTable.Columns("CodeKala").Position
     End Sub
 
     Private Sub GridEXSatr_UpdatingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) _
@@ -452,9 +506,20 @@ Public Class frmFO_AddData
         GridEXSatr.MoveToNewRecord()
         GridEXSatr.Col = 0
     End Sub
-
+    Private Function IsRowEmpty(row As Janus.Windows.GridEX.GridEXRow) As Boolean
+        For Each key As String In New String() {"CodeKala", "ccKala", "Tedad3", "DarsadTakhfif"}
+            Dim v As Object = row.Cells(key).Value
+            If v IsNot Nothing AndAlso Not IsDBNull(v) Then
+                If Convert.ToString(v).Trim().Length > 0 Then Return False
+            End If
+        Next
+        Return True
+    End Function
     Private Function SaveRow(row As Janus.Windows.GridEX.GridEXRow, isNew As Boolean) As Boolean
         If row Is Nothing Then Return False
+
+        ' ردیف خالی: ذخیره نشه، پیام نده، ولی Cancel بشه تا به ردیف بعدی نره
+        If isNew AndAlso IsRowEmpty(row) Then Return False
 
         Dim ccKala = row.Cells("ccKala").Value
         If ccKala Is Nothing OrElse IsDBNull(ccKala) OrElse ccKala.ToString().Trim() = "" Then
@@ -466,15 +531,14 @@ Public Class frmFO_AddData
                 Using cmd As SqlCommand = con.CreateCommand()
                     cmd.CommandType = CommandType.StoredProcedure
                     cmd.CommandText = "[Sales].[spPishFaktorVorodKoli_InsertSatr]"
-                    cmd.Parameters.AddWithValue("@ccPishfaktorTitr", ccPishfaktorTitr)
-                    cmd.Parameters.AddWithValue("@ccPishfaktorSatr", If(isNew, DBNull.Value, row.Cells("ccPishFaktorSatr").Value))
+                    cmd.Parameters.AddWithValue("@ccPishFaktorTitr", ccPishfaktorTitr)
                     cmd.Parameters.AddWithValue("@ccKala", ccKala)
                     cmd.Parameters.AddWithValue("@Tedad3", If(row.Cells("Tedad3").Value, DBNull.Value))
                     cmd.Parameters.AddWithValue("@Fee", If(row.Cells("Fee").Value, DBNull.Value))
                     cmd.Parameters.AddWithValue("@DarsadTakhfif", If(row.Cells("DarsadTakhfif").Value, DBNull.Value))
 
-                    Dim outId As New SqlParameter("@NewccPishfaktorSatr", SqlDbType.Int) With {
-                        .Direction = ParameterDirection.Output}
+                    Dim outId As New SqlParameter("@ccPishFaktorSatr", SqlDbType.Int) With {
+                     .Direction = ParameterDirection.Output}
                     cmd.Parameters.Add(outId)
 
                     con.Open()
