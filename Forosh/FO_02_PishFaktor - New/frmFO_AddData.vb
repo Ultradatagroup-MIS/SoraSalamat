@@ -48,7 +48,14 @@ Public Class frmFO_AddData
                 GridEXSatr.CurrentTable.Columns.Item("ccKala").Visible = False
                 GridEXSatr.CurrentTable.Columns.Item("ccPishFaktorSatr").Visible = False
             Next
-
+            With GridEXSatr.CurrentTable
+                .Columns("CodeKala").EditType = Janus.Windows.GridEX.EditType.TextBox
+                .Columns("Tedad3").EditType = Janus.Windows.GridEX.EditType.TextBox
+                .Columns("Fee").EditType = Janus.Windows.GridEX.EditType.TextBox
+                .Columns("DarsadTakhfif").EditType = Janus.Windows.GridEX.EditType.TextBox
+                .Columns("ccKala").Visible = False
+                .Columns("ccPishFaktorSatr").Visible = False
+            End With
 
 
         Catch sqlExc As SqlException
@@ -60,12 +67,17 @@ Public Class frmFO_AddData
     End Sub
 
     Private Sub btnSaveSanad_Click(sender As Object, e As EventArgs) Handles btnSaveSanad.Click
+        If ccPishfaktorTitr <> 0 Then Exit Sub        ' جلوگیری از Insert دوباره‌ی هدر
+
         AddNewRecord()
         If ccPishfaktorTitr = 0 Then Exit Sub
+
         SearchSatr()
+        btnSaveSanad.Enabled = False
+
         GridEXSatr.Enabled = True
         GridEXSatr.Focus()
-        GridEXSatr.MoveToNewRecord()         ' می‌ره روی ردیف خالی آخر
+        GridEXSatr.MoveToNewRecord()
         GridEXSatr.Col = 0
 
     End Sub
@@ -108,7 +120,6 @@ Public Class frmFO_AddData
             End Using
         End Using
 
-        SetGridSatr()
     End Sub
     Private Sub SearchSatr()
 
@@ -168,26 +179,7 @@ Public Class frmFO_AddData
             End If
 
         End If
-        If e.KeyCode = Keys.Tab Then
 
-            If GridEXSatr.CurrentRow Is Nothing Then Exit Sub
-            If GridEXSatr.CurrentColumn.Key = "CodeKala" Then
-
-
-                Dim ccKala = GridEXSatr.CurrentRow.Cells("ccKala").Value
-
-
-                If ccKala Is Nothing OrElse ccKala.ToString().Trim() = "" Then
-                    MessageBox.Show("کد کالا را وارد کنید")
-                    e.Handled = True
-                    Exit Sub
-                End If
-            End If
-
-
-
-
-        End If
 
     End Sub
 
@@ -195,33 +187,40 @@ Public Class frmFO_AddData
 
 
 
-    Private Sub GridEXSatr_AddingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles GridEXSatr.AddingRecord
-        If Not SaveRow(GridEXSatr.GetRow(), True) Then e.Cancel = True
+    Private Sub GridEXSatr_AddingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) _
+    Handles GridEXSatr.AddingRecord
+        If Not SaveRow(GridEXSatr.CurrentRow, True) Then e.Cancel = True
     End Sub
-    Private Sub GridEX1_UpdatingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles GridEXSatr.UpdatingRecord
-        If Not SaveRow(GridEXSatr.GetRow(), False) Then e.Cancel = True
+
+    Private Sub GridEXSatr_UpdatingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) _
+    Handles GridEXSatr.UpdatingRecord
+        If Not SaveRow(GridEXSatr.CurrentRow, False) Then e.Cancel = True
+    End Sub
+
+    Private Sub GridEXSatr_RecordAdded(sender As Object, e As EventArgs) Handles GridEXSatr.RecordAdded
+        GridEXSatr.MoveToNewRecord()
+        GridEXSatr.Col = 0
     End Sub
 
     Private Function SaveRow(row As Janus.Windows.GridEX.GridEXRow, isNew As Boolean) As Boolean
-        ' اعتبارسنجی
-        If row.Cells("ccKala").Value Is Nothing OrElse IsDBNull(row.Cells("ccKala").Value) Then
+        If row Is Nothing Then Return False
+
+        Dim ccKala = row.Cells("ccKala").Value
+        If ccKala Is Nothing OrElse IsDBNull(ccKala) OrElse ccKala.ToString().Trim() = "" Then
             MessageBox.Show("کالا را انتخاب کنید")
             Return False
         End If
-
         Try
             Using con As New SqlConnection(ConnectionString)
                 Using cmd As SqlCommand = con.CreateCommand()
                     cmd.CommandType = CommandType.StoredProcedure
                     cmd.CommandText = "[Sales].[spPishFaktorVorodKoli_InsertSatr]"
-                    cmd.Parameters.AddWithValue("ccPishfaktorTitr", ccPishfaktorTitr)
-                    cmd.Parameters.AddWithValue("ccPishfaktorSatr", If(row.Cells("ccPishfaktorSatr").Value, DBNull.Value))
-                    cmd.Parameters.AddWithValue("ccKala", row.Cells("ccKala").Value)
-                    cmd.Parameters.AddWithValue("Tedad3", If(row.Cells("Tedad3").Value, DBNull.Value))
-                    cmd.Parameters.AddWithValue("Fee", If(row.Cells("Fee").Value, DBNull.Value))
-                    cmd.Parameters.AddWithValue("DarsadTakhfif", If(row.Cells("DarsadTakhfif").Value, DBNull.Value))
-
-
+                    cmd.Parameters.AddWithValue("@ccPishfaktorTitr", ccPishfaktorTitr)
+                    cmd.Parameters.AddWithValue("@ccPishfaktorSatr", If(isNew, DBNull.Value, row.Cells("ccPishFaktorSatr").Value))
+                    cmd.Parameters.AddWithValue("@ccKala", ccKala)
+                    cmd.Parameters.AddWithValue("@Tedad3", If(row.Cells("Tedad3").Value, DBNull.Value))
+                    cmd.Parameters.AddWithValue("@Fee", If(row.Cells("Fee").Value, DBNull.Value))
+                    cmd.Parameters.AddWithValue("@DarsadTakhfif", If(row.Cells("DarsadTakhfif").Value, DBNull.Value))
 
                     Dim outId As New SqlParameter("@NewccPishfaktorSatr", SqlDbType.Int) With {
                         .Direction = ParameterDirection.Output}
@@ -231,16 +230,18 @@ Public Class frmFO_AddData
                     cmd.ExecuteNonQuery()
 
                     If isNew AndAlso Not IsDBNull(outId.Value) Then
-                        row.Cells("ccPishfaktorSatr").Value = outId.Value
+                        row.BeginEdit()
+                        row.Cells("ccPishFaktorSatr").Value = outId.Value
+                        row.EndEdit()
                     End If
                 End Using
             End Using
-            dt_SearchSatr.AcceptChanges()
             Return True
         Catch ex As Exception
             MessageBox.Show(ex.Message)
             Return False
         End Try
+
     End Function
 
 
