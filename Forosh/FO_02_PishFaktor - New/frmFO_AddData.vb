@@ -330,44 +330,73 @@ Public Class frmFO_AddData
 
         daSQL = Nothing
     End Sub
+    'Private Sub SetGridSatr()
+
+
+    '    Try
+    '        With GridEXSatr
+    '            .DataSource = Nothing
+    '            .DataSource = dt_SearchSatr.DefaultView
+    '            .SetDataBinding(dt_SearchSatr.DefaultView, "")
+    '            .RetrieveStructure()
+
+    '        End With
+    '        With GridEXSatr
+    '            .TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ColumnNavigation
+    '            .UpdateMode = Janus.Windows.GridEX.UpdateMode.RowUpdate
+    '            .AllowEdit = Janus.Windows.GridEX.InheritableBoolean.True
+    '            .AllowAddNew = Janus.Windows.GridEX.InheritableBoolean.True
+    '        End With
+    '        For i As Integer = 0 To GridEXSatr.CurrentTable.Columns.Count - 1
+    '            GridEXSatr.CurrentTable.Columns.Item(i).Width = 150
+    '            GridEXSatr.CurrentTable.Columns.Item("ccKala").Visible = False
+    '            GridEXSatr.CurrentTable.Columns.Item("ccPishFaktorSatr").Visible = False
+    '        Next
+    '        With GridEXSatr.CurrentTable
+    '            .Columns("CodeKala").EditType = Janus.Windows.GridEX.EditType.TextBox
+    '            .Columns("Tedad3").EditType = Janus.Windows.GridEX.EditType.TextBox
+    '            .Columns("Fee").EditType = Janus.Windows.GridEX.EditType.TextBox
+    '            .Columns("DarsadTakhfif").EditType = Janus.Windows.GridEX.EditType.TextBox
+    '            .Columns("ccKala").Visible = False
+    '            .Columns("ccPishFaktorSatr").Visible = False
+    '        End With
+
+
+    '    Catch sqlExc As SqlException
+    '        MsgBox(sqlExc.Message, MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, " Error IN DataBase ---->SetGridStyle")
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading, " Error IN ---->SetGridStyle")
+    '    End Try
+
+    'End Sub
+
+    Private _gridStructureReady As Boolean = False
+
     Private Sub SetGridSatr()
-
-
         Try
             With GridEXSatr
-                .DataSource = Nothing
-                .DataSource = dt_SearchSatr.DefaultView
                 .SetDataBinding(dt_SearchSatr.DefaultView, "")
-                .RetrieveStructure()
+                If Not _gridStructureReady Then
+                    .RetrieveStructure()
+                    _gridStructureReady = True
 
-            End With
-            With GridEXSatr
-                .TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ColumnNavigation
-                .UpdateMode = Janus.Windows.GridEX.UpdateMode.RowUpdate
-                .AllowEdit = Janus.Windows.GridEX.InheritableBoolean.True
-                .AllowAddNew = Janus.Windows.GridEX.InheritableBoolean.True
-            End With
-            For i As Integer = 0 To GridEXSatr.CurrentTable.Columns.Count - 1
-                GridEXSatr.CurrentTable.Columns.Item(i).Width = 150
-                GridEXSatr.CurrentTable.Columns.Item("ccKala").Visible = False
-                GridEXSatr.CurrentTable.Columns.Item("ccPishFaktorSatr").Visible = False
-            Next
-            With GridEXSatr.CurrentTable
-                .Columns("CodeKala").EditType = Janus.Windows.GridEX.EditType.TextBox
-                .Columns("Tedad3").EditType = Janus.Windows.GridEX.EditType.TextBox
-                .Columns("Fee").EditType = Janus.Windows.GridEX.EditType.TextBox
-                .Columns("DarsadTakhfif").EditType = Janus.Windows.GridEX.EditType.TextBox
-                .Columns("ccKala").Visible = False
-                .Columns("ccPishFaktorSatr").Visible = False
-            End With
+                    For i As Integer = 0 To .CurrentTable.Columns.Count - 1
+                        .CurrentTable.Columns(i).Width = 150
+                    Next
+                    .CurrentTable.Columns("ccKala").Visible = False
+                    .CurrentTable.Columns("ccPishFaktorSatr").Visible = False
 
-
+                    .TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ColumnNavigation
+                    .UpdateMode = Janus.Windows.GridEX.UpdateMode.RowUpdate
+                    .AllowEdit = Janus.Windows.GridEX.InheritableBoolean.True
+                    .AllowAddNew = Janus.Windows.GridEX.InheritableBoolean.True
+                End If
+            End With
         Catch sqlExc As SqlException
-            MsgBox(sqlExc.Message, MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, " Error IN DataBase ---->SetGridStyle")
+            MsgBox(sqlExc.Message, MsgBoxStyle.OkOnly, "Error in SetGridSatr")
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading, " Error IN ---->SetGridStyle")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error in SetGridSatr")
         End Try
-
     End Sub
 
     Private Sub btnSaveSanad_Click(sender As Object, e As EventArgs) Handles btnSaveSanad.Click
@@ -503,8 +532,15 @@ Public Class frmFO_AddData
     End Sub
 
     Private Sub GridEXSatr_RecordAdded(sender As Object, e As EventArgs) Handles GridEXSatr.RecordAdded
+        'GridEXSatr.MoveToNewRecord()
+        'GridEXSatr.Col = 0
+        BeginInvoke(New MethodInvoker(AddressOf ReloadSatr))
+    End Sub
+    Private Sub ReloadSatr()
+        SearchSatr()                       ' لود دوباره از SP
         GridEXSatr.MoveToNewRecord()
         GridEXSatr.Col = 0
+        GridEXSatr.Focus()
     End Sub
     Private Function IsRowEmpty(row As Janus.Windows.GridEX.GridEXRow) As Boolean
         For Each key As String In New String() {"CodeKala", "ccKala", "Tedad3", "DarsadTakhfif"}
@@ -544,11 +580,11 @@ Public Class frmFO_AddData
                     con.Open()
                     cmd.ExecuteNonQuery()
 
-                    If isNew AndAlso Not IsDBNull(outId.Value) Then
-                        row.BeginEdit()
-                        row.Cells("ccPishFaktorSatr").Value = outId.Value
-                        row.EndEdit()
-                    End If
+                    'If isNew AndAlso Not IsDBNull(outId.Value) Then
+                    '    row.BeginEdit()
+                    '    row.Cells("ccPishFaktorSatr").Value = outId.Value
+                    '    row.EndEdit()
+                    'End If
                 End Using
             End Using
             Return True
