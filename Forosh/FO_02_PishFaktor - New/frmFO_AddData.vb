@@ -1,6 +1,8 @@
 ﻿
 
 
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
+
 Public Class frmFO_AddData
 
 #Region "Variable AND Constant Declration"
@@ -23,6 +25,9 @@ Public Class frmFO_AddData
 
 #End Region
     Private Sub frmFO_AddData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        mskTarikh.Text = TarikhEmrooz
+        LoadCombo()
+        ClearForm()
         With GridEXSatr
             .AllowEdit = Janus.Windows.GridEX.InheritableBoolean.True
             .AllowAddNew = Janus.Windows.GridEX.InheritableBoolean.True
@@ -32,6 +37,252 @@ Public Class frmFO_AddData
         End With
     End Sub
 
+    Private Sub LoadCombo()
+        Try
+            Dim Strsql As String
+            Dim daSQL As SqlDataAdapter
+            Dim cn As New SqlConnection
+            Dim cm As New SqlCommand
+            Dim p As New SqlParameter
+            Dim d As DataRow
+
+
+
+
+
+            Strsql = "Global.spNoePardakht_LoadCombo"
+            cn.ConnectionString = ConnectionString
+            cn.Open()
+            cm = New SqlCommand(Strsql, cn)
+            cm.CommandType = CommandType.StoredProcedure
+            cm.Parameters.Clear()
+
+            daSQL = New SqlDataAdapter(cm)
+            daSQL.Fill(dsForm, "tblNoePardakht")
+
+
+            cmbNoePardakht.DataSource = Nothing
+            cmbNoePardakht.Items.Clear()
+            cmbNoePardakht.DataSource = dsForm.Tables("tblNoePardakht").DefaultView
+            cmbNoePardakht.DisplayMember = "Sharh"
+            cmbNoePardakht.ValueMember = "Code"
+
+            cm = Nothing
+
+            Strsql = "Global.spForoshandeh_LoadCombo "
+
+            cm = New SqlCommand(Strsql, cn)
+            cm.CommandType = CommandType.StoredProcedure
+            cm.Parameters.Clear()
+
+            p = New SqlParameter("CodeMahal", SqlDbType.Int)
+            p.Value = CodeMahalFaal
+            cm.Parameters.Add(p)
+
+            p = New SqlParameter("sVazeiat", SqlDbType.Int)
+            p.Value = UD_Dll.Enums.FO_VaziatForoshandeh.NoFaal
+            cm.Parameters.Add(p)
+
+            p = New SqlParameter("UserName", SqlDbType.NVarChar, 20)
+            p.Value = UserName
+            cm.Parameters.Add(p)
+
+            daSQL = New SqlDataAdapter(cm)
+            daSQL.Fill(dsForm, "tblForoshandeh")
+            cmbBazaryab.DataSource = Nothing
+            cmbBazaryab.Items.Clear()
+            cmbBazaryab.DataSource = dsForm.Tables("tblForoshandeh").DefaultView
+            cmbBazaryab.DisplayMember = "LN"
+            cmbBazaryab.ValueMember = "ccForoshandeh"
+
+            cm = Nothing
+
+
+            daSQL.Fill(dsForm, "tblForoshandehS")
+            d = dsForm.Tables("tblForoshandehS").NewRow
+            d("NameForoshandeh") = "همه"
+            d("ccForoshandeh") = 0
+            dsForm.Tables("tblForoshandehS").Rows.Add(d)
+            cmbBazaryabS.DataSource = Nothing
+            cmbBazaryabS.Items.Clear()
+            cmbBazaryabS.DataSource = dsForm.Tables("tblForoshandehS").DefaultView
+            cmbBazaryabS.DisplayMember = "NameForoshandeh"
+            cmbBazaryabS.ValueMember = "ccForoshandeh"
+            cmbBazaryabS.SelectedValue = 0
+
+            cm = Nothing
+
+
+            daSQL = Nothing
+            cn.Close()
+
+        Catch sqlExc As SqlException
+            MsgBox(sqlExc.Message, MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, " Error IN DataBase ---->LoadCombo")
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading, " Error IN ---->LoadCombo")
+        End Try
+    End Sub
+    Private Sub txtCodeMoshtary_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCodeMoshtary.TextChanged
+        'If Mode = UD_Dll.Enums.GL_ModeForms.UpdateRecord Then Exit Sub
+
+
+        Dim Criteria As String = ""
+
+        Dim Bazaryab As Integer = 0
+        Bazaryab = IIf(IsNothing(cmbBazaryab.SelectedValue), 0, cmbBazaryab.SelectedValue)
+
+        If objTools.ConvertNulls(objTools.DLookup("ccMoshtary", "tblFO_Moshtary", "sVazeiat = 3980 AND CodeMahal = " & CodeMahalFaal & " AND CodeMoshtary = " & IIf(txtCodeMoshtary.Text.Trim = "", 0, Val(txtCodeMoshtary.Text.Trim))), 0) <> 0 Then
+
+            Criteria = "CodeMahal=" & CodeMahalFaal
+            Criteria &= " And IsMoshtaryBadHesab = 0 AND Not exists (Select * From tblGL_SecurityData where namekarbar= '" & UserName & "' and CodeSubSystem = 614 and pk = qryFO_Moshtary.ccMoshtary) "
+            Criteria &= " And CodeMoshtary = '" & IIf(IsNothing(Me.txtCodeMoshtary.Text), 0, Me.txtCodeMoshtary.Text) & "'"
+            Criteria &= " AND sVazeiat = " & UD_Dll.Enums.FO_VaziatMoshtary.Faal
+
+            If Bazaryab <> 0 Then
+                Criteria &= " AND ccMoshtary IN (SELECT ccMoshtary FROM tblFO_ForoshandehMoshtary WHERE  ccForoshandeh = " & Bazaryab & ") "
+            End If
+            Me.lblNameMoshtary.Text = objTools.ConvertNulls(objTools.DLookup("NameMoshtary", "qryFO_Moshtary", Criteria), "")
+            Me.txtCodeMoshtary.Tag = objTools.ConvertNulls(objTools.DLookup("ccMoshtary", "qryFO_Moshtary", Criteria), "")
+
+
+
+
+
+            If lblNameMoshtary.Text.Trim <> "" Then
+                LoadMoshtaryAddress()
+
+                If objTools.DLookup("sNoePardakht", "tblFO_Moshtary", "ccMoshtary = " & Me.txtCodeMoshtary.Tag) = 0 Then
+
+                    cmbNoePardakht.SelectedValue = 3953
+                Else
+                    cmbNoePardakht.SelectedValue = objTools.DLookup("sNoePardakht", "tblFO_Moshtary", "ccMoshtary = " & Me.txtCodeMoshtary.Tag)
+
+                End If
+                If Bazaryab = 0 Then
+                    cmbBazaryab.SelectedValue = objTools.DLookupOne("ccForoshandeh", "tblFO_ForoshandehMoshtary", "ccMoshtary = " & Me.txtCodeMoshtary.Tag, " ccForoshandehMoshtary desc")
+                End If
+
+            Else
+                If dsForm.Tables.Contains("tblAddress") Then
+                    dsForm.Tables.Remove("tblAddress")
+                End If
+                cmbAddress.DataSource = Nothing
+                cmbAddress.Items.Clear()
+
+                If dsForm.Tables.Contains("tblMoshtaryAfrad") Then
+                    dsForm.Tables.Remove("tblMoshtaryAfrad")
+                End If
+
+            End If
+            'If lblNameMoshtary.Text.Trim <> "" Then
+            '    lblTabloMoshtary.Text = objTools.DLookup("NameTablo", "tblFO_Moshtary", "ccMoshtary = " & Me.txtCodeMoshtary.Tag)
+            '    lblTellMoshtary.Text = objTools.DLookup("Telephone", "tblFO_MoshtaryAddress", "ccMoshtary = " & Me.txtCodeMoshtary.Tag)
+            '    lblNoeMoshtary.Text = objTools.DLookup("txtNoeMoshtary", "qryFO_Moshtary", "ccMoshtary = " & Me.txtCodeMoshtary.Tag)
+            'Else
+            '    lblTabloMoshtary.Text = ""
+            '    lblTellMoshtary.Text = ""
+            '    lblNoeMoshtary.Text = ""
+            'End If
+
+
+
+
+        End If
+
+
+
+    End Sub
+    Private Sub txtCodeMoshtary_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCodeMoshtary.KeyPress
+        Try
+            If (Asc(e.KeyChar()) < 48 Or Asc(e.KeyChar()) > 57) And (Asc(e.KeyChar()) <> 8) Then
+                e.Handled = True
+            End If
+            Dim Bazaryab As Integer = 0
+            Bazaryab = IIf(IsNothing(cmbBazaryab.SelectedValue), 0, cmbBazaryab.SelectedValue)
+
+
+            If e.KeyChar = Chr(Keys.Space) Then
+                Dim objMoshtary As New Forms_dll.frmFO_MoshtarySearch
+                Dim StrSql As String = ""
+
+                StrSql = "Select * from qryFO_Moshtary Where CodeMahal=" & CodeMahalFaal & " And IsMoshtaryBadHesab = 0 AND sVazeiat = " & UD_Dll.Enums.FO_VaziatMoshtary.Faal
+                StrSql &= "AND Not exists (Select * From tblGL_SecurityData where namekarbar= '" & UserName & "' and CodeSubSystem = 614 and pk = qryFO_Moshtary.ccMoshtary) "
+                StrSql &= " AND Not exists (Select * From tblGL_SecurityData where namekarbar= '" & UserName & "' and CodeSubSystem = 10000 and pk = qryFO_Moshtary.sNoeMoshtary) "
+                If Bazaryab <> 0 Then
+                    StrSql &= " AND ccMoshtary IN (SELECT ccMoshtary FROM tblFO_ForoshandehMoshtary WHERE  ccForoshandeh = " & Bazaryab & ") "
+                End If
+                StrSql &= " order by sMantagheh,sMahaleh,NameMoshtary"
+
+
+
+
+                tCodeMoshtary = ""
+                tNameMoshtary = ""
+                tccMoshtary = ""
+
+                If txtCodeMoshtary.Text.Length <> 0 Then
+                    tCodeMoshtary = txtCodeMoshtary.Text
+                End If
+
+                MultiSelection = False
+                SearchItem = "CodeMoshtary"
+                objMoshtary.SetForm(StrSql)
+                objMoshtary.ShowDialog()
+                txtCodeMoshtary.Tag = IIf(IsNothing(objMoshtary.tccMoshtary), 0, objMoshtary.tccMoshtary)
+                txtCodeMoshtary.Text = IIf(IsNothing(objMoshtary.tCodeMoshtary), "", objMoshtary.tCodeMoshtary)
+                lblNameMoshtary.Text = IIf(IsNothing(objMoshtary.tNameMoshtary), "", objMoshtary.tNameMoshtary)
+
+                LoadMoshtaryAddress()
+
+
+
+
+
+
+                MultiSelection = False
+            End If
+
+        Catch sqlExc As SqlException
+            MsgBox(sqlExc.Message, MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, " Error IN DataBase ---->txtCodeMoshtary_KeyPress")
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading, " Error IN ---->txtCodeMoshtary_KeyPress")
+        End Try
+    End Sub
+    Private Sub LoadMoshtaryAddress()
+        Dim Strsql As String
+        Dim daSQL As SqlDataAdapter
+        Dim cn As New SqlConnection
+        Dim cm As New SqlCommand
+        Dim p As New SqlParameter
+
+        Strsql = "Sales.spPishFaktor_LoadMoshtaryAddress"
+
+        cn.ConnectionString = ConnectionString
+        cn.Open()
+        cm = New SqlCommand(Strsql, cn)
+        cm.CommandType = CommandType.StoredProcedure
+        cm.Parameters.Clear()
+
+        p = New SqlParameter("ccMoshtary", SqlDbType.Int)
+        p.Value = IIf(txtCodeMoshtary.Tag.ToString.Length = 0, 0, txtCodeMoshtary.Tag)
+        cm.Parameters.Add(p)
+
+        daSQL = New SqlDataAdapter(cm)
+        If dsForm.Tables.Contains("tblAddress") Then
+            dsForm.Tables.Remove("tblAddress")
+        End If
+        daSQL.Fill(dsForm, "tblAddress")
+        cmbAddress.DataSource = Nothing
+        cmbAddress.Items.Clear()
+        cmbAddress.DataSource = dsForm.Tables("tblAddress").DefaultView
+        cmbAddress.DisplayMember = "AddressKamel"
+        cmbAddress.ValueMember = "ccMoshtaryAddress"
+
+        cm.Connection.Close()
+        cn.Close()
+
+        daSQL = Nothing
+    End Sub
     Private Sub SetGridSatr()
 
 
@@ -133,7 +384,7 @@ Public Class frmFO_AddData
                 cm.Parameters.Clear()
                 cm.CommandType = CommandType.StoredProcedure
                 cm.CommandText = "[Sales].[spPishFaktorVorodKoli_SearchSatr]"
-                cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishFaktorTitr)
+                cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishfaktorTitr)
                 da.SelectCommand = cm
                 cm.CommandTimeout = 999999
                 dt_SearchSatr = New DataTable
