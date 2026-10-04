@@ -1,0 +1,38 @@
+  Private Sub GridEXSatr_CurrentCellChanged(sender As Object, e As EventArgs) Handles GridEXSatr.CurrentCellChanged
+      Dim CurrentRowIndex As Integer = GridEXSatr.CurrentRow.RowIndex
+      If GridEXSatr.CurrentRow Is Nothing Then Exit Sub
+      Dim A = GridEXSatr.CurrentRow.RowType
+      ''اگر ردیف عوض شده
+      'If LastRowIndex <> -1 AndAlso CurrentRowIndex <> LastRowIndex Then
+
+      '    'اینجا Validation ردیف قبلی
+      '    Dim OldRow As Janus.Windows.GridEX.GridEXRow =
+      '        GridEXSatr.GetRow(LastRowIndex)
+
+      '    'فعلاً برای تست
+      '    MessageBox.Show("Validation ردیف " & LastRowIndex)
+
+      'End If
+
+      ''ردیف فعلی را ذخیره کن
+      'LastRowIndex = CurrentRowIndex
+
+
+      If GridEXSatr.CurrentRow.Selected = False Then
+
+          AddNewSatr()
+          ' میره ردیف بدی
+      End If
+
+      If GridEXSatr.CurrentRow.Selected = True Then
+          If GridEXSatr.CurrentRow.RowType = Janus.Windows.GridEX.RowType.NewRecord Then
+              If GridEXSatr.CurrentColumn.Index = 3 And GridEXSatr.CurrentRow.Cells(2).Value = 0 Then
+                  MessageBox.Show("کد کالا را وارد کنید")
+                  Exit Sub
+              End If
+
+          End If
+      End If
+
+
+  End Sub
