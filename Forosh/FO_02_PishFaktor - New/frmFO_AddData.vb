@@ -528,7 +528,8 @@ Public Class frmFO_AddData
 
     Private Sub GridEXSatr_UpdatingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) _
     Handles GridEXSatr.UpdatingRecord
-        If Not SaveRow(GridEXSatr.CurrentRow, False) Then e.Cancel = True
+        'If Not SaveRow(GridEXSatr.CurrentRow, False) Then e.Cancel = True
+        e.Cancel = True   ' ویرایش نداریم
     End Sub
 
     Private Sub GridEXSatr_RecordAdded(sender As Object, e As EventArgs) Handles GridEXSatr.RecordAdded
@@ -541,6 +542,14 @@ Public Class frmFO_AddData
         GridEXSatr.MoveToNewRecord()
         GridEXSatr.Col = 0
         GridEXSatr.Focus()
+    End Sub
+    Private Sub GridEXSatr_EditingCell(sender As Object, e As Janus.Windows.GridEX.EditingCellEventArgs) _
+    Handles GridEXSatr.EditingCell
+        ' فقط ردیف جدید قابل ویرایشه
+        If GridEXSatr.CurrentRow IsNot Nothing AndAlso
+       GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then
+            e.Cancel = True
+        End If
     End Sub
     Private Function IsRowEmpty(row As Janus.Windows.GridEX.GridEXRow) As Boolean
         For Each key As String In New String() {"CodeKala", "ccKala", "Tedad3", "DarsadTakhfif"}
