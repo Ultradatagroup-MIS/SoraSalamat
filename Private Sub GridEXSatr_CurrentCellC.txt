@@ -36,3 +36,10 @@
 
 
   End Sub
+
+
+
+SELECT name, parameter_id, TYPE_NAME(user_type_id) AS type, is_output
+FROM sys.parameters
+WHERE object_id = OBJECT_ID('[Sales].[spPishFaktorVorodKoli_InsertSatr]')
+ORDER BY parameter_id

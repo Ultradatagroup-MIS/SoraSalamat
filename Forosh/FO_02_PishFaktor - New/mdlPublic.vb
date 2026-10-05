@@ -97,7 +97,7 @@ Module mdlPublic
 
 
     '-------------------------------
-    Public Sub GetMojodyDarHalForosh_Bach(ByVal ccKala As Long, ByVal ccAnbar As Integer,ByRef TedadPishFaktor As Double, ByRef MojodiFely As Double, ByRef MojodiGhabelForosh As Double, ByVal ShomarehBach As String)
+    Public Sub GetMojodyDarHalForosh_Bach(ByVal ccKala As Long, ByVal ccAnbar As Integer, ByRef TedadPishFaktor As Double, ByRef MojodiFely As Double, ByRef MojodiGhabelForosh As Double, ByVal ShomarehBach As String)
 
 
         Dim strSqL As String = ""
@@ -125,140 +125,169 @@ Module mdlPublic
             MessageBox.Show(ex.Message)
         End Try
     End Sub
-    Public Sub GetMojodyDarHalForosh(ByVal ccKala As Long, ByVal ccAnbar As Integer,
-    ByRef TedadPishFaktor As Double, ByRef MojodiFely As Double, ByRef MojodiGhabelForosh As Double)
+
+    Public Sub GetMojodyGhabelForosh(ByVal ccKala As Long, ByVal ccAnbar As Integer, ByRef MojodiGhabelForoshkol As Double)
+
 
         Dim strSqL As String = ""
         Dim cmSQL As SqlCommand
         Dim cnSQL As SqlConnection
-        Dim p As New SqlParameter
-        Dim TedadMarjoeeTaminKonandeh As Double = 0
-        Dim TedadEshantion As Double = 0
-
-        Dim TedadAnbar As Double
 
         Try
 
             cnSQL = New SqlConnection(ConnectionString)
-            cnSQL.Open()
 
-            strSqL = "Global.spTedadKalaRezervInPishFaktor "
+            strSqL = " SELECT [dbo].[fnAN_GetMojodiDarHalForosh] (" & ccAnbar & ", " & ccKala & ", " & CodeMahalFaal & ", " & CodeDoreh & ", " & TarikhEmrooz & ")) "
 
             cmSQL = New SqlCommand(strSqL, cnSQL)
-            cmSQL.CommandType = CommandType.StoredProcedure
-            cmSQL.Parameters.Clear()
+            cnSQL.Open()
 
-            p = New SqlParameter("ccKala", SqlDbType.Int)
-            p.Value = ccKala
-            cmSQL.Parameters.Add(p)
-
-            p = New SqlParameter("CodeMahal", SqlDbType.Int)
-            p.Value = CType(CodeMahalFaal, Integer)
-            cmSQL.Parameters.Add(p)
-
-
-            p = New SqlParameter("ccAnbar", SqlDbType.Int)
-            p.Value = CType(ccAnbar, Integer)
-            cmSQL.Parameters.Add(p)
-
-            TedadPishFaktor = cmSQL.ExecuteScalar
+            MojodiGhabelForoshkol = cmSQL.ExecuteScalar
 
 
             cnSQL.Close() : cnSQL = Nothing
 
-            ''----------------------------------
-
-            cnSQL = New SqlConnection(ConnectionString)
-            cnSQL.Open()
-
-            strSqL = "Global.spTedadKalaRezervInEshantion "
-
-            cmSQL = New SqlCommand(strSqL, cnSQL)
-            cmSQL.CommandType = CommandType.StoredProcedure
-            cmSQL.Parameters.Clear()
-
-            p = New SqlParameter("ccKala", SqlDbType.Int)
-            p.Value = ccKala
-            cmSQL.Parameters.Add(p)
-
-            p = New SqlParameter("CodeMahal", SqlDbType.Int)
-            p.Value = CType(CodeMahalFaal, Integer)
-            cmSQL.Parameters.Add(p)
-
-            p = New SqlParameter("ccAnbar", SqlDbType.Int)
-            p.Value = ccAnbar
-            cmSQL.Parameters.Add(p)
-
-            TedadEshantion = cmSQL.ExecuteScalar
-
-            cnSQL.Close() : cnSQL = Nothing
-
-            ''----------------------------------
-
-            cnSQL = New SqlConnection(ConnectionString)
-            cnSQL.Open()
-
-            strSqL = "Global.spTedadKalaRezervInMarjoeeTaminKonandeh "
-
-            cmSQL = New SqlCommand(strSqL, cnSQL)
-            cmSQL.CommandType = CommandType.StoredProcedure
-            cmSQL.Parameters.Clear()
-
-            p = New SqlParameter("ccKala", SqlDbType.Int)
-            p.Value = ccKala
-            cmSQL.Parameters.Add(p)
-
-            p = New SqlParameter("CodeMahal", SqlDbType.Int)
-            p.Value = CType(CodeMahalFaal, Integer)
-            cmSQL.Parameters.Add(p)
-
-            p = New SqlParameter("ccAnbar", SqlDbType.Int)
-            p.Value = ccAnbar
-            cmSQL.Parameters.Add(p)
-
-            TedadMarjoeeTaminKonandeh = cmSQL.ExecuteScalar
-
-            cnSQL.Close() : cnSQL = Nothing
-
-            '-----------------------------------------------------
-
-            cnSQL = New SqlConnection(ConnectionString)
-            cnSQL.Open()
-
-            strSqL = "Global.spTedadKalaRezervInPishFaktorWithCodeDoreh "
-
-            cmSQL = New SqlCommand(strSqL, cnSQL)
-            cmSQL.CommandType = CommandType.StoredProcedure
-            cmSQL.Parameters.Clear()
-
-            p = New SqlParameter("ccKala", SqlDbType.Int)
-            p.Value = ccKala
-            cmSQL.Parameters.Add(p)
-
-            p = New SqlParameter("CodeMahal", SqlDbType.Int)
-            p.Value = CType(CodeMahalFaal, Integer)
-            cmSQL.Parameters.Add(p)
-
-            p = New SqlParameter("CodeDoreh", SqlDbType.Int)
-            p.Value = CType(CodeDoreh, Integer)
-            cmSQL.Parameters.Add(p)
-
-            p = New SqlParameter("ccAnbar", SqlDbType.Int)
-            p.Value = ccAnbar
-            cmSQL.Parameters.Add(p)
-
-            TedadPishFaktor = cmSQL.ExecuteScalar
-
-            TedadAnbar = MojodiAnbar(ccAnbar, Str(CodeDoreh).Trim + "0101", TarikhEmrooz, ccKala)
-            MojodiFely = TedadAnbar.ToString
-            MojodiGhabelForosh = (TedadAnbar - TedadPishFaktor)
-            MojodiGhabelForoshKOL = (TedadAnbar - (TedadPishFaktor + TedadMarjoeeTaminKonandeh + TedadEshantion))
-            cnSQL.Close() : cnSQL = Nothing
 
         Catch ex As Exception
+
+
             MessageBox.Show(ex.Message)
         End Try
     End Sub
+    'Public Sub GetMojodyDarHalForosh(ByVal ccKala As Long, ByVal ccAnbar As Integer,
+    'ByRef TedadPishFaktor As Double, ByRef MojodiFely As Double, ByRef MojodiGhabelForosh As Double)
+
+    '    Dim strSqL As String = ""
+    '    Dim cmSQL As SqlCommand
+    '    Dim cnSQL As SqlConnection
+    '    Dim p As New SqlParameter
+    '    Dim TedadMarjoeeTaminKonandeh As Double = 0
+    '    Dim TedadEshantion As Double = 0
+
+    '    Dim TedadAnbar As Double
+
+    '    Try
+
+    '        cnSQL = New SqlConnection(ConnectionString)
+    '        cnSQL.Open()
+
+    '        strSqL = "Global.spTedadKalaRezervInPishFaktor "
+
+    '        cmSQL = New SqlCommand(strSqL, cnSQL)
+    '        cmSQL.CommandType = CommandType.StoredProcedure
+    '        cmSQL.Parameters.Clear()
+
+    '        p = New SqlParameter("ccKala", SqlDbType.Int)
+    '        p.Value = ccKala
+    '        cmSQL.Parameters.Add(p)
+
+    '        p = New SqlParameter("CodeMahal", SqlDbType.Int)
+    '        p.Value = CType(CodeMahalFaal, Integer)
+    '        cmSQL.Parameters.Add(p)
+
+
+    '        p = New SqlParameter("ccAnbar", SqlDbType.Int)
+    '        p.Value = CType(ccAnbar, Integer)
+    '        cmSQL.Parameters.Add(p)
+
+    '        TedadPishFaktor = cmSQL.ExecuteScalar
+
+
+    '        cnSQL.Close() : cnSQL = Nothing
+
+    '        ''----------------------------------
+
+    '        cnSQL = New SqlConnection(ConnectionString)
+    '        cnSQL.Open()
+
+    '        strSqL = "Global.spTedadKalaRezervInEshantion "
+
+    '        cmSQL = New SqlCommand(strSqL, cnSQL)
+    '        cmSQL.CommandType = CommandType.StoredProcedure
+    '        cmSQL.Parameters.Clear()
+
+    '        p = New SqlParameter("ccKala", SqlDbType.Int)
+    '        p.Value = ccKala
+    '        cmSQL.Parameters.Add(p)
+
+    '        p = New SqlParameter("CodeMahal", SqlDbType.Int)
+    '        p.Value = CType(CodeMahalFaal, Integer)
+    '        cmSQL.Parameters.Add(p)
+
+    '        p = New SqlParameter("ccAnbar", SqlDbType.Int)
+    '        p.Value = ccAnbar
+    '        cmSQL.Parameters.Add(p)
+
+    '        TedadEshantion = cmSQL.ExecuteScalar
+
+    '        cnSQL.Close() : cnSQL = Nothing
+
+    '        ''----------------------------------
+
+    '        cnSQL = New SqlConnection(ConnectionString)
+    '        cnSQL.Open()
+
+    '        strSqL = "Global.spTedadKalaRezervInMarjoeeTaminKonandeh "
+
+    '        cmSQL = New SqlCommand(strSqL, cnSQL)
+    '        cmSQL.CommandType = CommandType.StoredProcedure
+    '        cmSQL.Parameters.Clear()
+
+    '        p = New SqlParameter("ccKala", SqlDbType.Int)
+    '        p.Value = ccKala
+    '        cmSQL.Parameters.Add(p)
+
+    '        p = New SqlParameter("CodeMahal", SqlDbType.Int)
+    '        p.Value = CType(CodeMahalFaal, Integer)
+    '        cmSQL.Parameters.Add(p)
+
+    '        p = New SqlParameter("ccAnbar", SqlDbType.Int)
+    '        p.Value = ccAnbar
+    '        cmSQL.Parameters.Add(p)
+
+    '        TedadMarjoeeTaminKonandeh = cmSQL.ExecuteScalar
+
+    '        cnSQL.Close() : cnSQL = Nothing
+
+    '        '-----------------------------------------------------
+
+    '        cnSQL = New SqlConnection(ConnectionString)
+    '        cnSQL.Open()
+
+    '        strSqL = "Global.spTedadKalaRezervInPishFaktorWithCodeDoreh "
+
+    '        cmSQL = New SqlCommand(strSqL, cnSQL)
+    '        cmSQL.CommandType = CommandType.StoredProcedure
+    '        cmSQL.Parameters.Clear()
+
+    '        p = New SqlParameter("ccKala", SqlDbType.Int)
+    '        p.Value = ccKala
+    '        cmSQL.Parameters.Add(p)
+
+    '        p = New SqlParameter("CodeMahal", SqlDbType.Int)
+    '        p.Value = CType(CodeMahalFaal, Integer)
+    '        cmSQL.Parameters.Add(p)
+
+    '        p = New SqlParameter("CodeDoreh", SqlDbType.Int)
+    '        p.Value = CType(CodeDoreh, Integer)
+    '        cmSQL.Parameters.Add(p)
+
+    '        p = New SqlParameter("ccAnbar", SqlDbType.Int)
+    '        p.Value = ccAnbar
+    '        cmSQL.Parameters.Add(p)
+
+    '        TedadPishFaktor = cmSQL.ExecuteScalar
+
+    '        TedadAnbar = MojodiAnbar(ccAnbar, Str(CodeDoreh).Trim + "0101", TarikhEmrooz, ccKala)
+    '        MojodiFely = TedadAnbar.ToString
+    '        MojodiGhabelForosh = (TedadAnbar - TedadPishFaktor)
+    '        MojodiGhabelForoshKOL = (TedadAnbar - (TedadPishFaktor + TedadMarjoeeTaminKonandeh + TedadEshantion))
+    '        cnSQL.Close() : cnSQL = Nothing
+
+    '    Catch ex As Exception
+    '        MessageBox.Show(ex.Message)
+    '    End Try
+    'End Sub
     Public Function MojodiAnbar(ByVal ccAnbar As Integer, ByVal AzTarikh As String, ByVal TaTarikh As String, ByVal ccKala As Integer) As Double
         Dim cnSQL As SqlConnection
         Dim cmSQL As SqlCommand
