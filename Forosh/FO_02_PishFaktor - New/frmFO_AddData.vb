@@ -1,6 +1,8 @@
 ﻿
 
 
+Imports System.Data
+Imports System.Data.SqlClient
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
 
 Public Class frmFO_AddData
@@ -25,6 +27,152 @@ Public Class frmFO_AddData
     Dim AllowChangeFeePishFaktor As Boolean
 
 #End Region
+
+
+    Public Class PishFaktorTitrInfo
+
+#Region "Fields"
+        Private _ccPishFaktorTitr As Integer
+        Private _PishFaktorTarikh As String = ""
+        Private _ccMoshtary As Integer
+        Private _CodeMoshtary As String = ""
+        Private _NameMoshtary As String = ""
+        Private _ccMoshtaryAddress As Integer
+        Private _ccForoshandeh As Integer
+        Private _sNoePardakht As Integer
+        Private _ModatCheck As Integer
+        Private _Tozihat As String = ""
+        Private _ccAnbar As Integer
+        Private _dtSearchTitr As DataTable
+#End Region
+
+#Region "Properties"
+        Public ReadOnly Property ccPishFaktorTitr() As Integer
+            Get
+                Return _ccPishFaktorTitr
+            End Get
+        End Property
+
+        Public ReadOnly Property PishFaktorTarikh() As String
+            Get
+                Return _PishFaktorTarikh
+            End Get
+        End Property
+
+        Public ReadOnly Property ccMoshtary() As Integer
+            Get
+                Return _ccMoshtary
+            End Get
+        End Property
+
+        Public ReadOnly Property CodeMoshtary() As String
+            Get
+                Return _CodeMoshtary
+            End Get
+        End Property
+
+        Public ReadOnly Property NameMoshtary() As String
+            Get
+                Return _NameMoshtary
+            End Get
+        End Property
+
+        Public ReadOnly Property ccMoshtaryAddress() As Integer
+            Get
+                Return _ccMoshtaryAddress
+            End Get
+        End Property
+
+        Public ReadOnly Property ccForoshandeh() As Integer
+            Get
+                Return _ccForoshandeh
+            End Get
+        End Property
+
+        Public ReadOnly Property sNoePardakht() As Integer
+            Get
+                Return _sNoePardakht
+            End Get
+        End Property
+
+        Public ReadOnly Property ModatCheck() As Integer
+            Get
+                Return _ModatCheck
+            End Get
+        End Property
+
+        Public ReadOnly Property Tozihat() As String
+            Get
+                Return _Tozihat
+            End Get
+        End Property
+        Public ReadOnly Property ccAnbar As Integer
+            Get
+                Return _ccAnbar
+            End Get
+        End Property
+
+        Public ReadOnly Property dt_SearchTitr() As DataTable
+            Get
+                Return _dtSearchTitr
+            End Get
+        End Property
+#End Region
+
+        ''' <summary>
+        ''' اطلاعات تیتر را از دیتابیس می‌خواند. اگر رکوردی نبود False برمی‌گرداند.
+        ''' </summary>
+        Public Function Load(ByVal id As Integer, ByVal connectionString As String) As Boolean
+            _dtSearchTitr = New DataTable()
+
+            Using cn As New SqlConnection(connectionString)
+                Using cm As SqlCommand = cn.CreateCommand()
+                    cm.CommandType = CommandType.StoredProcedure
+                    cm.CommandText = "[Sales].[spPishFaktorVorodKoli_SearchTitr]"
+                    cm.CommandTimeout = 999999
+                    cm.Parameters.AddWithValue("@ccPishFaktorTitr", id)
+
+                    Dim da As New SqlDataAdapter(cm)
+                    da.Fill(_dtSearchTitr)
+                End Using
+            End Using
+
+            If _dtSearchTitr.Rows.Count = 0 Then Return False
+
+            Dim r As DataRow = _dtSearchTitr.Rows(0)
+            _ccPishFaktorTitr = id
+            _PishFaktorTarikh = GetStr(r, "PishFaktorTarikh")
+            _ccMoshtary = GetInt(r, "ccMoshtary")
+            _CodeMoshtary = GetStr(r, "CodeMoshtary")
+            _NameMoshtary = GetStr(r, "NameMoshtary")
+            _ccMoshtaryAddress = GetInt(r, "ccMoshtaryAddress")
+            _ccForoshandeh = GetInt(r, "ccForoshandeh")
+            _sNoePardakht = GetInt(r, "sNoePardakht")
+            _ModatCheck = GetInt(r, "ModatCheck")
+            _Tozihat = GetStr(r, "Tozihat")
+            _ccAnbar = GetInt(r, "ccAnbar")
+
+            Return True
+        End Function
+
+#Region "Helpers"
+        ' اگر ستون در خروجی SP نبود، خطا نمی‌دهد و مقدار پیش‌فرض برمی‌گرداند
+        Private Shared Function GetInt(ByVal r As DataRow, ByVal col As String) As Integer
+            If Not r.Table.Columns.Contains(col) Then Return 0
+            Dim v As Object = r(col)
+            If v Is Nothing OrElse IsDBNull(v) Then Return 0
+            Return Convert.ToInt32(v)
+        End Function
+
+        Private Shared Function GetStr(ByVal r As DataRow, ByVal col As String) As String
+            If Not r.Table.Columns.Contains(col) Then Return ""
+            Dim v As Object = r(col)
+            If v Is Nothing OrElse IsDBNull(v) Then Return ""
+            Return v.ToString()
+        End Function
+#End Region
+
+    End Class
     Private Sub frmFO_AddData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         mskTarikh.Text = TarikhEmrooz
         LoadCombo()
@@ -549,6 +697,15 @@ Public Class frmFO_AddData
         AddNewRecord()
         If ccPishfaktorTitr = 0 Then Exit Sub
 
+
+        Dim info As New PishFaktorTitrInfo()
+        If Not info.Load(ccPishfaktorTitr, ConnectionString) Then
+            MessageBox.Show("اطلاعات پیش‌فاکتور ذخیره‌شده پیدا نشد")
+        
+        End If
+        '' لود هدر ذخیره‌شده از دیتابیس و نمایش در فرم
+        'If Not LoadTitr(ccPishfaktorTitr) Then Exit Sub
+
         SearchSatr()
         btnSaveSanad.Enabled = False
 
@@ -558,6 +715,32 @@ Public Class frmFO_AddData
         GridEXSatr.Col = 0
 
     End Sub
+    Private Function LoadTitr(ByVal id As Integer) As Boolean
+        Dim info As New PishFaktorTitrInfo()
+
+        Try
+            If Not info.Load(id, ConnectionString) Then
+                MessageBox.Show("اطلاعات پیش‌فاکتور ذخیره‌شده پیدا نشد")
+                Return False
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return False
+        End Try
+
+        ccMoshtaryAddress = info.ccMoshtaryAddress
+
+        mskTarikh.Text = info.PishFaktorTarikh
+        txtCodeMoshtary.Text = info.CodeMoshtary
+        txtCodeMoshtary.Tag = info.ccMoshtary
+
+        cmbBazaryab.SelectedValue = info.ccForoshandeh
+        cmbNoePardakht.SelectedValue = info.sNoePardakht
+        txtModatCheck.Text = info.ModatCheck.ToString()
+        txtTozihat.Text = info.Tozihat
+
+        Return True
+    End Function
 
     Private Sub AddNewRecord()
 
@@ -624,6 +807,9 @@ Public Class frmFO_AddData
     Private Sub GridEXSatr_KeyDown(sender As Object, e As KeyEventArgs) Handles GridEXSatr.KeyDown
         If e.KeyCode = Keys.F2 Then
 
+
+            Dim info As New PishFaktorTitrInfo()
+
             If GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
 
             If GridEXSatr.CurrentColumn.Key = "CodeKala" Then
@@ -652,7 +838,7 @@ Public Class frmFO_AddData
 
                 GridEXSatr.CurrentRow.Cells("Fee").Value = 5000
 
-                GetMojodyGhabelForosh(objKala.tccKala, ccAnbarAsly, MojodiGhabelForoshKOL)
+                GetMojodyGhabelForosh(objKala.tccKala, info.ccAnbar, MojodiGhabelForoshKOL)
 
                 GridEXSatr.CurrentRow.Cells("MojodiDarHaleForosh").Value = MojodiGhabelForoshKOL
                 MultiSelection = False

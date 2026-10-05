@@ -354,7 +354,7 @@
                 Dim MojodiFely As Double = 0
                 Dim MojodiGhabelForosh As Double = 0
                 Dim ccAnbarForosh As Integer = objTools.ConvertNulls(objTools.DLookup("CodeAnbar", "tblAN_Anbar", "AnbarAsly = 1 And CodeMahal = " & CodeMahalFaal), 0)
-                GetMojodyDarHalForosh(ccKala_G, ccAnbarForosh, TedadPishFaktorFaktorNashodeh, MojodiFely, MojodiGhabelForosh)
+                'GetMojodyDarHalForosh(ccKala_G, ccAnbarForosh, TedadPishFaktorFaktorNashodeh, MojodiFely, MojodiGhabelForosh)
                 '------------------
                 GridEXInsertKala.CurrentRow.Cells(4).Text = NameKala_G
                 GridEXInsertKala.CurrentRow.Cells(5).Text = ZaribForosh_G

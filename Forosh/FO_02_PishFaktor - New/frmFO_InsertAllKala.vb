@@ -676,7 +676,7 @@
             End If
 
             If ObjCode.CheckMojodiAlert = 2 Then
-                GetMojodyDarHalForosh(ccKala, ccAnbarForosh, TedadPishFaktorFaktorNashodeh, MojodiFely, MojodiGhabelForosh)
+                'GetMojodyDarHalForosh(ccKala, ccAnbarForosh, TedadPishFaktorFaktorNashodeh, MojodiFely, MojodiGhabelForosh)
                 'MojodiDarInPishFaktor = objTools.ConvertNulls(objTools.DSum("Tedad3", "tblFO_PishFaktorSatr", "ccPishFaktorTitr = " & frm_ccPishFaktor & " AND ccKala = " & ccKala), 0)
                 Mojodi = MojodiGhabelForoshKOL - MojodiDarInPishFaktor
 
