@@ -25,7 +25,8 @@ Public Class frmFO_AddData
     Dim ccMoshtaryAddress As Integer = 0
     Dim CodeFard As Integer = 0
     Dim AllowChangeFeePishFaktor As Boolean
-
+    Dim MeghdarAdadi As Integer
+    Dim flg As Boolean = False
 #End Region
 
 
@@ -175,8 +176,10 @@ Public Class frmFO_AddData
     End Class
     Private Sub frmFO_AddData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         mskTarikh.Text = TarikhEmrooz
+        flg = False
         LoadCombo()
         ClearForm()
+        flg = True
         AllowChangeFeePishFaktor = objTools.ConvertNulls(objTools.DLookup("AllowChangeFeePishFaktor", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
         With GridEXSatr
             .TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ColumnNavigation
@@ -218,7 +221,7 @@ Public Class frmFO_AddData
 
 
             ObjCode.UserName = UserName
-
+            cmbNoePardakht.SelectedIndex = -1
 
 
             'lblGorohForosh.Visible = False
@@ -813,11 +816,12 @@ Public Class frmFO_AddData
             Return False
         End If
 
-        ' مدت چک
-        If Val(txtModatCheck.Text) < 0 Then
-            MessageBox.Show("مدت چک نامعتبر است")
-            txtModatCheck.Focus()
-            Return False
+        If txtModatCheck.Visible Then
+            If Val(txtModatCheck.Text) <= 0 Then
+                MessageBox.Show("مدت چک را وارد کنید")
+                txtModatCheck.Focus()
+                Return False
+            End If
         End If
 
         ' انبار
@@ -924,7 +928,7 @@ Public Class frmFO_AddData
                 GridEXSatr.CurrentRow.Cells("NameKala").Value = objKala.tNameKala
 
                 GridEXSatr.CurrentRow.Cells("Fee").Value = 5000
-                CalcRow(GridEXSatr.CurrentRow)
+                'CalcRow(GridEXSatr.CurrentRow)
 
                 info.Load(ccPishfaktorTitr, ConnectionString)
 
@@ -1000,9 +1004,9 @@ Public Class frmFO_AddData
                     cmd.CommandText = "[Sales].[spPishFaktorVorodKoli_InsertSatr]"
                     cmd.Parameters.AddWithValue("@ccPishFaktorTitr", ccPishfaktorTitr)
                     cmd.Parameters.AddWithValue("@ccKala", row.Cells("ccKala").Value)
-                    cmd.Parameters.AddWithValue("@Tedad3", If(row.Cells("Tedad3").Value, DBNull.Value))
-                    cmd.Parameters.AddWithValue("@Fee", If(row.Cells("Fee").Value, DBNull.Value))
-                    cmd.Parameters.AddWithValue("@DarsadTakhfif", If(row.Cells("DarsadTakhfif").Value, DBNull.Value))
+                    cmd.Parameters.AddWithValue("@Tedad3", If(row.Cells("Tedad3").Value, 0))
+                    cmd.Parameters.AddWithValue("@Fee", If(row.Cells("Fee").Value, 0))
+                    cmd.Parameters.AddWithValue("@DarsadTakhfif", IIf(row.Cells("DarsadTakhfif").Value Is DBNull.Value, 0, row.Cells("DarsadTakhfif").Value))
 
                     Dim outId As New SqlParameter("@ccPishFaktorSatr", SqlDbType.Int) With {
                      .Direction = ParameterDirection.Output}
@@ -1093,9 +1097,21 @@ Public Class frmFO_AddData
 
     Private _isCalculating As Boolean = False
 
-    Private Sub GridEXSatr_CellValueChanged(ByVal sender As Object,
-            ByVal e As Janus.Windows.GridEX.ColumnActionEventArgs) _
-            Handles GridEXSatr.CellValueChanged
+    'Private Sub GridEXSatr_CellValueChanged(ByVal sender As Object,
+    '        ByVal e As Janus.Windows.GridEX.ColumnActionEventArgs) _
+    '        Handles GridEXSatr.CellValueChanged
+
+    '    If _isCalculating Then Exit Sub
+    '    If e.Column Is Nothing Then Exit Sub
+
+    '    Dim key As String = e.Column.Key
+    '    If key = "Tedad3" OrElse key = "Fee" OrElse key = "DarsadTakhfif" Then
+    '        CalcRow(GridEXSatr.CurrentRow)
+    '    End If
+    'End Sub
+    Private Sub GridEXSatr_CellUpdated(ByVal sender As Object,
+        ByVal e As Janus.Windows.GridEX.ColumnActionEventArgs) _
+        Handles GridEXSatr.CellUpdated
 
         If _isCalculating Then Exit Sub
         If e.Column Is Nothing Then Exit Sub
@@ -1110,7 +1126,7 @@ Public Class frmFO_AddData
         If row Is Nothing Then Exit Sub
 
         Dim tedad, fee, darsad As Double
-        TryGetNumber(row, "Tedad3", tedad)           ' اگر خالی بود، صفر می‌ماند
+        TryGetNumber(row, "Tedad3", tedad)
         TryGetNumber(row, "Fee", fee)
         TryGetNumber(row, "DarsadTakhfif", darsad)
 
@@ -1119,12 +1135,32 @@ Public Class frmFO_AddData
 
         _isCalculating = True
         Try
-            row.BeginEdit()
             row.Cells("MKol3").Value = mKol
             row.Cells("TakhfifKala").Value = takhfif
-            row.EndEdit()
         Finally
             _isCalculating = False
         End Try
+    End Sub
+
+    Private Sub cmbNoePardakht_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbNoePardakht.SelectedIndexChanged
+        If flg Then
+            MeghdarAdadi = ObjCode.GetMeghdarAdadi(cmbNoePardakht.SelectedValue)
+
+            If MeghdarAdadi < 4 Then
+
+                txtModatCheck.Visible = True
+                lblModatCheck.Visible = True
+
+
+                txtModatCheck.Text = objTools.ConvertNulls(objTools.DLookup("ModateChek", "tblFO_Moshtary", "ccMoshtary = " & txtCodeMoshtary.Tag), 0)
+
+            Else
+                txtModatCheck.Visible = False
+                txtModatCheck.Text = ""
+                lblModatCheck.Visible = False
+
+
+            End If
+        End If
     End Sub
 End Class
