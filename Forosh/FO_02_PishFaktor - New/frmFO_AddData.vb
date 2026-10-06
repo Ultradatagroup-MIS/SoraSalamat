@@ -310,6 +310,31 @@ Public Class frmFO_AddData
             cm = Nothing
 
 
+            If dsForm.Tables.Contains("tblAnbar") Then
+                dsForm.Tables.Remove("tblAnbar")
+            End If
+
+            Strsql = "Global.spAnbar_LoadCombo"
+
+            cn = New SqlConnection(ConnectionString)
+            cn.Open()
+
+            cm = New SqlCommand(Strsql, cn)
+            cm.CommandType = CommandType.StoredProcedure
+            cm.Parameters.Clear()
+
+            cm.Parameters.AddWithValue("CodeMahal", CodeMahalFaal)
+
+            daSQL = New SqlDataAdapter(cm)
+            daSQL.Fill(dsForm, "tblAnbar")
+
+            cmbAnbar.DataSource = Nothing
+            cmbAnbar.Items.Clear()
+            cmbAnbar.DataSource = dsForm.Tables("tblAnbar").DefaultView
+            cmbAnbar.DisplayMember = "NameAnbar"
+            cmbAnbar.ValueMember = "CodeAnbar"
+
+            cm = Nothing
             daSQL = Nothing
             cn.Close()
 
@@ -620,6 +645,7 @@ Public Class frmFO_AddData
 
 
 
+
             GridEXSatr.CurrentTable.Columns.Item("MKol3").Caption = "جمع مبلغ"
             GridEXSatr.CurrentTable.Columns.Item("MKol3").Visible = True
             GridEXSatr.CurrentTable.Columns.Item("MKol3").Width = 100
@@ -633,7 +659,7 @@ Public Class frmFO_AddData
             GridEXSatr.CurrentTable.Columns.Item("DarsadTakhfif").Visible = True
             GridEXSatr.CurrentTable.Columns.Item("DarsadTakhfif").Width = 100
             GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
-            GridEXSatr.CurrentTable.Columns.Item("DarsadTakhfif").EditType = Janus.Windows.GridEX.EditType.NoEdit
+            'GridEXSatr.CurrentTable.Columns.Item("DarsadTakhfif").EditType = Janus.Windows.GridEX.EditType.NoEdit
             GridEXSatr.CurrentTable.Columns.Item("DarsadTakhfif").Position = 8
             GridEXSatr.CurrentTable.Columns.Item("DarsadTakhfif").FormatString = "N"
 
@@ -693,7 +719,7 @@ Public Class frmFO_AddData
 
     Private Sub btnSaveSanad_Click(sender As Object, e As EventArgs) Handles btnSaveSanad.Click
         If ccPishfaktorTitr <> 0 Then Exit Sub        ' جلوگیری از Insert دوباره‌ی هدر
-
+        If Not ValidateTitr() Then Exit Sub      ' قبل از ذخیره‌ی هدر
         AddNewRecord()
         If ccPishfaktorTitr = 0 Then Exit Sub
 
@@ -741,7 +767,68 @@ Public Class frmFO_AddData
 
         Return True
     End Function
+    Private Function IsComboEmpty(ByVal cmb As ComboBox) As Boolean
+        If cmb.SelectedIndex < 0 Then Return True
+        Dim v As Object = cmb.SelectedValue
+        If v Is Nothing OrElse IsDBNull(v) Then Return True
+        Return False
+    End Function
 
+    Private Function ValidateTitr() As Boolean
+
+        ' تاریخ
+        Dim tarikh As String = mskTarikh.Text.Replace("/", "").Replace(" ", "").Trim()
+        If tarikh.Length = 0 Then
+            MessageBox.Show("تاریخ را وارد کنید")
+            mskTarikh.Focus()
+            Return False
+        End If
+
+        ' مشتری
+        If txtCodeMoshtary.Tag Is Nothing OrElse IsDBNull(txtCodeMoshtary.Tag) _
+       OrElse Val(txtCodeMoshtary.Tag.ToString()) <= 0 Then
+            MessageBox.Show("مشتری را انتخاب کنید")
+            txtCodeMoshtary.Focus()
+            Return False
+        End If
+
+        ' آدرس مشتری
+        If IsComboEmpty(cmbAddress) Then
+            MessageBox.Show("آدرس مشتری را انتخاب کنید")
+            cmbAddress.Focus()
+            Return False
+        End If
+
+        ' فروشنده
+        If IsComboEmpty(cmbBazaryab) Then
+            MessageBox.Show("فروشنده را انتخاب کنید")
+            cmbBazaryab.Focus()
+            Return False
+        End If
+
+        ' نحوه پرداخت
+        If IsComboEmpty(cmbNoePardakht) Then
+            MessageBox.Show("نحوه پرداخت را انتخاب کنید")
+            cmbNoePardakht.Focus()
+            Return False
+        End If
+
+        ' مدت چک
+        If Val(txtModatCheck.Text) < 0 Then
+            MessageBox.Show("مدت چک نامعتبر است")
+            txtModatCheck.Focus()
+            Return False
+        End If
+
+        ' انبار
+        If IsComboEmpty(cmbAnbar) Then
+            MessageBox.Show("انبار را انتخاب کنید")
+            cmbAnbar.Focus()
+            Return False
+        End If
+
+        Return True
+    End Function
     Private Sub AddNewRecord()
 
 
@@ -767,7 +854,7 @@ Public Class frmFO_AddData
                 cm.Parameters.AddWithValue("PishFaktorGheireGhateei", 0)
                 cm.Parameters.AddWithValue("Tozihat", txtTozihat.Text.TrimEnd)
                 cm.Parameters.AddWithValue("NoeVorod", 1)
-                cm.Parameters.AddWithValue("ccAnbar", DBNull.Value)
+                cm.Parameters.AddWithValue("ccAnbar", cmbAnbar.SelectedValue)
                 cm.Parameters.AddWithValue("UserName", UserName)
 
                 Dim pOut As SqlParameter = cm.Parameters.Add("@ccPishFaktorTitr", SqlDbType.Int)
@@ -837,6 +924,9 @@ Public Class frmFO_AddData
                 GridEXSatr.CurrentRow.Cells("NameKala").Value = objKala.tNameKala
 
                 GridEXSatr.CurrentRow.Cells("Fee").Value = 5000
+                CalcRow(GridEXSatr.CurrentRow)
+
+                info.Load(ccPishfaktorTitr, ConnectionString)
 
                 GetMojodyGhabelForosh(objKala.tccKala, info.ccAnbar, MojodiGhabelForoshKOL)
 
@@ -900,19 +990,16 @@ Public Class frmFO_AddData
 
         ' ردیف خالی: ذخیره نشه، پیام نده، ولی Cancel بشه تا به ردیف بعدی نره
         If isNew AndAlso IsRowEmpty(row) Then Return False
+        If Not ValidateRow(row) Then Return False
 
-        Dim ccKala = row.Cells("ccKala").Value
-        If ccKala Is Nothing OrElse IsDBNull(ccKala) OrElse ccKala.ToString().Trim() = "" Then
-            MessageBox.Show("کالا را انتخاب کنید")
-            Return False
-        End If
+
         Try
             Using con As New SqlConnection(ConnectionString)
                 Using cmd As SqlCommand = con.CreateCommand()
                     cmd.CommandType = CommandType.StoredProcedure
                     cmd.CommandText = "[Sales].[spPishFaktorVorodKoli_InsertSatr]"
                     cmd.Parameters.AddWithValue("@ccPishFaktorTitr", ccPishfaktorTitr)
-                    cmd.Parameters.AddWithValue("@ccKala", ccKala)
+                    cmd.Parameters.AddWithValue("@ccKala", row.Cells("ccKala").Value)
                     cmd.Parameters.AddWithValue("@Tedad3", If(row.Cells("Tedad3").Value, DBNull.Value))
                     cmd.Parameters.AddWithValue("@Fee", If(row.Cells("Fee").Value, DBNull.Value))
                     cmd.Parameters.AddWithValue("@DarsadTakhfif", If(row.Cells("DarsadTakhfif").Value, DBNull.Value))
@@ -940,26 +1027,104 @@ Public Class frmFO_AddData
     End Function
 
 
-    Private Sub AddNewSatr()
 
 
-        Using cn As New SqlConnection(ConnectionString)
-            Using cm As SqlCommand = cn.CreateCommand()
-                cn.Open()
-                cm.Parameters.Clear()
-                cm.CommandType = CommandType.StoredProcedure
-                cm.CommandText = "[Sales].[spPishFaktorVorodKoli_InsertSatr]"
-                cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishfaktorTitr)
-                cm.Parameters.AddWithValue("ccKala", GridEXSatr.CurrentRow.Cells("ccKala").Value)
-                cm.Parameters.AddWithValue("Tedad3", GridEXSatr.CurrentRow.Cells("Tedad3").Value)
-                cm.Parameters.AddWithValue("Fee", GridEXSatr.CurrentRow.Cells("Fee").Value)
-                cm.Parameters.AddWithValue("DarsadTakhfif", GridEXSatr.CurrentRow.Cells("DarsadTakhfif").Value)
+    ' مقدار سلول را به عدد تبدیل می‌کند؛ اگر خالی یا غیرعددی بود False برمی‌گرداند
+    Private Function TryGetNumber(ByVal row As Janus.Windows.GridEX.GridEXRow,
+                                  ByVal colKey As String, ByRef result As Double) As Boolean
+        result = 0
+        Dim v As Object = row.Cells(colKey).Value
+        If v Is Nothing OrElse IsDBNull(v) Then Return False
+        If v.ToString().Trim().Length = 0 Then Return False
+        Return Double.TryParse(v.ToString().Trim(), result)
+    End Function
 
-                cm.CommandTimeout = 999999
-                cm.ExecuteNonQuery()
-            End Using
-        End Using
+    Private Function ValidateRow(ByVal row As Janus.Windows.GridEX.GridEXRow) As Boolean
+        Dim num As Double
+
+
+
+
+        ' کالا: حتماً انتخاب شده باشد
+        Dim ccKala As Object = row.Cells("ccKala").Value
+        If ccKala Is Nothing OrElse IsDBNull(ccKala) OrElse ccKala.ToString().Trim() = "" Then
+            MessageBox.Show("کالا را انتخاب کنید")
+            FocusCol("CodeKala")
+            Return False
+        End If
+
+
+        ' تعداد: حتماً پر و بزرگ‌تر از صفر
+        If Not TryGetNumber(row, "Tedad3", num) OrElse num <= 0 Then
+            MessageBox.Show("تعداد را وارد کنید")
+            FocusCol("Tedad3")
+            Return False
+        End If
+
+        ' فی: حتماً پر (صفر هم قبول نیست؛ اگر صفر مجاز است، شرط num <= 0 را حذف کنید)
+        If Not TryGetNumber(row, "Fee", num) OrElse num <= 0 Then
+            MessageBox.Show("فی را وارد کنید")
+            FocusCol("Fee")
+            Return False
+        End If
+
+        ' موجودی قابل فروش: باید بزرگ‌تر از صفر باشد
+        If Not TryGetNumber(row, "MojodiDarHaleForosh", num) OrElse num <= 0 Then
+            MessageBox.Show("موجودی قابل فروش این کالا صفر است")
+            FocusCol("CodeKala")
+            Return False
+        End If
+        Dim tedad, mojodi As Double
+        TryGetNumber(row, "Tedad3", tedad)
+        TryGetNumber(row, "MojodiDarHaleForosh", mojodi)
+        If tedad > mojodi Then
+            MessageBox.Show("تعداد از موجودی قابل فروش بیشتر است")
+            FocusCol("Tedad3")
+            Return False
+        End If
+
+
+        Return True
+    End Function
+
+    Private Sub FocusCol(ByVal colKey As String)
+        GridEXSatr.Col = GridEXSatr.RootTable.Columns(colKey).Position
     End Sub
 
+    Private _isCalculating As Boolean = False
 
+    Private Sub GridEXSatr_CellValueChanged(ByVal sender As Object,
+            ByVal e As Janus.Windows.GridEX.ColumnActionEventArgs) _
+            Handles GridEXSatr.CellValueChanged
+
+        If _isCalculating Then Exit Sub
+        If e.Column Is Nothing Then Exit Sub
+
+        Dim key As String = e.Column.Key
+        If key = "Tedad3" OrElse key = "Fee" OrElse key = "DarsadTakhfif" Then
+            CalcRow(GridEXSatr.CurrentRow)
+        End If
+    End Sub
+
+    Private Sub CalcRow(ByVal row As Janus.Windows.GridEX.GridEXRow)
+        If row Is Nothing Then Exit Sub
+
+        Dim tedad, fee, darsad As Double
+        TryGetNumber(row, "Tedad3", tedad)           ' اگر خالی بود، صفر می‌ماند
+        TryGetNumber(row, "Fee", fee)
+        TryGetNumber(row, "DarsadTakhfif", darsad)
+
+        Dim mKol As Double = tedad * fee
+        Dim takhfif As Double = mKol * darsad / 100
+
+        _isCalculating = True
+        Try
+            row.BeginEdit()
+            row.Cells("MKol3").Value = mKol
+            row.Cells("TakhfifKala").Value = takhfif
+            row.EndEdit()
+        Finally
+            _isCalculating = False
+        End Try
+    End Sub
 End Class

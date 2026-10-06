@@ -137,7 +137,7 @@ Module mdlPublic
 
             cnSQL = New SqlConnection(ConnectionString)
 
-            strSqL = " SELECT [dbo].[fnAN_GetMojodiDarHalForosh] (" & ccAnbar & ", " & ccKala & ", " & CodeMahalFaal & ", " & CodeDoreh & ", " & TarikhEmrooz & ")) "
+            strSqL = " SELECT [dbo].[fnAN_GetMojodiDarHalForosh] (" & ccAnbar & ", " & ccKala & ", " & CodeMahalFaal & ", " & CodeDoreh & ", " & TarikhEmrooz & ") "
 
             cmSQL = New SqlCommand(strSqL, cnSQL)
             cnSQL.Open()
