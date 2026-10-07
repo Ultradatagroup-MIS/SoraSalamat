@@ -697,11 +697,40 @@ Public Class frmFO_AddData
 
 
 
+            ' tblPishFaktorSatr.ShomarehBach , 
+            'tblPishFaktorSatr.TarikhTolid , tblPishFaktorSatr.TarikhENgheza
+            GridEXSatr.CurrentTable.Columns.Item("ShomarehBach").Caption = "شماره بچ"
+            GridEXSatr.CurrentTable.Columns.Item("ShomarehBach").Visible = True
+            GridEXSatr.CurrentTable.Columns.Item("ShomarehBach").Width = 80
+            GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
+            GridEXSatr.CurrentTable.Columns.Item("ShomarehBach").EditType = Janus.Windows.GridEX.EditType.NoEdit
+            GridEXSatr.CurrentTable.Columns.Item("ShomarehBach").Position = 12
+            'GridEXSatr.CurrentTable.Columns.Item("ShomarehBach").FormatString = "###,###"
+            GridEXSatr.CurrentTable.Columns.Item("ShomarehBach").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+
+            GridEXSatr.CurrentTable.Columns.Item("TarikhTolid").Caption = "تاریخ تولید"
+            GridEXSatr.CurrentTable.Columns.Item("TarikhTolid").Visible = True
+            GridEXSatr.CurrentTable.Columns.Item("TarikhTolid").Width = 80
+            GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
+            GridEXSatr.CurrentTable.Columns.Item("TarikhTolid").EditType = Janus.Windows.GridEX.EditType.NoEdit
+            GridEXSatr.CurrentTable.Columns.Item("TarikhTolid").Position = 13
+            GridEXSatr.CurrentTable.Columns.Item("TarikhTolid").FormatString = "###,###"
+            GridEXSatr.CurrentTable.Columns.Item("TarikhTolid").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+
+            GridEXSatr.CurrentTable.Columns.Item("TarikhENgheza").Caption = "تاریخ انقضا"
+            GridEXSatr.CurrentTable.Columns.Item("TarikhENgheza").Visible = True
+            GridEXSatr.CurrentTable.Columns.Item("TarikhENgheza").Width = 80
+            GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
+            GridEXSatr.CurrentTable.Columns.Item("TarikhENgheza").EditType = Janus.Windows.GridEX.EditType.NoEdit
+            GridEXSatr.CurrentTable.Columns.Item("TarikhENgheza").Position = 14
+            GridEXSatr.CurrentTable.Columns.Item("TarikhENgheza").FormatString = "###,###"
+            GridEXSatr.CurrentTable.Columns.Item("TarikhENgheza").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+
             GridEXSatr.CurrentTable.Columns.Item("ccKala").Caption = "ccKala"
             GridEXSatr.CurrentTable.Columns.Item("ccKala").Visible = False
             GridEXSatr.CurrentTable.Columns.Item("ccKala").Width = 0
             GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOn
-            GridEXSatr.CurrentTable.Columns.Item("ccKala").Position = 12
+            GridEXSatr.CurrentTable.Columns.Item("ccKala").Position = 15
             GridEXSatr.CurrentTable.Columns.Item("ccKala").FormatString = "N"
             GridEXSatr.CurrentTable.Columns.Item("ccKala").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
 

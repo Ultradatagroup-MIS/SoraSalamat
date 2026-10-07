@@ -58,6 +58,7 @@ Partial Class frmFO_AddData
         Me.Label26 = New System.Windows.Forms.Label()
         Me.lblModatCheck = New System.Windows.Forms.Label()
         Me.txtModatCheck = New System.Windows.Forms.TextBox()
+        Me.chkMalyat = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         CType(Me.GridEXSatr, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,7 +75,7 @@ Partial Class frmFO_AddData
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox1.Size = New System.Drawing.Size(971, 672)
+        Me.GroupBox1.Size = New System.Drawing.Size(1274, 672)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         '
@@ -82,11 +83,11 @@ Partial Class frmFO_AddData
         '
         Me.GroupBox4.Controls.Add(Me.GridEXSatr)
         Me.GroupBox4.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(4, 278)
+        Me.GroupBox4.Location = New System.Drawing.Point(4, 182)
         Me.GroupBox4.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox4.Size = New System.Drawing.Size(967, 389)
+        Me.GroupBox4.Size = New System.Drawing.Size(1263, 485)
         Me.GroupBox4.TabIndex = 2
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "ورود اطلاعات کالا"
@@ -130,7 +131,7 @@ Partial Class frmFO_AddData
         Me.GridEXSatr.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Blue
         Me.GridEXSatr.RecordNavigator = True
         Me.GridEXSatr.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.[True]
-        Me.GridEXSatr.Size = New System.Drawing.Size(963, 372)
+        Me.GridEXSatr.Size = New System.Drawing.Size(1259, 468)
         Me.GridEXSatr.TabIndex = 100
         Me.GridEXSatr.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
         Me.GridEXSatr.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
@@ -148,7 +149,7 @@ Partial Class frmFO_AddData
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox3.Size = New System.Drawing.Size(962, 46)
+        Me.GroupBox3.Size = New System.Drawing.Size(1263, 46)
         Me.GroupBox3.TabIndex = 1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "جستجو"
@@ -215,6 +216,7 @@ Partial Class frmFO_AddData
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.chkMalyat)
         Me.GroupBox2.Controls.Add(Me.lblAnbar)
         Me.GroupBox2.Controls.Add(Me.btnSaveSanad)
         Me.GroupBox2.Controls.Add(Me.cmbAnbar)
@@ -238,7 +240,7 @@ Partial Class frmFO_AddData
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox2.Size = New System.Drawing.Size(962, 213)
+        Me.GroupBox2.Size = New System.Drawing.Size(1263, 118)
         Me.GroupBox2.TabIndex = 0
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "ورود اطلاعات اصلی"
@@ -248,7 +250,7 @@ Partial Class frmFO_AddData
         Me.lblAnbar.AutoSize = True
         Me.lblAnbar.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAnbar.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblAnbar.Location = New System.Drawing.Point(539, 19)
+        Me.lblAnbar.Location = New System.Drawing.Point(968, 18)
         Me.lblAnbar.Name = "lblAnbar"
         Me.lblAnbar.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.lblAnbar.Size = New System.Drawing.Size(31, 13)
@@ -261,17 +263,17 @@ Partial Class frmFO_AddData
         Me.btnSaveSanad.AccessibleDescription = ""
         Me.btnSaveSanad.AccessibleName = ""
         Me.btnSaveSanad.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.btnSaveSanad.Location = New System.Drawing.Point(219, 46)
+        Me.btnSaveSanad.Location = New System.Drawing.Point(4, 12)
         Me.btnSaveSanad.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSaveSanad.Name = "btnSaveSanad"
-        Me.btnSaveSanad.Size = New System.Drawing.Size(59, 144)
+        Me.btnSaveSanad.Size = New System.Drawing.Size(59, 98)
         Me.btnSaveSanad.TabIndex = 101
         Me.btnSaveSanad.Text = "&ذخيره"
         '
         'cmbAnbar
         '
         Me.cmbAnbar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbAnbar.Location = New System.Drawing.Point(342, 16)
+        Me.cmbAnbar.Location = New System.Drawing.Point(771, 15)
         Me.cmbAnbar.MaxDropDownItems = 20
         Me.cmbAnbar.Name = "cmbAnbar"
         Me.cmbAnbar.Size = New System.Drawing.Size(194, 20)
@@ -280,7 +282,7 @@ Partial Class frmFO_AddData
         'cmbAddress
         '
         Me.cmbAddress.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbAddress.Location = New System.Drawing.Point(342, 69)
+        Me.cmbAddress.Location = New System.Drawing.Point(771, 65)
         Me.cmbAddress.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbAddress.MaxDropDownItems = 20
         Me.cmbAddress.Name = "cmbAddress"
@@ -292,7 +294,7 @@ Partial Class frmFO_AddData
         Me.lblNameMoshtary.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblNameMoshtary.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblNameMoshtary.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblNameMoshtary.Location = New System.Drawing.Point(342, 48)
+        Me.lblNameMoshtary.Location = New System.Drawing.Point(771, 44)
         Me.lblNameMoshtary.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblNameMoshtary.Name = "lblNameMoshtary"
         Me.lblNameMoshtary.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -305,7 +307,7 @@ Partial Class frmFO_AddData
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(751, 69)
+        Me.Label18.Location = New System.Drawing.Point(1180, 65)
         Me.Label18.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(79, 13)
@@ -316,7 +318,7 @@ Partial Class frmFO_AddData
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(748, 20)
+        Me.Label3.Location = New System.Drawing.Point(1178, 22)
         Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(38, 13)
@@ -327,7 +329,7 @@ Partial Class frmFO_AddData
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(748, 96)
+        Me.Label4.Location = New System.Drawing.Point(668, 68)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(55, 13)
@@ -339,7 +341,7 @@ Partial Class frmFO_AddData
         Me.mskTarikh.AllowPromptAsInput = False
         Me.mskTarikh.Enabled = False
         Me.mskTarikh.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.mskTarikh.Location = New System.Drawing.Point(664, 17)
+        Me.mskTarikh.Location = New System.Drawing.Point(1094, 19)
         Me.mskTarikh.Margin = New System.Windows.Forms.Padding(2)
         Me.mskTarikh.Mask = "####/##/##"
         Me.mskTarikh.Name = "mskTarikh"
@@ -353,7 +355,7 @@ Partial Class frmFO_AddData
         '
         Me.cmbBazaryab.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbBazaryab.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbBazaryab.Location = New System.Drawing.Point(574, 93)
+        Me.cmbBazaryab.Location = New System.Drawing.Point(494, 65)
         Me.cmbBazaryab.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbBazaryab.MaxDropDownItems = 20
         Me.cmbBazaryab.Name = "cmbBazaryab"
@@ -364,7 +366,7 @@ Partial Class frmFO_AddData
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(750, 48)
+        Me.Label9.Location = New System.Drawing.Point(1179, 44)
         Me.Label9.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(51, 13)
@@ -375,7 +377,7 @@ Partial Class frmFO_AddData
         '
         Me.txtCodeMoshtary.BackColor = System.Drawing.Color.LightGoldenrodYellow
         Me.txtCodeMoshtary.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCodeMoshtary.Location = New System.Drawing.Point(664, 46)
+        Me.txtCodeMoshtary.Location = New System.Drawing.Point(1093, 42)
         Me.txtCodeMoshtary.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCodeMoshtary.MaxLength = 15
         Me.txtCodeMoshtary.Name = "txtCodeMoshtary"
@@ -388,7 +390,7 @@ Partial Class frmFO_AddData
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label6.Location = New System.Drawing.Point(749, 124)
+        Me.Label6.Location = New System.Drawing.Point(670, 16)
         Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -401,7 +403,7 @@ Partial Class frmFO_AddData
         '
         Me.cmbNoePardakht.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbNoePardakht.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbNoePardakht.Location = New System.Drawing.Point(664, 120)
+        Me.cmbNoePardakht.Location = New System.Drawing.Point(585, 12)
         Me.cmbNoePardakht.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbNoePardakht.MaxDropDownItems = 20
         Me.cmbNoePardakht.Name = "cmbNoePardakht"
@@ -411,13 +413,13 @@ Partial Class frmFO_AddData
         'txtTozihat
         '
         Me.txtTozihat.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTozihat.Location = New System.Drawing.Point(342, 168)
+        Me.txtTozihat.Location = New System.Drawing.Point(87, 15)
         Me.txtTozihat.Margin = New System.Windows.Forms.Padding(2)
         Me.txtTozihat.MaxLength = 200
         Me.txtTozihat.Multiline = True
         Me.txtTozihat.Name = "txtTozihat"
         Me.txtTozihat.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtTozihat.Size = New System.Drawing.Size(407, 22)
+        Me.txtTozihat.Size = New System.Drawing.Size(384, 22)
         Me.txtTozihat.TabIndex = 31
         Me.txtTozihat.Text = " "
         '
@@ -425,7 +427,7 @@ Partial Class frmFO_AddData
         '
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(748, 176)
+        Me.Label26.Location = New System.Drawing.Point(470, 23)
         Me.Label26.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(57, 13)
@@ -436,7 +438,7 @@ Partial Class frmFO_AddData
         '
         Me.lblModatCheck.AutoSize = True
         Me.lblModatCheck.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModatCheck.Location = New System.Drawing.Point(748, 148)
+        Me.lblModatCheck.Location = New System.Drawing.Point(669, 40)
         Me.lblModatCheck.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblModatCheck.Name = "lblModatCheck"
         Me.lblModatCheck.Size = New System.Drawing.Size(56, 13)
@@ -447,7 +449,7 @@ Partial Class frmFO_AddData
         'txtModatCheck
         '
         Me.txtModatCheck.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtModatCheck.Location = New System.Drawing.Point(664, 145)
+        Me.txtModatCheck.Location = New System.Drawing.Point(585, 37)
         Me.txtModatCheck.Margin = New System.Windows.Forms.Padding(2)
         Me.txtModatCheck.MaxLength = 3
         Me.txtModatCheck.Name = "txtModatCheck"
@@ -455,15 +457,28 @@ Partial Class frmFO_AddData
         Me.txtModatCheck.TabIndex = 29
         Me.txtModatCheck.Visible = False
         '
+        'chkMalyat
+        '
+        Me.chkMalyat.AutoSize = True
+        Me.chkMalyat.Location = New System.Drawing.Point(343, 61)
+        Me.chkMalyat.Name = "chkMalyat"
+        Me.chkMalyat.Size = New System.Drawing.Size(128, 17)
+        Me.chkMalyat.TabIndex = 101
+        Me.chkMalyat.Text = "شامل مالیات و عوارض"
+        Me.chkMalyat.UseVisualStyleBackColor = True
+        '
         'frmFO_AddData
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(989, 691)
+        Me.ClientSize = New System.Drawing.Size(1287, 691)
         Me.Controls.Add(Me.GroupBox1)
         Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "frmFO_AddData"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "ورود اطلاعات پیش فاکتور"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox4.ResumeLayout(False)
@@ -505,4 +520,5 @@ Partial Class frmFO_AddData
     Friend WithEvents btnSaveSanad As Button
     Friend WithEvents lblAnbar As Label
     Friend WithEvents cmbAnbar As ComboBox
+    Friend WithEvents chkMalyat As CheckBox
 End Class
