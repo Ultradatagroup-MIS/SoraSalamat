@@ -900,6 +900,8 @@ Public Class frmFO_AddData
 
 
             Dim info As New PishFaktorTitrInfo()
+            info.Load(ccPishfaktorTitr, ConnectionString)
+
 
             If GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
 
@@ -927,10 +929,9 @@ Public Class frmFO_AddData
                 GridEXSatr.CurrentRow.Cells("ccKala").Value = objKala.tccKala
                 GridEXSatr.CurrentRow.Cells("NameKala").Value = objKala.tNameKala
 
-                GridEXSatr.CurrentRow.Cells("Fee").Value = 5000
-                'CalcRow(GridEXSatr.CurrentRow)
+                GridEXSatr.CurrentRow.Cells("Fee").Value = ObjCode.GetMablaghForosh_NoePardakht(objKala.tccKala, info.PishFaktorTarikh, CodeMahalFaal, info.ccMoshtary, info.sNoePardakht)
 
-                info.Load(ccPishfaktorTitr, ConnectionString)
+
 
                 GetMojodyGhabelForosh(objKala.tccKala, info.ccAnbar, MojodiGhabelForoshKOL)
 
@@ -1162,5 +1163,42 @@ Public Class frmFO_AddData
 
             End If
         End If
+    End Sub
+    Private Sub GridEXSatr_DeletingRecord(sender As Object, e As Janus.Windows.GridEX.RowActionCancelEventArgs) _
+    Handles GridEXSatr.DeletingRecord
+
+        ' همیشه Cancel می‌کنیم؛ حذف و رفرش را خودمان انجام می‌دهیم
+        e.Cancel = True
+
+        Dim row As Janus.Windows.GridEX.GridEXRow = GridEXSatr.CurrentRow
+        If row Is Nothing OrElse row.RowType <> Janus.Windows.GridEX.RowType.Record Then Exit Sub
+
+        Dim id As Object = row.Cells("ccPishFaktorSatr").Value
+        If id Is Nothing OrElse IsDBNull(id) Then Exit Sub
+
+        If MessageBox.Show("این ردیف و ردیف‌های وابسته به آن حذف می‌شوند. ادامه می‌دهید؟",
+                       "حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                       MessageBoxDefaultButton.Button2,
+                       MessageBoxOptions.RightAlign Or MessageBoxOptions.RtlReading) <> DialogResult.Yes Then
+            Exit Sub
+        End If
+
+        Try
+            Using con As New SqlConnection(ConnectionString)
+                Using cmd As SqlCommand = con.CreateCommand()
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = "[Sales].[spPishFaktor_DeleteSatr]"
+                    cmd.Parameters.AddWithValue("@ccPishFaktorSatr", id)
+                    con.Open()
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Exit Sub
+        End Try
+
+        ' چون ممکنه چند ردیف حذف شده باشه، لیست را دوباره لود کن
+        BeginInvoke(New MethodInvoker(AddressOf ReloadSatr))
     End Sub
 End Class

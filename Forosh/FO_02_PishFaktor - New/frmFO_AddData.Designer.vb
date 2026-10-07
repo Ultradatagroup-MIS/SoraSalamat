@@ -96,6 +96,7 @@ Partial Class frmFO_AddData
         Me.GridEXSatr.AllowAddNew = Janus.Windows.GridEX.InheritableBoolean.[True]
         Me.GridEXSatr.AllowChildTableGroups = True
         Me.GridEXSatr.AllowColumnDrag = False
+        Me.GridEXSatr.AllowDelete = Janus.Windows.GridEX.InheritableBoolean.[True]
         Me.GridEXSatr.AllowDrop = True
         Me.GridEXSatr.AllowRemoveColumns = Janus.Windows.GridEX.InheritableBoolean.[True]
         Me.GridEXSatr.AlternatingRowFormatStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
