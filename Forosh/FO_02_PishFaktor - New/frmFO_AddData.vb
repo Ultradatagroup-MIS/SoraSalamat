@@ -1246,13 +1246,21 @@ Public Class frmFO_AddData
     Private Sub txtSearchNumber_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles txtSearchNumber.KeyDown
         If e.KeyCode = Keys.Space Then
             e.Handled = True
-            e.SuppressKeyPress = True      ' فاصله داخل تکست‌باکس تایپ نشه
+            e.SuppressKeyPress = True
 
             Dim frm As New frmFO_PishFaktorSearch()
             If frm.ShowDialog() = DialogResult.OK AndAlso frm.SelectedId > 0 Then
                 ShowPishFaktor(frm.SelectedId)
             End If
+
+        ElseIf e.KeyCode <> Keys.Tab AndAlso e.KeyCode <> Keys.ShiftKey Then
+            ' هر کلید دیگه‌ای (به‌جز Tab برای رفتن به کنترل بعدی) بلاک بشه
+            e.Handled = True
+            e.SuppressKeyPress = True
         End If
+    End Sub
+    Private Sub txtSearchNumber_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs) Handles txtSearchNumber.KeyPress
+        e.Handled = True
     End Sub
     Private Sub ShowPishFaktor(ByVal id As Integer)
         ccPishfaktorTitr = id
