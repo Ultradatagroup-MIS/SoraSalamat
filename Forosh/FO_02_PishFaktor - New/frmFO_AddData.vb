@@ -444,7 +444,7 @@ Public Class frmFO_AddData
                 tCodeMoshtary = ""
                 tNameMoshtary = ""
                 tccMoshtary = ""
-
+                cmbAddress.SelectedIndex = -1
                 If txtCodeMoshtary.Text.Length <> 0 Then
                     tCodeMoshtary = txtCodeMoshtary.Text
                 End If
@@ -457,7 +457,13 @@ Public Class frmFO_AddData
                 txtCodeMoshtary.Text = IIf(IsNothing(objMoshtary.tCodeMoshtary), "", objMoshtary.tCodeMoshtary)
                 lblNameMoshtary.Text = IIf(IsNothing(objMoshtary.tNameMoshtary), "", objMoshtary.tNameMoshtary)
 
-                LoadMoshtaryAddress()
+                If txtCodeMoshtary.Tag <> 0 Then
+                    LoadMoshtaryAddress()
+                Else
+                    cmbAddress.SelectedIndex = -1
+                End If
+
+
 
 
 
@@ -677,25 +683,25 @@ Public Class frmFO_AddData
             GridEXSatr.CurrentTable.Columns.Item("TakhfifKala").FormatString = "###,###"
             GridEXSatr.CurrentTable.Columns.Item("TakhfifKala").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
 
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").Caption = "مبلغ نهایی"
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").Visible = True
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").Width = 100
-            GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").EditType = Janus.Windows.GridEX.EditType.NoEdit
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").Position = 10
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").FormatString = "###,###"
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
 
             GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").Caption = "مالیات"
             GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").Visible = True
             GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").Width = 80
             GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
             GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").EditType = Janus.Windows.GridEX.EditType.NoEdit
-            GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").Position = 11
+            GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").Position = 10
             GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").FormatString = "###,###"
             GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
 
 
+            GridEXSatr.CurrentTable.Columns.Item("FeeKol").Caption = "مبلغ نهایی"
+            GridEXSatr.CurrentTable.Columns.Item("FeeKol").Visible = True
+            GridEXSatr.CurrentTable.Columns.Item("FeeKol").Width = 100
+            GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
+            GridEXSatr.CurrentTable.Columns.Item("FeeKol").EditType = Janus.Windows.GridEX.EditType.NoEdit
+            GridEXSatr.CurrentTable.Columns.Item("FeeKol").Position = 11
+            GridEXSatr.CurrentTable.Columns.Item("FeeKol").FormatString = "###,###"
+            GridEXSatr.CurrentTable.Columns.Item("FeeKol").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
 
             ' tblPishFaktorSatr.ShomarehBach , 
             'tblPishFaktorSatr.TarikhTolid , tblPishFaktorSatr.TarikhENgheza
@@ -882,7 +888,7 @@ Public Class frmFO_AddData
                 cm.Parameters.AddWithValue("CodeFard", objTools.ConvertNulls(objTools.DLookup("CodeFard", "tblFO_Foroshandeh", "ccForoshandeh = " & cmbBazaryab.SelectedValue), 0))
                 cm.Parameters.AddWithValue("sNoePardakht", cmbNoePardakht.SelectedValue)
                 cm.Parameters.AddWithValue("ModatCheck", Val(txtModatCheck.Text))
-                cm.Parameters.AddWithValue("Malyat", 1)
+                cm.Parameters.AddWithValue("Malyat", chkMalyat.Checked)
                 cm.Parameters.AddWithValue("PishFaktorAmani", 0)
                 cm.Parameters.AddWithValue("PishFaktorGheireGhateei", 0)
                 cm.Parameters.AddWithValue("Tozihat", txtTozihat.Text.TrimEnd)
@@ -982,7 +988,7 @@ Public Class frmFO_AddData
     Private Sub GridEXSatr_AddingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) _
     Handles GridEXSatr.AddingRecord
         If Not SaveRow(GridEXSatr.CurrentRow, True) Then e.Cancel = True
-        GridEXSatr.Col = GridEXSatr.RootTable.Columns("CodeKala").Position
+        'GridEXSatr.Col = GridEXSatr.RootTable.Columns("CodeKala").Position
     End Sub
 
     Private Sub GridEXSatr_UpdatingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) _
@@ -1077,6 +1083,8 @@ Public Class frmFO_AddData
         Dim num As Double
 
 
+        Dim info As New PishFaktorTitrInfo()
+        info.Load(ccPishfaktorTitr, ConnectionString)
 
 
         ' کالا: حتماً انتخاب شده باشد
@@ -1102,16 +1110,19 @@ Public Class frmFO_AddData
             Return False
         End If
 
+        GetMojodyGhabelForosh(ccKala, info.ccAnbar, MojodiGhabelForoshKOL)
         ' موجودی قابل فروش: باید بزرگ‌تر از صفر باشد
-        If Not TryGetNumber(row, "MojodiDarHaleForosh", num) OrElse num <= 0 Then
+        'If Not TryGetNumber(row, "MojodiDarHaleForosh", num) OrElse num <= 0 Then
+        If MojodiGhabelForoshKOL <= 0 Then
+
             MessageBox.Show("موجودی قابل فروش این کالا صفر است")
-            FocusCol("CodeKala")
+            FocusCol("Tedad3")
             Return False
         End If
-        Dim tedad, mojodi As Double
+        Dim tedad As Double
         TryGetNumber(row, "Tedad3", tedad)
-        TryGetNumber(row, "MojodiDarHaleForosh", mojodi)
-        If tedad > mojodi Then
+        'TryGetNumber(row, "MojodiDarHaleForosh", mojodi)
+        If tedad > MojodiGhabelForoshKOL Then
             MessageBox.Show("تعداد از موجودی قابل فروش بیشتر است")
             FocusCol("Tedad3")
             Return False
@@ -1167,6 +1178,7 @@ Public Class frmFO_AddData
         Try
             row.Cells("MKol3").Value = mKol
             row.Cells("TakhfifKala").Value = takhfif
+
         Finally
             _isCalculating = False
         End Try
