@@ -199,7 +199,7 @@ Public Class frmFO_AddData
         Try
             txtCodeMoshtaryS.Text = ""
             txtCodeMoshtaryS.Tag = ""
-            txtShomarehS.Text = ""
+            txtSearchNumber.Text = ""
 
             txtModatCheck.Text = ""
 
@@ -1241,5 +1241,43 @@ Public Class frmFO_AddData
 
         ' چون ممکنه چند ردیف حذف شده باشه، لیست را دوباره لود کن
         BeginInvoke(New MethodInvoker(AddressOf ReloadSatr))
+    End Sub
+
+    Private Sub txtSearchNumber_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs) Handles txtSearchNumber.KeyDown
+        If e.KeyCode = Keys.Space Then
+            e.Handled = True
+            e.SuppressKeyPress = True      ' فاصله داخل تکست‌باکس تایپ نشه
+
+            Dim frm As New frmFO_PishFaktorSearch()
+            If frm.ShowDialog() = DialogResult.OK AndAlso frm.SelectedId > 0 Then
+                ShowPishFaktor(frm.SelectedId)
+            End If
+        End If
+    End Sub
+    Private Sub ShowPishFaktor(ByVal id As Integer)
+        ccPishfaktorTitr = id
+
+        If Not LoadTitr(id) Then
+            ccPishfaktorTitr = 0
+            Exit Sub
+        End If
+
+        txtSearchNumber.Text = id.ToString()
+
+        ' هدر در حالت نمایش قفل شود
+        mskTarikh.Enabled = False
+        txtCodeMoshtary.Enabled = False
+        cmbAddress.Enabled = False
+        cmbBazaryab.Enabled = False
+        cmbNoePardakht.Enabled = False
+        cmbAnbar.Enabled = False
+        txtModatCheck.Enabled = False
+        txtTozihat.Enabled = False
+        btnSaveSanad.Enabled = False
+
+        SearchSatr()
+
+        ' برای نمایش، گرید فعال باشد تا حذف/مشاهده ممکن باشد
+        GridEXSatr.Enabled = True
     End Sub
 End Class

@@ -171,6 +171,12 @@
     <Compile Include="frmFO_PishFaktorMojodiKalaErrorList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmFO_PishFaktorSearch.Designer.vb">
+      <DependentUpon>frmFO_PishFaktorSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFO_PishFaktorSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InsertAllKala_WithBachNumber.Designer.vb">
       <DependentUpon>InsertAllKala_WithBachNumber.vb</DependentUpon>
     </Compile>
@@ -227,6 +233,9 @@
     <EmbeddedResource Include="frmFO_PishFaktorMojodiKalaErrorList.resx">
       <DependentUpon>frmFO_PishFaktorMojodiKalaErrorList.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFO_PishFaktorSearch.resx">
+      <DependentUpon>frmFO_PishFaktorSearch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InsertAllKala_WithBachNumber.resx">
       <DependentUpon>InsertAllKala_WithBachNumber.vb</DependentUpon>

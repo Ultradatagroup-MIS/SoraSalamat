@@ -37,9 +37,10 @@ Partial Class frmFO_AddData
         Me.txtCodeMoshtaryS = New System.Windows.Forms.TextBox()
         Me.cmbBazaryabS = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.txtShomarehS = New System.Windows.Forms.TextBox()
+        Me.txtSearchNumber = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.chkMalyat = New System.Windows.Forms.CheckBox()
         Me.lblAnbar = New System.Windows.Forms.Label()
         Me.btnSaveSanad = New System.Windows.Forms.Button()
         Me.cmbAnbar = New System.Windows.Forms.ComboBox()
@@ -58,7 +59,6 @@ Partial Class frmFO_AddData
         Me.Label26 = New System.Windows.Forms.Label()
         Me.lblModatCheck = New System.Windows.Forms.Label()
         Me.txtModatCheck = New System.Windows.Forms.TextBox()
-        Me.chkMalyat = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         CType(Me.GridEXSatr, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,7 +142,7 @@ Partial Class frmFO_AddData
         Me.GroupBox3.Controls.Add(Me.txtCodeMoshtaryS)
         Me.GroupBox3.Controls.Add(Me.cmbBazaryabS)
         Me.GroupBox3.Controls.Add(Me.Label7)
-        Me.GroupBox3.Controls.Add(Me.txtShomarehS)
+        Me.GroupBox3.Controls.Add(Me.txtSearchNumber)
         Me.GroupBox3.Controls.Add(Me.Label1)
         Me.GroupBox3.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(4, 9)
@@ -195,14 +195,15 @@ Partial Class frmFO_AddData
         Me.Label7.TabIndex = 15
         Me.Label7.Text = "فروشنده:"
         '
-        'txtShomarehS
+        'txtSearchNumber
         '
-        Me.txtShomarehS.Location = New System.Drawing.Point(585, 14)
-        Me.txtShomarehS.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtShomarehS.MaxLength = 5
-        Me.txtShomarehS.Name = "txtShomarehS"
-        Me.txtShomarehS.Size = New System.Drawing.Size(84, 20)
-        Me.txtShomarehS.TabIndex = 20
+        Me.txtSearchNumber.Location = New System.Drawing.Point(585, 14)
+        Me.txtSearchNumber.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtSearchNumber.MaxLength = 5
+        Me.txtSearchNumber.Name = "txtSearchNumber"
+        Me.txtSearchNumber.ReadOnly = True
+        Me.txtSearchNumber.Size = New System.Drawing.Size(84, 20)
+        Me.txtSearchNumber.TabIndex = 20
         '
         'Label1
         '
@@ -244,6 +245,16 @@ Partial Class frmFO_AddData
         Me.GroupBox2.TabIndex = 0
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "ورود اطلاعات اصلی"
+        '
+        'chkMalyat
+        '
+        Me.chkMalyat.AutoSize = True
+        Me.chkMalyat.Location = New System.Drawing.Point(594, 68)
+        Me.chkMalyat.Name = "chkMalyat"
+        Me.chkMalyat.Size = New System.Drawing.Size(128, 17)
+        Me.chkMalyat.TabIndex = 101
+        Me.chkMalyat.Text = "شامل مالیات و عوارض"
+        Me.chkMalyat.UseVisualStyleBackColor = True
         '
         'lblAnbar
         '
@@ -457,16 +468,6 @@ Partial Class frmFO_AddData
         Me.txtModatCheck.TabIndex = 29
         Me.txtModatCheck.Visible = False
         '
-        'chkMalyat
-        '
-        Me.chkMalyat.AutoSize = True
-        Me.chkMalyat.Location = New System.Drawing.Point(594, 68)
-        Me.chkMalyat.Name = "chkMalyat"
-        Me.chkMalyat.Size = New System.Drawing.Size(128, 17)
-        Me.chkMalyat.TabIndex = 101
-        Me.chkMalyat.Text = "شامل مالیات و عوارض"
-        Me.chkMalyat.UseVisualStyleBackColor = True
-        '
         'frmFO_AddData
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -512,7 +513,7 @@ Partial Class frmFO_AddData
     Friend WithEvents txtCodeMoshtaryS As TextBox
     Friend WithEvents cmbBazaryabS As ComboBox
     Friend WithEvents Label7 As Label
-    Friend WithEvents txtShomarehS As TextBox
+    Friend WithEvents txtSearchNumber As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents GridEXSatr As Janus.Windows.GridEX.GridEX
