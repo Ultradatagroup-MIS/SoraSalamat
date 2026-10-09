@@ -72,7 +72,7 @@ Partial Class frmFO_PishFaktorSearch
         Me.GridEXList.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Blue
         Me.GridEXList.RecordNavigator = True
         Me.GridEXList.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.[True]
-        Me.GridEXList.Size = New System.Drawing.Size(800, 450)
+        Me.GridEXList.Size = New System.Drawing.Size(1103, 610)
         Me.GridEXList.TabIndex = 101
         Me.GridEXList.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
         Me.GridEXList.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
@@ -81,8 +81,9 @@ Partial Class frmFO_PishFaktorSearch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1103, 610)
         Me.Controls.Add(Me.GridEXList)
+        Me.MaximizeBox = False
         Me.Name = "frmFO_PishFaktorSearch"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.Text = "انتخاب پیش فاکتور"

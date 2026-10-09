@@ -27,6 +27,7 @@ Public Class frmFO_AddData
     Dim AllowChangeFeePishFaktor As Boolean
     Dim MeghdarAdadi As Integer
     Dim flg As Boolean = False
+    Dim AllowPishFaktorTakhfifDasty As Boolean
 #End Region
 
 
@@ -182,12 +183,16 @@ Public Class frmFO_AddData
     Private Sub frmFO_AddData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         mskTarikh.Text = TarikhEmrooz
         txtSearchNumber.Focus()
+
+
+
         flg = False
         LoadCombo()
         ClearForm()
         txtSearchNumber.Focus()
         flg = True
         AllowChangeFeePishFaktor = objTools.ConvertNulls(objTools.DLookup("AllowChangeFeePishFaktor", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
+        AllowPishFaktorTakhfifDasty = objTools.ConvertNulls(objTools.DLookup("AllowPishFaktorTakhfifDasty", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
         With GridEXSatr
             .TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ColumnNavigation
             .UpdateMode = Janus.Windows.GridEX.UpdateMode.RowUpdate
@@ -1058,10 +1063,33 @@ Public Class frmFO_AddData
             Exit Sub
         End If
 
-        If GridEXSatr.CurrentColumn IsNot Nothing AndAlso
-       GridEXSatr.CurrentColumn.Key = "DarsadTakhfif" AndAlso
-       IsJayezehRow(GridEXSatr.CurrentRow) Then
+
+        Dim colKey As String = ""
+        If GridEXSatr.CurrentColumn IsNot Nothing Then colKey = GridEXSatr.CurrentColumn.Key
+
+        ' تیک جایزه وقتی تنظیمات اجازه نمی‌ده
+        If Not AllowPishFaktorTakhfifDasty AndAlso colKey = "IsJayezeh" Then
             e.Cancel = True
+            Exit Sub
+        End If
+        ' If Not AllowPishFaktorTakhfifDasty AndAlso GridEXSatr.CurrentColumn IsNot Nothing AndAlso
+        'GridEXSatr.CurrentColumn.Key = "IsJayezeh" Then
+        '     e.Cancel = True
+        '     Exit Sub
+        ' End If
+
+
+        ' If GridEXSatr.CurrentColumn IsNot Nothing AndAlso
+        'GridEXSatr.CurrentColumn.Key = "DarsadTakhfif" AndAlso
+        'IsJayezehRow(GridEXSatr.CurrentRow) Then
+        '     e.Cancel = True
+        ' End If
+
+        ' درصد تخفیف وقتی تنظیمات اجازه نمی‌ده، یا ردیف جایزه است
+        If colKey = "DarsadTakhfif" Then
+            If Not AllowPishFaktorTakhfifDasty OrElse IsJayezehRow(GridEXSatr.CurrentRow) Then
+                e.Cancel = True
+            End If
         End If
     End Sub
     'jayezeh

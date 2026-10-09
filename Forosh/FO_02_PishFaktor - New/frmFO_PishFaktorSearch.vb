@@ -70,7 +70,7 @@
 
             GridEXList.CurrentTable.Columns.Item("NameForoshandeh").Caption = "نام فروشنده"
             GridEXList.CurrentTable.Columns.Item("NameForoshandeh").Visible = True
-            GridEXList.CurrentTable.Columns.Item("NameForoshandeh").Width = 150
+            GridEXList.CurrentTable.Columns.Item("NameForoshandeh").Width = 165
             GridEXList.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
             GridEXList.CurrentTable.Columns.Item("NameForoshandeh").Position = 4
             GridEXList.CurrentTable.Columns.Item("NameForoshandeh").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
@@ -84,14 +84,14 @@
 
             GridEXList.CurrentTable.Columns.Item("NameMoshtary").Caption = "نام مشتری"
             GridEXList.CurrentTable.Columns.Item("NameMoshtary").Visible = True
-            GridEXList.CurrentTable.Columns.Item("NameMoshtary").Width = 170
+            GridEXList.CurrentTable.Columns.Item("NameMoshtary").Width = 250
             GridEXList.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
             GridEXList.CurrentTable.Columns.Item("NameMoshtary").Position = 6
             GridEXList.CurrentTable.Columns.Item("NameMoshtary").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
 
             GridEXList.CurrentTable.Columns.Item("NameTablo").Caption = "نام تابلو"
             GridEXList.CurrentTable.Columns.Item("NameTablo").Visible = True
-            GridEXList.CurrentTable.Columns.Item("NameTablo").Width = 150
+            GridEXList.CurrentTable.Columns.Item("NameTablo").Width = 250
             GridEXList.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
             GridEXList.CurrentTable.Columns.Item("NameTablo").Position = 7
             GridEXList.CurrentTable.Columns.Item("NameTablo").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center

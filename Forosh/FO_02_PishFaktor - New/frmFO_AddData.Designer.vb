@@ -135,6 +135,7 @@ Partial Class frmFO_AddData
         '
         'GroupBox3
         '
+        Me.GroupBox3.BackColor = System.Drawing.Color.LightSteelBlue
         Me.GroupBox3.Controls.Add(Me.txtSearchNumber)
         Me.GroupBox3.Controls.Add(Me.Label1)
         Me.GroupBox3.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -169,6 +170,7 @@ Partial Class frmFO_AddData
         '
         'GroupBox2
         '
+        Me.GroupBox2.BackColor = System.Drawing.Color.PaleTurquoise
         Me.GroupBox2.Controls.Add(Me.btnNew)
         Me.GroupBox2.Controls.Add(Me.chkMalyat)
         Me.GroupBox2.Controls.Add(Me.lblAnbar)
@@ -203,6 +205,7 @@ Partial Class frmFO_AddData
         '
         Me.btnNew.AccessibleDescription = ""
         Me.btnNew.AccessibleName = ""
+        Me.btnNew.BackColor = System.Drawing.Color.MediumOrchid
         Me.btnNew.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.btnNew.Location = New System.Drawing.Point(4, 65)
         Me.btnNew.Margin = New System.Windows.Forms.Padding(2)
@@ -210,6 +213,7 @@ Partial Class frmFO_AddData
         Me.btnNew.Size = New System.Drawing.Size(260, 44)
         Me.btnNew.TabIndex = 102
         Me.btnNew.Text = "اتمام کار / خالی کردن صفحه"
+        Me.btnNew.UseVisualStyleBackColor = False
         '
         'chkMalyat
         '
@@ -238,6 +242,7 @@ Partial Class frmFO_AddData
         '
         Me.btnSaveSanad.AccessibleDescription = ""
         Me.btnSaveSanad.AccessibleName = ""
+        Me.btnSaveSanad.BackColor = System.Drawing.Color.MediumOrchid
         Me.btnSaveSanad.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.btnSaveSanad.Location = New System.Drawing.Point(4, 12)
         Me.btnSaveSanad.Margin = New System.Windows.Forms.Padding(2)
@@ -245,6 +250,7 @@ Partial Class frmFO_AddData
         Me.btnSaveSanad.Size = New System.Drawing.Size(260, 45)
         Me.btnSaveSanad.TabIndex = 101
         Me.btnSaveSanad.Text = "&ذخيره"
+        Me.btnSaveSanad.UseVisualStyleBackColor = False
         '
         'cmbAnbar
         '
