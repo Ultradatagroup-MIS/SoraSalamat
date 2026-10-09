@@ -176,9 +176,11 @@ Public Class frmFO_AddData
     End Class
     Private Sub frmFO_AddData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         mskTarikh.Text = TarikhEmrooz
+        txtSearchNumber.Focus()
         flg = False
         LoadCombo()
         ClearForm()
+        txtSearchNumber.Focus()
         flg = True
         AllowChangeFeePishFaktor = objTools.ConvertNulls(objTools.DLookup("AllowChangeFeePishFaktor", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
         With GridEXSatr
@@ -197,8 +199,10 @@ Public Class frmFO_AddData
     End Sub
     Private Sub ClearForm()
         Try
-            txtCodeMoshtaryS.Text = ""
-            txtCodeMoshtaryS.Tag = ""
+
+            mskTarikh.Text = TarikhEmrooz
+            'txtCodeMoshtaryS.Text = ""
+            'txtCodeMoshtaryS.Tag = ""
             txtSearchNumber.Text = ""
 
             txtModatCheck.Text = ""
@@ -244,7 +248,7 @@ Public Class frmFO_AddData
             Dim cn As New SqlConnection
             Dim cm As New SqlCommand
             Dim p As New SqlParameter
-            Dim d As DataRow
+            'Dim d As DataRow
 
 
 
@@ -298,19 +302,19 @@ Public Class frmFO_AddData
             cm = Nothing
 
 
-            daSQL.Fill(dsForm, "tblForoshandehS")
-            d = dsForm.Tables("tblForoshandehS").NewRow
-            d("NameForoshandeh") = "همه"
-            d("ccForoshandeh") = 0
-            dsForm.Tables("tblForoshandehS").Rows.Add(d)
-            cmbBazaryabS.DataSource = Nothing
-            cmbBazaryabS.Items.Clear()
-            cmbBazaryabS.DataSource = dsForm.Tables("tblForoshandehS").DefaultView
-            cmbBazaryabS.DisplayMember = "NameForoshandeh"
-            cmbBazaryabS.ValueMember = "ccForoshandeh"
-            cmbBazaryabS.SelectedValue = 0
+            'daSQL.Fill(dsForm, "tblForoshandehS")
+            'd = dsForm.Tables("tblForoshandehS").NewRow
+            'd("NameForoshandeh") = "همه"
+            'd("ccForoshandeh") = 0
+            'dsForm.Tables("tblForoshandehS").Rows.Add(d)
+            'cmbBazaryabS.DataSource = Nothing
+            'cmbBazaryabS.Items.Clear()
+            'cmbBazaryabS.DataSource = dsForm.Tables("tblForoshandehS").DefaultView
+            'cmbBazaryabS.DisplayMember = "NameForoshandeh"
+            'cmbBazaryabS.ValueMember = "ccForoshandeh"
+            'cmbBazaryabS.SelectedValue = 0
 
-            cm = Nothing
+            'cm = Nothing
 
 
             If dsForm.Tables.Contains("tblAnbar") Then
@@ -600,7 +604,7 @@ Public Class frmFO_AddData
 
             GridEXSatr.CurrentTable.Columns.Item("NameKala").Caption = "نام کالا"
             GridEXSatr.CurrentTable.Columns.Item("NameKala").Visible = True
-            GridEXSatr.CurrentTable.Columns.Item("NameKala").Width = 230
+            GridEXSatr.CurrentTable.Columns.Item("NameKala").Width = 260
             GridEXSatr.CurrentTable.Columns.Item("NameKala").EditType = Janus.Windows.GridEX.EditType.NoEdit
             GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
             GridEXSatr.CurrentTable.Columns.Item("NameKala").Position = 3
@@ -643,7 +647,7 @@ Public Class frmFO_AddData
 
             GridEXSatr.CurrentTable.Columns.Item("MojodiDarHaleForosh").Caption = "موجودی"
             GridEXSatr.CurrentTable.Columns.Item("MojodiDarHaleForosh").Visible = True
-            GridEXSatr.CurrentTable.Columns.Item("MojodiDarHaleForosh").Width = 60
+            GridEXSatr.CurrentTable.Columns.Item("MojodiDarHaleForosh").Width = 100
             GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
             GridEXSatr.CurrentTable.Columns.Item("MojodiDarHaleForosh").EditType = Janus.Windows.GridEX.EditType.NoEdit
             GridEXSatr.CurrentTable.Columns.Item("MojodiDarHaleForosh").Position = 6
@@ -1287,5 +1291,55 @@ Public Class frmFO_AddData
 
         ' برای نمایش، گرید فعال باشد تا حذف/مشاهده ممکن باشد
         GridEXSatr.Enabled = True
+    End Sub
+
+    Private Sub NewPishFaktor()
+        ' ۱) ریست وضعیت
+        ccPishfaktorTitr = 0
+        ccMoshtaryAddress = 0
+        _gridStructureReady = False        ' ساختار گرید قبلاً ساخته شده؛ دست نمی‌زنیم
+
+        ' ۲) هدر: فعال کردن کنترل‌ها
+        mskTarikh.Enabled = False
+        txtCodeMoshtary.Enabled = True
+        cmbAddress.Enabled = True
+        cmbBazaryab.Enabled = True
+        cmbNoePardakht.Enabled = True
+        cmbAnbar.Enabled = True
+        txtModatCheck.Enabled = True
+        txtTozihat.Enabled = True
+        btnSaveSanad.Enabled = True
+
+        ' ۳) هدر: خالی کردن مقدارها
+        mskTarikh.Text = TarikhEmrooz
+        txtCodeMoshtary.Text = ""
+        txtCodeMoshtary.Tag = Nothing
+        lblNameMoshtary.Text = ""          ' کنترل نام مشتری؛ اسمش را جایگزین کنید
+        txtTozihat.Text = ""
+        txtModatCheck.Text = ""
+        txtSearchNumber.Text = ""
+
+        cmbAddress.DataSource = Nothing    ' آدرس‌ها بعد از انتخاب مشتری دوباره لود می‌شن
+        cmbBazaryab.SelectedIndex = -1
+        cmbBazaryab.SelectedIndex = -1
+        flg = False
+        cmbNoePardakht.SelectedIndex = -1
+        cmbNoePardakht.SelectedIndex = -1
+        flg = True
+        txtModatCheck.Visible = False
+        lblModatCheck.Visible = False
+        'cmbAnbar.SelectedIndex = -1
+
+        ' ۴) گرید: خالی و غیرفعال
+        dt_SearchSatr = New DataTable
+        GridEXSatr.SetDataBinding(Nothing, "")
+        GridEXSatr.Enabled = False
+
+        ' ۵) فوکوس روی اولین فیلد
+        txtCodeMoshtary.Focus()
+    End Sub
+
+    Private Sub btnNew_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnNew.Click
+        NewPishFaktor()
     End Sub
 End Class
