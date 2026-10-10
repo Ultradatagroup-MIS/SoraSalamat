@@ -1588,4 +1588,44 @@ Public Class frmFO_AddData
     Private Sub btnNew_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnNew.Click
         NewPishFaktor()
     End Sub
+    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
+        If keyData = Keys.Enter AndAlso GridEXSatr.Enabled AndAlso GridEXSatr.ContainsFocus Then
+            GoNextCol()
+            Return True
+        End If
+        Return MyBase.ProcessCmdKey(msg, keyData)
+    End Function
+    Private Sub GridEXSatr_EnterKey(sender As Object, e As KeyEventArgs) Handles GridEXSatr.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.Handled = True
+            e.SuppressKeyPress = True
+            GoNextCol()
+        End If
+    End Sub
+    Private Sub GoNextCol()
+        Dim g As Janus.Windows.GridEX.GridEX = GridEXSatr
+        If g.CurrentRow Is Nothing Then Exit Sub
+
+        Dim isNewRow As Boolean = (g.CurrentRow.RowType = Janus.Windows.GridEX.RowType.NewRecord)
+
+        Dim cols As New List(Of Janus.Windows.GridEX.GridEXColumn)
+        For Each c As Janus.Windows.GridEX.GridEXColumn In g.RootTable.Columns
+            If c.Visible AndAlso c.EditType <> Janus.Windows.GridEX.EditType.NoEdit Then
+                If isNewRow OrElse c.Key <> "CodeKala" Then cols.Add(c)
+            End If
+        Next
+        If cols.Count = 0 Then Exit Sub
+        cols.Sort(Function(a, b) a.Position.CompareTo(b.Position))
+
+        Dim idx As Integer = -1
+        If g.CurrentColumn IsNot Nothing Then idx = cols.IndexOf(g.CurrentColumn)
+
+        If idx = -1 Then
+            g.CurrentColumn = cols(0)
+        ElseIf idx < cols.Count - 1 Then
+            g.CurrentColumn = cols(idx + 1)
+        Else
+            g.UpdateData()          ' ستون آخر: ذخیره‌ی سطر
+        End If
+    End Sub
 End Class
