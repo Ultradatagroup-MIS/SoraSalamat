@@ -46,6 +46,7 @@ Public Class frmFO_AddData
         Private _Tozihat As String = ""
         Private _ccAnbar As Integer
         Private _PishFaktorShomareh As Integer = 0
+        Private _Malyat As Boolean
         Private _dtSearchTitr As DataTable
 #End Region
 
@@ -109,12 +110,12 @@ Public Class frmFO_AddData
                 Return _Tozihat
             End Get
         End Property
-        Public ReadOnly Property ccAnbar As Integer
+        Public ReadOnly Property ccAnbar() As Integer
             Get
                 Return _ccAnbar
             End Get
         End Property
-        Public ReadOnly Property PishFaktorShomareh As Integer
+        Public ReadOnly Property PishFaktorShomareh() As Integer
             Get
                 Return _PishFaktorShomareh
             End Get
@@ -122,6 +123,11 @@ Public Class frmFO_AddData
         Public ReadOnly Property dt_SearchTitr() As DataTable
             Get
                 Return _dtSearchTitr
+            End Get
+        End Property
+        Public ReadOnly Property Malyat() As Boolean
+            Get
+                Return _Malyat
             End Get
         End Property
 #End Region
@@ -159,6 +165,7 @@ Public Class frmFO_AddData
             _Tozihat = GetStr(r, "Tozihat")
             _ccAnbar = GetInt(r, "ccAnbar")
             _PishFaktorShomareh = GetInt(r, "PishFaktorShomareh")
+            _Malyat = GetBool(r, "Malyat")
             Return True
         End Function
 
@@ -177,6 +184,12 @@ Public Class frmFO_AddData
             If v Is Nothing OrElse IsDBNull(v) Then Return ""
             Return v.ToString()
         End Function
+        Private Shared Function GetBool(ByVal r As DataRow, ByVal col As String) As Boolean
+            If Not r.Table.Columns.Contains(col) Then Return False
+            Dim v As Object = r(col)
+            If v Is Nothing OrElse IsDBNull(v) Then Return False
+            Return Convert.ToBoolean(v)
+        End Function
 #End Region
 
     End Class
@@ -190,6 +203,7 @@ Public Class frmFO_AddData
         LoadCombo()
         ClearForm()
         txtSearchNumber.Focus()
+        Mode = UD_Dll.Enums.GL_ModeForms.AddNewRecord
         flg = True
         AllowChangeFeePishFaktor = objTools.ConvertNulls(objTools.DLookup("AllowChangeFeePishFaktor", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
         AllowPishFaktorTakhfifDasty = objTools.ConvertNulls(objTools.DLookup("AllowPishFaktorTakhfifDasty", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
@@ -835,7 +849,7 @@ Public Class frmFO_AddData
         cmbNoePardakht.SelectedValue = info.sNoePardakht
         txtModatCheck.Text = info.ModatCheck.ToString()
         txtTozihat.Text = info.Tozihat
-
+        chkMalyat.Checked = info.Malyat
         Return True
     End Function
     Private Function IsComboEmpty(ByVal cmb As ComboBox) As Boolean
@@ -1345,6 +1359,9 @@ Public Class frmFO_AddData
             Dim frm As New frmFO_PishFaktorSearch()
             If frm.ShowDialog() = DialogResult.OK AndAlso frm.SelectedId > 0 Then
                 ShowPishFaktor(frm.SelectedId)
+                Mode = UD_Dll.Enums.GL_ModeForms.UpdateRecord
+            Else
+                Mode = UD_Dll.Enums.GL_ModeForms.AddNewRecord
             End If
 
         ElseIf e.KeyCode <> Keys.Tab AndAlso e.KeyCode <> Keys.ShiftKey Then
@@ -1424,7 +1441,7 @@ Public Class frmFO_AddData
         dt_SearchSatr = New DataTable
         GridEXSatr.SetDataBinding(Nothing, "")
         GridEXSatr.Enabled = False
-
+        chkMalyat.Checked = False
         ' ۵) فوکوس روی اولین فیلد
         txtCodeMoshtary.Focus()
     End Sub
