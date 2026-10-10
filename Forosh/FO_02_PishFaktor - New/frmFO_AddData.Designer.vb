@@ -125,6 +125,7 @@ Partial Class frmFO_AddData
         Me.GridEXSatr.Location = New System.Drawing.Point(2, 15)
         Me.GridEXSatr.Margin = New System.Windows.Forms.Padding(2)
         Me.GridEXSatr.Name = "GridEXSatr"
+        Me.GridEXSatr.NewRowPosition = Janus.Windows.GridEX.NewRowPosition.BottomRow
         Me.GridEXSatr.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Blue
         Me.GridEXSatr.RecordNavigator = True
         Me.GridEXSatr.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.[True]

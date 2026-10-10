@@ -377,7 +377,7 @@ Public Class frmFO_AddData
         End Try
     End Sub
     Private Sub txtCodeMoshtary_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCodeMoshtary.TextChanged
-        'If Mode = UD_Dll.Enums.GL_ModeForms.UpdateRecord Then Exit Sub
+        If Mode = UD_Dll.Enums.GL_ModeForms.UpdateRecord Then Exit Sub
 
 
         Dim Criteria As String = ""
@@ -607,6 +607,12 @@ Public Class frmFO_AddData
                     .UpdateMode = Janus.Windows.GridEX.UpdateMode.RowUpdate
                     .AllowEdit = Janus.Windows.GridEX.InheritableBoolean.True
                     .AllowAddNew = Janus.Windows.GridEX.InheritableBoolean.True
+
+
+                    .AlternatingColors = True
+                    .AlternatingRowFormatStyle.BackColor = Color.LightGray
+                    .RowFormatStyle.BackColor = Color.White
+
                 End If
             End With
 
@@ -625,7 +631,7 @@ Public Class frmFO_AddData
 
             GridEXSatr.CurrentTable.Columns.Item("CodeKala").Caption = "کد کالا"
             GridEXSatr.CurrentTable.Columns.Item("CodeKala").Visible = True
-            GridEXSatr.CurrentTable.Columns.Item("CodeKala").Width = 60
+            GridEXSatr.CurrentTable.Columns.Item("CodeKala").Width = 100
             GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
             GridEXSatr.CurrentTable.Columns.Item("CodeKala").Position = 2
             GridEXSatr.CurrentTable.Columns.Item("CodeKala").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
@@ -668,7 +674,7 @@ Public Class frmFO_AddData
             If AllowChangeFeePishFaktor Then
                 GridEXSatr.CurrentTable.Columns.Item("Fee").Caption = "فی"
                 GridEXSatr.CurrentTable.Columns.Item("Fee").Visible = True
-                GridEXSatr.CurrentTable.Columns.Item("Fee").Width = 80
+                GridEXSatr.CurrentTable.Columns.Item("Fee").Width = 100
                 GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
                 'GridEXSatr.CurrentTable.Columns.Item("Fee").EditType = Janus.Windows.GridEX.EditType.NoEdit
                 GridEXSatr.CurrentTable.Columns.Item("Fee").Position = 6
@@ -678,7 +684,7 @@ Public Class frmFO_AddData
             Else
                 GridEXSatr.CurrentTable.Columns.Item("Fee").Caption = "فی"
                 GridEXSatr.CurrentTable.Columns.Item("Fee").Visible = True
-                GridEXSatr.CurrentTable.Columns.Item("Fee").Width = 80
+                GridEXSatr.CurrentTable.Columns.Item("Fee").Width = 100
                 GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
                 GridEXSatr.CurrentTable.Columns.Item("Fee").EditType = Janus.Windows.GridEX.EditType.NoEdit
                 GridEXSatr.CurrentTable.Columns.Item("Fee").Position = 6
@@ -744,7 +750,7 @@ Public Class frmFO_AddData
 
             GridEXSatr.CurrentTable.Columns.Item("FeeKol").Caption = "مبلغ نهایی"
             GridEXSatr.CurrentTable.Columns.Item("FeeKol").Visible = True
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").Width = 100
+            GridEXSatr.CurrentTable.Columns.Item("FeeKol").Width = 130
             GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
             GridEXSatr.CurrentTable.Columns.Item("FeeKol").EditType = Janus.Windows.GridEX.EditType.NoEdit
             GridEXSatr.CurrentTable.Columns.Item("FeeKol").Position = 12
@@ -755,7 +761,7 @@ Public Class frmFO_AddData
             'tblPishFaktorSatr.TarikhTolid , tblPishFaktorSatr.TarikhENgheza
             GridEXSatr.CurrentTable.Columns.Item("ShomarehBach").Caption = "شماره بچ"
             GridEXSatr.CurrentTable.Columns.Item("ShomarehBach").Visible = True
-            GridEXSatr.CurrentTable.Columns.Item("ShomarehBach").Width = 80
+            GridEXSatr.CurrentTable.Columns.Item("ShomarehBach").Width = 120
             GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
             GridEXSatr.CurrentTable.Columns.Item("ShomarehBach").EditType = Janus.Windows.GridEX.EditType.NoEdit
             GridEXSatr.CurrentTable.Columns.Item("ShomarehBach").Position = 13
@@ -840,12 +846,14 @@ Public Class frmFO_AddData
             Return False
         End Try
 
-        ccMoshtaryAddress = info.ccMoshtaryAddress
+
         txtSearchNumber.Text = info.PishFaktorShomareh
         mskTarikh.Text = info.PishFaktorTarikh
         txtCodeMoshtary.Text = info.CodeMoshtary
         txtCodeMoshtary.Tag = info.ccMoshtary
-
+        LoadMoshtaryAddress()
+        ccMoshtaryAddress = info.ccMoshtaryAddress
+        cmbAddress.SelectedValue = info.ccMoshtaryAddress
         cmbBazaryab.SelectedValue = info.ccForoshandeh
         cmbNoePardakht.SelectedValue = info.sNoePardakht
         txtModatCheck.Text = info.ModatCheck.ToString()
@@ -987,7 +995,8 @@ Public Class frmFO_AddData
 
 
             If GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
-
+            If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then Exit Sub
+            If GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
             If GridEXSatr.CurrentColumn.Key = "CodeKala" Then
 
                 Dim objKala As New Forms_dll.frmAN_KalaSearch
@@ -1039,10 +1048,14 @@ Public Class frmFO_AddData
         'GridEXSatr.Col = GridEXSatr.RootTable.Columns("CodeKala").Position
     End Sub
 
-    Private Sub GridEXSatr_UpdatingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) _
-    Handles GridEXSatr.UpdatingRecord
-        'If Not SaveRow(GridEXSatr.CurrentRow, False) Then e.Cancel = True
-        e.Cancel = True   ' ویرایش نداریم
+    'Private Sub GridEXSatr_UpdatingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) _
+    'Handles GridEXSatr.UpdatingRecord
+    '    'If Not SaveRow(GridEXSatr.CurrentRow, False) Then e.Cancel = True
+    '    e.Cancel = True   ' ویرایش نداریم
+    'End Sub
+    Private Sub GridEXSatr_UpdatingRecord(ByVal sender As Object,
+        ByVal e As System.ComponentModel.CancelEventArgs) Handles GridEXSatr.UpdatingRecord
+        If Not UpdateRow(GridEXSatr.CurrentRow) Then e.Cancel = True
     End Sub
 
     Private Sub GridEXSatr_RecordAdded(sender As Object, e As EventArgs) Handles GridEXSatr.RecordAdded
@@ -1067,38 +1080,58 @@ Public Class frmFO_AddData
     'End Sub
     ' جلوگیری از ویرایش DarsadTakhfif وقتی جایزه است
     'jayezeh
+    'Private Sub GridEXSatr_EditingCell(ByVal sender As Object,
+    '    ByVal e As Janus.Windows.GridEX.EditingCellEventArgs) Handles GridEXSatr.EditingCell
+
+    '    If GridEXSatr.CurrentRow Is Nothing Then Exit Sub
+
+    '    ' ردیف‌های ذخیره‌شده قابل ویرایش نیستند
+    '    If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then
+    '        e.Cancel = True
+    '        Exit Sub
+    '    End If
+
+
+    '    Dim colKey As String = ""
+    '    If GridEXSatr.CurrentColumn IsNot Nothing Then colKey = GridEXSatr.CurrentColumn.Key
+
+    '    ' تیک جایزه وقتی تنظیمات اجازه نمی‌ده
+    '    If Not AllowPishFaktorTakhfifDasty AndAlso colKey = "IsJayezeh" Then
+    '        e.Cancel = True
+    '        Exit Sub
+    '    End If
+
+
+    '    ' درصد تخفیف وقتی تنظیمات اجازه نمی‌ده، یا ردیف جایزه است
+    '    If colKey = "DarsadTakhfif" Then
+    '        If Not AllowPishFaktorTakhfifDasty OrElse IsJayezehRow(GridEXSatr.CurrentRow) Then
+    '            e.Cancel = True
+    '        End If
+    '    End If
+    'End Sub
+    'jayezeh
+    Private _oldTedad As Double = 0
     Private Sub GridEXSatr_EditingCell(ByVal sender As Object,
-        ByVal e As Janus.Windows.GridEX.EditingCellEventArgs) Handles GridEXSatr.EditingCell
+      ByVal e As Janus.Windows.GridEX.EditingCellEventArgs) Handles GridEXSatr.EditingCell
 
-        If GridEXSatr.CurrentRow Is Nothing Then Exit Sub
+        If GridEXSatr.CurrentRow Is Nothing OrElse GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
 
-        ' ردیف‌های ذخیره‌شده قابل ویرایش نیستند
-        If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then
-            e.Cancel = True
-            Exit Sub
+        Dim colKey As String = GridEXSatr.CurrentColumn.Key
+        Dim isNewRow As Boolean = (GridEXSatr.CurrentRow.RowType = Janus.Windows.GridEX.RowType.NewRecord)
+
+        ' ردیف ذخیره‌شده: فقط تعداد، فی و درصد تخفیف قابل ویرایش است
+        If Not isNewRow Then
+            If colKey <> "Tedad3" AndAlso colKey <> "Fee" AndAlso colKey <> "DarsadTakhfif" Then
+                e.Cancel = True
+                Exit Sub
+            End If
         End If
-
-
-        Dim colKey As String = ""
-        If GridEXSatr.CurrentColumn IsNot Nothing Then colKey = GridEXSatr.CurrentColumn.Key
 
         ' تیک جایزه وقتی تنظیمات اجازه نمی‌ده
         If Not AllowPishFaktorTakhfifDasty AndAlso colKey = "IsJayezeh" Then
             e.Cancel = True
             Exit Sub
         End If
-        ' If Not AllowPishFaktorTakhfifDasty AndAlso GridEXSatr.CurrentColumn IsNot Nothing AndAlso
-        'GridEXSatr.CurrentColumn.Key = "IsJayezeh" Then
-        '     e.Cancel = True
-        '     Exit Sub
-        ' End If
-
-
-        ' If GridEXSatr.CurrentColumn IsNot Nothing AndAlso
-        'GridEXSatr.CurrentColumn.Key = "DarsadTakhfif" AndAlso
-        'IsJayezehRow(GridEXSatr.CurrentRow) Then
-        '     e.Cancel = True
-        ' End If
 
         ' درصد تخفیف وقتی تنظیمات اجازه نمی‌ده، یا ردیف جایزه است
         If colKey = "DarsadTakhfif" Then
@@ -1107,7 +1140,6 @@ Public Class frmFO_AddData
             End If
         End If
     End Sub
-    'jayezeh
     Private Function IsRowEmpty(row As Janus.Windows.GridEX.GridEXRow) As Boolean
         For Each key As String In New String() {"CodeKala", "ccKala", "Tedad3", "DarsadTakhfif"}
             Dim v As Object = row.Cells(key).Value
@@ -1162,7 +1194,39 @@ Public Class frmFO_AddData
 
     End Function
 
+    Private Function UpdateRow(ByVal row As Janus.Windows.GridEX.GridEXRow) As Boolean
+        If row Is Nothing Then Return False
 
+        If Not ValidateUpdate(row) Then Return False     ' ولیدیشن مخصوص ویرایش
+
+        Try
+            Using con As New SqlConnection(ConnectionString)
+                Using cmd As SqlCommand = con.CreateCommand()
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = "[Sales].[spPishFaktorVorodKoli_UpdateSatr]"
+                    cmd.Parameters.AddWithValue("@ccPishFaktorSatr", row.Cells("ccPishFaktorSatr").Value)
+                    cmd.Parameters.AddWithValue("@Tedad3", row.Cells("Tedad3").Value)
+                    cmd.Parameters.AddWithValue("@Fee", row.Cells("Fee").Value)
+
+                    Dim darsad As Object = 0
+                    If AllowPishFaktorTakhfifDasty AndAlso Not IsJayezehRow(row) Then
+                        darsad = If(row.Cells("DarsadTakhfif").Value, DBNull.Value)
+                    End If
+                    cmd.Parameters.AddWithValue("@DarsadTakhfif", darsad)
+
+                    con.Open()
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return False
+        End Try
+
+        ' چون ممکنه ردیف‌های لینک‌شده (بچ‌ها) هم عوض شده باشن، دوباره لود کن
+        BeginInvoke(New MethodInvoker(AddressOf ReloadSatr))
+        Return True
+    End Function
 
 
     ' مقدار سلول را به عدد تبدیل می‌کند؛ اگر خالی یا غیرعددی بود False برمی‌گرداند
@@ -1174,7 +1238,73 @@ Public Class frmFO_AddData
         If v.ToString().Trim().Length = 0 Then Return False
         Return Double.TryParse(v.ToString().Trim(), result)
     End Function
+    Private Function ValidateUpdate(ByVal row As Janus.Windows.GridEX.GridEXRow) As Boolean
 
+        Dim num As Double
+
+
+        Dim info As New PishFaktorTitrInfo()
+        info.Load(ccPishfaktorTitr, ConnectionString)
+
+        Dim OldTedad As Double = 0
+        OldTedad = objTools.ConvertNulls(objTools.DLookup("Tedad3", "tblFO_PishFaktorSatr", "ccPishFaktorSatr =" & row.Cells("ccPishFaktorSatr").Value), 0)
+        '
+        Dim ShomarehBach As Object = row.Cells("ShomarehBach").Value
+        Dim TarikhTolid As Object = row.Cells("TarikhTolid").Value
+        Dim TarikhEngheza As Object = row.Cells("TarikhEngheza").Value
+
+        Dim ccKala As Object = row.Cells("ccKala").Value
+        ' کالا: حتماً انتخاب شده باشد
+
+        If ccKala Is Nothing OrElse IsDBNull(ccKala) OrElse ccKala.ToString().Trim() = "" Then
+            MessageBox.Show("کالا را انتخاب کنید")
+            FocusCol("CodeKala")
+            Return False
+        End If
+
+
+        ' تعداد: حتماً پر و بزرگ‌تر از صفر
+        If Not TryGetNumber(row, "Tedad3", num) OrElse num <= 0 Then
+            MessageBox.Show("تعداد را وارد کنید")
+            FocusCol("Tedad3")
+            Return False
+        End If
+
+        ' فی: حتماً پر (صفر هم قبول نیست؛ اگر صفر مجاز است، شرط num <= 0 را حذف کنید)
+        If Not TryGetNumber(row, "Fee", num) OrElse num <= 0 Then
+            MessageBox.Show("فی را وارد کنید")
+            FocusCol("Fee")
+            Return False
+        End If
+        GetMojodyDarHalForoshBach(ccKala, info.ccAnbar, ShomarehBach, TarikhTolid, TarikhEngheza)
+
+        Dim tedad As Double
+        TryGetNumber(row, "Tedad3", tedad)
+
+        Dim maxMojaz As Double = MojodiGhabelForoshKOLBach + OldTedad
+        If tedad > maxMojaz Then
+            MessageBox.Show("تعداد از موجودی قابل فروش بیشتر است." & vbCrLf &
+                    "شماره بچ: " & Convert.ToString(ShomarehBach) & vbCrLf &
+                    "حداکثر مجاز: " & maxMojaz.ToString(),
+                    "موجودی ناکافی", MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1,
+                    MessageBoxOptions.RightAlign Or MessageBoxOptions.RtlReading)
+            FocusCol("Tedad3")
+            Return False
+        End If
+
+
+
+        'If tedad > MojodiGhabelForoshKOLBach + OldTedad Then
+        '    MessageBox.Show("تعداد از موجودی قابل فروش بیشتر است")
+        '    FocusCol("Tedad3")
+        '    Return False
+        'End If
+
+
+
+        Return True
+    End Function
     Private Function ValidateRow(ByVal row As Janus.Windows.GridEX.GridEXRow) As Boolean
         Dim num As Double
 
@@ -1399,6 +1529,13 @@ Public Class frmFO_AddData
 
         ' برای نمایش، گرید فعال باشد تا حذف/مشاهده ممکن باشد
         GridEXSatr.Enabled = True
+        ' بعد از اتمام رویداد KeyDown و بسته شدن فرم جستجو، فوکوس بره روی ردیف جدید
+        BeginInvoke(New MethodInvoker(AddressOf FocusNewRow))
+    End Sub
+    Private Sub FocusNewRow()
+        GridEXSatr.Focus()
+        GridEXSatr.MoveToNewRecord()
+        GridEXSatr.Col = GridEXSatr.RootTable.Columns("CodeKala").Position
     End Sub
 
     Private Sub NewPishFaktor()
