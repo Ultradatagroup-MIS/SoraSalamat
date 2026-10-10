@@ -196,7 +196,8 @@ Public Class frmFO_AddData
     Private Sub frmFO_AddData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         mskTarikh.Text = TarikhEmrooz
         txtSearchNumber.Focus()
-
+        chkMalyat.Checked = True
+        chkMalyat.Enabled = False
 
 
         flg = False
@@ -1441,7 +1442,8 @@ Public Class frmFO_AddData
         dt_SearchSatr = New DataTable
         GridEXSatr.SetDataBinding(Nothing, "")
         GridEXSatr.Enabled = False
-        chkMalyat.Checked = False
+        chkMalyat.Checked = True
+        chkMalyat.Enabled = False
         ' ۵) فوکوس روی اولین فیلد
         txtCodeMoshtary.Focus()
     End Sub
