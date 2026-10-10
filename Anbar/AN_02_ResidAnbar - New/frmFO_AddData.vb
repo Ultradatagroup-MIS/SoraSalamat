@@ -1,5 +1,7 @@
 ﻿Public Class Form1
 
+
+
     Const cntCodeSubSystem As Long = 635
     Const FormTableName = "tblAN_KdxResid"
     Const FormViewName = "qryAN_KdxResid"
@@ -29,6 +31,8 @@
     Private ccKardexTitr As Integer = 0
     Private dt_SearchSatr As DataTable
     Private _gridStructureReady As Boolean = False
+
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         istarikhmiladi = objTools.ConvertNulls(objTools.DLookup("IsTarikhMiladi", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
         SN = objSec.GetSecurityNumber(cntCodeSubSystem, UserName)
@@ -50,11 +54,52 @@
             .UpdateMode = Janus.Windows.GridEX.UpdateMode.RowUpdate
             .AllowEdit = Janus.Windows.GridEX.InheritableBoolean.True
             .AllowAddNew = Janus.Windows.GridEX.InheritableBoolean.True
-            .TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ControlNavigation
+            .TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ColumnNavigation
             .Enabled = False   ' تا قبل از ذخیره‌ی هدر
         End With
 
     End Sub
+    Private Sub GoNextCol()
+        Dim g As Janus.Windows.GridEX.GridEX = GridEXSatr
+        If g.CurrentRow Is Nothing Then Exit Sub
+
+        Dim isNewRow As Boolean = (g.CurrentRow.RowType = Janus.Windows.GridEX.RowType.NewRecord)
+
+        Dim cols As New List(Of Janus.Windows.GridEX.GridEXColumn)
+        For Each c As Janus.Windows.GridEX.GridEXColumn In g.RootTable.Columns
+            If c.Visible AndAlso c.EditType <> Janus.Windows.GridEX.EditType.NoEdit Then
+                If isNewRow OrElse c.Key <> "CodeKala" Then cols.Add(c)
+            End If
+        Next
+        If cols.Count = 0 Then Exit Sub
+        cols.Sort(Function(a, b) a.Position.CompareTo(b.Position))
+
+        Dim idx As Integer = -1
+        If g.CurrentColumn IsNot Nothing Then idx = cols.IndexOf(g.CurrentColumn)
+
+        If idx = -1 Then
+            g.CurrentColumn = cols(0)
+        ElseIf idx < cols.Count - 1 Then
+            g.CurrentColumn = cols(idx + 1)
+        Else
+            g.UpdateData()          ' ستون آخر: ذخیره‌ی سطر
+        End If
+    End Sub
+    Protected Overrides Function ProcessCmdKey(ByRef msg As Message, keyData As Keys) As Boolean
+        If keyData = Keys.Enter AndAlso GridEXSatr.Enabled AndAlso GridEXSatr.ContainsFocus Then
+            GoNextCol()
+            Return True
+        End If
+        Return MyBase.ProcessCmdKey(msg, keyData)
+    End Function
+    Private Sub GridEXSatr_EnterKey(sender As Object, e As KeyEventArgs) Handles GridEXSatr.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.Handled = True
+            e.SuppressKeyPress = True
+            GoNextCol()
+        End If
+    End Sub
+
     Private Sub LoadCombo()
         Try
             Dim Strsql As String
@@ -605,41 +650,30 @@
         If isNew AndAlso IsRowEmpty(row) Then Return False
         If Not ValidateRow(row) Then Return False
 
-
-        'Dim ccKala As Integer = Convert.ToInt32(row.Cells("ccKala").Value)
-        '    Dim t0 As Double, price As Double
-        '    TryGetNumber(row, "Tedad0", t0)
-        '    TryGetNumber(row, "MablaghKharid", price)
-        '    Dim tedad3 As Double = objCode.ReturnTedad(ccKala, t0, 0, 0)
-        '    'Dim ccKala As Integer = Convert.ToInt32(row.Cells("ccKala").Value)
-        '    'Dim t0 As Double = Val(row.Cells("Tedad3").Value)
-        '    Dim tBasteh As Double = 0
-        '    Dim tKarton As Double = 0
-
-        'Dim tedad3 As Double = objCode.ReturnTedad(ccKala, t0, tBasteh, tKarton)
-        'Dim tBasteh As Double = Val(row.Cells("TedadBasteh").Value)
-        'Dim tKarton As Double = Val(row.Cells("TedadKarton").Value)
-        'Dim tedad3 As Double = objCode.ReturnTedad(ccKala, t0, tBasteh, tKarton)
-
-
-
-
         Try
-                Dim ccKala As Integer = Convert.ToInt32(row.Cells("ccKala").Value)
-                Dim tedad3, price As Double
-                TryGetNumber(row, "Tedad3", tedad3)
+            Dim tedad3, price As Double
+            TryGetNumber(row, "Tedad3", tedad3)
             TryGetNumber(row, "MablaghKharid", price)
-            Dim jayezeh As Double = 0
-            TryGetNumber(row, "TedadJayezeh", jayezeh)
 
             Using con As New SqlConnection(ConnectionString)
-                    Using cmd As SqlCommand = con.CreateCommand()
+                Using cmd As SqlCommand = con.CreateCommand()
                     cmd.CommandType = CommandType.StoredProcedure
-                    cmd.CommandText = "[dbo].[spAN_KdxResid_InsertSatr]"
-                    cmd.Parameters.AddWithValue("@ccKardexTitr", ccKardexTitr)
-                    cmd.Parameters.AddWithValue("@ccKala", ccKala)
+
+                    If isNew Then
+                        Dim ccKala As Integer = Convert.ToInt32(row.Cells("ccKala").Value)
+                        Dim jayezeh As Double = 0
+                        TryGetNumber(row, "TedadJayezeh", jayezeh)
+
+                        cmd.CommandText = "[dbo].[spAN_KdxResid_InsertSatr]"
+                        cmd.Parameters.AddWithValue("@ccKardexTitr", ccKardexTitr)
+                        cmd.Parameters.AddWithValue("@ccKala", ccKala)
+                        cmd.Parameters.AddWithValue("@TedadJayezeh", jayezeh)
+                    Else
+                        cmd.CommandText = "[dbo].[spAN_KdxResid_UpdateSatr]"
+                        cmd.Parameters.AddWithValue("@ccKardexSatr", row.Cells("ccKardexSatr").Value)
+                    End If
+
                     cmd.Parameters.AddWithValue("@Tedad3", tedad3)
-                    cmd.Parameters.AddWithValue("@TedadJayezeh", jayezeh)
                     cmd.Parameters.AddWithValue("@MablaghKharid", price)
                     cmd.Parameters.AddWithValue("@ShomarehBatch", ToDbStr(row.Cells("ShomarehBatch").Value))
                     cmd.Parameters.AddWithValue("@TarikhTolid", ToMiladi(row.Cells("TarikhTolid").Value))
@@ -647,17 +681,21 @@
                     cmd.Parameters.AddWithValue("@IRC", Convert.ToString(row.Cells("IRC").Value).Trim())
                     cmd.Parameters.AddWithValue("@GTIN", Convert.ToString(row.Cells("GTIN").Value).Trim())
                     cmd.Parameters.AddWithValue("@UserName", UserName)
-                    Dim outId As New SqlParameter("@ccKardexSatr", SqlDbType.Int) With {.Direction = ParameterDirection.Output}
-                    cmd.Parameters.Add(outId)
+
+                    If isNew Then
+                        Dim outId As New SqlParameter("@ccKardexSatr", SqlDbType.Int) With {.Direction = ParameterDirection.Output}
+                        cmd.Parameters.Add(outId)
+                    End If
+
                     con.Open()
                     cmd.ExecuteNonQuery()
                 End Using
-                End Using
-                Return True
-            Catch ex As Exception
-                MessageBox.Show(ex.Message)
-                Return False
-            End Try
+            End Using
+            Return True
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return False
+        End Try
 
     End Function
 
@@ -745,6 +783,14 @@
             Return False
         End If
 
+        If row.RowType = Janus.Windows.GridEX.RowType.NewRecord Then
+            If jayezeh > totalTedad Then
+                MessageBox.Show("تعداد جایزه از تعداد کالا نباید بیشتر باشد.")
+                FocusCol("TedadJayezeh")
+                Return False
+            End If
+        End If
+
 
         Return True
     End Function
@@ -763,11 +809,14 @@
     End Sub
     Private Sub GridEXSatr_CellUpdated(ByVal sender As Object,
     ByVal e As Janus.Windows.GridEX.ColumnActionEventArgs) _
-  Handles GridEXSatr.CellUpdated
+    Handles GridEXSatr.CellUpdated
 
         If _isCalculating Then Exit Sub
         If e.Column Is Nothing OrElse GridEXSatr.CurrentRow Is Nothing Then Exit Sub
-        If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then Exit Sub
+
+        Dim rt = GridEXSatr.CurrentRow.RowType
+        If rt <> Janus.Windows.GridEX.RowType.NewRecord AndAlso
+       rt <> Janus.Windows.GridEX.RowType.Record Then Exit Sub
 
         Select Case e.Column.Key
             Case "CodeKala"
@@ -798,17 +847,36 @@
 
     Private Sub GridEXSatr_EditingCell(sender As Object, e As Janus.Windows.GridEX.EditingCellEventArgs) _
 Handles GridEXSatr.EditingCell
-        ' فقط ردیف جدید قابل ویرایشه
-        If GridEXSatr.CurrentRow IsNot Nothing AndAlso
-       GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then
-            e.Cancel = True
+        'فقط ردیف جدید قابل ویرایشه
+        'If GridEXSatr.CurrentRow IsNot Nothing AndAlso
+        'GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then
+        '    e.Cancel = True
+        'End If
+
+        Dim row = GridEXSatr.CurrentRow
+        If row.RowType = Janus.Windows.GridEX.RowType.Record Then
+            If e.Column.Key = "CodeKala" OrElse e.Column.Key = "TedadJayezeh" Then e.Cancel = True
         End If
+        'If row Is Nothing Then Exit Sub
+        'If row.RowType = Janus.Windows.GridEX.RowType.Record AndAlso e.Column.Key = "CodeKala" Then
+        '    e.Cancel = True
+        'End If
     End Sub
+    Private Function IsBonusRow(ByVal row As Janus.Windows.GridEX.GridEXRow) As Boolean
+        Try
+            Dim v As Object = row.Cells("IsJayezeh").Value
+            If v Is Nothing OrElse IsDBNull(v) Then Return False
+            Return Convert.ToBoolean(v)
+        Catch
+            Return False
+        End Try
+    End Function
+
 
     Private Sub GridEXSatr_UpdatingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) _
     Handles GridEXSatr.UpdatingRecord
-        'If Not SaveRow(GridEXSatr.CurrentRow, False) Then e.Cancel = True
-        e.Cancel = True   ' ویرایش نداریم
+
+        If Not SaveRow(GridEXSatr.CurrentRow, False) Then e.Cancel = True
     End Sub
     Private Sub SearchSatr()
         Using cn As New SqlConnection(ConnectionString)
@@ -819,6 +887,13 @@ Handles GridEXSatr.EditingCell
                 Dim da As New SqlDataAdapter(cm)
                 dt_SearchSatr = New DataTable
                 da.Fill(dt_SearchSatr)
+
+                NormalizeSatrTable(dt_SearchSatr)
+                dt_SearchSatr.DefaultView.AllowEdit = True
+                For Each col As DataColumn In dt_SearchSatr.Columns
+                    col.ReadOnly = False
+                Next
+                dt_SearchSatr.DefaultView.AllowEdit = True
             End Using
         End Using
         SetGridSatr()
@@ -849,17 +924,20 @@ Handles GridEXSatr.EditingCell
 
     Private Sub SetGridSatr()
         Try
+
+
+
             With GridEXSatr
                 .SetDataBinding(dt_SearchSatr.DefaultView, "")
                 If Not _gridStructureReady Then
                     .RetrieveStructure()
                     _gridStructureReady = True
-                    .UpdateMode = Janus.Windows.GridEX.UpdateMode.RowUpdate
-                    .AllowEdit = Janus.Windows.GridEX.InheritableBoolean.True
-                    .AllowAddNew = Janus.Windows.GridEX.InheritableBoolean.True
-                    .AllowDelete = Janus.Windows.GridEX.InheritableBoolean.True
-                    .TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ColumnNavigation
                 End If
+                .UpdateMode = Janus.Windows.GridEX.UpdateMode.RowUpdate
+                .AllowEdit = Janus.Windows.GridEX.InheritableBoolean.True
+                .AllowAddNew = Janus.Windows.GridEX.InheritableBoolean.True
+                .AllowDelete = Janus.Windows.GridEX.InheritableBoolean.True
+                .TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ColumnNavigation
             End With
 
             For Each c As Janus.Windows.GridEX.GridEXColumn In GridEXSatr.RootTable.Columns
@@ -879,19 +957,25 @@ Handles GridEXSatr.EditingCell
             'SetCol("GTIN", "GTIN", 100, 11, True)
 
             SetCol("Radif", "ردیف", 40, 1, False)
-            SetCol("CodeKala", "کد کالا", 70, 2, True)
-            SetCol("NameKala", "نام کالا", 230, 3, False)
-            SetCol("Tedad3", "تعداد ", 70, 4, True, "###,###.##")
-            SetCol("TedadJayezeh", "تعداد جایزه", 70, 5, True, "###,###.##")
-            SetCol("MablaghKharid", "مبلغ خرید", 90, 6, True, "###,###")
-            SetCol("MablaghKol", "مبلغ کل", 100, 7, False, "###,###")
-            SetCol("IsJayezeh", "جایزه", 45, 8, False)
-            SetCol("ShomarehBatch", "شماره بچ", 100, 9, True)
+            SetCol("CodeKala", "کد کالا", 150, 2, True)
+            SetCol("NameKala", "نام کالا", 350, 3, False)
+            SetCol("ShomarehBatch", "شماره بچ", 100, 4, True)
+            SetCol("Tedad3", "تعداد ", 150, 5, True, "###,###.##")
+            SetCol("TedadJayezeh", "تعداد جایزه", 150, 6, True, "###,###.##")
+            SetCol("IsJayezeh", "جایزه", 40, 7, False)
+            SetCol("MablaghKharid", "مبلغ خرید", 350, 8, True, "###,###")
+            SetCol("MablaghKol", "مبلغ کل", 350, 9, False, "###,###")
             SetCol("TarikhTolid", "تاریخ تولید", 90, 10, True)
             SetCol("TarikhEngheza", "تاریخ انقضا", 90, 11, True)
             SetCol("IRC", "IRC", 100, 12, True)
             SetCol("GTIN", "GTIN", 100, 13, True)
 
+            With GridEXSatr
+                .AlternatingColors = True
+                .RowFormatStyle.BackColor = Color.White
+                .AlternatingRowFormatStyle.BackColor = Color.Gainsboro
+                .GridLines = Janus.Windows.GridEX.GridLines.Both
+            End With
 
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error in SetGridSatr")
@@ -900,10 +984,14 @@ Handles GridEXSatr.EditingCell
     Private Sub GridEXSatr_KeyDown(sender As Object, e As KeyEventArgs) Handles GridEXSatr.KeyDown
         If e.KeyCode <> Keys.F2 AndAlso e.KeyCode <> Keys.F5 Then Exit Sub
         If GridEXSatr.CurrentRow Is Nothing OrElse GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
-        If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then Exit Sub
-
+        'If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then Exit Sub
+        Dim rt = GridEXSatr.CurrentRow.RowType
+        If rt <> Janus.Windows.GridEX.RowType.NewRecord AndAlso rt <> Janus.Windows.GridEX.RowType.Record Then Exit Sub
         ' ---------- F2 : کالا ----------
         If e.KeyCode = Keys.F2 AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
+            If GridEXSatr.CurrentRow.RowType = Janus.Windows.GridEX.RowType.Record Then
+                e.Handled = True : Exit Sub
+            End If
             Dim objKala As New Forms_dll.frmAN_KalaSearch
             Dim StrSqlKala As String = "Select CodeKala,NameKala,ccKala,txtsVahedeShomaresh,sVahedeShomaresh,NameBrand,RadifBrand,0 as IsSabadKala " &
                                        " from qryAN_Kala Where Faal = 1"
@@ -955,7 +1043,9 @@ Handles GridEXSatr.EditingCell
             objShomarehBach.SetForm(StrSql)
             objShomarehBach.ShowDialog()
 
-            If String.IsNullOrEmpty(objShomarehBach.tShomarehBach) Then Exit Sub
+            If GridEXSatr.CurrentRow.RowType = Janus.Windows.GridEX.RowType.Record Then
+                Try : GridEXSatr.CurrentRow.BeginEdit() : Catch : End Try
+            End If
 
             With GridEXSatr.CurrentRow
                 .Cells("ShomarehBatch").Value = objShomarehBach.tShomarehBach
@@ -1111,83 +1201,7 @@ Handles GridEXSatr.DeletingRecord
         BeginInvoke(New MethodInvoker(AddressOf ReloadSatr))
     End Sub
 
-    '' تاریخ را به ۸ رقم تمیز می‌کند (بدون تبدیل). تبدیل شمسی به میلادی در SP است.
-    'Private Function TryDate8(ByVal v As Object, ByRef result As String) As Boolean
-    '    result = ""
-    '    If v Is Nothing OrElse IsDBNull(v) Then Return False
 
-    '    Dim d As String = v.ToString().Trim().Replace("/", "").Replace("-", "").Replace(" ", "")
-    '    If Not System.Text.RegularExpressions.Regex.IsMatch(d, "^\d{8}$") Then Return False
-
-    '    Dim y As Integer = CInt(d.Substring(0, 4))
-    '    Dim m As Integer = CInt(d.Substring(4, 2))
-    '    Dim dd As Integer = CInt(d.Substring(6, 2))
-
-    '    If y >= 2000 Then
-    '        ' میلادی
-    '        Dim t As DateTime
-    '        If Not DateTime.TryParseExact(d, "yyyyMMdd",
-    '                System.Globalization.CultureInfo.InvariantCulture,
-    '                System.Globalization.DateTimeStyles.None, t) Then Return False
-    '    Else
-    '        ' شمسی
-    '        If y < 1300 OrElse y > 1600 Then Return False
-    '        If m < 1 OrElse m > 12 OrElse dd < 1 Then Return False
-    '        If m <= 6 AndAlso dd > 31 Then Return False
-    '        If m > 6 AndAlso dd > 30 Then Return False
-    '    End If
-
-    '    result = d
-    '    Return True
-    'End Function
-
-    'Private Function ToDate8(v As Object) As Object
-    '    Dim r As String = ""
-    '    If TryDate8(v, r) Then Return r
-    '    Return DBNull.Value
-    'End Function
-
-
-    ' مثل کد قدیمی: سال < 2000 یعنی شمسی و با Sh2Mi تبدیل می‌شود، وگرنه همان است
-    ' خروجی: میلادی ۸ رقمی مثل 20260101. اگر نامعتبر بود False
-    'Private Function TryToMiladi(ByVal v As Object, ByRef result As String) As Boolean
-    '    result = ""
-    '    If v Is Nothing OrElse IsDBNull(v) Then Return False
-
-    '    Dim digits As String = v.ToString().Trim().Replace("/", "").Replace("-", "").Replace(" ", "")
-    '    If Not System.Text.RegularExpressions.Regex.IsMatch(digits, "^\d{8}$") Then Return False
-
-    '    Dim withSlash As String = digits.Substring(0, 4) & "/" & digits.Substring(4, 2) & "/" & digits.Substring(6, 2)
-    '    Dim res As String
-
-    '    Try
-    '        If CInt(digits.Substring(0, 4)) < 2000 Then
-    '            Dim r As Object = objTarikh.Sh2Mi(withSlash)
-    '            If TypeOf r Is DateTime Then
-    '                res = CDate(r).ToString("yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture)
-    '            Else
-    '                res = Convert.ToString(r)
-    '            End If
-    '        Else
-    '            res = withSlash
-    '        End If
-    '    Catch
-    '        Return False
-    '    End Try
-
-    '    res = res.Replace("/", "").Replace("-", "").Trim()
-
-    '    ' خروجی باید یک تاریخ میلادی واقعی باشد
-    '    Dim dt As DateTime
-    '    If Not System.Text.RegularExpressions.Regex.IsMatch(res, "^\d{8}$") Then Return False
-    '    If Not DateTime.TryParseExact(res, "yyyyMMdd",
-    '        System.Globalization.CultureInfo.InvariantCulture,
-    '        System.Globalization.DateTimeStyles.None, dt) Then Return False
-    '    If dt.Year < 2000 Then Return False
-
-    '    result = res
-    '    Return True
-    'End Function
 
     Private Function ToMiladi(v As Object) As Object
         Dim r As String = ""
@@ -1395,4 +1409,36 @@ Handles GridEXSatr.DeletingRecord
     Private Sub btnNew_Click_1(sender As Object, e As EventArgs) Handles btnNew.Click
         NewResid()
     End Sub
+
+    Private Function IsBonusDataRow(ByVal r As DataRow) As Boolean
+        If Not r.Table.Columns.Contains("IsJayezeh") Then Return False
+        If IsDBNull(r("IsJayezeh")) Then Return False
+        Return Convert.ToBoolean(r("IsJayezeh"))
+    End Function
+
+    ' سطر اصلی: Tedad3 = تعداد کل، TedadJayezeh = جایزه‌ی سطر بعدی
+    Private Sub NormalizeSatrTable(ByVal dt As DataTable)
+        For Each col As DataColumn In dt.Columns
+            col.ReadOnly = False
+        Next
+
+        ' ستون ورودی جایزه: برای سطرهای ذخیره‌شده خالی می‌ماند
+        If Not dt.Columns.Contains("TedadJayezeh") Then dt.Columns.Add("TedadJayezeh", GetType(Double))
+
+        ' اگر پروسیجر MKOL برمی‌گرداند، به MablaghKol کپی می‌شود
+        If Not dt.Columns.Contains("MablaghKol") Then
+            dt.Columns.Add("MablaghKol", GetType(Double))
+            If dt.Columns.Contains("MKOL") Then
+                For Each r As DataRow In dt.Rows
+                    r("MablaghKol") = r("MKOL")
+                Next
+            End If
+        End If
+
+        dt.AcceptChanges()
+    End Sub
+    Private Sub GridEXSatr_RecordUpdated(sender As Object, e As EventArgs) Handles GridEXSatr.RecordUpdated
+        BeginInvoke(New MethodInvoker(AddressOf ReloadSatr))
+    End Sub
+
 End Class

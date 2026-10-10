@@ -71,7 +71,7 @@ Partial Class Form1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label1.Location = New System.Drawing.Point(1044, 118)
+        Me.Label1.Location = New System.Drawing.Point(1240, 85)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(51, 13)
         Me.Label1.TabIndex = 120
@@ -79,7 +79,7 @@ Partial Class Form1
         '
         'txtTozihat
         '
-        Me.txtTozihat.Location = New System.Drawing.Point(756, 114)
+        Me.txtTozihat.Location = New System.Drawing.Point(952, 81)
         Me.txtTozihat.Name = "txtTozihat"
         Me.txtTozihat.Size = New System.Drawing.Size(286, 20)
         Me.txtTozihat.TabIndex = 116
@@ -97,7 +97,7 @@ Partial Class Form1
         'txtShomarehSefaresh
         '
         Me.txtShomarehSefaresh.Enabled = False
-        Me.txtShomarehSefaresh.Location = New System.Drawing.Point(393, 21)
+        Me.txtShomarehSefaresh.Location = New System.Drawing.Point(428, 19)
         Me.txtShomarehSefaresh.MaxLength = 3
         Me.txtShomarehSefaresh.Name = "txtShomarehSefaresh"
         Me.txtShomarehSefaresh.Size = New System.Drawing.Size(105, 20)
@@ -107,7 +107,7 @@ Partial Class Form1
         '
         Me.cmbsCodeDorehSefaresh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbsCodeDorehSefaresh.Items.AddRange(New Object() {"", ""})
-        Me.cmbsCodeDorehSefaresh.Location = New System.Drawing.Point(504, 21)
+        Me.cmbsCodeDorehSefaresh.Location = New System.Drawing.Point(539, 19)
         Me.cmbsCodeDorehSefaresh.MaxDropDownItems = 20
         Me.cmbsCodeDorehSefaresh.Name = "cmbsCodeDorehSefaresh"
         Me.cmbsCodeDorehSefaresh.Size = New System.Drawing.Size(96, 21)
@@ -115,7 +115,7 @@ Partial Class Form1
         '
         'mskTarikhForm
         '
-        Me.mskTarikhForm.Location = New System.Drawing.Point(973, 86)
+        Me.mskTarikhForm.Location = New System.Drawing.Point(1169, 53)
         Me.mskTarikhForm.Mask = "####/##/##"
         Me.mskTarikhForm.Name = "mskTarikhForm"
         Me.mskTarikhForm.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
@@ -127,7 +127,7 @@ Partial Class Form1
         'cmbAnbar
         '
         Me.cmbAnbar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbAnbar.Location = New System.Drawing.Point(756, 86)
+        Me.cmbAnbar.Location = New System.Drawing.Point(952, 53)
         Me.cmbAnbar.MaxDropDownItems = 20
         Me.cmbAnbar.Name = "cmbAnbar"
         Me.cmbAnbar.Size = New System.Drawing.Size(166, 21)
@@ -137,7 +137,7 @@ Partial Class Form1
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label4.Location = New System.Drawing.Point(927, 90)
+        Me.Label4.Location = New System.Drawing.Point(1123, 57)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(28, 13)
         Me.Label4.TabIndex = 114
@@ -147,7 +147,7 @@ Partial Class Form1
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label3.Location = New System.Drawing.Point(1044, 90)
+        Me.Label3.Location = New System.Drawing.Point(1240, 57)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(52, 13)
         Me.Label3.TabIndex = 111
@@ -167,7 +167,7 @@ Partial Class Form1
         Me.lblSefaresh.AutoSize = True
         Me.lblSefaresh.Font = New System.Drawing.Font("Tahoma", 7.8!)
         Me.lblSefaresh.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblSefaresh.Location = New System.Drawing.Point(604, 25)
+        Me.lblSefaresh.Location = New System.Drawing.Point(639, 23)
         Me.lblSefaresh.Name = "lblSefaresh"
         Me.lblSefaresh.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.lblSefaresh.Size = New System.Drawing.Size(81, 13)
@@ -217,7 +217,7 @@ Partial Class Form1
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label20.Location = New System.Drawing.Point(602, 55)
+        Me.Label20.Location = New System.Drawing.Point(637, 53)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(100, 13)
         Me.Label20.TabIndex = 134
@@ -225,7 +225,7 @@ Partial Class Form1
         '
         'txtShomarehMobile
         '
-        Me.txtShomarehMobile.Location = New System.Drawing.Point(485, 52)
+        Me.txtShomarehMobile.Location = New System.Drawing.Point(520, 50)
         Me.txtShomarehMobile.Name = "txtShomarehMobile"
         Me.txtShomarehMobile.Size = New System.Drawing.Size(115, 20)
         Me.txtShomarehMobile.TabIndex = 133
@@ -234,7 +234,7 @@ Partial Class Form1
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label19.Location = New System.Drawing.Point(609, 87)
+        Me.Label19.Location = New System.Drawing.Point(644, 85)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(76, 13)
         Me.Label19.TabIndex = 132
@@ -242,7 +242,7 @@ Partial Class Form1
         '
         'txtShomarehMashin
         '
-        Me.txtShomarehMashin.Location = New System.Drawing.Point(485, 82)
+        Me.txtShomarehMashin.Location = New System.Drawing.Point(520, 80)
         Me.txtShomarehMashin.Name = "txtShomarehMashin"
         Me.txtShomarehMashin.Size = New System.Drawing.Size(115, 20)
         Me.txtShomarehMashin.TabIndex = 131
@@ -251,7 +251,7 @@ Partial Class Form1
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label18.Location = New System.Drawing.Point(873, 144)
+        Me.Label18.Location = New System.Drawing.Point(1069, 111)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(39, 13)
         Me.Label18.TabIndex = 130
@@ -259,7 +259,7 @@ Partial Class Form1
         '
         'txtBarnameh
         '
-        Me.txtBarnameh.Location = New System.Drawing.Point(756, 141)
+        Me.txtBarnameh.Location = New System.Drawing.Point(952, 108)
         Me.txtBarnameh.Name = "txtBarnameh"
         Me.txtBarnameh.Size = New System.Drawing.Size(115, 20)
         Me.txtBarnameh.TabIndex = 129
@@ -268,7 +268,7 @@ Partial Class Form1
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label15.Location = New System.Drawing.Point(1044, 171)
+        Me.Label15.Location = New System.Drawing.Point(1240, 138)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(37, 13)
         Me.Label15.TabIndex = 128
@@ -276,7 +276,7 @@ Partial Class Form1
         '
         'txtKhodro
         '
-        Me.txtKhodro.Location = New System.Drawing.Point(927, 168)
+        Me.txtKhodro.Location = New System.Drawing.Point(1123, 135)
         Me.txtKhodro.Name = "txtKhodro"
         Me.txtKhodro.Size = New System.Drawing.Size(115, 20)
         Me.txtKhodro.TabIndex = 127
@@ -285,7 +285,7 @@ Partial Class Form1
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label13.Location = New System.Drawing.Point(1044, 144)
+        Me.Label13.Location = New System.Drawing.Point(1240, 111)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(36, 13)
         Me.Label13.TabIndex = 126
@@ -293,7 +293,7 @@ Partial Class Form1
         '
         'txtRanandeh
         '
-        Me.txtRanandeh.Location = New System.Drawing.Point(927, 141)
+        Me.txtRanandeh.Location = New System.Drawing.Point(1123, 108)
         Me.txtRanandeh.Name = "txtRanandeh"
         Me.txtRanandeh.Size = New System.Drawing.Size(115, 20)
         Me.txtRanandeh.TabIndex = 125
@@ -341,14 +341,14 @@ Partial Class Form1
         Me.GroupBox1.Location = New System.Drawing.Point(1, 3)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.GroupBox1.Size = New System.Drawing.Size(1107, 196)
+        Me.GroupBox1.Size = New System.Drawing.Size(1310, 196)
         Me.GroupBox1.TabIndex = 136
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "ورودی اطلاعات اصلی"
         '
         'txtSearchNumber
         '
-        Me.txtSearchNumber.Location = New System.Drawing.Point(956, 25)
+        Me.txtSearchNumber.Location = New System.Drawing.Point(1157, 19)
         Me.txtSearchNumber.Margin = New System.Windows.Forms.Padding(2)
         Me.txtSearchNumber.MaxLength = 5
         Me.txtSearchNumber.Name = "txtSearchNumber"
@@ -359,12 +359,12 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(1044, 29)
+        Me.Label5.Location = New System.Drawing.Point(1245, 23)
         Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(39, 13)
+        Me.Label5.Size = New System.Drawing.Size(43, 13)
         Me.Label5.TabIndex = 139
-        Me.Label5.Text = "شماره:"
+        Me.Label5.Text = "جستجو:"
         '
         'btnNew
         '
@@ -387,7 +387,7 @@ Partial Class Form1
         Me.btnSaveSanad.BackColor = System.Drawing.Color.White
         Me.btnSaveSanad.Font = New System.Drawing.Font("Tahoma", 7.8!)
         Me.btnSaveSanad.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.btnSaveSanad.Location = New System.Drawing.Point(439, 112)
+        Me.btnSaveSanad.Location = New System.Drawing.Point(445, 112)
         Me.btnSaveSanad.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSaveSanad.Name = "btnSaveSanad"
         Me.btnSaveSanad.Size = New System.Drawing.Size(265, 76)
@@ -401,7 +401,7 @@ Partial Class Form1
         Me.GroupBox2.Location = New System.Drawing.Point(3, 205)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.GroupBox2.Size = New System.Drawing.Size(1105, 415)
+        Me.GroupBox2.Size = New System.Drawing.Size(1308, 444)
         Me.GroupBox2.TabIndex = 137
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "ورود اطلاعات کالا"
@@ -441,10 +441,11 @@ Partial Class Form1
         Me.GridEXSatr.Location = New System.Drawing.Point(3, 16)
         Me.GridEXSatr.Margin = New System.Windows.Forms.Padding(2)
         Me.GridEXSatr.Name = "GridEXSatr"
+        Me.GridEXSatr.NewRowPosition = Janus.Windows.GridEX.NewRowPosition.BottomRow
         Me.GridEXSatr.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Blue
         Me.GridEXSatr.RecordNavigator = True
         Me.GridEXSatr.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.[True]
-        Me.GridEXSatr.Size = New System.Drawing.Size(1099, 396)
+        Me.GridEXSatr.Size = New System.Drawing.Size(1302, 425)
         Me.GridEXSatr.TabIndex = 101
         Me.GridEXSatr.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
         Me.GridEXSatr.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
@@ -453,9 +454,11 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1110, 632)
+        Me.ClientSize = New System.Drawing.Size(1311, 661)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.Text = "ورود اطلاعات رسید"
         Me.GroupBox1.ResumeLayout(False)
