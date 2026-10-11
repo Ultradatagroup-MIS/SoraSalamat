@@ -37,6 +37,7 @@ Public Class frmFO_AddData
         Private _ccPishFaktorTitr As Integer
         Private _PishFaktorTarikh As String = ""
         Private _ccMoshtary As Integer
+        Private _sNoeMoshtary As Integer
         Private _CodeMoshtary As String = ""
         Private _NameMoshtary As String = ""
         Private _ccMoshtaryAddress As Integer
@@ -130,6 +131,11 @@ Public Class frmFO_AddData
                 Return _Malyat
             End Get
         End Property
+        Public ReadOnly Property sNoeMoshtary() As Integer
+            Get
+                Return _sNoeMoshtary
+            End Get
+        End Property
 #End Region
 
         ''' <summary>
@@ -156,6 +162,7 @@ Public Class frmFO_AddData
             _ccPishFaktorTitr = id
             _PishFaktorTarikh = GetStr(r, "PishFaktorTarikh")
             _ccMoshtary = GetInt(r, "ccMoshtary")
+            _sNoeMoshtary = GetInt(r, "sNoeMoshtary")
             _CodeMoshtary = GetStr(r, "CodeMoshtary")
             _NameMoshtary = GetStr(r, "NameMoshtary")
             _ccMoshtaryAddress = GetInt(r, "ccMoshtaryAddress")
@@ -1005,7 +1012,9 @@ Public Class frmFO_AddData
 
 
                 StrSqlKala = "Select  CodeKala,NameKala,ccKala,txtsVahedeShomaresh,sVahedeShomaresh,NameBrand,RadifBrand,0 as IsSabadKala "
-
+                StrSqlKala &= " ,(SELECT dbo.fnAN_GetMojodiDarHalForosh (" & info.ccAnbar & ", ccKala, " & CodeMahalFaal & "," & CodeDoreh & "," & TarikhEmrooz & ")) AS MojodiDarHalForosh, "
+                StrSqlKala &= " (SELECT dbo.[GetMablaghFrosh_NoePardakht] (ccKala, " & info.PishFaktorTarikh & ", " & CodeMahalFaal & ", " & info.ccMoshtary & " , " & info.sNoeMoshtary & ", 3952)) as FeeForoshCheck ,"
+                StrSqlKala &= " (SELECT dbo.[GetMablaghFrosh_NoePardakht] (ccKala," & info.PishFaktorTarikh & ", " & CodeMahalFaal & ", " & info.ccMoshtary & " , " & info.sNoeMoshtary & ", 3953)) as FeeForoshNaghd"
                 StrSqlKala &= " from qryAN_Kala"
                 StrSqlKala &= " Where Faal = 1  AND ccKala in (Select ccKala from tblAN_KalaGheymat where ccKala =qryAN_Kala.ccKala )  "
 
