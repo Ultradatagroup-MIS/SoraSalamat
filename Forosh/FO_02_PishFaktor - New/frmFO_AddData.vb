@@ -1026,17 +1026,16 @@ Public Class frmFO_AddData
                 objKala.SetForm(StrSqlKala)
                 objKala.ShowDialog()
 
-                GridEXSatr.CurrentRow.Cells("CodeKala").Value = objKala.tcodeKala
-                GridEXSatr.CurrentRow.Cells("ccKala").Value = objKala.tccKala
-                GridEXSatr.CurrentRow.Cells("NameKala").Value = objKala.tNameKala
+                FillRowWithKala(GridEXSatr.CurrentRow, objKala.tcodeKala, objKala.tccKala, objKala.tNameKala)
+                'GridEXSatr.CurrentRow.Cells("CodeKala").Value = objKala.tcodeKala
+                'GridEXSatr.CurrentRow.Cells("ccKala").Value = objKala.tccKala
+                'GridEXSatr.CurrentRow.Cells("NameKala").Value = objKala.tNameKala
+                'GridEXSatr.CurrentRow.Cells("Fee").Value = ObjCode.GetMablaghForosh_NoePardakht(objKala.tccKala, info.PishFaktorTarikh, CodeMahalFaal, info.ccMoshtary, info.sNoePardakht)
+                'GetMojodyGhabelForosh(objKala.tccKala, info.ccAnbar, MojodiGhabelForoshKOL)
+                'GridEXSatr.CurrentRow.Cells("MojodiDarHaleForosh").Value = MojodiGhabelForoshKOL
 
-                GridEXSatr.CurrentRow.Cells("Fee").Value = ObjCode.GetMablaghForosh_NoePardakht(objKala.tccKala, info.PishFaktorTarikh, CodeMahalFaal, info.ccMoshtary, info.sNoePardakht)
 
 
-
-                GetMojodyGhabelForosh(objKala.tccKala, info.ccAnbar, MojodiGhabelForoshKOL)
-
-                GridEXSatr.CurrentRow.Cells("MojodiDarHaleForosh").Value = MojodiGhabelForoshKOL
                 MultiSelection = False
 
 
@@ -1385,30 +1384,110 @@ Public Class frmFO_AddData
     '        CalcRow(GridEXSatr.CurrentRow)
     '    End If
     'End Sub
+    'Private Sub GridEXSatr_CellUpdated(ByVal sender As Object,
+    '    ByVal e As Janus.Windows.GridEX.ColumnActionEventArgs) _
+    '    Handles GridEXSatr.CellUpdated
+
+    '    'If _isCalculating Then Exit Sub
+    '    'If e.Column Is Nothing Then Exit Sub
+
+    '    'Dim key As String = e.Column.Key
+    '    'If key = "Tedad3" OrElse key = "Fee" OrElse key = "DarsadTakhfif" Then
+    '    '    CalcRow(GridEXSatr.CurrentRow)
+    '    'End If
+    '    Dim key As String = e.Column.Key
+    '    If key = "IsJayezeh" AndAlso IsJayezehRow(GridEXSatr.CurrentRow) Then
+    '        _isCalculating = True
+    '        Try
+    '            GridEXSatr.CurrentRow.Cells("DarsadTakhfif").Value = 0
+    '        Finally
+    '            _isCalculating = False
+    '        End Try
+    '    End If
+
+    '    If key = "Tedad3" OrElse key = "Fee" OrElse key = "DarsadTakhfif" OrElse key = "IsJayezeh" Then
+    '        CalcRow(GridEXSatr.CurrentRow)
+    '    End If
+
+
+    'End Sub
     Private Sub GridEXSatr_CellUpdated(ByVal sender As Object,
         ByVal e As Janus.Windows.GridEX.ColumnActionEventArgs) _
         Handles GridEXSatr.CellUpdated
 
-        'If _isCalculating Then Exit Sub
-        'If e.Column Is Nothing Then Exit Sub
+        If _isCalculating Then Exit Sub
+        If e.Column Is Nothing Then Exit Sub
 
-        'Dim key As String = e.Column.Key
-        'If key = "Tedad3" OrElse key = "Fee" OrElse key = "DarsadTakhfif" Then
-        '    CalcRow(GridEXSatr.CurrentRow)
-        'End If
         Dim key As String = e.Column.Key
-        If key = "IsJayezeh" AndAlso IsJayezehRow(GridEXSatr.CurrentRow) Then
+        Dim row As Janus.Windows.GridEX.GridEXRow = GridEXSatr.CurrentRow
+        If row Is Nothing Then Exit Sub
+
+        ' ۱) تیک جایزه: درصد تخفیف صفر بشه
+        If key = "IsJayezeh" AndAlso IsJayezehRow(row) Then
             _isCalculating = True
             Try
-                GridEXSatr.CurrentRow.Cells("DarsadTakhfif").Value = 0
+                row.Cells("DarsadTakhfif").Value = 0
             Finally
                 _isCalculating = False
             End Try
         End If
 
-        If key = "Tedad3" OrElse key = "Fee" OrElse key = "DarsadTakhfif" OrElse key = "IsJayezeh" Then
-            CalcRow(GridEXSatr.CurrentRow)
+        ' ۲) تایپ کد کالا (فقط ردیف جدید)
+        If key = "CodeKala" AndAlso row.RowType = Janus.Windows.GridEX.RowType.NewRecord Then
+            Dim typed As String = Convert.ToString(row.Cells("CodeKala").Value)
+
+            If typed.Trim().Length > 0 Then
+                Dim cc As Integer = FindCcKala(typed)
+
+                If cc = 0 Then
+                    MessageBox.Show("کالایی با این کد پیدا نشد. برای جستجو F2 بزنید.")
+                    _isCalculating = True
+                    Try
+                        row.Cells("CodeKala").Value = DBNull.Value
+                        row.Cells("ccKala").Value = DBNull.Value
+                    Finally
+                        _isCalculating = False
+                    End Try
+                Else
+                    Dim nm As Object = objTools.DLookup("NameKala", "tblAn_Kala", "ccKala = " & cc)
+                    FillRowWithKala(row, typed.Trim(), cc, nm)
+                    CalcRow(row)
+                End If
+            End If
         End If
+
+        ' ۳) محاسبه‌ی مبلغ و تخفیف
+        If key = "Tedad3" OrElse key = "Fee" OrElse key = "DarsadTakhfif" OrElse key = "IsJayezeh" Then
+            CalcRow(row)
+        End If
+
+        ' ۴) نمایش موجودی وقتی تعداد ردیف ذخیره‌شده عوض شد
+        If key = "Tedad3" AndAlso row.RowType = Janus.Windows.GridEX.RowType.Record Then
+            ShowMojodi(row)
+        End If
+    End Sub
+    Private Sub ShowMojodi(ByVal row As Janus.Windows.GridEX.GridEXRow)
+        Dim idSatr As Object = row.Cells("ccPishFaktorSatr").Value
+        If idSatr Is Nothing OrElse IsDBNull(idSatr) Then Exit Sub
+
+        Dim info As New PishFaktorTitrInfo()
+        If Not info.Load(ccPishfaktorTitr, ConnectionString) Then Exit Sub
+
+        ' تعداد قبلی از دیتابیس (نه از گرید، چون مقدار جدید الان توش هست)
+        Dim oldTedad As Double = Convert.ToDouble(
+        objTools.ConvertNulls(objTools.DLookup("Tedad3", "tblFO_PishFaktorSatr",
+            "ccPishFaktorSatr = " & idSatr.ToString()), 0))
+
+        GetMojodyDarHalForoshBach(row.Cells("ccKala").Value, info.ccAnbar,
+        row.Cells("ShomarehBach").Value, row.Cells("TarikhTolid").Value,
+        row.Cells("TarikhEngheza").Value)
+
+        _isCalculating = True
+        Try
+            row.Cells("MojodiDarHaleForosh").Value = MojodiGhabelForoshKOLBach + oldTedad
+        Finally
+            _isCalculating = False
+        End Try
     End Sub
 
     Private Sub CalcRow(ByVal row As Janus.Windows.GridEX.GridEXRow)
@@ -1637,4 +1716,32 @@ Public Class frmFO_AddData
             g.UpdateData()          ' ستون آخر: ذخیره‌ی سطر
         End If
     End Sub
+    ' ردیف را با کالای انتخاب‌شده پر می‌کند؛ هم F2 و هم تایپ از این استفاده می‌کنند
+    Private Sub FillRowWithKala(ByVal row As Janus.Windows.GridEX.GridEXRow,
+        ByVal codeKala As Object, ByVal ccKala As Object, ByVal nameKala As Object)
+
+        Dim info As New PishFaktorTitrInfo()
+        If Not info.Load(ccPishfaktorTitr, ConnectionString) Then Exit Sub
+
+        _isCalculating = True
+        Try
+            row.Cells("CodeKala").Value = codeKala
+            row.Cells("ccKala").Value = ccKala
+            row.Cells("NameKala").Value = nameKala
+            row.Cells("Fee").Value = ObjCode.GetMablaghForosh_NoePardakht(ccKala, info.PishFaktorTarikh, CodeMahalFaal, info.ccMoshtary, info.sNoePardakht)
+            GetMojodyGhabelForosh(ccKala, info.ccAnbar, MojodiGhabelForoshKOL)
+            row.Cells("MojodiDarHaleForosh").Value = MojodiGhabelForoshKOL
+        Finally
+            _isCalculating = False
+        End Try
+    End Sub
+    ' ccKala را با کد تایپ‌شده برمی‌گرداند؛ اگر نبود 0
+    Private Function FindCcKala(ByVal code As String) As Integer
+        Dim c As String = code.Trim()
+        If Not IsNumeric(c) Then Return 0      ' جلوی خطای SQL و تزریق را می‌گیرد
+
+        Dim v As Object = objTools.ConvertNulls(
+        objTools.DLookup("ccKala", "tblAn_Kala", "Faal = 1 AND CodeKala = " & c), 0)
+        Return Convert.ToInt32(v)
+    End Function
 End Class
