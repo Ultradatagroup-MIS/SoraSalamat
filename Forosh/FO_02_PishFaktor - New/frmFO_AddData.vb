@@ -826,7 +826,7 @@ Public Class frmFO_AddData
         Dim info As New PishFaktorTitrInfo()
         If Not info.Load(ccPishfaktorTitr, ConnectionString) Then
             MessageBox.Show("اطلاعات پیش‌فاکتور ذخیره‌شده پیدا نشد")
-        
+
         End If
         '' لود هدر ذخیره‌شده از دیتابیس و نمایش در فرم
         'If Not LoadTitr(ccPishfaktorTitr) Then Exit Sub
@@ -1745,3 +1745,4 @@ Public Class frmFO_AddData
         Return Convert.ToInt32(v)
     End Function
 End Class
+
