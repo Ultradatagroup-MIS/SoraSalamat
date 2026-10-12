@@ -857,6 +857,7 @@ Public Class frmFO_AddData
                 cm.Parameters.AddWithValue("CodeMahal", CodeMahalFaal)
                 cm.Parameters.AddWithValue("CodeDoreh", CodeDoreh)
                 cm.Parameters.AddWithValue("TarikhElmMarjoee", mskTarikh.Text)
+                cm.Parameters.AddWithValue("ccFaktorTitr", ccFaktorTitr)
                 cm.Parameters.AddWithValue("ccMoshtary", txtCodeMoshtary.Tag)
                 cm.Parameters.AddWithValue("ccForoshandeh", cmbBazaryab.SelectedValue)
                 cm.Parameters.AddWithValue("CodeFard_MamorPakhsh", cmbMamorPakhsh.SelectedValue)
@@ -865,11 +866,7 @@ Public Class frmFO_AddData
                 ElseIf rbBargashtAzTozi.Checked Then
                     cm.Parameters.AddWithValue("NoeMarjoeeFT", 2)
                 End If
-                cm.Parameters.AddWithValue("Malyat", chkMalyat.Checked)
-                cm.Parameters.AddWithValue("PishFaktorAmani", 0)
-                cm.Parameters.AddWithValue("PishFaktorGheireGhateei", 0)
                 cm.Parameters.AddWithValue("Tozihat", TxtSharh.Text.TrimEnd)
-                cm.Parameters.AddWithValue("NoeVorod", 1)
                 cm.Parameters.AddWithValue("UserName", UserName)
 
                 Dim pOut As SqlParameter = cm.Parameters.Add("@ccElamMarjoee", SqlDbType.Int)
