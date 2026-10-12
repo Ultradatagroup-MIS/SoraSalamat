@@ -38,6 +38,7 @@ Module mdlPublic
     Public NoePardakht As Byte
 
 
+    Public dt_SearchSatr As Data.DataTable = Nothing
     '---Search Moshtary-------------------------------------------
     Public SearchItem As String
     Public MultiSelection As Boolean

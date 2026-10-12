@@ -3,6 +3,7 @@
 
 Imports System.Data
 Imports System.Data.SqlClient
+Imports System.Reflection.Emit
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
 
 Public Class frmFO_AddData
@@ -27,9 +28,13 @@ Public Class frmFO_AddData
     Dim AllowChangeFeePishFaktor As Boolean
     Dim MeghdarAdadi As Integer
     Dim flg As Boolean = False
-    Dim AllowPishFaktorTakhfifDasty As Boolean
+    Dim ccFaktorTitr As Integer
 
     Dim ccMoshtary As Integer
+    Dim AllowMarjoeeWithoutFaktor As Boolean = objTools.ConvertNulls(objTools.DLookup("AllowMarjoeeWithoutFaktor", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
+    Dim AllowChangeFeeMarjoee As Boolean = objTools.ConvertNulls(objTools.DLookup("AllowChangeFeeMarjoee", "dbo.tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
+    Dim AllowPishFaktorTakhfifDasty As Boolean = objTools.ConvertNulls(objTools.DLookup("AllowPishFaktorTakhfifDasty", "tblGL_SysConfig", ""), False)
+
 #End Region
 
 
@@ -155,19 +160,19 @@ Public Class frmFO_AddData
 
             Dim r As DataRow = _dtSearchTitr.Rows(0)
             _ccElamMarjoee = id
-            _PishFaktorTarikh = GetStr(r, "PishFaktorTarikh")
+            _TarikhElamMarjoee = GetStr(r, "TarikhElamMarjoee")
             _ccMoshtary = GetInt(r, "ccMoshtary")
-            _sNoeMoshtary = GetInt(r, "sNoeMoshtary")
+            _ccFaktorTitr = GetInt(r, "ccFaktorTitr")
             _CodeMoshtary = GetStr(r, "CodeMoshtary")
             _NameMoshtary = GetStr(r, "NameMoshtary")
-            _ccMoshtaryAddress = GetInt(r, "ccMoshtaryAddress")
+            _CodeFard_MamorPakhsh = GetInt(r, "CodeFard_MamorPakhsh")
             _ccForoshandeh = GetInt(r, "ccForoshandeh")
-            _sNoePardakht = GetInt(r, "sNoePardakht")
-            _ModatCheck = GetInt(r, "ModatCheck")
+            '_sNoePardakht = GetInt(r, "sNoePardakht")
+            '_ModatCheck = GetInt(r, "ModatCheck")
             _Tozihat = GetStr(r, "Tozihat")
-            _ccAnbar = GetInt(r, "ccAnbar")
-            _PishFaktorShomareh = GetInt(r, "PishFaktorShomareh")
-            _Malyat = GetBool(r, "Malyat")
+            '_ccAnbar = GetInt(r, "ccAnbar")
+            _ShomarehElamMarjoee = GetInt(r, "ShomarehElamMarjoee")
+            _IsFaktorMarjoee = GetBool(r, "IsFaktorMarjoee")
             Return True
         End Function
 
@@ -196,7 +201,7 @@ Public Class frmFO_AddData
 
     End Class
     Private Sub frmFO_AddData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'mskTarikh.Text = TarikhEmrooz
+        mskTarikh.Text = TarikhEmrooz
         txtSearchNumber.Focus()
         'chkMalyat.Checked = True
         'chkMalyat.Enabled = False
@@ -208,8 +213,8 @@ Public Class frmFO_AddData
         txtSearchNumber.Focus()
         Mode = UD_Dll.Enums.GL_ModeForms.AddNewRecord
         flg = True
-        'AllowChangeFeePishFaktor = objTools.ConvertNulls(objTools.DLookup("AllowChangeFeePishFaktor", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
-        'AllowPishFaktorTakhfifDasty = objTools.ConvertNulls(objTools.DLookup("AllowPishFaktorTakhfifDasty", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
+        Dim AllowChangeFeeMarjoee As Boolean = objTools.ConvertNulls(objTools.DLookup("AllowChangeFeeMarjoee", "dbo.tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
+        Dim AllowPishFaktorTakhfifDasty As Boolean = objTools.ConvertNulls(objTools.DLookup("AllowPishFaktorTakhfifDasty", "tblGL_SysConfig", ""), False)
         With GridEXSatr
             .TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ColumnNavigation
             .UpdateMode = Janus.Windows.GridEX.UpdateMode.RowUpdate
@@ -354,73 +359,23 @@ Public Class frmFO_AddData
         End Try
     End Sub
     Private Sub txtCodeMoshtary_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtCodeMoshtary.TextChanged
-        If Mode = UD_Dll.Enums.GL_ModeForms.UpdateRecord Then Exit Sub
-
-
         Dim Criteria As String = ""
+        If flg = True Then Exit Sub
+        Criteria = "CodeMahal=" & CodeMahalFaal & " AND sVazeiat = " & UD_Dll.Enums.FO_VaziatMoshtary.Faal
+        Criteria &= " AND Not exists (Select * From tblGL_SecurityData where namekarbar= '" & UserName & "' and CodeSubSystem = 614 and pk = qryFO_Moshtary.ccMoshtary) "
+        Criteria &= " And CodeMoshtary = '" & IIf(IsNothing(Me.txtCodeMoshtary.Text), 0, Me.txtCodeMoshtary.Text) & "'"
 
-        Dim Bazaryab As Integer = 0
-        Bazaryab = IIf(IsNothing(cmbBazaryab.SelectedValue), 0, cmbBazaryab.SelectedValue)
-
-        If objTools.ConvertNulls(objTools.DLookup("ccMoshtary", "tblFO_Moshtary", "sVazeiat = 3980 AND CodeMahal = " & CodeMahalFaal & " AND CodeMoshtary = " & IIf(txtCodeMoshtary.Text.Trim = "", 0, Val(txtCodeMoshtary.Text.Trim))), 0) <> 0 Then
-
-            Criteria = "CodeMahal=" & CodeMahalFaal
-            Criteria &= " And IsMoshtaryBadHesab = 0 AND Not exists (Select * From tblGL_SecurityData where namekarbar= '" & UserName & "' and CodeSubSystem = 614 and pk = qryFO_Moshtary.ccMoshtary) "
-            Criteria &= " And CodeMoshtary = '" & IIf(IsNothing(Me.txtCodeMoshtary.Text), 0, Me.txtCodeMoshtary.Text) & "'"
-            Criteria &= " AND sVazeiat = " & UD_Dll.Enums.FO_VaziatMoshtary.Faal
-
-            If Bazaryab <> 0 Then
-                Criteria &= " AND ccMoshtary IN (SELECT ccMoshtary FROM tblFO_ForoshandehMoshtary WHERE  ccForoshandeh = " & Bazaryab & ") "
-            End If
-            Me.lblNameMoshtary.Text = objTools.ConvertNulls(objTools.DLookup("NameMoshtary", "qryFO_Moshtary", Criteria), "")
-            Me.txtCodeMoshtary.Tag = objTools.ConvertNulls(objTools.DLookup("ccMoshtary", "qryFO_Moshtary", Criteria), "")
-
-
-
-
-
-            If lblNameMoshtary.Text.Trim <> "" Then
-                LoadMoshtaryAddress()
-
-                If objTools.DLookup("sNoePardakht", "tblFO_Moshtary", "ccMoshtary = " & Me.txtCodeMoshtary.Tag) = 0 Then
-
-                    cmbNoePardakht.SelectedValue = 3953
-                Else
-                    cmbNoePardakht.SelectedValue = objTools.DLookup("sNoePardakht", "tblFO_Moshtary", "ccMoshtary = " & Me.txtCodeMoshtary.Tag)
-
-                End If
-                If Bazaryab = 0 Then
-                    cmbBazaryab.SelectedValue = objTools.DLookupOne("ccForoshandeh", "tblFO_ForoshandehMoshtary", "ccMoshtary = " & Me.txtCodeMoshtary.Tag, " ccForoshandehMoshtary desc")
-                End If
-
-            Else
-                If dsForm.Tables.Contains("tblAddress") Then
-                    dsForm.Tables.Remove("tblAddress")
-                End If
-                cmbAddress.DataSource = Nothing
-                cmbAddress.Items.Clear()
-
-                If dsForm.Tables.Contains("tblMoshtaryAfrad") Then
-                    dsForm.Tables.Remove("tblMoshtaryAfrad")
-                End If
-
-            End If
-            'If lblNameMoshtary.Text.Trim <> "" Then
-            '    lblTabloMoshtary.Text = objTools.DLookup("NameTablo", "tblFO_Moshtary", "ccMoshtary = " & Me.txtCodeMoshtary.Tag)
-            '    lblTellMoshtary.Text = objTools.DLookup("Telephone", "tblFO_MoshtaryAddress", "ccMoshtary = " & Me.txtCodeMoshtary.Tag)
-            '    lblNoeMoshtary.Text = objTools.DLookup("txtNoeMoshtary", "qryFO_Moshtary", "ccMoshtary = " & Me.txtCodeMoshtary.Tag)
-            'Else
-            '    lblTabloMoshtary.Text = ""
-            '    lblTellMoshtary.Text = ""
-            '    lblNoeMoshtary.Text = ""
-            'End If
-
-
-
-
+        Me.lblNameMoshtary.Text = objTools.ConvertNulls(objTools.DLookup("NameMoshtary", "qryFO_Moshtary", Criteria), "")
+        Me.txtCodeMoshtary.Tag = objTools.ConvertNulls(objTools.DLookup("ccMoshtary", "qryFO_Moshtary", Criteria), 0)
+        If IsNumeric(Me.txtCodeMoshtary.Tag) Then
+            Me.ccMoshtary = Me.txtCodeMoshtary.Tag
+        Else
+            Me.ccMoshtary = 0
         End If
 
-
+        txtShomarehFaktor.Text = ""
+        txtShomarehFaktor.Tag = 0
+        ccFaktorTitr = 0
 
     End Sub
     Private Sub txtCodeMoshtary_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCodeMoshtary.KeyPress
@@ -463,41 +418,7 @@ Public Class frmFO_AddData
             MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading, " Error IN ---->txtCodeMoshtary_KeyPress")
         End Try
     End Sub
-    Private Sub LoadMoshtaryAddress()
-        Dim Strsql As String
-        Dim daSQL As SqlDataAdapter
-        Dim cn As New SqlConnection
-        Dim cm As New SqlCommand
-        Dim p As New SqlParameter
 
-        Strsql = "Sales.spPishFaktor_LoadMoshtaryAddress"
-
-        cn.ConnectionString = ConnectionString
-        cn.Open()
-        cm = New SqlCommand(Strsql, cn)
-        cm.CommandType = CommandType.StoredProcedure
-        cm.Parameters.Clear()
-
-        p = New SqlParameter("ccMoshtary", SqlDbType.Int)
-        p.Value = IIf(txtCodeMoshtary.Tag.ToString.Length = 0, 0, txtCodeMoshtary.Tag)
-        cm.Parameters.Add(p)
-
-        daSQL = New SqlDataAdapter(cm)
-        If dsForm.Tables.Contains("tblAddress") Then
-            dsForm.Tables.Remove("tblAddress")
-        End If
-        daSQL.Fill(dsForm, "tblAddress")
-        cmbAddress.DataSource = Nothing
-        cmbAddress.Items.Clear()
-        cmbAddress.DataSource = dsForm.Tables("tblAddress").DefaultView
-        cmbAddress.DisplayMember = "AddressKamel"
-        cmbAddress.ValueMember = "ccMoshtaryAddress"
-
-        cm.Connection.Close()
-        cn.Close()
-
-        daSQL = Nothing
-    End Sub
     'Private Sub SetGridSatr()
 
 
@@ -826,28 +747,66 @@ Public Class frmFO_AddData
 
     Private Function ValidateTitr() As Boolean
 
-        ' تاریخ
-        Dim tarikh As String = mskTarikh.Text.Replace("/", "").Replace(" ", "").Trim()
-        If tarikh.Length = 0 Then
-            MessageBox.Show("تاریخ را وارد کنید")
+
+
+        If Len(mskTarikh.Text.ToString) <> 0 Then
+            If Not objTarikh.IsShDate(mskTarikh.Text.ToString) Then
+                mskTarikh.Focus()
+                Return False
+            End If
+            If mskTarikh.Text.Substring(0, 4) <> CodeDoreh Then
+                MsgBox("تاريخ با دوره مالی فعال يکی نيست.", MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, "ذخيره")
+                mskTarikh.Focus()
+                Return False
+            End If
+            If mskTarikh.Text > TarikhEmrooz Then
+                ErrPro.SetError(Me.mskTarikh, "تاریخ اعلام مرجوعی نباید جلوتر از تاریخ امروز  باشد.")
+                MsgBox("تاریخ اعلام مرجوعی نباید جلوتر از تاریخ امروز  باشد.", MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, "ذخيره")
+                mskTarikh.Focus()
+                Return False
+            End If
+            If ObjCode.CheckCompany <> 5 Then
+                If mskTarikh.Text < TarikhEmrooz Then
+                    ErrPro.SetError(Me.mskTarikh, "تاریخ اعلام مرجوعی نباید پیش از تاریخ امروز  باشد.")
+                    MsgBox("تاریخ اعلام مرجوعی نباید پیش از تاریخ امروز  باشد.", MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, "ذخيره")
+                    mskTarikh.Focus()
+                    Return False
+                End If
+            End If
+
+        Else
+            ErrPro.SetError(Me.mskTarikh, "تاريخ را وارد کنيد.")
+            MsgBox("تاريخ را وارد کنيد.", MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, "ذخيره")
             mskTarikh.Focus()
             Return False
         End If
+        ErrPro.SetError(Me.mskTarikh, "")
 
-        ' مشتری
-        If txtCodeMoshtary.Tag Is Nothing OrElse IsDBNull(txtCodeMoshtary.Tag) _
-       OrElse Val(txtCodeMoshtary.Tag.ToString()) <= 0 Then
-            MessageBox.Show("مشتری را انتخاب کنید")
-            txtCodeMoshtary.Focus()
+
+        If rbBargashtAzForosh.Checked = False And rbBargashtAzTozi.Checked = False Then
+            ErrPro.SetError(Me.GroupBox5, "نوع مرجوعی را مشخص کنید.")
+            MsgBox("نوع مرجوعی را مشخص کنید.", MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, "ذخيره")
+            GroupBox5.Focus()
             Return False
         End If
+        ErrPro.SetError(Me.GroupBox5, "")
 
-        ' آدرس مشتری
-        If IsComboEmpty(cmbAddress) Then
-            MessageBox.Show("آدرس مشتری را انتخاب کنید")
-            cmbAddress.Focus()
-            Return False
+
+        If objTools.DCount("ccFaktorTitr", "tblFO_ElamMarjoee", "ccFaktorTitr = " & ccFaktorTitr & " AND IsFaktorMarjoee = 1  and sVazeiat=4355") <> 0 Then
+            MsgBox("برای این شماره فاکتور قبلاً فاکتور مرجوعی صادر شده است !.", MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, )
+            Exit Function
         End If
+
+
+        If mskTarikh.Text.Length <> 0 Then
+            If mskTarikh.Text < TarikhEmrooz Then
+                ErrPro.SetError(Me.mskTarikh, "تاريخ نمی تواند از تاریخ روز عقب تر باشد.")
+                MsgBox("تاريخ نمی تواند از تاریخ روز عقب تر باشد.", MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, "ذخيره")
+                Exit Function
+            End If
+        End If
+
+
 
         ' فروشنده
         If IsComboEmpty(cmbBazaryab) Then
@@ -856,26 +815,30 @@ Public Class frmFO_AddData
             Return False
         End If
 
-        ' نحوه پرداخت
-        If IsComboEmpty(cmbNoePardakht) Then
-            MessageBox.Show("نحوه پرداخت را انتخاب کنید")
-            cmbNoePardakht.Focus()
-            Return False
-        End If
 
-        If txtModatCheck.Visible Then
-            If Val(txtModatCheck.Text) <= 0 Then
-                MessageBox.Show("مدت چک را وارد کنید")
-                txtModatCheck.Focus()
-                Return False
-            End If
-        End If
 
         ' انبار
-        If IsComboEmpty(cmbAnbar) Then
-            MessageBox.Show("انبار را انتخاب کنید")
-            cmbAnbar.Focus()
+        If IsComboEmpty(cmbMamorPakhsh) Then
+            MessageBox.Show("مامور پخش را انتخاب کنید")
+            cmbMamorPakhsh.Focus()
             Return False
+        End If
+
+        If Not AllowMarjoeeWithoutFaktor Then
+            If ccFaktorTitr = 0 Then
+                ErrPro.SetError(Me.txtShomarehFaktor, "شماره فاکتور را وارد کنید.")
+                MsgBox("شماره فاکتور را وارد کنید.", MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, "ذخيره")
+                Exit Function
+            End If
+            ErrPro.SetError(Me.txtShomarehFaktor, "")
+        Else
+
+            If ccFaktorTitr = 0 AndAlso ccMoshtary = 0 Then
+                ErrPro.SetError(Me.txtCodeMoshtary, "مشتری را وارد کنید.")
+                MsgBox("مشتری را وارد کنید.", MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, "ذخيره")
+                Exit Function
+            End If
+            ErrPro.SetError(Me.txtCodeMoshtary, "")
         End If
 
         Return True
@@ -890,30 +853,31 @@ Public Class frmFO_AddData
                 cn.Open()
                 cm.Parameters.Clear()
                 cm.CommandType = CommandType.StoredProcedure
-                cm.CommandText = "[Sales].[spPishFaktorVorodKoli_InsertTitr]"
+                cm.CommandText = "[Sales].[spMarjoeeVorodKoli_InsertTitr]"
                 cm.Parameters.AddWithValue("CodeMahal", CodeMahalFaal)
                 cm.Parameters.AddWithValue("CodeDoreh", CodeDoreh)
-                cm.Parameters.AddWithValue("PishFaktorTarikh", mskTarikh.Text)
+                cm.Parameters.AddWithValue("TarikhElmMarjoee", mskTarikh.Text)
                 cm.Parameters.AddWithValue("ccMoshtary", txtCodeMoshtary.Tag)
-                cm.Parameters.AddWithValue("ccMoshtaryAddress", cmbAddress.SelectedValue)
                 cm.Parameters.AddWithValue("ccForoshandeh", cmbBazaryab.SelectedValue)
-                cm.Parameters.AddWithValue("CodeFard", objTools.ConvertNulls(objTools.DLookup("CodeFard", "tblFO_Foroshandeh", "ccForoshandeh = " & cmbBazaryab.SelectedValue), 0))
-                cm.Parameters.AddWithValue("sNoePardakht", cmbNoePardakht.SelectedValue)
-                cm.Parameters.AddWithValue("ModatCheck", Val(txtModatCheck.Text))
+                cm.Parameters.AddWithValue("CodeFard_MamorPakhsh", cmbMamorPakhsh.SelectedValue)
+                If rbBargashtAzForosh.Checked Then
+                    cm.Parameters.AddWithValue("NoeMarjoeeFT", 1)
+                ElseIf rbBargashtAzTozi.Checked Then
+                    cm.Parameters.AddWithValue("NoeMarjoeeFT", 2)
+                End If
                 cm.Parameters.AddWithValue("Malyat", chkMalyat.Checked)
                 cm.Parameters.AddWithValue("PishFaktorAmani", 0)
                 cm.Parameters.AddWithValue("PishFaktorGheireGhateei", 0)
-                cm.Parameters.AddWithValue("Tozihat", txtTozihat.Text.TrimEnd)
+                cm.Parameters.AddWithValue("Tozihat", TxtSharh.Text.TrimEnd)
                 cm.Parameters.AddWithValue("NoeVorod", 1)
-                cm.Parameters.AddWithValue("ccAnbar", cmbAnbar.SelectedValue)
                 cm.Parameters.AddWithValue("UserName", UserName)
 
-                Dim pOut As SqlParameter = cm.Parameters.Add("@ccPishFaktorTitr", SqlDbType.Int)
+                Dim pOut As SqlParameter = cm.Parameters.Add("@ccElamMarjoee", SqlDbType.Int)
                 pOut.Direction = ParameterDirection.Output
                 cm.ExecuteNonQuery()
 
                 If pOut.Value IsNot DBNull.Value Then
-                    ccPishfaktorTitr = Convert.ToInt32(pOut.Value)
+                    ccElamMarjoee = Convert.ToInt32(pOut.Value)
                 End If
             End Using
         End Using
@@ -930,8 +894,8 @@ Public Class frmFO_AddData
                 cn.Open()
                 cm.Parameters.Clear()
                 cm.CommandType = CommandType.StoredProcedure
-                cm.CommandText = "[Sales].[spPishFaktorVorodKoli_SearchSatr]"
-                cm.Parameters.AddWithValue("ccPishFaktorTitr", ccPishfaktorTitr)
+                cm.CommandText = "[Sales].[spMarjoeeVorodKoli_SearchSatr]"
+                cm.Parameters.AddWithValue("ccElamMarjoee", ccElamMarjoee)
                 da.SelectCommand = cm
                 cm.CommandTimeout = 999999
                 dt_SearchSatr = New DataTable
@@ -946,8 +910,8 @@ Public Class frmFO_AddData
         If e.KeyCode = Keys.F2 Then
 
 
-            Dim info As New PishFaktorTitrInfo()
-            info.Load(ccPishfaktorTitr, ConnectionString)
+            Dim info As New ElamMarjoeeTitrInfo()
+            info.Load(ccElamMarjoee, ConnectionString)
 
 
             If GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
@@ -961,9 +925,9 @@ Public Class frmFO_AddData
 
 
                 StrSqlKala = "Select  CodeKala,NameKala,ccKala,txtsVahedeShomaresh,sVahedeShomaresh,NameBrand,RadifBrand,0 as IsSabadKala "
-                StrSqlKala &= " ,(SELECT dbo.fnAN_GetMojodiDarHalForosh (" & info.ccAnbar & ", ccKala, " & CodeMahalFaal & "," & CodeDoreh & "," & TarikhEmrooz & ")) AS MojodiDarHalForosh, "
-                StrSqlKala &= " (SELECT dbo.[GetMablaghFrosh_NoePardakht] (ccKala, " & info.PishFaktorTarikh & ", " & CodeMahalFaal & ", " & info.ccMoshtary & " , " & info.sNoeMoshtary & ", 3952)) as FeeForoshCheck ,"
-                StrSqlKala &= " (SELECT dbo.[GetMablaghFrosh_NoePardakht] (ccKala," & info.PishFaktorTarikh & ", " & CodeMahalFaal & ", " & info.ccMoshtary & " , " & info.sNoeMoshtary & ", 3953)) as FeeForoshNaghd"
+                'StrSqlKala &= " ,(SELECT dbo.fnAN_GetMojodiDarHalForosh (" & info.ccAnbar & ", ccKala, " & CodeMahalFaal & "," & CodeDoreh & "," & TarikhEmrooz & ")) AS MojodiDarHalForosh, "
+                'StrSqlKala &= " (SELECT dbo.[GetMablaghFrosh_NoePardakht] (ccKala, " & info.PishFaktorTarikh & ", " & CodeMahalFaal & ", " & info.ccMoshtary & " , " & info.sNoeMoshtary & ", 3952)) as FeeForoshCheck ,"
+                'StrSqlKala &= " (SELECT dbo.[GetMablaghFrosh_NoePardakht] (ccKala," & info.PishFaktorTarikh & ", " & CodeMahalFaal & ", " & info.ccMoshtary & " , " & info.sNoeMoshtary & ", 3953)) as FeeForoshNaghd"
                 StrSqlKala &= " from qryAN_Kala"
                 StrSqlKala &= " Where Faal = 1  AND ccKala in (Select ccKala from tblAN_KalaGheymat where ccKala =qryAN_Kala.ccKala )  "
 
@@ -1118,8 +1082,8 @@ Public Class frmFO_AddData
             Using con As New SqlConnection(ConnectionString)
                 Using cmd As SqlCommand = con.CreateCommand()
                     cmd.CommandType = CommandType.StoredProcedure
-                    cmd.CommandText = "[Sales].[spPishFaktorVorodKoli_InsertSatr]"
-                    cmd.Parameters.AddWithValue("@ccPishFaktorTitr", ccPishfaktorTitr)
+                    cmd.CommandText = "[Sales].[spMarjoeeVorodKoli_InsertSatr]"
+                    cmd.Parameters.AddWithValue("@ccElamMarjoee", ccElamMarjoee)
                     cmd.Parameters.AddWithValue("@ccKala", row.Cells("ccKala").Value)
                     cmd.Parameters.AddWithValue("@Tedad3", If(row.Cells("Tedad3").Value, 0))
                     cmd.Parameters.AddWithValue("@Fee", If(row.Cells("Fee").Value, 0))
@@ -1200,8 +1164,8 @@ Public Class frmFO_AddData
         Dim num As Double
 
 
-        Dim info As New PishFaktorTitrInfo()
-        info.Load(ccPishfaktorTitr, ConnectionString)
+        Dim info As New ElamMarjoeeTitrInfo()
+        info.Load(ccElamMarjoee, ConnectionString)
 
         Dim OldTedad As Double = 0
         OldTedad = objTools.ConvertNulls(objTools.DLookup("Tedad3", "tblFO_PishFaktorSatr", "ccPishFaktorSatr =" & row.Cells("ccPishFaktorSatr").Value), 0)
@@ -1233,22 +1197,22 @@ Public Class frmFO_AddData
             FocusCol("Fee")
             Return False
         End If
-        GetMojodyDarHalForoshBach(ccKala, info.ccAnbar, ShomarehBach, TarikhTolid, TarikhEngheza)
+        'GetMojodyDarHalForoshBach(ccKala, info.ccAnbar, ShomarehBach, TarikhTolid, TarikhEngheza)
 
         Dim tedad As Double
         TryGetNumber(row, "Tedad3", tedad)
 
-        Dim maxMojaz As Double = MojodiGhabelForoshKOLBach + OldTedad
-        If tedad > maxMojaz Then
-            MessageBox.Show("تعداد از موجودی قابل فروش بیشتر است." & vbCrLf &
-                    "شماره بچ: " & Convert.ToString(ShomarehBach) & vbCrLf &
-                    "حداکثر مجاز: " & maxMojaz.ToString(),
-                    "موجودی ناکافی", MessageBoxButtons.OK, MessageBoxIcon.Warning,
-                    MessageBoxDefaultButton.Button1,
-                    MessageBoxOptions.RightAlign Or MessageBoxOptions.RtlReading)
-            FocusCol("Tedad3")
-            Return False
-        End If
+        'Dim maxMojaz As Double = MojodiGhabelForoshKOLBach + OldTedad
+        'If tedad > maxMojaz Then
+        '    MessageBox.Show("تعداد از موجودی قابل فروش بیشتر است." & vbCrLf &
+        '            "شماره بچ: " & Convert.ToString(ShomarehBach) & vbCrLf &
+        '            "حداکثر مجاز: " & maxMojaz.ToString(),
+        '            "موجودی ناکافی", MessageBoxButtons.OK, MessageBoxIcon.Warning,
+        '            MessageBoxDefaultButton.Button1,
+        '            MessageBoxOptions.RightAlign Or MessageBoxOptions.RtlReading)
+        '    FocusCol("Tedad3")
+        '    Return False
+        'End If
 
 
 
@@ -1266,8 +1230,8 @@ Public Class frmFO_AddData
         Dim num As Double
 
 
-        Dim info As New PishFaktorTitrInfo()
-        info.Load(ccPishfaktorTitr, ConnectionString)
+        Dim info As New ElamMarjoeeTitrInfo()
+        info.Load(ccElamMarjoee, ConnectionString)
 
 
         ' کالا: حتماً انتخاب شده باشد
@@ -1293,23 +1257,23 @@ Public Class frmFO_AddData
             Return False
         End If
 
-        GetMojodyGhabelForosh(ccKala, info.ccAnbar, MojodiGhabelForoshKOL)
+        'GetMojodyGhabelForosh(ccKala, info.ccAnbar, MojodiGhabelForoshKOL)
         ' موجودی قابل فروش: باید بزرگ‌تر از صفر باشد
         'If Not TryGetNumber(row, "MojodiDarHaleForosh", num) OrElse num <= 0 Then
-        If MojodiGhabelForoshKOL <= 0 Then
+        'If MojodiGhabelForoshKOL <= 0 Then
 
-            MessageBox.Show("موجودی قابل فروش این کالا صفر است")
-            FocusCol("Tedad3")
-            Return False
-        End If
-        Dim tedad As Double
-        TryGetNumber(row, "Tedad3", tedad)
-        'TryGetNumber(row, "MojodiDarHaleForosh", mojodi)
-        If tedad > MojodiGhabelForoshKOL Then
-            MessageBox.Show("تعداد از موجودی قابل فروش بیشتر است")
-            FocusCol("Tedad3")
-            Return False
-        End If
+        '    MessageBox.Show("موجودی قابل فروش این کالا صفر است")
+        '    FocusCol("Tedad3")
+        '    Return False
+        'End If
+        'Dim tedad As Double
+        'TryGetNumber(row, "Tedad3", tedad)
+        ''TryGetNumber(row, "MojodiDarHaleForosh", mojodi)
+        'If tedad > MojodiGhabelForoshKOL Then
+        '    MessageBox.Show("تعداد از موجودی قابل فروش بیشتر است")
+        '    FocusCol("Tedad3")
+        '    Return False
+        'End If
 
 
         Return True
@@ -1419,24 +1383,24 @@ Public Class frmFO_AddData
         Dim idSatr As Object = row.Cells("ccPishFaktorSatr").Value
         If idSatr Is Nothing OrElse IsDBNull(idSatr) Then Exit Sub
 
-        Dim info As New PishFaktorTitrInfo()
-        If Not info.Load(ccPishfaktorTitr, ConnectionString) Then Exit Sub
+        Dim info As New ElamMarjoeeTitrInfo()
+        If Not info.Load(ccElamMarjoee, ConnectionString) Then Exit Sub
 
         ' تعداد قبلی از دیتابیس (نه از گرید، چون مقدار جدید الان توش هست)
         Dim oldTedad As Double = Convert.ToDouble(
         objTools.ConvertNulls(objTools.DLookup("Tedad3", "tblFO_PishFaktorSatr",
             "ccPishFaktorSatr = " & idSatr.ToString()), 0))
 
-        GetMojodyDarHalForoshBach(row.Cells("ccKala").Value, info.ccAnbar,
-        row.Cells("ShomarehBach").Value, row.Cells("TarikhTolid").Value,
-        row.Cells("TarikhEngheza").Value)
+        'GetMojodyDarHalForoshBach(row.Cells("ccKala").Value, info.ccAnbar,
+        'row.Cells("ShomarehBach").Value, row.Cells("TarikhTolid").Value,
+        'row.Cells("TarikhEngheza").Value)
 
-        _isCalculating = True
-        Try
-            row.Cells("MojodiDarHaleForosh").Value = MojodiGhabelForoshKOLBach + oldTedad
-        Finally
-            _isCalculating = False
-        End Try
+        '_isCalculating = True
+        'Try
+        '    row.Cells("MojodiDarHaleForosh").Value = MojodiGhabelForoshKOLBach + oldTedad
+        'Finally
+        '    _isCalculating = False
+        'End Try
     End Sub
 
     Private Sub CalcRow(ByVal row As Janus.Windows.GridEX.GridEXRow)
@@ -1460,27 +1424,7 @@ Public Class frmFO_AddData
         End Try
     End Sub
 
-    Private Sub cmbNoePardakht_SelectedIndexChanged(sender As Object, e As EventArgs)
-        If flg Then
-            MeghdarAdadi = ObjCode.GetMeghdarAdadi(cmbNoePardakht.SelectedValue)
 
-            If MeghdarAdadi < 4 Then
-
-                txtModatCheck.Visible = True
-                lblModatCheck.Visible = True
-
-
-                txtModatCheck.Text = objTools.ConvertNulls(objTools.DLookup("ModateChek", "tblFO_Moshtary", "ccMoshtary = " & txtCodeMoshtary.Tag), 0)
-
-            Else
-                txtModatCheck.Visible = False
-                txtModatCheck.Text = ""
-                lblModatCheck.Visible = False
-
-
-            End If
-        End If
-    End Sub
     Private Sub GridEXSatr_DeletingRecord(sender As Object, e As Janus.Windows.GridEX.RowActionCancelEventArgs) _
     Handles GridEXSatr.DeletingRecord
 
@@ -1577,19 +1521,17 @@ Public Class frmFO_AddData
 
     Private Sub NewPishFaktor()
         ' ۱) ریست وضعیت
-        ccPishfaktorTitr = 0
+        ccElamMarjoee = 0
         ccMoshtaryAddress = 0
         _gridStructureReady = False        ' ساختار گرید قبلاً ساخته شده؛ دست نمی‌زنیم
 
         ' ۲) هدر: فعال کردن کنترل‌ها
         mskTarikh.Enabled = False
         txtCodeMoshtary.Enabled = True
-        cmbAddress.Enabled = True
+        'cmbAddress.Enabled = True
         cmbBazaryab.Enabled = True
-        cmbNoePardakht.Enabled = True
-        cmbAnbar.Enabled = True
-        txtModatCheck.Enabled = True
-        txtTozihat.Enabled = True
+
+        TxtSharh.Enabled = True
         btnSaveSanad.Enabled = True
 
         ' ۳) هدر: خالی کردن مقدارها
@@ -1597,20 +1539,16 @@ Public Class frmFO_AddData
         txtCodeMoshtary.Text = ""
         txtCodeMoshtary.Tag = Nothing
         lblNameMoshtary.Text = ""          ' کنترل نام مشتری؛ اسمش را جایگزین کنید
-        txtTozihat.Text = ""
-        txtModatCheck.Text = ""
+
         txtSearchNumber.Text = ""
 
-        cmbAddress.DataSource = Nothing    ' آدرس‌ها بعد از انتخاب مشتری دوباره لود می‌شن
+
         cmbBazaryab.SelectedIndex = -1
         cmbBazaryab.SelectedIndex = -1
         flg = False
-        cmbNoePardakht.SelectedIndex = -1
-        cmbNoePardakht.SelectedIndex = -1
+
         flg = True
-        txtModatCheck.Visible = False
-        lblModatCheck.Visible = False
-        'cmbAnbar.SelectedIndex = -1
+
 
         ' ۴) گرید: خالی و غیرفعال
         dt_SearchSatr = New DataTable
@@ -1669,17 +1607,17 @@ Public Class frmFO_AddData
     Private Sub FillRowWithKala(ByVal row As Janus.Windows.GridEX.GridEXRow,
         ByVal codeKala As Object, ByVal ccKala As Object, ByVal nameKala As Object)
 
-        Dim info As New PishFaktorTitrInfo()
-        If Not info.Load(ccPishfaktorTitr, ConnectionString) Then Exit Sub
+        Dim info As New ElamMarjoeeTitrInfo()
+        If Not info.Load(ccElamMarjoee, ConnectionString) Then Exit Sub
 
         _isCalculating = True
         Try
             row.Cells("CodeKala").Value = codeKala
             row.Cells("ccKala").Value = ccKala
             row.Cells("NameKala").Value = nameKala
-            row.Cells("Fee").Value = ObjCode.GetMablaghForosh_NoePardakht(ccKala, info.PishFaktorTarikh, CodeMahalFaal, info.ccMoshtary, info.sNoePardakht)
-            GetMojodyGhabelForosh(ccKala, info.ccAnbar, MojodiGhabelForoshKOL)
-            row.Cells("MojodiDarHaleForosh").Value = MojodiGhabelForoshKOL
+            'row.Cells("Fee").Value = ObjCode.GetMablaghForosh_NoePardakht(ccKala, info.TarikhElamMarjoee, CodeMahalFaal, info.ccMoshtary, info.sNoePardakht)
+            'GetMojodyGhabelForosh(ccKala, info.ccAnbar, MojodiGhabelForoshKOL)
+            'row.Cells("MojodiDarHaleForosh").Value = MojodiGhabelForoshKOL
         Finally
             _isCalculating = False
         End Try
@@ -1693,5 +1631,72 @@ Public Class frmFO_AddData
         objTools.DLookup("ccKala", "tblAn_Kala", "Faal = 1 AND CodeKala = " & c), 0)
         Return Convert.ToInt32(v)
     End Function
+    Private Sub txtShomarehFaktor_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtShomarehFaktor.KeyPress
+        Try
+            If (Asc(e.KeyChar()) < 48 Or Asc(e.KeyChar()) > 57) And (Asc(e.KeyChar()) <> 8) Then
+                e.Handled = True
+            End If
+            If e.KeyChar = Chr(Keys.Space) Then
+                Dim objFaktor As New Forms_dll.FaktorSearch
+                Dim StrSql As String
+
+
+                StrSql = "SELECT FaktorShomareh, b.ccForoshandeh, a.ccMoshtary, a.CodeDoreh, ccFaktorTitr, b.PishFaktorShomareh AS ShomarehPishFaktor,"
+                StrSql &= " c.NameMoshtary, d.FName + ' ' + d.LName AS NameMamorPakhsh, g.Sharh AS txtNoePardakht,"
+                StrSql &= " f.FName + ' ' + f.LName AS NameForoshandeh, dbo.SetDateSlash(FaktorTarikh) AS FaktorTarikhSlash"
+                StrSql &= " FROM tblFO_Faktor AS a WITH(NOLOCK) LEFT OUTER JOIN"
+                StrSql &= " tblFO_PishFaktor AS b WITH(NOLOCK) ON a.ccPishFaktor = b.ccPishFaktorTitr LEFT OUTER JOIN"
+                StrSql &= " tblFO_Moshtary AS c WITH(NOLOCK) ON a.ccMoshtary = c.ccMoshtary LEFT OUTER JOIN"
+                StrSql &= " tblGL_MoshakhasatFardi AS d WITH(NOLOCK) ON a.ccMamorPakhsh = d.CodeFard LEFT OUTER JOIN"
+                StrSql &= " tblFO_Foroshandeh AS e WITH(NOLOCK) ON b.ccForoshandeh = e.ccForoshandeh LEFT OUTER JOIN"
+                StrSql &= " tblGL_MoshakhasatFardi AS f WITH(NOLOCK) ON e.CodeFard = f.CodeFard LEFT OUTER JOIN"
+                StrSql &= " tblGL_ShenasehOmomi AS g WITH(NOLOCK) ON a.sNoePardakht = g.Code"
+                StrSql &= " WHERE a.sVazeiat = 4261 "
+                StrSql &= " And a.CodeMahal = " & CodeMahalFaal
+
+                If txtCodeMoshtary.Tag <> 0 Then
+                    StrSql &= " AND a.ccMoshtary = " & txtCodeMoshtary.Tag
+                End If
+
+                tFaktorShomareh = ""
+                SearchItem = ""
+
+                If txtShomarehFaktor.Text <> "" Then
+                    tFaktorShomareh = txtShomarehFaktor.Text
+                    SearchItem = "FaktorShomareh"
+                End If
+
+                objFaktor.SetForm(StrSql)
+                objFaktor.TopMost = True
+                objFaktor.ShowDialog()
+
+                If objFaktor.tFaktorccFaktor <> 0 Then
+                    txtShomarehFaktor.Text = objFaktor.tFaktorShomareh
+                    ccFaktorTitr = objFaktor.tFaktorccFaktor
+                    cmbBazaryab.SelectedValue = objFaktor.tFaktorccForoshandeh
+                    ccMoshtary = objFaktor.tFaktorccMoshtary
+                    flg = True
+                    txtCodeMoshtary.Tag = objFaktor.tFaktorccMoshtary
+                    Me.lblNameMoshtary.Text = objTools.ConvertNulls(objTools.DLookup("NameMoshtary", "TblFO_Moshtary", "ccMoshtary = " & objFaktor.tFaktorccMoshtary), "")
+                    txtCodeMoshtary.Text = objTools.ConvertNulls(objTools.DLookup("CodeMoshtary", "TblFO_Moshtary", "ccMoshtary = " & objFaktor.tFaktorccMoshtary), "")
+                    flg = False
+
+                    txtCodeMoshtary.Enabled = False
+                    cmbBazaryab.Enabled = False
+
+                Else
+
+                    txtCodeMoshtary.Enabled = True
+                    cmbBazaryab.Enabled = True
+                End If
+
+
+            End If
+        Catch sqlExc As SqlException
+            MsgBox(sqlExc.Message, MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, " Error IN DataBase ---->txtCodeMoshtary_KeyPress")
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading, " Error IN ---->txtCodeMoshtary_KeyPress")
+        End Try
+    End Sub
 End Class
 
