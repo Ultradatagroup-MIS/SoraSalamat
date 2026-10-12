@@ -100,7 +100,7 @@ Partial Class Form1
         Me.GroupBox1.Location = New System.Drawing.Point(0, 3)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.GroupBox1.Size = New System.Drawing.Size(1343, 196)
+        Me.GroupBox1.Size = New System.Drawing.Size(1310, 196)
         Me.GroupBox1.TabIndex = 137
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "ورودی اطلاعات اصلی"
@@ -389,7 +389,7 @@ Partial Class Form1
         Me.GroupBox2.Location = New System.Drawing.Point(0, 197)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.GroupBox2.Size = New System.Drawing.Size(1346, 461)
+        Me.GroupBox2.Size = New System.Drawing.Size(1310, 420)
         Me.GroupBox2.TabIndex = 138
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "ورود اطلاعات کالا"
@@ -433,7 +433,7 @@ Partial Class Form1
         Me.GridEXSatr.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Blue
         Me.GridEXSatr.RecordNavigator = True
         Me.GridEXSatr.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.[True]
-        Me.GridEXSatr.Size = New System.Drawing.Size(1340, 442)
+        Me.GridEXSatr.Size = New System.Drawing.Size(1304, 401)
         Me.GridEXSatr.TabIndex = 101
         Me.GridEXSatr.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
         Me.GridEXSatr.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
@@ -442,7 +442,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1346, 670)
+        Me.ClientSize = New System.Drawing.Size(1310, 641)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.MaximizeBox = False
