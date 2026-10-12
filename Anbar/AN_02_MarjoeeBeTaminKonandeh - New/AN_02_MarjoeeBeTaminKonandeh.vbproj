@@ -56,6 +56,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>D:\Builds\Forms_dll.dll</HintPath>
     </Reference>
+    <Reference Include="Janus.Data.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=699f16084dfdd2c4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Builds\Janus.Data.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.Common.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=699f16084dfdd2c4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Builds\Janus.Windows.Common.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Janus.Windows.GridEX.v3, Version=3.5.0.0, Culture=neutral, PublicKeyToken=699f16084dfdd2c4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Builds\Janus.Windows.GridEX.v3.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -83,10 +95,28 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="frm_ResidSearch.Designer.vb">
+      <DependentUpon>frm_ResidSearch.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form1.vb">
+    <Compile Include="frm_ResidSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAN_KalaSearch_Resid.Designer.vb">
+      <DependentUpon>frmAN_KalaSearch_Resid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAN_KalaSearch_Resid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMarjoeeSearch.Designer.vb">
+      <DependentUpon>frmMarjoeeSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMarjoeeSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFO_AddData.Designer.vb">
+      <DependentUpon>frmFO_AddData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFO_AddData.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAN_kdxMarjoeeBeTaminKonandeh.designer.vb">
@@ -125,8 +155,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="frm_ResidSearch.resx">
+      <DependentUpon>frm_ResidSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAN_KalaSearch_Resid.resx">
+      <DependentUpon>frmAN_KalaSearch_Resid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFO_AddData.resx">
+      <DependentUpon>frmFO_AddData.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAN_kdxMarjoeeBeTaminKonandeh.resx">
       <DependentUpon>frmAN_kdxMarjoeeBeTaminKonandeh.vb</DependentUpon>
@@ -136,6 +172,10 @@
       <DependentUpon>frmFO_MojodiKalaErrorList.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMarjoeeSearch.resx">
+      <DependentUpon>frmMarjoeeSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
