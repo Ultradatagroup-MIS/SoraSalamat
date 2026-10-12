@@ -208,8 +208,8 @@ Public Class frmFO_AddData
         txtSearchNumber.Focus()
         Mode = UD_Dll.Enums.GL_ModeForms.AddNewRecord
         flg = True
-        AllowChangeFeePishFaktor = objTools.ConvertNulls(objTools.DLookup("AllowChangeFeePishFaktor", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
-        AllowPishFaktorTakhfifDasty = objTools.ConvertNulls(objTools.DLookup("AllowPishFaktorTakhfifDasty", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
+        'AllowChangeFeePishFaktor = objTools.ConvertNulls(objTools.DLookup("AllowChangeFeePishFaktor", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
+        'AllowPishFaktorTakhfifDasty = objTools.ConvertNulls(objTools.DLookup("AllowPishFaktorTakhfifDasty", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
         With GridEXSatr
             .TabKeyBehavior = Janus.Windows.GridEX.TabKeyBehavior.ColumnNavigation
             .UpdateMode = Janus.Windows.GridEX.UpdateMode.RowUpdate
@@ -227,38 +227,24 @@ Public Class frmFO_AddData
     Private Sub ClearForm()
         Try
 
-            mskTarikh.Text = TarikhEmrooz
-            'txtCodeMoshtaryS.Text = ""
-            'txtCodeMoshtaryS.Tag = ""
-            txtSearchNumber.Text = ""
+            mskTarikh.Enabled = False
 
-            txtModatCheck.Text = ""
+            ccElamMarjoee = 0
 
+            ccMoshtary = 0
             cmbBazaryab.SelectedIndex = -1
             cmbBazaryab.SelectedIndex = -1
             txtCodeMoshtary.Text = ""
             txtCodeMoshtary.Tag = ""
             lblNameMoshtary.Text = ""
-            txtTozihat.Text = ""
+            cmbMamorPakhsh.SelectedIndex = -1
+            cmbMamorPakhsh.SelectedIndex = -1
 
+            TxtSharh.Text = ""
+            txtCodeMoshtary.Tag = 0
+            txtCodeMoshtary.Text = ""
+            lblNameMoshtary.Text = ""
 
-
-
-
-            cmbAddress.SelectedIndex = -1
-            cmbAddress.SelectedIndex = -1
-            cmbAddress.DataSource = Nothing
-            cmbAddress.Items.Clear()
-
-
-            ObjCode.UserName = UserName
-            cmbNoePardakht.SelectedIndex = -1
-
-
-            'lblGorohForosh.Visible = False
-            'cmbGorohForosh.Visible = False
-            'lblAnbar.Visible = False
-            'cmbAnbar.Visible = False
 
             ErrPro.Dispose()
 
@@ -816,18 +802,19 @@ Public Class frmFO_AddData
         End Try
 
 
-        txtSearchNumber.Text = info.PishFaktorShomareh
-        mskTarikh.Text = info.PishFaktorTarikh
+        txtSearchNumber.Text = info.ShomarehElamMarjoee
+        mskTarikh.Text = info.TarikhElamMarjoee
         txtCodeMoshtary.Text = info.CodeMoshtary
         txtCodeMoshtary.Tag = info.ccMoshtary
-        LoadMoshtaryAddress()
-        ccMoshtaryAddress = info.ccMoshtaryAddress
-        cmbAddress.SelectedValue = info.ccMoshtaryAddress
         cmbBazaryab.SelectedValue = info.ccForoshandeh
-        cmbNoePardakht.SelectedValue = info.sNoePardakht
-        txtModatCheck.Text = info.ModatCheck.ToString()
-        txtTozihat.Text = info.Tozihat
-        chkMalyat.Checked = info.Malyat
+        cmbMamorPakhsh.SelectedValue = info.CodeFard_MamorPakhsh
+        If info.NoeMarjoeeFT = 1 Then
+            rbBargashtAzForosh.Checked = True
+        ElseIf info.NoeMarjoeeFT = 2 Then
+            rbBargashtAzTozi.Checked = True
+        End If
+        TxtSharh.Text = info.Tozihat
+
         Return True
     End Function
     Private Function IsComboEmpty(ByVal cmb As ComboBox) As Boolean
