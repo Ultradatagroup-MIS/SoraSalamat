@@ -110,7 +110,7 @@ Partial Class Form1
         Me.cmbsCodeDorehSefaresh.Location = New System.Drawing.Point(539, 19)
         Me.cmbsCodeDorehSefaresh.MaxDropDownItems = 20
         Me.cmbsCodeDorehSefaresh.Name = "cmbsCodeDorehSefaresh"
-        Me.cmbsCodeDorehSefaresh.Size = New System.Drawing.Size(96, 21)
+        Me.cmbsCodeDorehSefaresh.Size = New System.Drawing.Size(96, 20)
         Me.cmbsCodeDorehSefaresh.TabIndex = 112
         '
         'mskTarikhForm
@@ -130,7 +130,7 @@ Partial Class Form1
         Me.cmbAnbar.Location = New System.Drawing.Point(952, 53)
         Me.cmbAnbar.MaxDropDownItems = 20
         Me.cmbAnbar.Name = "cmbAnbar"
-        Me.cmbAnbar.Size = New System.Drawing.Size(166, 21)
+        Me.cmbAnbar.Size = New System.Drawing.Size(166, 20)
         Me.cmbAnbar.TabIndex = 110
         '
         'Label4
@@ -159,7 +159,7 @@ Partial Class Form1
         Me.cmbNameTaminKonandeh.Location = New System.Drawing.Point(45, 101)
         Me.cmbNameTaminKonandeh.MaxDropDownItems = 20
         Me.cmbNameTaminKonandeh.Name = "cmbNameTaminKonandeh"
-        Me.cmbNameTaminKonandeh.Size = New System.Drawing.Size(207, 21)
+        Me.cmbNameTaminKonandeh.Size = New System.Drawing.Size(207, 20)
         Me.cmbNameTaminKonandeh.TabIndex = 115
         '
         'lblSefaresh
@@ -191,7 +191,7 @@ Partial Class Form1
         Me.cmbTahvilGirandeh.Location = New System.Drawing.Point(46, 17)
         Me.cmbTahvilGirandeh.MaxDropDownItems = 20
         Me.cmbTahvilGirandeh.Name = "cmbTahvilGirandeh"
-        Me.cmbTahvilGirandeh.Size = New System.Drawing.Size(207, 21)
+        Me.cmbTahvilGirandeh.Size = New System.Drawing.Size(207, 20)
         Me.cmbTahvilGirandeh.TabIndex = 118
         '
         'Label12
@@ -210,7 +210,7 @@ Partial Class Form1
         Me.cmbTahvilDahandeh.Location = New System.Drawing.Point(44, 49)
         Me.cmbTahvilDahandeh.MaxDropDownItems = 20
         Me.cmbTahvilDahandeh.Name = "cmbTahvilDahandeh"
-        Me.cmbTahvilDahandeh.Size = New System.Drawing.Size(207, 21)
+        Me.cmbTahvilDahandeh.Size = New System.Drawing.Size(207, 20)
         Me.cmbTahvilDahandeh.TabIndex = 123
         '
         'Label20
@@ -338,6 +338,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.Label12)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.cmbTahvilGirandeh)
+        Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 7.8!)
         Me.GroupBox1.Location = New System.Drawing.Point(1, 3)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -359,10 +360,11 @@ Partial Class Form1
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Tahoma", 7.8!)
         Me.Label5.Location = New System.Drawing.Point(1245, 23)
         Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(43, 13)
+        Me.Label5.Size = New System.Drawing.Size(46, 13)
         Me.Label5.TabIndex = 139
         Me.Label5.Text = "جستجو:"
         '
@@ -372,10 +374,10 @@ Partial Class Form1
         Me.btnNew.AccessibleName = ""
         Me.btnNew.BackColor = System.Drawing.Color.MediumOrchid
         Me.btnNew.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.btnNew.Location = New System.Drawing.Point(31, 144)
+        Me.btnNew.Location = New System.Drawing.Point(273, 111)
         Me.btnNew.Margin = New System.Windows.Forms.Padding(2)
         Me.btnNew.Name = "btnNew"
-        Me.btnNew.Size = New System.Drawing.Size(260, 44)
+        Me.btnNew.Size = New System.Drawing.Size(260, 77)
         Me.btnNew.TabIndex = 138
         Me.btnNew.Text = "اتمام کار / خالی کردن صفحه"
         Me.btnNew.UseVisualStyleBackColor = False
@@ -384,10 +386,10 @@ Partial Class Form1
         '
         Me.btnSaveSanad.AccessibleDescription = ""
         Me.btnSaveSanad.AccessibleName = ""
-        Me.btnSaveSanad.BackColor = System.Drawing.Color.White
+        Me.btnSaveSanad.BackColor = System.Drawing.Color.MediumOrchid
         Me.btnSaveSanad.Font = New System.Drawing.Font("Tahoma", 7.8!)
         Me.btnSaveSanad.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.btnSaveSanad.Location = New System.Drawing.Point(445, 112)
+        Me.btnSaveSanad.Location = New System.Drawing.Point(659, 112)
         Me.btnSaveSanad.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSaveSanad.Name = "btnSaveSanad"
         Me.btnSaveSanad.Size = New System.Drawing.Size(265, 76)
@@ -398,6 +400,7 @@ Partial Class Form1
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.GridEXSatr)
+        Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 7.8!)
         Me.GroupBox2.Location = New System.Drawing.Point(3, 205)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes
