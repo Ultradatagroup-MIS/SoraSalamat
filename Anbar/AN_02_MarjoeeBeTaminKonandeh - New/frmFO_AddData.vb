@@ -18,7 +18,7 @@ Public Class Form1
 
     Private _isCalculating As Boolean = False
     Private ccKardexTitr As Integer = 0          ' مرجوعیِ در حال کار (0 = هنوز ذخیره نشده)
-    Private ccResid As Integer = 0               ' رسید انتخاب‌شده (0 = بدون رسید)
+    Private ccResid As Integer = 0               ' رسید انتخاب‌شده (0 = بدون رسید)  
     Private dt_SearchSatr As DataTable
     Private _gridStructureReady As Boolean = False
     Public ShomarehResid1 As Integer

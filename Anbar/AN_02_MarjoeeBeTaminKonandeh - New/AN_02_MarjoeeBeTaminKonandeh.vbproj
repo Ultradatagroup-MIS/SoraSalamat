@@ -98,27 +98,39 @@
     <Compile Include="frm_ResidSearch.Designer.vb">
       <DependentUpon>frm_ResidSearch.vb</DependentUpon>
     </Compile>
-    <Compile Include="frm_ResidSearch.vb" />
+    <Compile Include="frm_ResidSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmAN_KalaSearch_Resid.Designer.vb">
       <DependentUpon>frmAN_KalaSearch_Resid.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmAN_KalaSearch_Resid.vb" />
+    <Compile Include="frmAN_KalaSearch_Resid.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmMarjoeeSearch.Designer.vb">
       <DependentUpon>frmMarjoeeSearch.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmMarjoeeSearch.vb" />
+    <Compile Include="frmMarjoeeSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmFO_AddData.Designer.vb">
       <DependentUpon>frmFO_AddData.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmFO_AddData.vb" />
+    <Compile Include="frmFO_AddData.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmAN_kdxMarjoeeBeTaminKonandeh.designer.vb">
       <DependentUpon>frmAN_kdxMarjoeeBeTaminKonandeh.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmAN_kdxMarjoeeBeTaminKonandeh.vb" />
+    <Compile Include="frmAN_kdxMarjoeeBeTaminKonandeh.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmFO_MojodiKalaErrorList.designer.vb">
       <DependentUpon>frmFO_MojodiKalaErrorList.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmFO_MojodiKalaErrorList.vb" />
+    <Compile Include="frmFO_MojodiKalaErrorList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="mdlPublic.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -138,7 +150,9 @@
     <Compile Include="PopUp_SearchResid.Designer.vb">
       <DependentUpon>PopUp_SearchResid.vb</DependentUpon>
     </Compile>
-    <Compile Include="PopUp_SearchResid.vb" />
+    <Compile Include="PopUp_SearchResid.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frm_ResidSearch.resx">
