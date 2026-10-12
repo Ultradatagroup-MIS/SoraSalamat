@@ -110,10 +110,22 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmFO_AddData.Designer.vb">
+      <DependentUpon>frmFO_AddData.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFO_AddData.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmFO_ElamMarjoee.designer.vb">
       <DependentUpon>frmFO_ElamMarjoee.vb</DependentUpon>
     </Compile>
     <Compile Include="frmFO_ElamMarjoee.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFO_MarjoeeSearch.Designer.vb">
+      <DependentUpon>frmFO_MarjoeeSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFO_MarjoeeSearch.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmFO_VorodKala.Designer.vb">
@@ -140,9 +152,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmFO_AddData.resx">
+      <DependentUpon>frmFO_AddData.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmFO_ElamMarjoee.resx">
       <DependentUpon>frmFO_ElamMarjoee.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFO_MarjoeeSearch.resx">
+      <DependentUpon>frmFO_MarjoeeSearch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFO_VorodKala.resx">
       <SubType>Designer</SubType>

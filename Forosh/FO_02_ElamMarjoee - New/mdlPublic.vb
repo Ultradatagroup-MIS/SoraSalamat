@@ -27,6 +27,7 @@ Module mdlPublic
     Public Taraf_afrad As Long ' 1 Moshtary , 2 TaminKonandeh
     'Manabe
     Public tNoeManba As Long
+    Public Mode As UD_Dll.Enums.GL_ModeForms = UD_Dll.Enums.GL_ModeForms.AddNewRecord
     '---Daryaft Pardakht------------------------------------------
     Public Const cntSandogh As Long = 54
     Public tCheck_Safteh As Long = 0

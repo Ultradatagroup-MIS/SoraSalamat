@@ -21,46 +21,48 @@ Public Class frmFO_AddData
     Private WithEvents BS As New UD_Dll.PassString
 
     Private LastRowIndex As Integer = -1
-    Dim ccPishfaktorTitr As Integer = 0
+    Dim ccElamMarjoee As Integer = 0
     Dim ccMoshtaryAddress As Integer = 0
     Dim CodeFard As Integer = 0
     Dim AllowChangeFeePishFaktor As Boolean
     Dim MeghdarAdadi As Integer
     Dim flg As Boolean = False
     Dim AllowPishFaktorTakhfifDasty As Boolean
+
+    Dim ccMoshtary As Integer
 #End Region
 
 
-    Public Class PishFaktorTitrInfo
+    Public Class ElamMarjoeeTitrInfo
 
 #Region "Fields"
-        Private _ccPishFaktorTitr As Integer
-        Private _PishFaktorTarikh As String = ""
+        Private _ccElamMarjoee As Integer
+        Private _TarikhElamMarjoee As String = ""
         Private _ccMoshtary As Integer
-        Private _sNoeMoshtary As Integer
+        Private _ShomarehElamMarjoee As Integer
         Private _CodeMoshtary As String = ""
         Private _NameMoshtary As String = ""
-        Private _ccMoshtaryAddress As Integer
+        Private _CodeFard_MamorPakhsh As Integer
         Private _ccForoshandeh As Integer
-        Private _sNoePardakht As Integer
-        Private _ModatCheck As Integer
+        Private _NoeMarjoeeFT As Integer
+        Private _ccFaktorTitr As Integer
         Private _Tozihat As String = ""
-        Private _ccAnbar As Integer
-        Private _PishFaktorShomareh As Integer = 0
-        Private _Malyat As Boolean
+        'Private _ccAnbar As Integer
+        'Private _PishFaktorShomareh As Integer = 0
+        Private _IsFaktorMarjoee As Boolean
         Private _dtSearchTitr As DataTable
 #End Region
 
 #Region "Properties"
-        Public ReadOnly Property ccPishFaktorTitr() As Integer
+        Public ReadOnly Property ccElamMarjoee() As Integer
             Get
-                Return _ccPishFaktorTitr
+                Return _ccElamMarjoee
             End Get
         End Property
 
-        Public ReadOnly Property PishFaktorTarikh() As String
+        Public ReadOnly Property TarikhElamMarjoee() As String
             Get
-                Return _PishFaktorTarikh
+                Return _TarikhElamMarjoee
             End Get
         End Property
 
@@ -69,7 +71,11 @@ Public Class frmFO_AddData
                 Return _ccMoshtary
             End Get
         End Property
-
+        Public ReadOnly Property ShomarehElamMarjoee() As Integer
+            Get
+                Return _ShomarehElamMarjoee
+            End Get
+        End Property
         Public ReadOnly Property CodeMoshtary() As String
             Get
                 Return _CodeMoshtary
@@ -82,9 +88,9 @@ Public Class frmFO_AddData
             End Get
         End Property
 
-        Public ReadOnly Property ccMoshtaryAddress() As Integer
+        Public ReadOnly Property CodeFard_MamorPakhsh() As Integer
             Get
-                Return _ccMoshtaryAddress
+                Return _CodeFard_MamorPakhsh
             End Get
         End Property
 
@@ -94,15 +100,15 @@ Public Class frmFO_AddData
             End Get
         End Property
 
-        Public ReadOnly Property sNoePardakht() As Integer
+        Public ReadOnly Property NoeMarjoeeFT() As Integer
             Get
-                Return _sNoePardakht
+                Return _NoeMarjoeeFT
             End Get
         End Property
 
-        Public ReadOnly Property ModatCheck() As Integer
+        Public ReadOnly Property ccFaktorTitr() As Integer
             Get
-                Return _ModatCheck
+                Return _ccFaktorTitr
             End Get
         End Property
 
@@ -111,14 +117,12 @@ Public Class frmFO_AddData
                 Return _Tozihat
             End Get
         End Property
-        Public ReadOnly Property ccAnbar() As Integer
+
+
+
+        Public ReadOnly Property IsFaktorMarjoee() As Boolean
             Get
-                Return _ccAnbar
-            End Get
-        End Property
-        Public ReadOnly Property PishFaktorShomareh() As Integer
-            Get
-                Return _PishFaktorShomareh
+                Return _IsFaktorMarjoee
             End Get
         End Property
         Public ReadOnly Property dt_SearchTitr() As DataTable
@@ -126,16 +130,7 @@ Public Class frmFO_AddData
                 Return _dtSearchTitr
             End Get
         End Property
-        Public ReadOnly Property Malyat() As Boolean
-            Get
-                Return _Malyat
-            End Get
-        End Property
-        Public ReadOnly Property sNoeMoshtary() As Integer
-            Get
-                Return _sNoeMoshtary
-            End Get
-        End Property
+
 #End Region
 
         ''' <summary>
@@ -147,9 +142,9 @@ Public Class frmFO_AddData
             Using cn As New SqlConnection(connectionString)
                 Using cm As SqlCommand = cn.CreateCommand()
                     cm.CommandType = CommandType.StoredProcedure
-                    cm.CommandText = "[Sales].[spPishFaktorVorodKoli_SearchTitr]"
+                    cm.CommandText = "[Sales].[spMarjoeeVorodKoli_SearchTitr]"
                     cm.CommandTimeout = 999999
-                    cm.Parameters.AddWithValue("@ccPishFaktorTitr", id)
+                    cm.Parameters.AddWithValue("@ccElamMarjoee", id)
 
                     Dim da As New SqlDataAdapter(cm)
                     da.Fill(_dtSearchTitr)
@@ -159,7 +154,7 @@ Public Class frmFO_AddData
             If _dtSearchTitr.Rows.Count = 0 Then Return False
 
             Dim r As DataRow = _dtSearchTitr.Rows(0)
-            _ccPishFaktorTitr = id
+            _ccElamMarjoee = id
             _PishFaktorTarikh = GetStr(r, "PishFaktorTarikh")
             _ccMoshtary = GetInt(r, "ccMoshtary")
             _sNoeMoshtary = GetInt(r, "sNoeMoshtary")
@@ -201,10 +196,10 @@ Public Class frmFO_AddData
 
     End Class
     Private Sub frmFO_AddData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        mskTarikh.Text = TarikhEmrooz
+        'mskTarikh.Text = TarikhEmrooz
         txtSearchNumber.Focus()
-        chkMalyat.Checked = True
-        chkMalyat.Enabled = False
+        'chkMalyat.Checked = True
+        'chkMalyat.Enabled = False
 
 
         flg = False
@@ -277,106 +272,95 @@ Public Class frmFO_AddData
         Try
             Dim Strsql As String
             Dim daSQL As SqlDataAdapter
-            Dim cn As New SqlConnection
-            Dim cm As New SqlCommand
-            Dim p As New SqlParameter
-            'Dim d As DataRow
+            Dim cnSQL As New SqlConnection
+            Dim cmSQL As New SqlCommand
+            Dim dr As DataRow
+
+
+            ' --------------------------------------- Search Combo -----------------
+
+            '' Load Search Combo Vaziat
+            'Strsql = "Select * From tblGL_ShenasehOmomi Where Code = 0 or CodeAsli=48 AND CodeFarei <> 0 "
+            'daSQL = New SqlDataAdapter(Strsql, ConnectionString)
+            'daSQL.Fill(dsForm, "tblVazeiat")
+            'cmbsVaziat.DataSource = Nothing
+            'cmbsVaziat.Items.Clear()
+            'cmbsVaziat.DataSource = dsForm.Tables("tblVazeiat").DefaultView
+            'cmbsVaziat.DisplayMember = "Sharh"
+            'cmbsVaziat.ValueMember = "Code"
+            'For Each dr In dsForm.Tables("tblVazeiat").Rows
+            '    If dr("Code") = 0 Then
+            '        dr("Sharh") = "همه"
+            '    End If
+            'Next
+            'cmbsVaziat.SelectedValue = UD_Dll.Enums.FO_VaziatElamMarjoee.BedoneAmalyat
 
 
 
 
 
-            Strsql = "Global.spNoePardakht_LoadCombo"
-            cn.ConnectionString = ConnectionString
-            cn.Open()
-            cm = New SqlCommand(Strsql, cn)
-            cm.CommandType = CommandType.StoredProcedure
-            cm.Parameters.Clear()
 
-            daSQL = New SqlDataAdapter(cm)
-            daSQL.Fill(dsForm, "tblNoePardakht")
+            cnSQL = New SqlConnection(ConnectionString)
+            cnSQL.Open()
 
 
-            cmbNoePardakht.DataSource = Nothing
-            cmbNoePardakht.Items.Clear()
-            cmbNoePardakht.DataSource = dsForm.Tables("tblNoePardakht").DefaultView
-            cmbNoePardakht.DisplayMember = "Sharh"
-            cmbNoePardakht.ValueMember = "Code"
+            Strsql = "Global.spMamorPakhsh_LoadCombo "
 
-            cm = Nothing
+            cmSQL = New SqlCommand(Strsql, cnSQL)
+            cmSQL.CommandType = CommandType.StoredProcedure
+            cmSQL.Parameters.Clear()
 
-            Strsql = "Global.spForoshandeh_LoadCombo "
+            cmSQL.Parameters.AddWithValue("CodeMahal", CodeMahalFaal)
+            cmSQL.Parameters.AddWithValue("sSemat", "," & UD_Dll.Enums.GL_Semat.MamorPakhsh & "," & UD_Dll.Enums.GL_Semat.Ranandeh & "," & UD_Dll.Enums.GL_Semat.Foroshandeh_Sayar & ",")
 
-            cm = New SqlCommand(Strsql, cn)
-            cm.CommandType = CommandType.StoredProcedure
-            cm.Parameters.Clear()
+            daSQL = New SqlDataAdapter(cmSQL)
+            daSQL.Fill(dsForm, "tblMamorPakhsh")
 
-            p = New SqlParameter("CodeMahal", SqlDbType.Int)
-            p.Value = CodeMahalFaal
-            cm.Parameters.Add(p)
+            cmbMamorPakhsh.DataSource = Nothing
+            cmbMamorPakhsh.Items.Clear()
+            cmbMamorPakhsh.DataSource = dsForm.Tables("tblMamorPakhsh").DefaultView
+            cmbMamorPakhsh.DisplayMember = "FN"
+            cmbMamorPakhsh.ValueMember = "CodeFard"
+            cmbMamorPakhsh.SelectedValue = 0
 
-            p = New SqlParameter("sVazeiat", SqlDbType.Int)
-            p.Value = UD_Dll.Enums.FO_VaziatForoshandeh.NoFaal
-            cm.Parameters.Add(p)
 
-            p = New SqlParameter("UserName", SqlDbType.NVarChar, 20)
-            p.Value = UserName
-            cm.Parameters.Add(p)
 
-            daSQL = New SqlDataAdapter(cm)
+            '' Load Combo sElatMarjoee
+            'Strsql = "Select * From tblGL_ShenasehOmomi Where CodeAsli= 63 And CodeFarei<>0 order by Sharh"
+            'daSQL = New SqlDataAdapter(Strsql, ConnectionString)
+            'daSQL.Fill(dsForm, "tblElatMarjoee")
+            'cmbsElatMarjoee.DataSource = Nothing
+            'cmbsElatMarjoee.Items.Clear()
+            'cmbsElatMarjoee.DataSource = dsForm.Tables("tblElatMarjoee").DefaultView
+            'cmbsElatMarjoee.DisplayMember = "Sharh"
+            'cmbsElatMarjoee.ValueMember = "Code"
+
+            ' Load Combo sVahed
+            'Strsql = "Select * From tblGL_ShenasehOmomi Where CodeAsli= 50 And CodeFarei<>0 order by Sharh"
+            'daSQL = New SqlDataAdapter(Strsql, ConnectionString)
+            'daSQL.Fill(dsForm, "tbl_VahedKala")
+
+
+
+            'cmbNoe.Items.Add("همه")
+            'cmbNoe.Items.Add("بدون وضعیت")
+            'cmbNoe.Items.Add("تائید شده")
+            'cmbNoe.Items.Add("تائید نشده")
+            'cmbNoe.Items.Add("ارسال شده")
+
+            Strsql = "Select ccForoshandeh,LN From qryFO_Foroshandeh where ccForoshandeh <> 0 AND CodeMahal = " & CodeMahalFaal '& "AND sVazeiat <> " & UD_Dll.Enums.FO_VaziatForoshandeh.NoFaal & " "
+            Strsql &= " AND Not exists (Select * From tblGL_SecurityData where namekarbar= '" & UserName & "' and CodeSubSystem = 628 and pk = qryFO_Foroshandeh.ccForoshandeh) order by LName"
+            daSQL = New SqlDataAdapter(Strsql, ConnectionString)
             daSQL.Fill(dsForm, "tblForoshandeh")
+
             cmbBazaryab.DataSource = Nothing
             cmbBazaryab.Items.Clear()
             cmbBazaryab.DataSource = dsForm.Tables("tblForoshandeh").DefaultView
-            cmbBazaryab.DisplayMember = "LN"
             cmbBazaryab.ValueMember = "ccForoshandeh"
+            cmbBazaryab.DisplayMember = "LN"
+            cmbBazaryab.SelectedIndex = -1
 
-            cm = Nothing
-
-
-            'daSQL.Fill(dsForm, "tblForoshandehS")
-            'd = dsForm.Tables("tblForoshandehS").NewRow
-            'd("NameForoshandeh") = "همه"
-            'd("ccForoshandeh") = 0
-            'dsForm.Tables("tblForoshandehS").Rows.Add(d)
-            'cmbBazaryabS.DataSource = Nothing
-            'cmbBazaryabS.Items.Clear()
-            'cmbBazaryabS.DataSource = dsForm.Tables("tblForoshandehS").DefaultView
-            'cmbBazaryabS.DisplayMember = "NameForoshandeh"
-            'cmbBazaryabS.ValueMember = "ccForoshandeh"
-            'cmbBazaryabS.SelectedValue = 0
-
-            'cm = Nothing
-
-
-            If dsForm.Tables.Contains("tblAnbar") Then
-                dsForm.Tables.Remove("tblAnbar")
-            End If
-
-            Strsql = "Global.spAnbar_LoadCombo"
-
-            cn = New SqlConnection(ConnectionString)
-            cn.Open()
-
-            cm = New SqlCommand(Strsql, cn)
-            cm.CommandType = CommandType.StoredProcedure
-            cm.Parameters.Clear()
-
-            cm.Parameters.AddWithValue("CodeMahal", CodeMahalFaal)
-
-            daSQL = New SqlDataAdapter(cm)
-            daSQL.Fill(dsForm, "tblAnbar")
-
-            cmbAnbar.DataSource = Nothing
-            cmbAnbar.Items.Clear()
-            cmbAnbar.DataSource = dsForm.Tables("tblAnbar").DefaultView
-            cmbAnbar.DisplayMember = "NameAnbar"
-            cmbAnbar.ValueMember = "CodeAnbar"
-
-            cm = Nothing
             daSQL = Nothing
-            cn.Close()
-
         Catch sqlExc As SqlException
             MsgBox(sqlExc.Message, MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, " Error IN DataBase ---->LoadCombo")
         Catch ex As Exception
@@ -458,57 +442,35 @@ Public Class frmFO_AddData
             If (Asc(e.KeyChar()) < 48 Or Asc(e.KeyChar()) > 57) And (Asc(e.KeyChar()) <> 8) Then
                 e.Handled = True
             End If
-            Dim Bazaryab As Integer = 0
-            Bazaryab = IIf(IsNothing(cmbBazaryab.SelectedValue), 0, cmbBazaryab.SelectedValue)
-
-
             If e.KeyChar = Chr(Keys.Space) Then
                 Dim objMoshtary As New Forms_dll.frmFO_MoshtarySearch
                 Dim StrSql As String = ""
 
-                StrSql = "Select * from qryFO_Moshtary Where CodeMahal=" & CodeMahalFaal & " And IsMoshtaryBadHesab = 0 AND sVazeiat = " & UD_Dll.Enums.FO_VaziatMoshtary.Faal
-                StrSql &= "AND Not exists (Select * From tblGL_SecurityData where namekarbar= '" & UserName & "' and CodeSubSystem = 614 and pk = qryFO_Moshtary.ccMoshtary) "
+                StrSql = "Select * from qryFO_Moshtary Where CodeMahal=" & CodeMahalFaal & " AND sVazeiat = " & UD_Dll.Enums.FO_VaziatMoshtary.Faal
+                StrSql &= " AND Not exists (Select * From tblGL_SecurityData where namekarbar= '" & UserName & "' and CodeSubSystem = 614 and pk = qryFO_Moshtary.ccMoshtary) "
                 StrSql &= " AND Not exists (Select * From tblGL_SecurityData where namekarbar= '" & UserName & "' and CodeSubSystem = 10000 and pk = qryFO_Moshtary.sNoeMoshtary) "
-                If Bazaryab <> 0 Then
-                    StrSql &= " AND ccMoshtary IN (SELECT ccMoshtary FROM tblFO_ForoshandehMoshtary WHERE  ccForoshandeh = " & Bazaryab & ") "
-                End If
                 StrSql &= " order by sMantagheh,sMahaleh,NameMoshtary"
-
-
 
 
                 tCodeMoshtary = ""
                 tNameMoshtary = ""
                 tccMoshtary = ""
-                cmbAddress.SelectedIndex = -1
+
                 If txtCodeMoshtary.Text.Length <> 0 Then
                     tCodeMoshtary = txtCodeMoshtary.Text
                 End If
 
-                MultiSelection = False
+                objMoshtary.MultiSelection = False
                 SearchItem = "CodeMoshtary"
                 objMoshtary.SetForm(StrSql)
                 objMoshtary.ShowDialog()
-                txtCodeMoshtary.Tag = IIf(IsNothing(objMoshtary.tccMoshtary), 0, objMoshtary.tccMoshtary)
-                txtCodeMoshtary.Text = IIf(IsNothing(objMoshtary.tCodeMoshtary), "", objMoshtary.tCodeMoshtary)
-                lblNameMoshtary.Text = IIf(IsNothing(objMoshtary.tNameMoshtary), "", objMoshtary.tNameMoshtary)
-
-                If txtCodeMoshtary.Tag <> 0 Then
-                    LoadMoshtaryAddress()
-                Else
-                    cmbAddress.SelectedIndex = -1
-                End If
-
-
-
-
-
-
-
+                txtCodeMoshtary.Tag = objMoshtary.tccMoshtary
+                txtCodeMoshtary.Text = objMoshtary.tCodeMoshtary
+                lblNameMoshtary.Text = objMoshtary.tNameMoshtary
+                ccMoshtary = txtCodeMoshtary.Tag
 
                 MultiSelection = False
             End If
-
         Catch sqlExc As SqlException
             MsgBox(sqlExc.Message, MsgBoxStyle.OkOnly + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading + MsgBoxStyle.Information, " Error IN DataBase ---->txtCodeMoshtary_KeyPress")
         Catch ex As Exception
@@ -817,14 +779,14 @@ Public Class frmFO_AddData
     End Sub
 
     Private Sub btnSaveSanad_Click(sender As Object, e As EventArgs) Handles btnSaveSanad.Click
-        If ccPishfaktorTitr <> 0 Then Exit Sub        ' جلوگیری از Insert دوباره‌ی هدر
+        If ccElamMarjoee <> 0 Then Exit Sub        ' جلوگیری از Insert دوباره‌ی هدر
         If Not ValidateTitr() Then Exit Sub      ' قبل از ذخیره‌ی هدر
         AddNewRecord()
-        If ccPishfaktorTitr = 0 Then Exit Sub
+        If ccElamMarjoee = 0 Then Exit Sub
 
 
-        Dim info As New PishFaktorTitrInfo()
-        If Not info.Load(ccPishfaktorTitr, ConnectionString) Then
+        Dim info As New ElamMarjoeeTitrInfo()
+        If Not info.Load(ccElamMarjoee, ConnectionString) Then
             MessageBox.Show("اطلاعات پیش‌فاکتور ذخیره‌شده پیدا نشد")
 
         End If
@@ -841,7 +803,7 @@ Public Class frmFO_AddData
 
     End Sub
     Private Function LoadTitr(ByVal id As Integer) As Boolean
-        Dim info As New PishFaktorTitrInfo()
+        Dim info As New ElamMarjoeeTitrInfo()
 
         Try
             If Not info.Load(id, ConnectionString) Then
@@ -1511,7 +1473,7 @@ Public Class frmFO_AddData
         End Try
     End Sub
 
-    Private Sub cmbNoePardakht_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbNoePardakht.SelectedIndexChanged
+    Private Sub cmbNoePardakht_SelectedIndexChanged(sender As Object, e As EventArgs)
         If flg Then
             MeghdarAdadi = ObjCode.GetMeghdarAdadi(cmbNoePardakht.SelectedValue)
 
@@ -1575,9 +1537,9 @@ Public Class frmFO_AddData
             e.Handled = True
             e.SuppressKeyPress = True
 
-            Dim frm As New frmFO_PishFaktorSearch()
+            Dim frm As New frmFO_MarjoeeSearch()
             If frm.ShowDialog() = DialogResult.OK AndAlso frm.SelectedId > 0 Then
-                ShowPishFaktor(frm.SelectedId)
+                ShowMarjoee(frm.SelectedId)
                 Mode = UD_Dll.Enums.GL_ModeForms.UpdateRecord
             Else
                 Mode = UD_Dll.Enums.GL_ModeForms.AddNewRecord
@@ -1592,11 +1554,11 @@ Public Class frmFO_AddData
     Private Sub txtSearchNumber_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs) Handles txtSearchNumber.KeyPress
         e.Handled = True
     End Sub
-    Private Sub ShowPishFaktor(ByVal id As Integer)
-        ccPishfaktorTitr = id
+    Private Sub ShowMarjoee(ByVal id As Integer)
+        ccElamMarjoee = id
 
         If Not LoadTitr(id) Then
-            ccPishfaktorTitr = 0
+            ccElamMarjoee = 0
             Exit Sub
         End If
 
@@ -1605,12 +1567,12 @@ Public Class frmFO_AddData
         ' هدر در حالت نمایش قفل شود
         mskTarikh.Enabled = False
         txtCodeMoshtary.Enabled = False
-        cmbAddress.Enabled = False
+        cmbMamorPakhsh.Enabled = False
         cmbBazaryab.Enabled = False
-        cmbNoePardakht.Enabled = False
-        cmbAnbar.Enabled = False
-        txtModatCheck.Enabled = False
-        txtTozihat.Enabled = False
+        txtShomarehFaktor.Enabled = False
+        txtCodeMoshtary.Enabled = False
+        cmbBazaryab.Enabled = False
+        TxtSharh.Enabled = False
         btnSaveSanad.Enabled = False
 
         SearchSatr()

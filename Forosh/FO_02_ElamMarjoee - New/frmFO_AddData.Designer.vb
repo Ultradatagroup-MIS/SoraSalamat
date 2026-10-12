@@ -36,31 +36,31 @@ Partial Class frmFO_AddData
         Me.txtSearchNumber = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtShomarehFaktor = New System.Windows.Forms.TextBox()
+        Me.cmbMamorPakhsh = New System.Windows.Forms.ComboBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.TxtSharh = New System.Windows.Forms.TextBox()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.rbBargashtAzTozi = New System.Windows.Forms.RadioButton()
+        Me.rbBargashtAzForosh = New System.Windows.Forms.RadioButton()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.btnNew = New System.Windows.Forms.Button()
         Me.chkMalyat = New System.Windows.Forms.CheckBox()
-        Me.lblAnbar = New System.Windows.Forms.Label()
         Me.btnSaveSanad = New System.Windows.Forms.Button()
-        Me.cmbAnbar = New System.Windows.Forms.ComboBox()
-        Me.cmbAddress = New System.Windows.Forms.ComboBox()
         Me.lblNameMoshtary = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.mskTarikh = New System.Windows.Forms.MaskedTextBox()
         Me.cmbBazaryab = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtCodeMoshtary = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.cmbNoePardakht = New System.Windows.Forms.ComboBox()
-        Me.txtTozihat = New System.Windows.Forms.TextBox()
-        Me.Label26 = New System.Windows.Forms.Label()
-        Me.lblModatCheck = New System.Windows.Forms.Label()
-        Me.txtModatCheck = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         CType(Me.GridEXSatr, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -80,11 +80,11 @@ Partial Class frmFO_AddData
         '
         Me.GroupBox4.Controls.Add(Me.GridEXSatr)
         Me.GroupBox4.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(4, 182)
+        Me.GroupBox4.Location = New System.Drawing.Point(4, 221)
         Me.GroupBox4.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox4.Size = New System.Drawing.Size(1332, 645)
+        Me.GroupBox4.Size = New System.Drawing.Size(1332, 606)
         Me.GroupBox4.TabIndex = 2
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "ورود اطلاعات کالا"
@@ -129,7 +129,7 @@ Partial Class frmFO_AddData
         Me.GridEXSatr.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Blue
         Me.GridEXSatr.RecordNavigator = True
         Me.GridEXSatr.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.[True]
-        Me.GridEXSatr.Size = New System.Drawing.Size(1328, 628)
+        Me.GridEXSatr.Size = New System.Drawing.Size(1328, 589)
         Me.GridEXSatr.TabIndex = 100
         Me.GridEXSatr.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
         Me.GridEXSatr.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
@@ -172,35 +172,130 @@ Partial Class frmFO_AddData
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.PaleTurquoise
+        Me.GroupBox2.Controls.Add(Me.Label2)
+        Me.GroupBox2.Controls.Add(Me.txtShomarehFaktor)
+        Me.GroupBox2.Controls.Add(Me.cmbMamorPakhsh)
+        Me.GroupBox2.Controls.Add(Me.Label23)
+        Me.GroupBox2.Controls.Add(Me.TxtSharh)
+        Me.GroupBox2.Controls.Add(Me.Label29)
+        Me.GroupBox2.Controls.Add(Me.GroupBox5)
+        Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.Controls.Add(Me.btnNew)
         Me.GroupBox2.Controls.Add(Me.chkMalyat)
-        Me.GroupBox2.Controls.Add(Me.lblAnbar)
         Me.GroupBox2.Controls.Add(Me.btnSaveSanad)
-        Me.GroupBox2.Controls.Add(Me.cmbAnbar)
-        Me.GroupBox2.Controls.Add(Me.cmbAddress)
         Me.GroupBox2.Controls.Add(Me.lblNameMoshtary)
-        Me.GroupBox2.Controls.Add(Me.Label18)
-        Me.GroupBox2.Controls.Add(Me.Label3)
         Me.GroupBox2.Controls.Add(Me.Label4)
         Me.GroupBox2.Controls.Add(Me.mskTarikh)
         Me.GroupBox2.Controls.Add(Me.cmbBazaryab)
         Me.GroupBox2.Controls.Add(Me.Label9)
         Me.GroupBox2.Controls.Add(Me.txtCodeMoshtary)
-        Me.GroupBox2.Controls.Add(Me.Label6)
-        Me.GroupBox2.Controls.Add(Me.cmbNoePardakht)
-        Me.GroupBox2.Controls.Add(Me.txtTozihat)
-        Me.GroupBox2.Controls.Add(Me.Label26)
-        Me.GroupBox2.Controls.Add(Me.lblModatCheck)
-        Me.GroupBox2.Controls.Add(Me.txtModatCheck)
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(4, 60)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox2.Size = New System.Drawing.Size(1332, 118)
+        Me.GroupBox2.Size = New System.Drawing.Size(1332, 157)
         Me.GroupBox2.TabIndex = 0
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "ورود اطلاعات اصلی"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label2.Location = New System.Drawing.Point(1184, 46)
+        Me.Label2.Name = "Label2"
+        Me.Label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.Label2.Size = New System.Drawing.Size(70, 13)
+        Me.Label2.TabIndex = 111
+        Me.Label2.Text = "شماره فاکتور:"
+        Me.Label2.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'txtShomarehFaktor
+        '
+        Me.txtShomarehFaktor.Location = New System.Drawing.Point(1096, 42)
+        Me.txtShomarehFaktor.MaxLength = 10
+        Me.txtShomarehFaktor.Name = "txtShomarehFaktor"
+        Me.txtShomarehFaktor.Size = New System.Drawing.Size(82, 20)
+        Me.txtShomarehFaktor.TabIndex = 112
+        '
+        'cmbMamorPakhsh
+        '
+        Me.cmbMamorPakhsh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbMamorPakhsh.Location = New System.Drawing.Point(859, 119)
+        Me.cmbMamorPakhsh.MaxDropDownItems = 20
+        Me.cmbMamorPakhsh.Name = "cmbMamorPakhsh"
+        Me.cmbMamorPakhsh.Size = New System.Drawing.Size(319, 20)
+        Me.cmbMamorPakhsh.TabIndex = 110
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(1178, 123)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(65, 13)
+        Me.Label23.TabIndex = 109
+        Me.Label23.Text = "مامور پخش :"
+        '
+        'TxtSharh
+        '
+        Me.TxtSharh.Location = New System.Drawing.Point(486, 22)
+        Me.TxtSharh.Name = "TxtSharh"
+        Me.TxtSharh.Size = New System.Drawing.Size(317, 20)
+        Me.TxtSharh.TabIndex = 109
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(806, 26)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(57, 13)
+        Me.Label29.TabIndex = 108
+        Me.Label29.Text = "توضیحـات :"
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.BackColor = System.Drawing.Color.Moccasin
+        Me.GroupBox5.Controls.Add(Me.rbBargashtAzTozi)
+        Me.GroupBox5.Controls.Add(Me.rbBargashtAzForosh)
+        Me.GroupBox5.Location = New System.Drawing.Point(707, 67)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(131, 75)
+        Me.GroupBox5.TabIndex = 107
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "نوع مرجوعی"
+        '
+        'rbBargashtAzTozi
+        '
+        Me.rbBargashtAzTozi.AutoSize = True
+        Me.rbBargashtAzTozi.Location = New System.Drawing.Point(22, 46)
+        Me.rbBargashtAzTozi.Name = "rbBargashtAzTozi"
+        Me.rbBargashtAzTozi.Size = New System.Drawing.Size(94, 17)
+        Me.rbBargashtAzTozi.TabIndex = 108
+        Me.rbBargashtAzTozi.TabStop = True
+        Me.rbBargashtAzTozi.Text = "برگشت از توزیع"
+        Me.rbBargashtAzTozi.UseVisualStyleBackColor = True
+        '
+        'rbBargashtAzForosh
+        '
+        Me.rbBargashtAzForosh.AutoSize = True
+        Me.rbBargashtAzForosh.Location = New System.Drawing.Point(15, 23)
+        Me.rbBargashtAzForosh.Name = "rbBargashtAzForosh"
+        Me.rbBargashtAzForosh.Size = New System.Drawing.Size(101, 17)
+        Me.rbBargashtAzForosh.TabIndex = 106
+        Me.rbBargashtAzForosh.TabStop = True
+        Me.rbBargashtAzForosh.Text = "برگشت از فروش"
+        Me.rbBargashtAzForosh.UseVisualStyleBackColor = True
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(1180, 22)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(104, 13)
+        Me.Label3.TabIndex = 103
+        Me.Label3.Text = "تاریخ اعلام مرجوعی:"
         '
         'btnNew
         '
@@ -219,25 +314,12 @@ Partial Class frmFO_AddData
         'chkMalyat
         '
         Me.chkMalyat.AutoSize = True
-        Me.chkMalyat.Location = New System.Drawing.Point(425, 16)
+        Me.chkMalyat.Location = New System.Drawing.Point(880, 22)
         Me.chkMalyat.Name = "chkMalyat"
         Me.chkMalyat.Size = New System.Drawing.Size(128, 17)
         Me.chkMalyat.TabIndex = 101
         Me.chkMalyat.Text = "شامل مالیات و عوارض"
         Me.chkMalyat.UseVisualStyleBackColor = True
-        '
-        'lblAnbar
-        '
-        Me.lblAnbar.AutoSize = True
-        Me.lblAnbar.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAnbar.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblAnbar.Location = New System.Drawing.Point(968, 18)
-        Me.lblAnbar.Name = "lblAnbar"
-        Me.lblAnbar.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.lblAnbar.Size = New System.Drawing.Size(31, 13)
-        Me.lblAnbar.TabIndex = 24
-        Me.lblAnbar.Text = "انبار :"
-        Me.lblAnbar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'btnSaveSanad
         '
@@ -253,66 +335,25 @@ Partial Class frmFO_AddData
         Me.btnSaveSanad.Text = "&ذخيره"
         Me.btnSaveSanad.UseVisualStyleBackColor = False
         '
-        'cmbAnbar
-        '
-        Me.cmbAnbar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbAnbar.Location = New System.Drawing.Point(771, 15)
-        Me.cmbAnbar.MaxDropDownItems = 20
-        Me.cmbAnbar.Name = "cmbAnbar"
-        Me.cmbAnbar.Size = New System.Drawing.Size(194, 20)
-        Me.cmbAnbar.TabIndex = 23
-        '
-        'cmbAddress
-        '
-        Me.cmbAddress.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbAddress.Location = New System.Drawing.Point(771, 65)
-        Me.cmbAddress.Margin = New System.Windows.Forms.Padding(2)
-        Me.cmbAddress.MaxDropDownItems = 20
-        Me.cmbAddress.Name = "cmbAddress"
-        Me.cmbAddress.Size = New System.Drawing.Size(407, 20)
-        Me.cmbAddress.TabIndex = 34
-        '
         'lblNameMoshtary
         '
         Me.lblNameMoshtary.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblNameMoshtary.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblNameMoshtary.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblNameMoshtary.Location = New System.Drawing.Point(771, 44)
+        Me.lblNameMoshtary.Location = New System.Drawing.Point(859, 69)
         Me.lblNameMoshtary.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblNameMoshtary.Name = "lblNameMoshtary"
         Me.lblNameMoshtary.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.lblNameMoshtary.Size = New System.Drawing.Size(311, 17)
+        Me.lblNameMoshtary.Size = New System.Drawing.Size(220, 18)
         Me.lblNameMoshtary.TabIndex = 33
         Me.lblNameMoshtary.Text = "  "
         Me.lblNameMoshtary.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(1180, 65)
-        Me.Label18.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(79, 13)
-        Me.Label18.TabIndex = 32
-        Me.Label18.Text = "آدرس مشتری :"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(1178, 22)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(38, 13)
-        Me.Label3.TabIndex = 20
-        Me.Label3.Text = "تاريخ  :"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(1177, 92)
+        Me.Label4.Location = New System.Drawing.Point(1177, 97)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(55, 13)
@@ -338,18 +379,18 @@ Partial Class frmFO_AddData
         '
         Me.cmbBazaryab.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbBazaryab.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbBazaryab.Location = New System.Drawing.Point(771, 89)
+        Me.cmbBazaryab.Location = New System.Drawing.Point(859, 94)
         Me.cmbBazaryab.Margin = New System.Windows.Forms.Padding(2)
         Me.cmbBazaryab.MaxDropDownItems = 20
         Me.cmbBazaryab.Name = "cmbBazaryab"
-        Me.cmbBazaryab.Size = New System.Drawing.Size(407, 20)
+        Me.cmbBazaryab.Size = New System.Drawing.Size(319, 20)
         Me.cmbBazaryab.TabIndex = 23
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(1179, 44)
+        Me.Label9.Location = New System.Drawing.Point(1180, 69)
         Me.Label9.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(51, 13)
@@ -360,85 +401,13 @@ Partial Class frmFO_AddData
         '
         Me.txtCodeMoshtary.BackColor = System.Drawing.Color.LightGoldenrodYellow
         Me.txtCodeMoshtary.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCodeMoshtary.Location = New System.Drawing.Point(1093, 42)
+        Me.txtCodeMoshtary.Location = New System.Drawing.Point(1094, 67)
         Me.txtCodeMoshtary.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCodeMoshtary.MaxLength = 15
         Me.txtCodeMoshtary.Name = "txtCodeMoshtary"
         Me.txtCodeMoshtary.Size = New System.Drawing.Size(84, 20)
         Me.txtCodeMoshtary.TabIndex = 25
         Me.txtCodeMoshtary.Text = " "
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label6.Location = New System.Drawing.Point(670, 16)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label6.Name = "Label6"
-        Me.Label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Label6.Size = New System.Drawing.Size(70, 13)
-        Me.Label6.TabIndex = 26
-        Me.Label6.Text = "نحوه پرداخت :"
-        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'cmbNoePardakht
-        '
-        Me.cmbNoePardakht.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbNoePardakht.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbNoePardakht.Location = New System.Drawing.Point(585, 12)
-        Me.cmbNoePardakht.Margin = New System.Windows.Forms.Padding(2)
-        Me.cmbNoePardakht.MaxDropDownItems = 20
-        Me.cmbNoePardakht.Name = "cmbNoePardakht"
-        Me.cmbNoePardakht.Size = New System.Drawing.Size(84, 20)
-        Me.cmbNoePardakht.TabIndex = 27
-        '
-        'txtTozihat
-        '
-        Me.txtTozihat.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTozihat.Location = New System.Drawing.Point(285, 65)
-        Me.txtTozihat.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtTozihat.MaxLength = 200
-        Me.txtTozihat.Multiline = True
-        Me.txtTozihat.Name = "txtTozihat"
-        Me.txtTozihat.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtTozihat.Size = New System.Drawing.Size(384, 22)
-        Me.txtTozihat.TabIndex = 31
-        Me.txtTozihat.Text = " "
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(668, 73)
-        Me.Label26.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(57, 13)
-        Me.Label26.TabIndex = 30
-        Me.Label26.Text = "توضیحـات :"
-        '
-        'lblModatCheck
-        '
-        Me.lblModatCheck.AutoSize = True
-        Me.lblModatCheck.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModatCheck.Location = New System.Drawing.Point(669, 40)
-        Me.lblModatCheck.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblModatCheck.Name = "lblModatCheck"
-        Me.lblModatCheck.Size = New System.Drawing.Size(56, 13)
-        Me.lblModatCheck.TabIndex = 28
-        Me.lblModatCheck.Text = "مدت چک :"
-        Me.lblModatCheck.Visible = False
-        '
-        'txtModatCheck
-        '
-        Me.txtModatCheck.Font = New System.Drawing.Font("Tahoma", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtModatCheck.Location = New System.Drawing.Point(585, 37)
-        Me.txtModatCheck.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtModatCheck.MaxLength = 3
-        Me.txtModatCheck.Name = "txtModatCheck"
-        Me.txtModatCheck.Size = New System.Drawing.Size(84, 20)
-        Me.txtModatCheck.TabIndex = 29
-        Me.txtModatCheck.Visible = False
         '
         'frmFO_AddData
         '
@@ -452,7 +421,7 @@ Partial Class frmFO_AddData
         Me.Name = "frmFO_AddData"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "ورود اطلاعات پیش فاکتور"
+        Me.Text = "ورود اطلاعات اعلام مرجوعی"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox4.ResumeLayout(False)
         CType(Me.GridEXSatr, System.ComponentModel.ISupportInitialize).EndInit()
@@ -460,35 +429,36 @@ Partial Class frmFO_AddData
         Me.GroupBox3.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents mskTarikh As MaskedTextBox
     Friend WithEvents cmbBazaryab As ComboBox
-    Friend WithEvents Label9 As Label
-    Friend WithEvents txtCodeMoshtary As TextBox
-    Friend WithEvents Label6 As Label
-    Friend WithEvents cmbNoePardakht As ComboBox
-    Friend WithEvents txtTozihat As TextBox
-    Friend WithEvents Label26 As Label
-    Friend WithEvents lblModatCheck As Label
-    Friend WithEvents txtModatCheck As TextBox
-    Friend WithEvents Label18 As Label
     Friend WithEvents lblNameMoshtary As Label
-    Friend WithEvents cmbAddress As ComboBox
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents txtSearchNumber As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents GridEXSatr As Janus.Windows.GridEX.GridEX
     Friend WithEvents btnSaveSanad As Button
-    Friend WithEvents lblAnbar As Label
-    Friend WithEvents cmbAnbar As ComboBox
     Friend WithEvents chkMalyat As CheckBox
     Friend WithEvents btnNew As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents rbBargashtAzTozi As RadioButton
+    Friend WithEvents rbBargashtAzForosh As RadioButton
+    Friend WithEvents TxtSharh As TextBox
+    Friend WithEvents Label29 As Label
+    Friend WithEvents cmbMamorPakhsh As ComboBox
+    Friend WithEvents Label23 As Label
+    Friend WithEvents Label2 As Label
+    Friend WithEvents txtShomarehFaktor As TextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents txtCodeMoshtary As TextBox
 End Class
