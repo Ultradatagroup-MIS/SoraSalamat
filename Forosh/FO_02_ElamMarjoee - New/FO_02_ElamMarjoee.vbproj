@@ -110,6 +110,12 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAN_KalaSearch.designer.vb">
+      <DependentUpon>frmAN_KalaSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAN_KalaSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmFO_AddData.Designer.vb">
       <DependentUpon>frmFO_AddData.vb</DependentUpon>
     </Compile>
@@ -152,6 +158,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmAN_KalaSearch.resx">
+      <DependentUpon>frmAN_KalaSearch.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmFO_AddData.resx">
       <DependentUpon>frmFO_AddData.vb</DependentUpon>
     </EmbeddedResource>

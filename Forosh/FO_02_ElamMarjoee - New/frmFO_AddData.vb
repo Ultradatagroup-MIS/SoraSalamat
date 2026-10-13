@@ -888,19 +888,20 @@ Public Class frmFO_AddData
 
             If GridEXSatr.CurrentColumn.Key = "CodeKala" Then
 
-                Dim objKala As New Forms_dll.frmAN_KalaSearch
+                Dim objKala As New frmAN_KalaSearch
                 Dim StrSqlKala As String
 
                 If ccFaktorTitr = 0 Then
-                    StrSqlKala = "Select  CodeKala,NameKala,ccKala,txtsVahedeShomaresh,sVahedeShomaresh,NameBrand,RadifBrand,0 as IsSabadKala "
+                    StrSqlKala = "Select  0 as ccFaktorSatr,  CodeKala,NameKala,ccKala,txtsVahedeShomaresh,sVahedeShomaresh,NameBrand,RadifBrand,0 as IsSabadKala "
                     StrSqlKala &= " from qryAN_Kala"
                     StrSqlKala &= " Where Faal = 1  AND ccKala in (Select ccKala from tblAN_KalaGheymat where ccKala =qryAN_Kala.ccKala )  "
                 End If
 
                 If ccFaktorTitr <> 0 Then
-
+                    StrSqlKala = "SELECT tedad3, fee,ccFaktorSatr,CodeKala,NameKala,K.ccKala,txtsVahedeShomaresh,sVahedeShomaresh , case IsJayezeh When 1 then 'جایزه' when 0 then 'کالای اصلی' end as txtJayezeh ,IsJayezeh   "
+                    StrSqlKala &= " ,NameBrand,0 Radif,0 AS IsSabadKala,ShomarehBach,TarikhTolid,TarikhEngheza FROM  tblFO_FaktorSatr as Fs WITH(NOLOCK) left outer join qryAN_Kala as K WITH(NOLOCK) ON Fs.cckala = K.cckala "
+                    StrSqlKala &= " WHERE  ccFaktorTitr = " & ccFaktorTitr & " AND IsSabadKala = 0  AND IsJayezeh = 0  "
                 End If
-
 
 
 
@@ -912,7 +913,12 @@ Public Class frmFO_AddData
                 objKala.SetForm(StrSqlKala)
                 objKala.ShowDialog()
 
-                FillRowWithKala(GridEXSatr.CurrentRow, objKala.tcodeKala, objKala.tccKala, objKala.tNameKala)
+                If ccFaktorTitr = 0 Then
+                    FillRowWithKala(GridEXSatr.CurrentRow, objKala.tcodeKala, objKala.tccKala, objKala.tNameKala)
+                End If
+                If ccFaktorTitr <> 0 Then
+
+                End If
 
 
 
