@@ -269,7 +269,7 @@ Partial Class frmFO_AddData
         'rbBargashtAzTozi
         '
         Me.rbBargashtAzTozi.AutoSize = True
-        Me.rbBargashtAzTozi.Location = New System.Drawing.Point(18, 46)
+        Me.rbBargashtAzTozi.Location = New System.Drawing.Point(21, 46)
         Me.rbBargashtAzTozi.Name = "rbBargashtAzTozi"
         Me.rbBargashtAzTozi.Size = New System.Drawing.Size(94, 17)
         Me.rbBargashtAzTozi.TabIndex = 108
