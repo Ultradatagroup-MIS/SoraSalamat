@@ -150,7 +150,8 @@ Public Class frmFO_AddData
                     cm.CommandText = "[Sales].[spMarjoeeVorodKoli_SearchTitr]"
                     cm.CommandTimeout = 999999
                     cm.Parameters.AddWithValue("@ccElamMarjoee", id)
-
+                    cm.Parameters.AddWithValue("@CodeMahal", CodeMahalFaal)
+                    cm.Parameters.AddWithValue("@CodeDoreh", CodeDoreh)
                     Dim da As New SqlDataAdapter(cm)
                     da.Fill(_dtSearchTitr)
                 End Using
@@ -514,7 +515,7 @@ Public Class frmFO_AddData
 
             GridEXSatr.CurrentTable.Columns.Item("NameKala").Caption = "نام کالا"
             GridEXSatr.CurrentTable.Columns.Item("NameKala").Visible = True
-            GridEXSatr.CurrentTable.Columns.Item("NameKala").Width = 260
+            GridEXSatr.CurrentTable.Columns.Item("NameKala").Width = 300
             GridEXSatr.CurrentTable.Columns.Item("NameKala").EditType = Janus.Windows.GridEX.EditType.NoEdit
             GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
             GridEXSatr.CurrentTable.Columns.Item("NameKala").Position = 3
@@ -533,7 +534,7 @@ Public Class frmFO_AddData
             'جایزه
 
 
-            With GridEXSatr.CurrentTable.Columns.Item("IsJayezeh")
+            With GridEXSatr.CurrentTable.Columns.Item("IsJayezehMarjoee")
                 .Caption = "جایزه"
                 .Visible = True
                 .Width = 70
@@ -547,18 +548,8 @@ Public Class frmFO_AddData
 
             GridEXSatr.EditMode = Janus.Windows.GridEX.EditMode.EditOn
             'جایزه
-            If AllowChangeFeePishFaktor Then
-                GridEXSatr.CurrentTable.Columns.Item("Fee").Caption = "فی"
-                GridEXSatr.CurrentTable.Columns.Item("Fee").Visible = True
-                GridEXSatr.CurrentTable.Columns.Item("Fee").Width = 100
-                GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
-                'GridEXSatr.CurrentTable.Columns.Item("Fee").EditType = Janus.Windows.GridEX.EditType.NoEdit
-                GridEXSatr.CurrentTable.Columns.Item("Fee").Position = 6
-                GridEXSatr.CurrentTable.Columns.Item("Fee").FormatMode = Janus.Windows.GridEX.FormatMode.UseIFormattable
-                GridEXSatr.CurrentTable.Columns.Item("Fee").FormatString = "###,###"
-                GridEXSatr.CurrentTable.Columns.Item("Fee").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            Else
-                GridEXSatr.CurrentTable.Columns.Item("Fee").Caption = "فی"
+
+            GridEXSatr.CurrentTable.Columns.Item("Fee").Caption = "فی"
                 GridEXSatr.CurrentTable.Columns.Item("Fee").Visible = True
                 GridEXSatr.CurrentTable.Columns.Item("Fee").Width = 100
                 GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
@@ -567,71 +558,53 @@ Public Class frmFO_AddData
                 GridEXSatr.CurrentTable.Columns.Item("Fee").FormatMode = Janus.Windows.GridEX.FormatMode.UseIFormattable
                 GridEXSatr.CurrentTable.Columns.Item("Fee").FormatString = "###,###"
                 GridEXSatr.CurrentTable.Columns.Item("Fee").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-            End If
 
 
 
-            GridEXSatr.CurrentTable.Columns.Item("MojodiDarHaleForosh").Caption = "موجودی"
-            GridEXSatr.CurrentTable.Columns.Item("MojodiDarHaleForosh").Visible = True
-            GridEXSatr.CurrentTable.Columns.Item("MojodiDarHaleForosh").Width = 100
+
+
+
+
+
+            GridEXSatr.CurrentTable.Columns.Item("MKOL").Caption = "جمع مبلغ"
+            GridEXSatr.CurrentTable.Columns.Item("MKOL").Visible = True
+            GridEXSatr.CurrentTable.Columns.Item("MKOL").Width = 100
             GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
-            GridEXSatr.CurrentTable.Columns.Item("MojodiDarHaleForosh").EditType = Janus.Windows.GridEX.EditType.NoEdit
-            GridEXSatr.CurrentTable.Columns.Item("MojodiDarHaleForosh").Position = 7
-            GridEXSatr.CurrentTable.Columns.Item("MojodiDarHaleForosh").FormatString = "N"
-            GridEXSatr.CurrentTable.Columns.Item("MojodiDarHaleForosh").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            GridEXSatr.CurrentTable.Columns.Item("MKOL").EditType = Janus.Windows.GridEX.EditType.NoEdit
+            GridEXSatr.CurrentTable.Columns.Item("MKOL").Position = 8
+            GridEXSatr.CurrentTable.Columns.Item("MKOL").FormatString = "###,###"
+            GridEXSatr.CurrentTable.Columns.Item("MKOL").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
 
 
 
-
-
-
-            GridEXSatr.CurrentTable.Columns.Item("MKol3").Caption = "جمع مبلغ"
-            GridEXSatr.CurrentTable.Columns.Item("MKol3").Visible = True
-            GridEXSatr.CurrentTable.Columns.Item("MKol3").Width = 100
+            GridEXSatr.CurrentTable.Columns.Item("TakhfifKalaBargashti").Caption = "تخفیف کالا"
+            GridEXSatr.CurrentTable.Columns.Item("TakhfifKalaBargashti").Visible = True
+            GridEXSatr.CurrentTable.Columns.Item("TakhfifKalaBargashti").Width = 120
             GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
-            GridEXSatr.CurrentTable.Columns.Item("MKol3").EditType = Janus.Windows.GridEX.EditType.NoEdit
-            GridEXSatr.CurrentTable.Columns.Item("MKol3").Position = 8
-            GridEXSatr.CurrentTable.Columns.Item("MKol3").FormatString = "###,###"
-            GridEXSatr.CurrentTable.Columns.Item("MKol3").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            GridEXSatr.CurrentTable.Columns.Item("TakhfifKalaBargashti").EditType = Janus.Windows.GridEX.EditType.NoEdit
+            GridEXSatr.CurrentTable.Columns.Item("TakhfifKalaBargashti").Position = 10
+            GridEXSatr.CurrentTable.Columns.Item("TakhfifKalaBargashti").FormatString = "###,###"
+            GridEXSatr.CurrentTable.Columns.Item("TakhfifKalaBargashti").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
 
-            GridEXSatr.CurrentTable.Columns.Item("DarsadTakhfif").Caption = "درصد تخفیف"
-            GridEXSatr.CurrentTable.Columns.Item("DarsadTakhfif").Visible = True
-            GridEXSatr.CurrentTable.Columns.Item("DarsadTakhfif").Width = 100
+
+            GridEXSatr.CurrentTable.Columns.Item("MablaghMaliatAvarez").Caption = "مالیات"
+            GridEXSatr.CurrentTable.Columns.Item("MablaghMaliatAvarez").Visible = True
+            GridEXSatr.CurrentTable.Columns.Item("MablaghMaliatAvarez").Width = 80
             GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
-            'GridEXSatr.CurrentTable.Columns.Item("DarsadTakhfif").EditType = Janus.Windows.GridEX.EditType.NoEdit
-            GridEXSatr.CurrentTable.Columns.Item("DarsadTakhfif").Position = 9
-            GridEXSatr.CurrentTable.Columns.Item("DarsadTakhfif").FormatString = "N"
-
-            GridEXSatr.CurrentTable.Columns.Item("DarsadTakhfif").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-
-            GridEXSatr.CurrentTable.Columns.Item("TakhfifKala").Caption = "تخفیف کالا"
-            GridEXSatr.CurrentTable.Columns.Item("TakhfifKala").Visible = True
-            GridEXSatr.CurrentTable.Columns.Item("TakhfifKala").Width = 120
-            GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
-            GridEXSatr.CurrentTable.Columns.Item("TakhfifKala").EditType = Janus.Windows.GridEX.EditType.NoEdit
-            GridEXSatr.CurrentTable.Columns.Item("TakhfifKala").Position = 10
-            GridEXSatr.CurrentTable.Columns.Item("TakhfifKala").FormatString = "###,###"
-            GridEXSatr.CurrentTable.Columns.Item("TakhfifKala").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            GridEXSatr.CurrentTable.Columns.Item("MablaghMaliatAvarez").EditType = Janus.Windows.GridEX.EditType.NoEdit
+            GridEXSatr.CurrentTable.Columns.Item("MablaghMaliatAvarez").Position = 11
+            GridEXSatr.CurrentTable.Columns.Item("MablaghMaliatAvarez").FormatString = "###,###"
+            GridEXSatr.CurrentTable.Columns.Item("MablaghMaliatAvarez").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
 
 
-            GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").Caption = "مالیات"
-            GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").Visible = True
-            GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").Width = 80
-            GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
-            GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").EditType = Janus.Windows.GridEX.EditType.NoEdit
-            GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").Position = 11
-            GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").FormatString = "###,###"
-            GridEXSatr.CurrentTable.Columns.Item("MablaghMalyat").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
-
-
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").Caption = "مبلغ نهایی"
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").Visible = True
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").Width = 130
-            GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").EditType = Janus.Windows.GridEX.EditType.NoEdit
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").Position = 12
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").FormatString = "###,###"
-            GridEXSatr.CurrentTable.Columns.Item("FeeKol").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            'GridEXSatr.CurrentTable.Columns.Item("FeeKol").Caption = "مبلغ نهایی"
+            'GridEXSatr.CurrentTable.Columns.Item("FeeKol").Visible = True
+            'GridEXSatr.CurrentTable.Columns.Item("FeeKol").Width = 130
+            'GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOff
+            'GridEXSatr.CurrentTable.Columns.Item("FeeKol").EditType = Janus.Windows.GridEX.EditType.NoEdit
+            'GridEXSatr.CurrentTable.Columns.Item("FeeKol").Position = 12
+            'GridEXSatr.CurrentTable.Columns.Item("FeeKol").FormatString = "###,###"
+            'GridEXSatr.CurrentTable.Columns.Item("FeeKol").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
 
             ' tblPishFaktorSatr.ShomarehBach , 
             'tblPishFaktorSatr.TarikhTolid , tblPishFaktorSatr.TarikhENgheza
@@ -670,13 +643,13 @@ Public Class frmFO_AddData
             GridEXSatr.CurrentTable.Columns.Item("ccKala").FormatString = "N"
             GridEXSatr.CurrentTable.Columns.Item("ccKala").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
 
-            GridEXSatr.CurrentTable.Columns.Item("ccPishFaktorSatr").Caption = "ccPishFaktorSatr"
-            GridEXSatr.CurrentTable.Columns.Item("ccPishFaktorSatr").Visible = False
-            GridEXSatr.CurrentTable.Columns.Item("ccPishFaktorSatr").Width = 0
+            GridEXSatr.CurrentTable.Columns.Item("ccMarjoeeSatr").Caption = "ccMarjoeeSatr"
+            GridEXSatr.CurrentTable.Columns.Item("ccMarjoeeSatr").Visible = False
+            GridEXSatr.CurrentTable.Columns.Item("ccMarjoeeSatr").Width = 0
             GridEXSatr.CurrentTable.Columns.GridEX.EditMode = Janus.Windows.GridEX.EditMode.EditOn
-            'GridEXSatr.CurrentTable.Columns.Item("ccPishFaktorSatr").Position = 13
-            GridEXSatr.CurrentTable.Columns.Item("ccPishFaktorSatr").FormatString = "N"
-            GridEXSatr.CurrentTable.Columns.Item("ccPishFaktorSatr").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
+            'GridEXSatr.CurrentTable.Columns.Item("ccMarjoeeSatr ").Position = 13
+            GridEXSatr.CurrentTable.Columns.Item("ccMarjoeeSatr").FormatString = "N"
+            GridEXSatr.CurrentTable.Columns.Item("ccMarjoeeSatr").TextAlignment = Janus.Windows.GridEX.TextAlignment.Center
 
         Catch sqlExc As SqlException
             MsgBox(sqlExc.Message, MsgBoxStyle.OkOnly, "Error in SetGridSatr")
@@ -694,11 +667,10 @@ Public Class frmFO_AddData
 
         Dim info As New ElamMarjoeeTitrInfo()
         If Not info.Load(ccElamMarjoee, ConnectionString) Then
-            MessageBox.Show("اطلاعات پیش‌فاکتور ذخیره‌شده پیدا نشد")
-
+            MessageBox.Show("اطلاعات اعلام مرجوعی ذخیره‌شده پیدا نشد")
+            Exit Sub
         End If
-        '' لود هدر ذخیره‌شده از دیتابیس و نمایش در فرم
-        'If Not LoadTitr(ccPishfaktorTitr) Then Exit Sub
+
 
         SearchSatr()
         btnSaveSanad.Enabled = False
@@ -714,7 +686,7 @@ Public Class frmFO_AddData
 
         Try
             If Not info.Load(id, ConnectionString) Then
-                MessageBox.Show("اطلاعات پیش‌فاکتور ذخیره‌شده پیدا نشد")
+                MessageBox.Show("اطلاعات  اعلام مرجوعی  ذخیره‌شده پیدا نشد")
                 Return False
             End If
         Catch ex As Exception
@@ -856,7 +828,7 @@ Public Class frmFO_AddData
                 cm.CommandText = "[Sales].[spMarjoeeVorodKoli_InsertTitr]"
                 cm.Parameters.AddWithValue("CodeMahal", CodeMahalFaal)
                 cm.Parameters.AddWithValue("CodeDoreh", CodeDoreh)
-                cm.Parameters.AddWithValue("TarikhElmMarjoee", mskTarikh.Text)
+                cm.Parameters.AddWithValue("TarikhElamMarjoee", mskTarikh.Text)
                 cm.Parameters.AddWithValue("ccFaktorTitr", ccFaktorTitr)
                 cm.Parameters.AddWithValue("ccMoshtary", txtCodeMoshtary.Tag)
                 cm.Parameters.AddWithValue("ccForoshandeh", cmbBazaryab.SelectedValue)
@@ -909,24 +881,28 @@ Public Class frmFO_AddData
 
             Dim info As New ElamMarjoeeTitrInfo()
             info.Load(ccElamMarjoee, ConnectionString)
-
+            ccFaktorTitr = info.ccFaktorTitr
 
             If GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
             If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then Exit Sub
-            If GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
+
             If GridEXSatr.CurrentColumn.Key = "CodeKala" Then
 
                 Dim objKala As New Forms_dll.frmAN_KalaSearch
                 Dim StrSqlKala As String
 
+                If ccFaktorTitr = 0 Then
+                    StrSqlKala = "Select  CodeKala,NameKala,ccKala,txtsVahedeShomaresh,sVahedeShomaresh,NameBrand,RadifBrand,0 as IsSabadKala "
+                    StrSqlKala &= " from qryAN_Kala"
+                    StrSqlKala &= " Where Faal = 1  AND ccKala in (Select ccKala from tblAN_KalaGheymat where ccKala =qryAN_Kala.ccKala )  "
+                End If
+
+                If ccFaktorTitr <> 0 Then
+
+                End If
 
 
-                StrSqlKala = "Select  CodeKala,NameKala,ccKala,txtsVahedeShomaresh,sVahedeShomaresh,NameBrand,RadifBrand,0 as IsSabadKala "
-                'StrSqlKala &= " ,(SELECT dbo.fnAN_GetMojodiDarHalForosh (" & info.ccAnbar & ", ccKala, " & CodeMahalFaal & "," & CodeDoreh & "," & TarikhEmrooz & ")) AS MojodiDarHalForosh, "
-                'StrSqlKala &= " (SELECT dbo.[GetMablaghFrosh_NoePardakht] (ccKala, " & info.PishFaktorTarikh & ", " & CodeMahalFaal & ", " & info.ccMoshtary & " , " & info.sNoeMoshtary & ", 3952)) as FeeForoshCheck ,"
-                'StrSqlKala &= " (SELECT dbo.[GetMablaghFrosh_NoePardakht] (ccKala," & info.PishFaktorTarikh & ", " & CodeMahalFaal & ", " & info.ccMoshtary & " , " & info.sNoeMoshtary & ", 3953)) as FeeForoshNaghd"
-                StrSqlKala &= " from qryAN_Kala"
-                StrSqlKala &= " Where Faal = 1  AND ccKala in (Select ccKala from tblAN_KalaGheymat where ccKala =qryAN_Kala.ccKala )  "
+
 
 
 
@@ -937,16 +913,10 @@ Public Class frmFO_AddData
                 objKala.ShowDialog()
 
                 FillRowWithKala(GridEXSatr.CurrentRow, objKala.tcodeKala, objKala.tccKala, objKala.tNameKala)
-                'GridEXSatr.CurrentRow.Cells("CodeKala").Value = objKala.tcodeKala
-                'GridEXSatr.CurrentRow.Cells("ccKala").Value = objKala.tccKala
-                'GridEXSatr.CurrentRow.Cells("NameKala").Value = objKala.tNameKala
-                'GridEXSatr.CurrentRow.Cells("Fee").Value = ObjCode.GetMablaghForosh_NoePardakht(objKala.tccKala, info.PishFaktorTarikh, CodeMahalFaal, info.ccMoshtary, info.sNoePardakht)
-                'GetMojodyGhabelForosh(objKala.tccKala, info.ccAnbar, MojodiGhabelForoshKOL)
-                'GridEXSatr.CurrentRow.Cells("MojodiDarHaleForosh").Value = MojodiGhabelForoshKOL
 
 
 
-                MultiSelection = False
+
 
 
             End If
@@ -987,75 +957,17 @@ Public Class frmFO_AddData
         GridEXSatr.Col = 0
         GridEXSatr.Focus()
     End Sub
-    'jayezeh
-    'Private Sub GridEXSatr_EditingCell(sender As Object, e As Janus.Windows.GridEX.EditingCellEventArgs) _
-    'Handles GridEXSatr.EditingCell
-    '    ' فقط ردیف جدید قابل ویرایشه
-    '    If GridEXSatr.CurrentRow IsNot Nothing AndAlso
-    '   GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then
-    '        e.Cancel = True
-    '    End If
-    'End Sub
-    ' جلوگیری از ویرایش DarsadTakhfif وقتی جایزه است
-    'jayezeh
-    'Private Sub GridEXSatr_EditingCell(ByVal sender As Object,
-    '    ByVal e As Janus.Windows.GridEX.EditingCellEventArgs) Handles GridEXSatr.EditingCell
 
-    '    If GridEXSatr.CurrentRow Is Nothing Then Exit Sub
-
-    '    ' ردیف‌های ذخیره‌شده قابل ویرایش نیستند
-    '    If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then
-    '        e.Cancel = True
-    '        Exit Sub
-    '    End If
-
-
-    '    Dim colKey As String = ""
-    '    If GridEXSatr.CurrentColumn IsNot Nothing Then colKey = GridEXSatr.CurrentColumn.Key
-
-    '    ' تیک جایزه وقتی تنظیمات اجازه نمی‌ده
-    '    If Not AllowPishFaktorTakhfifDasty AndAlso colKey = "IsJayezeh" Then
-    '        e.Cancel = True
-    '        Exit Sub
-    '    End If
-
-
-    '    ' درصد تخفیف وقتی تنظیمات اجازه نمی‌ده، یا ردیف جایزه است
-    '    If colKey = "DarsadTakhfif" Then
-    '        If Not AllowPishFaktorTakhfifDasty OrElse IsJayezehRow(GridEXSatr.CurrentRow) Then
-    '            e.Cancel = True
-    '        End If
-    '    End If
-    'End Sub
-    'jayezeh
     Private _oldTedad As Double = 0
     Private Sub GridEXSatr_EditingCell(ByVal sender As Object,
-      ByVal e As Janus.Windows.GridEX.EditingCellEventArgs) Handles GridEXSatr.EditingCell
+        ByVal e As Janus.Windows.GridEX.EditingCellEventArgs) Handles GridEXSatr.EditingCell
 
         If GridEXSatr.CurrentRow Is Nothing OrElse GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
-
         Dim colKey As String = GridEXSatr.CurrentColumn.Key
-        Dim isNewRow As Boolean = (GridEXSatr.CurrentRow.RowType = Janus.Windows.GridEX.RowType.NewRecord)
 
-        ' ردیف ذخیره‌شده: فقط تعداد، فی و درصد تخفیف قابل ویرایش است
-        If Not isNewRow Then
-            If colKey <> "Tedad3" AndAlso colKey <> "Fee" AndAlso colKey <> "DarsadTakhfif" Then
-                e.Cancel = True
-                Exit Sub
-            End If
-        End If
-
-        ' تیک جایزه وقتی تنظیمات اجازه نمی‌ده
-        If Not AllowPishFaktorTakhfifDasty AndAlso colKey = "IsJayezeh" Then
-            e.Cancel = True
-            Exit Sub
-        End If
-
-        ' درصد تخفیف وقتی تنظیمات اجازه نمی‌ده، یا ردیف جایزه است
-        If colKey = "DarsadTakhfif" Then
-            If Not AllowPishFaktorTakhfifDasty OrElse IsJayezehRow(GridEXSatr.CurrentRow) Then
-                e.Cancel = True
-            End If
+        If ccFaktorTitr <> 0 Then
+            ' فقط تعداد قابل ویرایش است
+            If colKey <> "Tedad3" Then e.Cancel = True
         End If
     End Sub
     Private Function IsRowEmpty(row As Janus.Windows.GridEX.GridEXRow) As Boolean
@@ -1431,10 +1343,10 @@ Public Class frmFO_AddData
         Dim row As Janus.Windows.GridEX.GridEXRow = GridEXSatr.CurrentRow
         If row Is Nothing OrElse row.RowType <> Janus.Windows.GridEX.RowType.Record Then Exit Sub
 
-        Dim id As Object = row.Cells("ccPishFaktorSatr").Value
+        Dim id As Object = row.Cells("ccMarjoeeSatr").Value
         If id Is Nothing OrElse IsDBNull(id) Then Exit Sub
 
-        If MessageBox.Show("این ردیف و ردیف‌های وابسته به آن حذف می‌شوند. ادامه می‌دهید؟",
+        If MessageBox.Show("آیا مایل به حذف ردیف هستید؟",
                        "حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                        MessageBoxDefaultButton.Button2,
                        MessageBoxOptions.RightAlign Or MessageBoxOptions.RtlReading) <> DialogResult.Yes Then
@@ -1445,8 +1357,8 @@ Public Class frmFO_AddData
             Using con As New SqlConnection(ConnectionString)
                 Using cmd As SqlCommand = con.CreateCommand()
                     cmd.CommandType = CommandType.StoredProcedure
-                    cmd.CommandText = "[Sales].[spPishFaktor_DeleteSatr]"
-                    cmd.Parameters.AddWithValue("@ccPishFaktorSatr", id)
+                    cmd.CommandText = "[Sales].[spMarjoee_DeleteSatr]"
+                    cmd.Parameters.AddWithValue("@ccMarjoeeSatr", id)
                     con.Open()
                     cmd.ExecuteNonQuery()
                 End Using
@@ -1695,5 +1607,6 @@ Public Class frmFO_AddData
             MsgBox(ex.Message, MsgBoxStyle.Critical + MsgBoxStyle.MsgBoxRight + MsgBoxStyle.MsgBoxRtlReading, " Error IN ---->txtCodeMoshtary_KeyPress")
         End Try
     End Sub
+
 End Class
 
