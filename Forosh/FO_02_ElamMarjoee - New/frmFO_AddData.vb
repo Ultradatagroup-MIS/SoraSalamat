@@ -705,8 +705,8 @@ Public Class frmFO_AddData
         Try
             With row
                 .Cells("ShomarehBach").Value = f.SelectedBach
-                .Cells("TarikhTolid").Value = f.SelectedTarikhTolid
-                .Cells("TarikhEngheza").Value = f.SelectedTarikhEngheza
+                .Cells("TarikhTolid").Value = Date8(f.SelectedTarikhTolid)
+                .Cells("TarikhEngheza").Value = Date8(f.SelectedTarikhEngheza)
                 .Cells("IRC").Value = f.SelectedIRC
                 .Cells("GTIN").Value = f.SelectedGTIN
                 .Cells("Fee").Value = If(f.SelectedIsJayezeh, 0, f.SelectedFee)
@@ -765,8 +765,8 @@ Public Class frmFO_AddData
                 row.Cells("TarikhEngheza").Value = DBNull.Value
             Else
                 Dim r As DataRow = dt.Rows(0)
-                row.Cells("TarikhTolid").Value = Convert.ToString(r("T"))
-                row.Cells("TarikhEngheza").Value = Convert.ToString(r("E"))
+                row.Cells("TarikhTolid").Value = Date8(r("T"))
+                row.Cells("TarikhEngheza").Value = Date8(r("E"))
                 row.Cells("IRC").Value = If(IsDBNull(r("IRC")), "", Convert.ToString(r("IRC")))
                 row.Cells("GTIN").Value = If(IsDBNull(r("GTIN")), "", Convert.ToString(r("GTIN")))
                 If Not IsBonusRow(row) Then row.Cells("Fee").Value = GetFeeNoFaktor(Convert.ToInt32(ccKalaObj))
@@ -874,8 +874,8 @@ Public Class frmFO_AddData
             _isCalculating = True
             Try
                 row.Cells("ShomarehBach").Value = objBach.tShomarehBach
-                row.Cells("TarikhTolid").Value = objBach.tTarikhTolid
-                row.Cells("TarikhEngheza").Value = objBach.tTarikhEngheza
+                row.Cells("TarikhTolid").Value = Date8(objBach.tTarikhTolid)
+                row.Cells("TarikhEngheza").Value = Date8(objBach.tTarikhEngheza)
                 row.Cells("IRC").Value = objBach.tiRC
                 row.Cells("GTIN").Value = objBach.tGTIN
                 If Not IsBonusRow(row) Then row.Cells("Fee").Value = GetFeeNoFaktor(CInt(ccKalaObj))
@@ -915,8 +915,8 @@ Public Class frmFO_AddData
                 Return False
             End If
         End If
-        If CellStr(row, "TarikhTolid") = "" OrElse CellStr(row, "TarikhEngheza") = "" Then
-            MessageBox.Show("تاریخ تولید و انقضا خالی است. بچ را از لیست انتخاب کنید.")
+        If Date8(row.Cells("TarikhTolid").Value) = "" OrElse Date8(row.Cells("TarikhEngheza").Value) = "" Then
+            MessageBox.Show("تاریخ تولید یا انقضا خالی یا نامعتبر است. بچ را از لیست انتخاب کنید.")
             FocusCol("ShomarehBach")
             Return False
         End If
@@ -948,6 +948,8 @@ Public Class frmFO_AddData
                 Return False
             End If
         End If
+
+
         Return True
     End Function
 
@@ -989,8 +991,8 @@ Public Class frmFO_AddData
                         cmd.Parameters.AddWithValue("@Tedad3", tedad)
                         cmd.Parameters.AddWithValue("@IsJayezeh", IsBonusRow(row))
                         cmd.Parameters.AddWithValue("@Fee", fee)
-                        cmd.Parameters.AddWithValue("@TarikhTolid", CellStr(row, "TarikhTolid"))
-                        cmd.Parameters.AddWithValue("@TarikhEngheza", CellStr(row, "TarikhEngheza"))
+                        cmd.Parameters.AddWithValue("@TarikhTolid", Date8(row.Cells("TarikhTolid").Value))
+                        cmd.Parameters.AddWithValue("@TarikhEngheza", Date8(row.Cells("TarikhEngheza").Value))
                         cmd.Parameters.AddWithValue("@ShomarehBach", CellStr(row, "ShomarehBach"))
                         cmd.Parameters.AddWithValue("@sElatMarjoee", CInt(elat))
                         cmd.Parameters.AddWithValue("@NoeMarjoee", CInt(noe))
@@ -1115,7 +1117,13 @@ Public Class frmFO_AddData
             MessageBox.Show(ex.Message)
         End Try
     End Sub
-
+    ' تاریخ را فقط ۸ رقم (بدون / و -) برمی‌گرداند. اگر ۸ رقم نبود "" برمی‌گرداند
+    Private Function Date8(ByVal v As Object) As String
+        If v Is Nothing OrElse IsDBNull(v) Then Return ""
+        Dim d As String = System.Text.RegularExpressions.Regex.Replace(Convert.ToString(v), "[^0-9]", "")
+        If d.Length = 8 Then Return d
+        Return ""
+    End Function
 
 #End Region
 
