@@ -201,6 +201,9 @@ Public Class frmFO_AddData
 #End Region
 
     End Class
+
+
+
     Private Sub frmFO_AddData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         mskTarikh.Text = TarikhEmrooz
         txtSearchNumber.Focus()
