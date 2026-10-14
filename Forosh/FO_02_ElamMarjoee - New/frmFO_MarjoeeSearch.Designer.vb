@@ -77,16 +77,16 @@ Partial Class frmFO_MarjoeeSearch
         Me.GridEXList.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
         Me.GridEXList.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
-        'frmFO_FaktorSearch
+        'frmFO_MarjoeeSearch
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1103, 610)
         Me.Controls.Add(Me.GridEXList)
         Me.MaximizeBox = False
-        Me.Name = "frmFO_FaktorSearch"
+        Me.Name = "frmFO_MarjoeeSearch"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Text = "انتخاب فاکتور"
+        Me.Text = "انتخاب مرجوعی"
         CType(Me.GridEXList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
