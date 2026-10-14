@@ -20,7 +20,7 @@ Public Class frmFO_AddData
     Private AllowChangeFeeMarjoee As Boolean = False
     Private IsMalyatAvarezTakhfif As Boolean = False
 
-    Private _lastElat As Integer = 0             ' آخرین علت/نوع انتخاب‌شده، برای سطر بعد پیشنهاد می‌شود
+    Private _lastElat As Integer = 0             ' آخرین علت/نوع انتخاب‌شده، برای سطر بعد پیشنهاد می‌شود1
     Private _lastNoe As Integer = 0
 #End Region
 
