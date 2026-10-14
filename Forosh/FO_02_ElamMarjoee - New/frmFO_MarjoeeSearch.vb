@@ -26,10 +26,6 @@ Public Class frmFO_MarjoeeSearch
 #Region "ساخت پنل فیلتر"
     Private Sub frmFO_MarjoeeSearch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            'BuildFilterUi()
-            'LoadForoshandeh()
-            'LoadList()
-            'GridEXList.Focus()
             LoadList()
             GridEXList.Dock = DockStyle.Fill
             GridEXList.BringToFront()
@@ -267,13 +263,7 @@ Public Class frmFO_MarjoeeSearch
                 cm.Parameters.AddWithValue("@ccForoshandeh", DBNull.Value)
                 cm.Parameters.AddWithValue("@AzTarikh", DBNull.Value)
                 cm.Parameters.AddWithValue("@TaTarikh", DBNull.Value)
-                cm.Parameters.AddWithValue("@sVazeiatList", 0)
-                'cm.Parameters.AddWithValue("@ShomarehElamMarjoee", If(txtShomareh.Text.Trim() = "", DBNull.Value, CObj(CInt(Val(txtShomareh.Text)))))
-                'cm.Parameters.AddWithValue("@ccMoshtary", If(_ccMoshtary > 0, CObj(_ccMoshtary), DBNull.Value))
-                'cm.Parameters.AddWithValue("@ccForoshandeh", If(Convert.ToInt32(cmbForoshandeh.SelectedValue) > 0, CObj(Convert.ToInt32(cmbForoshandeh.SelectedValue)), DBNull.Value))
-                'cm.Parameters.AddWithValue("@AzTarikh", DateOrNull(mskAz))
-                'cm.Parameters.AddWithValue("@TaTarikh", DateOrNull(mskTa))
-                'cm.Parameters.AddWithValue("@sVazeiatList", VazeiatList())
+                cm.Parameters.AddWithValue("@sVazeiatList", DBNull.Value)
                 Using da As New SqlDataAdapter(cm)
                     da.Fill(_dt)
                 End Using
