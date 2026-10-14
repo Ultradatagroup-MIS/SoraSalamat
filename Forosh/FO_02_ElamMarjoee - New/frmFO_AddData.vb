@@ -25,6 +25,7 @@ Public Class frmFO_AddData
 #End Region
 
 #Region "Load / Combo / Clear"
+
     Private Sub frmFO_AddData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             AllowMarjoeeWithoutFaktor = objTools.ConvertNulls(objTools.DLookup("AllowMarjoeeWithoutFaktor", "tblGL_SysConfig", "CodeMahal = " & CodeMahalFaal), False)
