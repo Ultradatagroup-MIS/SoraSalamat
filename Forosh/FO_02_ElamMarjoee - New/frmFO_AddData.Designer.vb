@@ -320,6 +320,7 @@ Partial Class frmFO_AddData
         Me.chkMalyat.TabIndex = 101
         Me.chkMalyat.Text = "شامل مالیات و عوارض"
         Me.chkMalyat.UseVisualStyleBackColor = True
+        Me.chkMalyat.Visible = False
         '
         'btnSaveSanad
         '
