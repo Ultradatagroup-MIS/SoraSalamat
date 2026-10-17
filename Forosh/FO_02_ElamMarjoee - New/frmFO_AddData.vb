@@ -100,6 +100,8 @@ Public Class frmFO_AddData
             txtShomarehFaktor.Text = ""
             txtShomarehFaktor.Tag = 0
             cmbBazaryab.SelectedIndex = -1
+            cmbBazaryab.SelectedIndex = -1
+            cmbMamorPakhsh.SelectedIndex = -1
             cmbMamorPakhsh.SelectedIndex = -1
             rbBargashtAzForosh.Checked = False
             rbBargashtAzTozi.Checked = False
@@ -128,7 +130,7 @@ Public Class frmFO_AddData
         dt_SearchSatr = New DataTable
         GridEXSatr.SetDataBinding(Nothing, "")
         GridEXSatr.Enabled = False
-        txtCodeMoshtary.Focus()
+        txtShomarehFaktor.Focus()
     End Sub
 
     Private Sub btnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
@@ -523,8 +525,8 @@ Public Class frmFO_AddData
             SetCol("NoeMarjoee", "نوع مرجوعی", 90, 10, True)
             SetCol("TarikhTolid", "تاریخ تولید", 85, 11, False)
             SetCol("TarikhEngheza", "تاریخ انقضا", 85, 12, False)
-            SetCol("IRC", "IRC", 100, 13, False)
-            SetCol("GTIN", "GTIN", 100, 14, False)
+            'SetCol("IRC", "IRC", 100, 13, False)
+            'SetCol("GTIN", "GTIN", 100, 14, False)
 
             ' ستون‌های کشویی
             Dim dtE As DataTable = dsForm.Tables("tblElatMarjoee")
