@@ -1186,12 +1186,12 @@ Public Class Form1
             Exit Sub
         End If
 
-        If e.KeyCode <> Keys.F2 AndAlso e.KeyCode <> Keys.F5 Then Exit Sub
+        If e.KeyCode <> Keys.F12 AndAlso e.KeyCode <> Keys.F5 Then Exit Sub
         If GridEXSatr.CurrentRow Is Nothing OrElse GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
         If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then Exit Sub
 
-        ' ---------- F2 : کالا ----------
-        'If e.KeyCode = Keys.F2 AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
+        ' ---------- F12 : کالا ----------
+        'If e.KeyCode = Keys.F12 AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
         '    Dim objKala As New Forms_dll.frmAN_KalaSearch
         '    Dim StrSqlKala As String = "Select CodeKala,NameKala,ccKala,txtsVahedeShomaresh,sVahedeShomaresh,NameBrand,Radif from qryAN_Kala Where Faal = 1"
         '    If ccResid > 0 Then
@@ -1206,8 +1206,8 @@ Public Class Form1
         '    e.Handled = True
         '    Exit Sub
         'End If
-        ' ---------- F2 : کالا ----------
-        If e.KeyCode = Keys.F2 AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
+        ' ---------- F12 : کالا ----------
+        If e.KeyCode = Keys.F12 AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
 
             If ccResid > 0 Then
                 ' مرجوعی با رسید: کالا + بچ از روی رسید
@@ -1255,7 +1255,7 @@ Public Class Form1
         'If e.KeyCode = Keys.F5 AndAlso GridEXSatr.CurrentColumn.Key = "ShomarehBatch" Then
         If e.KeyCode = Keys.F5 AndAlso GridEXSatr.CurrentColumn.Key = "ShomarehBatch" Then
 
-            ' با رسید، بچ فقط از سطر رسید (F2) می‌آید
+            ' با رسید، بچ فقط از سطر رسید (F12) می‌آید
             If ccResid > 0 Then
                 e.Handled = True
                 Exit Sub
