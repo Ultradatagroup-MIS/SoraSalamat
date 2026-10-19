@@ -994,7 +994,7 @@ Public Class frmFO_AddData
     End Sub
 
     Private Sub GridEXSatr_KeyDown(sender As Object, e As KeyEventArgs) Handles GridEXSatr.KeyDown
-        If e.KeyCode = Keys.F2 Then
+        If e.KeyCode = Keys.F12 Then
 
 
             Dim info As New PishFaktorTitrInfo()
@@ -1440,7 +1440,7 @@ Public Class frmFO_AddData
                 Dim cc As Integer = FindCcKala(typed)
 
                 If cc = 0 Then
-                    MessageBox.Show("کالایی با این کد پیدا نشد. برای جستجو F2 بزنید.")
+                    MessageBox.Show("کالایی با این کد پیدا نشد. برای جستجو F12 بزنید.")
                     _isCalculating = True
                     Try
                         row.Cells("CodeKala").Value = DBNull.Value
@@ -1716,7 +1716,7 @@ Public Class frmFO_AddData
             g.UpdateData()          ' ستون آخر: ذخیره‌ی سطر
         End If
     End Sub
-    ' ردیف را با کالای انتخاب‌شده پر می‌کند؛ هم F2 و هم تایپ از این استفاده می‌کنند
+    ' ردیف را با کالای انتخاب‌شده پر می‌کند؛ هم F12 و هم تایپ از این استفاده می‌کنند
     Private Sub FillRowWithKala(ByVal row As Janus.Windows.GridEX.GridEXRow,
         ByVal codeKala As Object, ByVal ccKala As Object, ByVal nameKala As Object)
 
