@@ -652,6 +652,13 @@
 
         Try
             Dim tedad3, price As Double
+            Dim tolidObj As Object = row.Cells("TarikhTolid").Value
+            Dim tolidParam As String
+            If tolidObj Is Nothing OrElse IsDBNull(tolidObj) OrElse tolidObj.ToString().Trim() = "" Then
+                tolidParam = DateTime.Now.ToString("yyyyMMdd", Globalization.CultureInfo.InvariantCulture)
+            Else
+                tolidParam = ToMiladi(tolidObj)
+            End If
             TryGetNumber(row, "Tedad3", tedad3)
             TryGetNumber(row, "MablaghKharid", price)
 
@@ -676,7 +683,7 @@
                     cmd.Parameters.AddWithValue("@Tedad3", tedad3)
                     cmd.Parameters.AddWithValue("@MablaghKharid", price)
                     cmd.Parameters.AddWithValue("@ShomarehBatch", ToDbStr(row.Cells("ShomarehBatch").Value))
-                    cmd.Parameters.AddWithValue("@TarikhTolid", ToMiladi(row.Cells("TarikhTolid").Value))
+                    cmd.Parameters.AddWithValue("@TarikhTolid", tolidParam)
                     cmd.Parameters.AddWithValue("@TarikhEngheza", ToMiladi(row.Cells("TarikhEngheza").Value))
                     cmd.Parameters.AddWithValue("@IRC", Convert.ToString(row.Cells("IRC").Value).Trim())
                     cmd.Parameters.AddWithValue("@GTIN", Convert.ToString(row.Cells("GTIN").Value).Trim())
@@ -746,10 +753,18 @@
 
         Dim tolid As String = "", engheza As String = ""
 
-        If Not TryToMiladi(row.Cells("TarikhTolid").Value, tolid) Then
-            MessageBox.Show("تاریخ تولید خالی یا نامعتبر است")
-            FocusCol("TarikhTolid")
-            Return False
+        Dim tolidVal As Object = row.Cells("TarikhTolid").Value
+        Dim tolidEmpty As Boolean = (tolidVal Is Nothing OrElse IsDBNull(tolidVal) OrElse tolidVal.ToString().Trim() = "")
+
+        If tolidEmpty Then
+            ' خالی است: تاریخ امروز (میلادی ۸ رقمی)
+            tolid = DateTime.Now.ToString("yyyyMMdd", Globalization.CultureInfo.InvariantCulture)
+        Else
+            If Not TryToMiladi(tolidVal, tolid) Then
+                MessageBox.Show("تاریخ تولید نامعتبر است")
+                FocusCol("TarikhTolid")
+                Return False
+            End If
         End If
 
         If Not TryToMiladi(row.Cells("TarikhEngheza").Value, engheza) Then
