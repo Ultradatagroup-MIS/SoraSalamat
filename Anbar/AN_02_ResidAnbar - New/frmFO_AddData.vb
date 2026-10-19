@@ -982,13 +982,13 @@ Handles GridEXSatr.EditingCell
         End Try
     End Sub
     Private Sub GridEXSatr_KeyDown(sender As Object, e As KeyEventArgs) Handles GridEXSatr.KeyDown
-        If e.KeyCode <> Keys.F2 AndAlso e.KeyCode <> Keys.F5 Then Exit Sub
+        If e.KeyCode <> Keys.F12 AndAlso e.KeyCode <> Keys.F5 Then Exit Sub
         If GridEXSatr.CurrentRow Is Nothing OrElse GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
         'If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then Exit Sub
         Dim rt = GridEXSatr.CurrentRow.RowType
         If rt <> Janus.Windows.GridEX.RowType.NewRecord AndAlso rt <> Janus.Windows.GridEX.RowType.Record Then Exit Sub
-        ' ---------- F2 : کالا ----------
-        If e.KeyCode = Keys.F2 AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
+        ' ---------- F12 : کالا ----------
+        If e.KeyCode = Keys.F12 AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
             If GridEXSatr.CurrentRow.RowType = Janus.Windows.GridEX.RowType.Record Then
                 e.Handled = True : Exit Sub
             End If
