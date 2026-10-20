@@ -306,11 +306,11 @@ Public Class frmFO_AddData
             cmbBazaryab.Focus()
             Return False
         End If
-        If cmbMamorPakhsh.SelectedIndex < 0 OrElse IsDBNull(cmbMamorPakhsh.SelectedValue) Then
-            MessageBox.Show("مامور پخش را انتخاب کنید")
-            cmbMamorPakhsh.Focus()
-            Return False
-        End If
+        'If cmbMamorPakhsh.SelectedIndex < 0 OrElse IsDBNull(cmbMamorPakhsh.SelectedValue) Then
+        '    MessageBox.Show("مامور پخش را انتخاب کنید")
+        '    cmbMamorPakhsh.Focus()
+        '    Return False
+        'End If
         Return True
     End Function
 
@@ -341,7 +341,7 @@ Public Class frmFO_AddData
                     cm.Parameters.AddWithValue("ccFaktorTitr", ccFaktorTitr)
                     cm.Parameters.AddWithValue("ccMoshtary", ccMoshtary)
                     cm.Parameters.AddWithValue("ccForoshandeh", cmbBazaryab.SelectedValue)
-                    cm.Parameters.AddWithValue("CodeFard_MamorPakhsh", cmbMamorPakhsh.SelectedValue)
+                    cm.Parameters.AddWithValue("CodeFard_MamorPakhsh", If(cmbMamorPakhsh.SelectedIndex = -1, DBNull.Value, cmbMamorPakhsh.SelectedValue))
                     cm.Parameters.AddWithValue("NoeMarjoeeFT", If(rbBargashtAzForosh.Checked, 1, 2))
                     cm.Parameters.AddWithValue("Tozihat", TxtSharh.Text.TrimEnd)
                     cm.Parameters.AddWithValue("UserName", UserName)
