@@ -97,12 +97,10 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.btnNew)
         Me.GroupBox1.Controls.Add(Me.btnSaveSanad)
         Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.GroupBox1.Location = New System.Drawing.Point(0, 4)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Location = New System.Drawing.Point(0, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.GroupBox1.Size = New System.Drawing.Size(1747, 241)
+        Me.GroupBox1.Size = New System.Drawing.Size(1321, 196)
         Me.GroupBox1.TabIndex = 137
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "ورودی اطلاعات اصلی"
@@ -112,67 +110,60 @@ Partial Class Form1
         Me.txtshomarehForm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtshomarehForm.Enabled = False
         Me.txtshomarehForm.ForeColor = System.Drawing.Color.Blue
-        Me.txtshomarehForm.Location = New System.Drawing.Point(1532, 71)
-        Me.txtshomarehForm.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtshomarehForm.Location = New System.Drawing.Point(1149, 58)
         Me.txtshomarehForm.Name = "txtshomarehForm"
-        Me.txtshomarehForm.Size = New System.Drawing.Size(86, 23)
+        Me.txtshomarehForm.Size = New System.Drawing.Size(65, 20)
         Me.txtshomarehForm.TabIndex = 165
         '
         'txtSearchT
         '
-        Me.txtSearchT.Location = New System.Drawing.Point(1345, 149)
-        Me.txtSearchT.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtSearchT.Location = New System.Drawing.Point(1009, 121)
         Me.txtSearchT.Name = "txtSearchT"
-        Me.txtSearchT.Size = New System.Drawing.Size(272, 23)
+        Me.txtSearchT.Size = New System.Drawing.Size(205, 20)
         Me.txtSearchT.TabIndex = 164
         '
         'Label19
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label19.Location = New System.Drawing.Point(196, 66)
-        Me.Label19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label19.Location = New System.Drawing.Point(147, 54)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(129, 16)
+        Me.Label19.Size = New System.Drawing.Size(107, 13)
         Me.Label19.TabIndex = 154
         Me.Label19.Text = "مبلغ برگشتی تخفیف:"
         '
         'txtBargashtTakhfif
         '
-        Me.txtBargashtTakhfif.Location = New System.Drawing.Point(72, 62)
-        Me.txtBargashtTakhfif.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtBargashtTakhfif.Location = New System.Drawing.Point(54, 50)
         Me.txtBargashtTakhfif.Name = "txtBargashtTakhfif"
-        Me.txtBargashtTakhfif.Size = New System.Drawing.Size(109, 23)
+        Me.txtBargashtTakhfif.Size = New System.Drawing.Size(83, 20)
         Me.txtBargashtTakhfif.TabIndex = 149
         '
         'Label15
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label15.Location = New System.Drawing.Point(500, 71)
-        Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label15.Location = New System.Drawing.Point(375, 58)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(120, 16)
+        Me.Label15.Size = New System.Drawing.Size(100, 13)
         Me.Label15.TabIndex = 152
         Me.Label15.Text = "مبلغ برگشتی جایزه:"
         '
         'txtBargashtJayezeh
         '
-        Me.txtBargashtJayezeh.Location = New System.Drawing.Point(372, 66)
-        Me.txtBargashtJayezeh.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtBargashtJayezeh.Location = New System.Drawing.Point(279, 54)
         Me.txtBargashtJayezeh.Name = "txtBargashtJayezeh"
-        Me.txtBargashtJayezeh.Size = New System.Drawing.Size(109, 23)
+        Me.txtBargashtJayezeh.Size = New System.Drawing.Size(83, 20)
         Me.txtBargashtJayezeh.TabIndex = 148
         '
         'mskTarikh
         '
-        Me.mskTarikh.Location = New System.Drawing.Point(1312, 73)
-        Me.mskTarikh.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.mskTarikh.Location = New System.Drawing.Point(984, 59)
         Me.mskTarikh.Mask = "####/##/##"
         Me.mskTarikh.Name = "mskTarikh"
         Me.mskTarikh.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
         Me.mskTarikh.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.mskTarikh.Size = New System.Drawing.Size(116, 23)
+        Me.mskTarikh.Size = New System.Drawing.Size(88, 20)
         Me.mskTarikh.TabIndex = 142
         Me.mskTarikh.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
@@ -180,39 +171,35 @@ Partial Class Form1
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label12.Location = New System.Drawing.Point(1651, 196)
-        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label12.Location = New System.Drawing.Point(1238, 159)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(61, 16)
+        Me.Label12.Size = New System.Drawing.Size(51, 13)
         Me.Label12.TabIndex = 155
         Me.Label12.Text = "توضیحات:"
         '
         'txtTozihat
         '
-        Me.txtTozihat.Location = New System.Drawing.Point(1105, 196)
-        Me.txtTozihat.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtTozihat.Location = New System.Drawing.Point(829, 159)
         Me.txtTozihat.Name = "txtTozihat"
-        Me.txtTozihat.Size = New System.Drawing.Size(513, 23)
+        Me.txtTozihat.Size = New System.Drawing.Size(386, 20)
         Me.txtTozihat.TabIndex = 151
         '
         'cmbMashinHaml
         '
         Me.cmbMashinHaml.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbMashinHaml.Location = New System.Drawing.Point(68, 22)
-        Me.cmbMashinHaml.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbMashinHaml.Location = New System.Drawing.Point(51, 18)
         Me.cmbMashinHaml.MaxDropDownItems = 20
         Me.cmbMashinHaml.Name = "cmbMashinHaml"
-        Me.cmbMashinHaml.Size = New System.Drawing.Size(289, 24)
+        Me.cmbMashinHaml.Size = New System.Drawing.Size(218, 20)
         Me.cmbMashinHaml.TabIndex = 145
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label2.Location = New System.Drawing.Point(372, 32)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Location = New System.Drawing.Point(279, 26)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(85, 16)
+        Me.Label2.Size = New System.Drawing.Size(71, 13)
         Me.Label2.TabIndex = 150
         Me.Label2.Text = " ماشین حمل:"
         '
@@ -220,10 +207,9 @@ Partial Class Form1
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label14.Location = New System.Drawing.Point(1625, 121)
-        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label14.Location = New System.Drawing.Point(1219, 98)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(95, 16)
+        Me.Label14.Size = New System.Drawing.Size(78, 13)
         Me.Label14.TabIndex = 153
         Me.Label14.Text = "نام تامین کننده:"
         '
@@ -232,11 +218,10 @@ Partial Class Form1
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Tahoma", 7.8!)
         Me.Label13.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label13.Location = New System.Drawing.Point(1636, 74)
-        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label13.Location = New System.Drawing.Point(1227, 60)
         Me.Label13.Name = "Label13"
         Me.Label13.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Label13.Size = New System.Drawing.Size(70, 16)
+        Me.Label13.Size = New System.Drawing.Size(61, 13)
         Me.Label13.TabIndex = 141
         Me.Label13.Text = "شماره فرم:"
         Me.Label13.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -245,10 +230,9 @@ Partial Class Form1
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label4.Location = New System.Drawing.Point(1336, 28)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Location = New System.Drawing.Point(1002, 23)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(53, 16)
+        Me.Label4.Size = New System.Drawing.Size(44, 13)
         Me.Label4.TabIndex = 146
         Me.Label4.Text = "نام انبار:"
         '
@@ -256,31 +240,28 @@ Partial Class Form1
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label3.Location = New System.Drawing.Point(1437, 76)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Location = New System.Drawing.Point(1078, 62)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(60, 16)
+        Me.Label3.Size = New System.Drawing.Size(52, 13)
         Me.Label3.TabIndex = 144
         Me.Label3.Text = "تاریخ فرم:"
         '
         'cmbAnbar
         '
         Me.cmbAnbar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbAnbar.Location = New System.Drawing.Point(1003, 22)
-        Me.cmbAnbar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbAnbar.Location = New System.Drawing.Point(752, 18)
         Me.cmbAnbar.MaxDropDownItems = 20
         Me.cmbAnbar.Name = "cmbAnbar"
-        Me.cmbAnbar.Size = New System.Drawing.Size(328, 24)
+        Me.cmbAnbar.Size = New System.Drawing.Size(247, 20)
         Me.cmbAnbar.TabIndex = 143
         '
         'cmbTaminKonandeh
         '
         Me.cmbTaminKonandeh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbTaminKonandeh.Location = New System.Drawing.Point(1339, 116)
-        Me.cmbTaminKonandeh.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbTaminKonandeh.Location = New System.Drawing.Point(1004, 94)
         Me.cmbTaminKonandeh.MaxDropDownItems = 20
         Me.cmbTaminKonandeh.Name = "cmbTaminKonandeh"
-        Me.cmbTaminKonandeh.Size = New System.Drawing.Size(279, 24)
+        Me.cmbTaminKonandeh.Size = New System.Drawing.Size(210, 20)
         Me.cmbTaminKonandeh.TabIndex = 147
         '
         'Label20
@@ -288,60 +269,54 @@ Partial Class Form1
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Tahoma", 7.8!)
         Me.Label20.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label20.Location = New System.Drawing.Point(1199, 76)
-        Me.Label20.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label20.Location = New System.Drawing.Point(899, 62)
         Me.Label20.Name = "Label20"
         Me.Label20.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Label20.Size = New System.Drawing.Size(82, 16)
+        Me.Label20.Size = New System.Drawing.Size(69, 13)
         Me.Label20.TabIndex = 156
         Me.Label20.Text = "شماره رسید:"
         Me.Label20.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'txtShomarehResid
         '
-        Me.txtShomarehResid.Location = New System.Drawing.Point(1035, 74)
-        Me.txtShomarehResid.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtShomarehResid.Location = New System.Drawing.Point(776, 60)
         Me.txtShomarehResid.MaxLength = 10
         Me.txtShomarehResid.Name = "txtShomarehResid"
-        Me.txtShomarehResid.Size = New System.Drawing.Size(155, 23)
+        Me.txtShomarehResid.Size = New System.Drawing.Size(117, 20)
         Me.txtShomarehResid.TabIndex = 158
         '
         'Label39
         '
         Me.Label39.AutoSize = True
         Me.Label39.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label39.Location = New System.Drawing.Point(501, 105)
-        Me.Label39.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label39.Location = New System.Drawing.Point(376, 85)
         Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(131, 16)
+        Me.Label39.Size = New System.Drawing.Size(108, 13)
         Me.Label39.TabIndex = 160
         Me.Label39.Text = "مبلغ برگشتی مالیات :"
         '
         'txtmalyat
         '
-        Me.txtmalyat.Location = New System.Drawing.Point(372, 100)
-        Me.txtmalyat.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtmalyat.Location = New System.Drawing.Point(279, 81)
         Me.txtmalyat.Name = "txtmalyat"
-        Me.txtmalyat.Size = New System.Drawing.Size(109, 23)
+        Me.txtmalyat.Size = New System.Drawing.Size(83, 20)
         Me.txtmalyat.TabIndex = 159
         '
         'Label22
         '
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label22.Location = New System.Drawing.Point(197, 102)
-        Me.Label22.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label22.Location = New System.Drawing.Point(148, 83)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(123, 16)
+        Me.Label22.Size = New System.Drawing.Size(104, 13)
         Me.Label22.TabIndex = 162
         Me.Label22.Text = "مبلغ برگشت عوارض:"
         '
         'txtAvarez
         '
-        Me.txtAvarez.Location = New System.Drawing.Point(76, 96)
-        Me.txtAvarez.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtAvarez.Location = New System.Drawing.Point(57, 78)
         Me.txtAvarez.Name = "txtAvarez"
-        Me.txtAvarez.Size = New System.Drawing.Size(105, 23)
+        Me.txtAvarez.Size = New System.Drawing.Size(80, 20)
         Me.txtAvarez.TabIndex = 161
         '
         'ChkApplyMalyat
@@ -350,31 +325,31 @@ Partial Class Form1
         Me.ChkApplyMalyat.Checked = True
         Me.ChkApplyMalyat.CheckState = System.Windows.Forms.CheckState.Checked
         Me.ChkApplyMalyat.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.ChkApplyMalyat.Location = New System.Drawing.Point(685, 96)
-        Me.ChkApplyMalyat.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ChkApplyMalyat.Location = New System.Drawing.Point(514, 78)
         Me.ChkApplyMalyat.Name = "ChkApplyMalyat"
-        Me.ChkApplyMalyat.Size = New System.Drawing.Size(161, 20)
+        Me.ChkApplyMalyat.Size = New System.Drawing.Size(137, 17)
         Me.ChkApplyMalyat.TabIndex = 163
         Me.ChkApplyMalyat.Text = "مشمول مالیات و عوارض"
         Me.ChkApplyMalyat.UseVisualStyleBackColor = True
         '
         'txtSearchNumber
         '
-        Me.txtSearchNumber.Location = New System.Drawing.Point(1543, 23)
-        Me.txtSearchNumber.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtSearchNumber.Location = New System.Drawing.Point(1157, 19)
+        Me.txtSearchNumber.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.txtSearchNumber.MaxLength = 5
         Me.txtSearchNumber.Name = "txtSearchNumber"
         Me.txtSearchNumber.ReadOnly = True
-        Me.txtSearchNumber.Size = New System.Drawing.Size(111, 23)
+        Me.txtSearchNumber.Size = New System.Drawing.Size(84, 20)
         Me.txtSearchNumber.TabIndex = 140
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.Label5.Location = New System.Drawing.Point(1660, 28)
+        Me.Label5.Location = New System.Drawing.Point(1245, 23)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(55, 16)
+        Me.Label5.Size = New System.Drawing.Size(46, 13)
         Me.Label5.TabIndex = 139
         Me.Label5.Text = "جستجو:"
         '
@@ -384,10 +359,10 @@ Partial Class Form1
         Me.btnNew.AccessibleName = ""
         Me.btnNew.BackColor = System.Drawing.Color.MediumOrchid
         Me.btnNew.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.btnNew.Location = New System.Drawing.Point(41, 138)
-        Me.btnNew.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnNew.Location = New System.Drawing.Point(31, 112)
+        Me.btnNew.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnNew.Name = "btnNew"
-        Me.btnNew.Size = New System.Drawing.Size(347, 94)
+        Me.btnNew.Size = New System.Drawing.Size(260, 76)
         Me.btnNew.TabIndex = 138
         Me.btnNew.Text = "اتمام کار / خالی کردن صفحه"
         Me.btnNew.UseVisualStyleBackColor = False
@@ -399,10 +374,10 @@ Partial Class Form1
         Me.btnSaveSanad.BackColor = System.Drawing.Color.MediumOrchid
         Me.btnSaveSanad.Font = New System.Drawing.Font("Tahoma", 7.8!)
         Me.btnSaveSanad.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.btnSaveSanad.Location = New System.Drawing.Point(593, 138)
-        Me.btnSaveSanad.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnSaveSanad.Location = New System.Drawing.Point(445, 112)
+        Me.btnSaveSanad.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnSaveSanad.Name = "btnSaveSanad"
-        Me.btnSaveSanad.Size = New System.Drawing.Size(353, 94)
+        Me.btnSaveSanad.Size = New System.Drawing.Size(265, 76)
         Me.btnSaveSanad.TabIndex = 136
         Me.btnSaveSanad.Text = "&ذخيره"
         Me.btnSaveSanad.UseVisualStyleBackColor = False
@@ -411,12 +386,10 @@ Partial Class Form1
         '
         Me.GroupBox2.Controls.Add(Me.GridEXSatr)
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 7.8!)
-        Me.GroupBox2.Location = New System.Drawing.Point(0, 242)
-        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox2.Location = New System.Drawing.Point(0, 197)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.GroupBox2.Size = New System.Drawing.Size(1747, 517)
+        Me.GroupBox2.Size = New System.Drawing.Size(1321, 420)
         Me.GroupBox2.TabIndex = 138
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "ورود اطلاعات کالا"
@@ -453,26 +426,25 @@ Partial Class Form1
         GridEXSatr_Layout_4.Key = "Layout5"
         GridEXSatr_Layout_5.Key = "Layout6"
         Me.GridEXSatr.Layouts.AddRange(New Janus.Windows.GridEX.GridEXLayout() {GridEXSatr_Layout_0, GridEXSatr_Layout_1, GridEXSatr_Layout_2, GridEXSatr_Layout_3, GridEXSatr_Layout_4, GridEXSatr_Layout_5})
-        Me.GridEXSatr.Location = New System.Drawing.Point(4, 20)
-        Me.GridEXSatr.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GridEXSatr.Location = New System.Drawing.Point(3, 16)
+        Me.GridEXSatr.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.GridEXSatr.Name = "GridEXSatr"
         Me.GridEXSatr.NewRowPosition = Janus.Windows.GridEX.NewRowPosition.BottomRow
         Me.GridEXSatr.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Blue
         Me.GridEXSatr.RecordNavigator = True
         Me.GridEXSatr.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.[True]
-        Me.GridEXSatr.Size = New System.Drawing.Size(1739, 493)
+        Me.GridEXSatr.Size = New System.Drawing.Size(1315, 401)
         Me.GridEXSatr.TabIndex = 101
         Me.GridEXSatr.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
         Me.GridEXSatr.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1747, 789)
+        Me.ClientSize = New System.Drawing.Size(1320, 609)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.Text = "ورود اطلاعات"

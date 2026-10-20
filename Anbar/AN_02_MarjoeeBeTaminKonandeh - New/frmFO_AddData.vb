@@ -59,7 +59,11 @@ Public Class Form1
             Dim daSQL As SqlDataAdapter
 
             ' ---------------- تامین‌کننده ----------------
-            Strsql = "Select NameTaminKonandeh,ccTaminKonandeh From tblFO_TaminKonandeh where Faal=1 AND CodeTafsily1 in (select codetafsily from tblHE_CodeTafsily where codemahal = " & CodeMahalFaal & ")"
+            'Strsql = "Select NameTaminKonandeh,ccTaminKonandeh From tblFO_TaminKonandeh where Faal=1 AND CodeTafsily1 in (select codetafsily from tblHE_CodeTafsily where codemahal = " & CodeMahalFaal & ")"
+            'Strsql &= " AND Not exists (Select * From tblGL_SecurityData where namekarbar= '" & UserName & "' and CodeSubSystem = 654 and pk = tblFO_TaminKonandeh.ccTaminKonandeh) order by ccTaminKonandeh"
+            Strsql = "Select NameTaminKonandeh, ccTaminKonandeh, " &
+            "REPLACE(REPLACE(REPLACE(NameTaminKonandeh, NCHAR(1610), NCHAR(1740)), NCHAR(1603), NCHAR(1705)), NCHAR(1609), NCHAR(1740)) AS NameNorm " &
+            "From tblFO_TaminKonandeh where Faal=1 AND CodeTafsily1 in (select codetafsily from tblHE_CodeTafsily where codemahal = " & CodeMahalFaal & ")"
             Strsql &= " AND Not exists (Select * From tblGL_SecurityData where namekarbar= '" & UserName & "' and CodeSubSystem = 654 and pk = tblFO_TaminKonandeh.ccTaminKonandeh) order by ccTaminKonandeh"
             daSQL = New SqlDataAdapter(Strsql, ConnectionString)
             daSQL.Fill(dsForm, "tblTaminKonandeh")
@@ -241,10 +245,18 @@ Public Class Form1
 
     Private Sub txtSearchT_TextChanged(sender As Object, e As EventArgs) Handles txtSearchT.TextChanged
         If dsForm.Tables.Contains("tblTaminKonandeh") Then
+
             If cmbTaminKonandeh.DataSource Is dsForm.Tables("tblTaminKonandeh").DefaultView Then
+                Dim txt As String = txtSearchT.Text.Trim() _
+                    .Replace(ChrW(&H64A), ChrW(&H6CC)) _
+                    .Replace(ChrW(&H649), ChrW(&H6CC)) _
+                    .Replace(ChrW(&H643), ChrW(&H6A9)) _
+                    .Replace("'", "''")
+
                 Me.dsForm.Tables("tblTaminKonandeh").DefaultView.Sort = "ccTaminKonandeh"
-                Me.dsForm.Tables("tblTaminKonandeh").DefaultView.RowFilter = "NameTaminKonandeh Like  '%" & txtSearchT.Text.TrimEnd & "%'"
+                Me.dsForm.Tables("tblTaminKonandeh").DefaultView.RowFilter = "NameNorm Like '%" & txt & "%'"
             End If
+
         End If
         If txtSearchT.Text = "" Then
             cmbTaminKonandeh.SelectedIndex = -1
