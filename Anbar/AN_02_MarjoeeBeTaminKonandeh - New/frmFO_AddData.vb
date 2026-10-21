@@ -1203,7 +1203,7 @@ Public Class Form1
         If GridEXSatr.CurrentRow Is Nothing OrElse GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
         If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then Exit Sub
 
-        ' ---------- F12 : کالا ----------
+        ' ---------- F12 : کالا -----------
         'If e.KeyCode = Keys.F12 AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
         '    Dim objKala As New Forms_dll.frmAN_KalaSearch
         '    Dim StrSqlKala As String = "Select CodeKala,NameKala,ccKala,txtsVahedeShomaresh,sVahedeShomaresh,NameBrand,Radif from qryAN_Kala Where Faal = 1"
