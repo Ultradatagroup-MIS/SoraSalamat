@@ -1018,13 +1018,14 @@ Handles GridEXSatr.EditingCell
         End Try
     End Sub
     Private Sub GridEXSatr_KeyDown(sender As Object, e As KeyEventArgs) Handles GridEXSatr.KeyDown
-        If e.KeyCode <> Keys.F12 AndAlso e.KeyCode <> Keys.F5 Then Exit Sub
+        'If e.KeyCode <> Keys.F12 AndAlso e.KeyCode <> Keys.F5 Then Exit Sub
+        If e.KeyCode <> Keys.Space Then Exit Sub
         If GridEXSatr.CurrentRow Is Nothing OrElse GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
         'If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then Exit Sub
         Dim rt = GridEXSatr.CurrentRow.RowType
         If rt <> Janus.Windows.GridEX.RowType.NewRecord AndAlso rt <> Janus.Windows.GridEX.RowType.Record Then Exit Sub
         ' ---------- F12 : کالا ----------
-        If e.KeyCode = Keys.F12 AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
+        If e.KeyCode = Keys.Space AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
             If GridEXSatr.CurrentRow.RowType = Janus.Windows.GridEX.RowType.Record Then
                 e.Handled = True : Exit Sub
             End If
@@ -1056,7 +1057,7 @@ Handles GridEXSatr.EditingCell
         End If
 
         ' ---------- F5 : شماره بچ ----------
-        If e.KeyCode = Keys.F5 AndAlso GridEXSatr.CurrentColumn.Key = "ShomarehBatch" Then
+        If e.KeyCode = Keys.Space AndAlso GridEXSatr.CurrentColumn.Key = "ShomarehBatch" Then
             Dim ccKalaObj As Object = GridEXSatr.CurrentRow.Cells("ccKala").Value
             If ccKalaObj Is Nothing OrElse IsDBNull(ccKalaObj) OrElse Val(ccKalaObj) = 0 Then
                 MessageBox.Show("ابتدا کالا را انتخاب کنید")

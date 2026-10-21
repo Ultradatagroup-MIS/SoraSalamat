@@ -1198,7 +1198,8 @@ Public Class Form1
             Exit Sub
         End If
 
-        If e.KeyCode <> Keys.F12 AndAlso e.KeyCode <> Keys.F5 Then Exit Sub
+        'If e.KeyCode <> Keys.F12 AndAlso e.KeyCode <> Keys.F5 Then Exit Sub
+        If e.KeyCode <> Keys.Space Then Exit Sub
         If GridEXSatr.CurrentRow Is Nothing OrElse GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
         If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then Exit Sub
 
@@ -1219,7 +1220,7 @@ Public Class Form1
         '    Exit Sub
         'End If
         ' ---------- F12 : کالا ----------
-        If e.KeyCode = Keys.F12 AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
+        If e.KeyCode = Keys.Space AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
 
             If ccResid > 0 Then
                 ' مرجوعی با رسید: کالا + بچ از روی رسید
@@ -1265,7 +1266,7 @@ Public Class Form1
 
         ' ---------- F5 : شماره بچ ----------
         'If e.KeyCode = Keys.F5 AndAlso GridEXSatr.CurrentColumn.Key = "ShomarehBatch" Then
-        If e.KeyCode = Keys.F5 AndAlso GridEXSatr.CurrentColumn.Key = "ShomarehBatch" Then
+        If e.KeyCode = Keys.Space AndAlso GridEXSatr.CurrentColumn.Key = "ShomarehBatch" Then
 
             ' با رسید، بچ فقط از سطر رسید (F12) می‌آید
             If ccResid > 0 Then

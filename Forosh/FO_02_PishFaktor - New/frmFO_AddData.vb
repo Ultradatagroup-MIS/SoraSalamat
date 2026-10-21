@@ -994,7 +994,8 @@ Public Class frmFO_AddData
     End Sub
 
     Private Sub GridEXSatr_KeyDown(sender As Object, e As KeyEventArgs) Handles GridEXSatr.KeyDown
-        If e.KeyCode = Keys.F12 Then
+        If e.KeyCode <> Keys.Space Then Exit Sub
+        If e.KeyCode = Keys.Space Then
 
 
             Dim info As New PishFaktorTitrInfo()

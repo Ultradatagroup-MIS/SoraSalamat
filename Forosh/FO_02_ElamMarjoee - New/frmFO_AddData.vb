@@ -819,13 +819,14 @@ Public Class frmFO_AddData
 
 #Region "گرید: F12 / F5"
     Private Sub GridEXSatr_KeyDown(sender As Object, e As KeyEventArgs) Handles GridEXSatr.KeyDown
-        If e.KeyCode <> Keys.F12 AndAlso e.KeyCode <> Keys.F5 Then Exit Sub
+        'If e.KeyCode <> Keys.F12 AndAlso e.KeyCode <> Keys.F5 Then Exit Sub
+        If e.KeyCode <> Keys.Space Then Exit Sub
         If _locked Then Exit Sub
         If GridEXSatr.CurrentRow Is Nothing OrElse GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
         If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then Exit Sub
 
         ' ---------- F12 : کالا ----------
-        If e.KeyCode = Keys.F12 AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
+        If e.KeyCode = Keys.Space AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
             If ccFaktorTitr <> 0 Then
                 Dim f As New frmFO_KalaSearch_Faktor(ConnectionString, ccFaktorTitr)
                 If f.ShowDialog() <> DialogResult.OK OrElse f.SelectedCcKala = 0 Then Exit Sub
@@ -849,7 +850,7 @@ Public Class frmFO_AddData
         End If
 
         ' ---------- F5 : شماره بچ (فقط بدون فاکتور) ----------
-        If e.KeyCode = Keys.F5 AndAlso GridEXSatr.CurrentColumn.Key = "ShomarehBach" Then
+        If e.KeyCode = Keys.Space AndAlso GridEXSatr.CurrentColumn.Key = "ShomarehBach" Then
             If ccFaktorTitr <> 0 Then
                 e.Handled = True
                 Exit Sub
