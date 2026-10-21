@@ -829,7 +829,7 @@ Public Class frmFO_AddData
 
         End If
         '' لود هدر ذخیره‌شده از دیتابیس و نمایش در فرم
-        'If Not LoadTitr(ccPishfaktorTitr) Then Exit Sub
+        'If Not LoadTitr(ccPishfaktorTitr) Then Exit Sub 
 
         SearchSatr()
         btnSaveSanad.Enabled = False
