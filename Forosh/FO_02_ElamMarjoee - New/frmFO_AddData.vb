@@ -825,7 +825,7 @@ Public Class frmFO_AddData
         If GridEXSatr.CurrentRow Is Nothing OrElse GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
         If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then Exit Sub
 
-        ' ---------- F12 : کالا ----------
+        ' ---------- F12 : کالا -----------
         If e.KeyCode = Keys.Space AndAlso GridEXSatr.CurrentColumn.Key = "CodeKala" Then
             If ccFaktorTitr <> 0 Then
                 Dim f As New frmFO_KalaSearch_Faktor(ConnectionString, ccFaktorTitr)
