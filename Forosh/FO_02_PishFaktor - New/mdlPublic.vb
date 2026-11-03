@@ -98,34 +98,7 @@ Module mdlPublic
 
 
     '-------------------------------
-    Public Sub GetMojodyDarHalForosh_Bach(ByVal ccKala As Long, ByVal ccAnbar As Integer, ByRef TedadPishFaktor As Double, ByRef MojodiFely As Double, ByRef MojodiGhabelForosh As Double, ByVal ShomarehBach As String)
 
-
-        Dim strSqL As String = ""
-        Dim cmSQL As SqlCommand
-        Dim cnSQL As SqlConnection
-
-        Try
-
-            cnSQL = New SqlConnection(ConnectionString)
-
-            strSqL = " SELECT [dbo].[fnAN_GetMojodiDarHalForosh_bach] (" & ccAnbar & ", " & ccKala & ", " & CodeMahalFaal & ", " & CodeDoreh & ", " & TarikhEmrooz & ",replace('" & ShomarehBach & "',' ','')) "
-
-            cmSQL = New SqlCommand(strSqL, cnSQL)
-            cnSQL.Open()
-
-            MojodiGhabelForosh = cmSQL.ExecuteScalar
-
-
-            cnSQL.Close() : cnSQL = Nothing
-
-
-        Catch ex As Exception
-
-
-            MessageBox.Show(ex.Message)
-        End Try
-    End Sub
 
     Public Sub GetMojodyGhabelForosh(ByVal ccKala As Long, ByVal ccAnbar As Integer, ByRef MojodiGhabelForoshkol As Double)
 
@@ -161,9 +134,8 @@ Module mdlPublic
         Dim strSqL As String = ""
         Dim cmSQL As SqlCommand
         Dim cnSQL As SqlConnection
-        Dim CodeMahalTehran As Integer
 
-        CodeMahalTehran = 46
+
 
 
         Try

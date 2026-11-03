@@ -993,63 +993,168 @@ Public Class frmFO_AddData
         SetGridSatr()
     End Sub
 
+    'Private Sub GridEXSatr_KeyDown(sender As Object, e As KeyEventArgs) Handles GridEXSatr.KeyDown
+    '    If e.KeyCode <> Keys.Space Then Exit Sub
+    '    If e.KeyCode = Keys.Space Then
+
+
+    '        Dim info As New PishFaktorTitrInfo()
+    '        info.Load(ccPishfaktorTitr, ConnectionString)
+
+
+    '        If GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
+    '        If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then Exit Sub
+    '        If GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
+    '        If GridEXSatr.CurrentColumn.Key = "CodeKala" Then
+
+    '            Dim objKala As New Forms_dll.frmAN_KalaSearch
+    '            Dim StrSqlKala As String
+
+
+
+    '            StrSqlKala = "Select  CodeKala,NameKala,ccKala,txtsVahedeShomaresh,sVahedeShomaresh,NameBrand,RadifBrand,0 as IsSabadKala "
+    '            StrSqlKala &= " ,(SELECT dbo.fnAN_GetMojodiDarHalForosh (" & info.ccAnbar & ", ccKala, " & CodeMahalFaal & "," & CodeDoreh & "," & TarikhEmrooz & ")) AS MojodiDarHalForosh, "
+    '            StrSqlKala &= " (SELECT dbo.[GetMablaghFrosh_NoePardakht] (ccKala, " & info.PishFaktorTarikh & ", " & CodeMahalFaal & ", " & info.ccMoshtary & " , " & info.sNoeMoshtary & ", 3952)) as FeeForoshCheck ,"
+    '            StrSqlKala &= " (SELECT dbo.[GetMablaghFrosh_NoePardakht] (ccKala," & info.PishFaktorTarikh & ", " & CodeMahalFaal & ", " & info.ccMoshtary & " , " & info.sNoeMoshtary & ", 3953)) as FeeForoshNaghd"
+    '            StrSqlKala &= " from qryAN_Kala"
+    '            StrSqlKala &= " Where Faal = 1  AND ccKala in (Select ccKala from tblAN_KalaGheymat where ccKala =qryAN_Kala.ccKala )  "
+
+
+
+
+    '            MultiSelection = False
+    '            SearchItem = "CodeKala"
+    '            objKala.SetForm(StrSqlKala)
+    '            objKala.ShowDialog()
+
+    '            FillRowWithKala(GridEXSatr.CurrentRow, objKala.tcodeKala, objKala.tccKala, objKala.tNameKala)
+
+
+
+
+    '            MultiSelection = False
+
+
+    '        End If
+
+    '    End If
+
+
+    'End Sub
+    ' حذف / و فاصله برای مقایسه‌ی امن تاریخ
+    Private Function NormDate(ByVal v As Object) As String
+        If v Is Nothing OrElse IsDBNull(v) Then Return ""
+        Return Convert.ToString(v).Replace("/", "").Replace("-", "").Trim()
+    End Function
     Private Sub GridEXSatr_KeyDown(sender As Object, e As KeyEventArgs) Handles GridEXSatr.KeyDown
         If e.KeyCode <> Keys.Space Then Exit Sub
-        If e.KeyCode = Keys.Space Then
 
+        Dim row As Janus.Windows.GridEX.GridEXRow = GridEXSatr.CurrentRow
+        If row Is Nothing OrElse GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
 
-            Dim info As New PishFaktorTitrInfo()
-            info.Load(ccPishfaktorTitr, ConnectionString)
+        Dim colKey As String = GridEXSatr.CurrentColumn.Key
 
+        ' ردیف جدید + ستون کد کالا: انتخاب کالا
+        If row.RowType = Janus.Windows.GridEX.RowType.NewRecord AndAlso colKey = "CodeKala" Then
+            e.Handled = True
+            e.SuppressKeyPress = True
+            PickKala(row)
 
-            If GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
-            If GridEXSatr.CurrentRow.RowType <> Janus.Windows.GridEX.RowType.NewRecord Then Exit Sub
-            If GridEXSatr.CurrentColumn Is Nothing Then Exit Sub
-            If GridEXSatr.CurrentColumn.Key = "CodeKala" Then
+            ' ردیف ذخیره‌شده + ستون بچ: تغییر بچ
+        ElseIf row.RowType = Janus.Windows.GridEX.RowType.Record AndAlso colKey = "ShomarehBach" Then
+            e.Handled = True
+            e.SuppressKeyPress = True
+            ChangeBatch(row)
+        End If
+    End Sub
+    Private Sub ChangeBatch(ByVal row As Janus.Windows.GridEX.GridEXRow)
+        Dim idSatr As Object = row.Cells("ccPishFaktorSatr").Value
+        If idSatr Is Nothing OrElse IsDBNull(idSatr) Then Exit Sub
 
-                Dim objKala As New Forms_dll.frmAN_KalaSearch
-                Dim StrSqlKala As String
+        Dim ccKala As Object = row.Cells("ccKala").Value
+        If ccKala Is Nothing OrElse IsDBNull(ccKala) Then Exit Sub
 
+        Dim info As New PishFaktorTitrInfo()
+        If Not info.Load(ccPishfaktorTitr, ConnectionString) Then Exit Sub
 
+        Dim objBach As New Forms_dll.ShomarehBachSearch
+        Dim StrSql As String
+        StrSql = "Select ShomarehBach,TarikhTolidSlash,TarikhEnghezaSlash,ccShomarehBach, "
+        StrSql &= " NameTaminKonandeh,IsNull(NameTolidKonandeh,'---'),NameKala"
+        StrSql &= " ,(SELECT [dbo].[fnAN_GetMojodiDarHalForosh_bachTarikh] (" & cmbAnbar.SelectedValue & ", Q.ccKala, Q.TarikhTolid, Q.TarikhEngheza, " & CodeMahalFaal & ", " & CodeDoreh & ", " & TarikhEmrooz & ", replace(Q.ShomarehBach,'',''))) As MojodiDarHalForoshBach, IRC, GTIN "
+        StrSql &= " From QryGL_ShomarehBach as Q Where ccKala = " & ccKala.ToString()
+        objBach.SearchItem = "ShomarehBach"
+        objBach.SetForm(StrSql)
+        objBach.ShowDialog()
 
-                StrSqlKala = "Select  CodeKala,NameKala,ccKala,txtsVahedeShomaresh,sVahedeShomaresh,NameBrand,RadifBrand,0 as IsSabadKala "
-                StrSqlKala &= " ,(SELECT dbo.fnAN_GetMojodiDarHalForosh (" & info.ccAnbar & ", ccKala, " & CodeMahalFaal & "," & CodeDoreh & "," & TarikhEmrooz & ")) AS MojodiDarHalForosh, "
-                StrSqlKala &= " (SELECT dbo.[GetMablaghFrosh_NoePardakht] (ccKala, " & info.PishFaktorTarikh & ", " & CodeMahalFaal & ", " & info.ccMoshtary & " , " & info.sNoeMoshtary & ", 3952)) as FeeForoshCheck ,"
-                StrSqlKala &= " (SELECT dbo.[GetMablaghFrosh_NoePardakht] (ccKala," & info.PishFaktorTarikh & ", " & CodeMahalFaal & ", " & info.ccMoshtary & " , " & info.sNoeMoshtary & ", 3953)) as FeeForoshNaghd"
-                StrSqlKala &= " from qryAN_Kala"
-                StrSqlKala &= " Where Faal = 1  AND ccKala in (Select ccKala from tblAN_KalaGheymat where ccKala =qryAN_Kala.ccKala )  "
+        ' اگر بدون انتخاب بسته شد
+        Dim newBach As String = Convert.ToString(objBach.tShomarehBach)
+        If newBach.Trim().Length = 0 Then Exit Sub
+        If newBach = Convert.ToString(row.Cells("ShomarehBach").Value) Then Exit Sub
 
+        ' چک موجودی بچ جدید: تعداد ردیف باید <= موجودی بچ جدید باشد
+        ' (بچ جدید چیزی از این ردیف رزرو نکرده، پس تعداد قبلی اضافه نمی‌شود)
+        Dim newTolid As String = NormDate(objBach.tTarikhTolid)
+        Dim newEngheza As String = NormDate(objBach.tTarikhEngheza)
+        GetMojodyDarHalForoshBach(ccKala, info.ccAnbar, newBach, newTolid, newEngheza)
 
-
-
-                MultiSelection = False
-                SearchItem = "CodeKala"
-                objKala.SetForm(StrSqlKala)
-                objKala.ShowDialog()
-
-                FillRowWithKala(GridEXSatr.CurrentRow, objKala.tcodeKala, objKala.tccKala, objKala.tNameKala)
-                'GridEXSatr.CurrentRow.Cells("CodeKala").Value = objKala.tcodeKala
-                'GridEXSatr.CurrentRow.Cells("ccKala").Value = objKala.tccKala
-                'GridEXSatr.CurrentRow.Cells("NameKala").Value = objKala.tNameKala
-                'GridEXSatr.CurrentRow.Cells("Fee").Value = ObjCode.GetMablaghForosh_NoePardakht(objKala.tccKala, info.PishFaktorTarikh, CodeMahalFaal, info.ccMoshtary, info.sNoePardakht)
-                'GetMojodyGhabelForosh(objKala.tccKala, info.ccAnbar, MojodiGhabelForoshKOL)
-                'GridEXSatr.CurrentRow.Cells("MojodiDarHaleForosh").Value = MojodiGhabelForoshKOL
-
-
-
-                MultiSelection = False
-
-
-            End If
-
+        Dim tedad As Double
+        TryGetNumber(row, "Tedad3", tedad)
+        If tedad > MojodiGhabelForoshKOLBach Then
+            MessageBox.Show("موجودی این بچ کمتر از تعداد ردیف است." & vbCrLf &
+                        "موجودی بچ: " & MojodiGhabelForoshKOLBach.ToString() & vbCrLf &
+                        "تعداد ردیف: " & tedad.ToString())
+            Exit Sub
         End If
 
+        Try
+            Using con As New SqlConnection(ConnectionString)
+                Using cmd As SqlCommand = con.CreateCommand()
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.CommandText = "[Sales].[spPishFaktorVorodKoli_ChangeBatch]"
+                    cmd.Parameters.AddWithValue("@ccPishFaktorSatr", idSatr)
+                    cmd.Parameters.AddWithValue("@ShomarehBach", newBach)
+                    cmd.Parameters.AddWithValue("@TarikhTolid", newTolid)
+                    cmd.Parameters.AddWithValue("@TarikhEngheza", newEngheza)
+                    con.Open()
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Exit Sub
+        End Try
 
+        BeginInvoke(New MethodInvoker(AddressOf ReloadSatr))
     End Sub
+    Private Sub PickKala(ByVal row As Janus.Windows.GridEX.GridEXRow)
+        Dim info As New PishFaktorTitrInfo()
+        If Not info.Load(ccPishfaktorTitr, ConnectionString) Then Exit Sub
+
+        Dim objKala As New Forms_dll.frmAN_KalaSearch
+        Dim StrSqlKala As String
+        ' ... همون SQL خودتون
 
 
+        StrSqlKala = "Select  CodeKala,NameKala,ccKala,txtsVahedeShomaresh,sVahedeShomaresh,NameBrand,RadifBrand,0 as IsSabadKala "
+        StrSqlKala &= " ,(SELECT dbo.fnAN_GetMojodiDarHalForosh (" & info.ccAnbar & ", ccKala, " & CodeMahalFaal & "," & CodeDoreh & "," & TarikhEmrooz & ")) AS MojodiDarHalForosh, "
+        StrSqlKala &= " (SELECT dbo.[GetMablaghFrosh_NoePardakht] (ccKala, " & info.PishFaktorTarikh & ", " & CodeMahalFaal & ", " & info.ccMoshtary & " , " & info.sNoeMoshtary & ", 3952)) as FeeForoshCheck ,"
+        StrSqlKala &= " (SELECT dbo.[GetMablaghFrosh_NoePardakht] (ccKala," & info.PishFaktorTarikh & ", " & CodeMahalFaal & ", " & info.ccMoshtary & " , " & info.sNoeMoshtary & ", 3953)) as FeeForoshNaghd"
+        StrSqlKala &= " from qryAN_Kala"
+        StrSqlKala &= " Where Faal = 1  AND ccKala in (Select ccKala from tblAN_KalaGheymat where ccKala =qryAN_Kala.ccKala )  "
 
 
+        MultiSelection = False
+        SearchItem = "CodeKala"
+        objKala.SetForm(StrSqlKala)
+        objKala.ShowDialog()
+
+
+        If Convert.ToInt32(objKala.tccKala) = 0 Then Exit Sub
+
+        FillRowWithKala(row, objKala.tcodeKala, objKala.tccKala, objKala.tNameKala)
+        MultiSelection = False
+    End Sub
 
     Private Sub GridEXSatr_AddingRecord(sender As Object, e As System.ComponentModel.CancelEventArgs) _
     Handles GridEXSatr.AddingRecord
@@ -1119,6 +1224,12 @@ Public Class frmFO_AddData
     '    End If
     'End Sub
     'jayezeh
+
+    Private Sub GridEXSatr_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs) Handles GridEXSatr.KeyPress
+        If GridEXSatr.CurrentColumn IsNot Nothing AndAlso GridEXSatr.CurrentColumn.Key = "ShomarehBach" Then
+            e.Handled = True
+        End If
+    End Sub
     Private _oldTedad As Double = 0
     Private Sub GridEXSatr_EditingCell(ByVal sender As Object,
       ByVal e As Janus.Windows.GridEX.EditingCellEventArgs) Handles GridEXSatr.EditingCell
@@ -1130,7 +1241,7 @@ Public Class frmFO_AddData
 
         ' ردیف ذخیره‌شده: فقط تعداد، فی و درصد تخفیف قابل ویرایش است
         If Not isNewRow Then
-            If colKey <> "Tedad3" AndAlso colKey <> "Fee" AndAlso colKey <> "DarsadTakhfif" Then
+            If colKey <> "Tedad3" AndAlso colKey <> "Fee" AndAlso colKey <> "DarsadTakhfif" AndAlso colKey <> "ShomarehBach" Then
                 e.Cancel = True
                 Exit Sub
             End If
