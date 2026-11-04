@@ -23,3 +23,14 @@ C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFakt
 C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.xml
 C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.pdb
 C:\Git\MIS\PasargadJahrom\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_02_Pi.279B9781.Up2Date
+C:\Git\SoraSalamat\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_02_PishFaktorBeFaktor.vbproj.AssemblyReference.cache
+C:\Git\SoraSalamat\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.frmFO_PishFaktor2Faktor.resources
+C:\Git\SoraSalamat\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.frmFO_PishFaktorMojodiKalaErrorList.resources
+C:\Git\SoraSalamat\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.Resources.resources
+C:\Git\SoraSalamat\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_02_PishFaktorBeFaktor.vbproj.GenerateResource.cache
+C:\Git\SoraSalamat\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.exe.licenses
+C:\Git\SoraSalamat\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_02_PishFaktorBeFaktor.vbproj.CoreCompileInputs.cache
+C:\Git\SoraSalamat\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.exe
+C:\Git\SoraSalamat\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.xml
+C:\Git\SoraSalamat\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_PishFaktorBeFaktor.pdb
+C:\Git\SoraSalamat\Forosh\FO_02_PishFaktorBeFaktor\FO_02_PishFaktorBeFaktor\obj\Debug\FO_02_Pi.279B9781.Up2Date
