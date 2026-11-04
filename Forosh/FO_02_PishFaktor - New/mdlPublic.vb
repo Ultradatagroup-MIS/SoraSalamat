@@ -22,7 +22,9 @@ Module mdlPublic
     Public appPath As String = Application.StartupPath
     Public MojodiGhabelForoshKOL As Double = 0
     Public MojodiGhabelForoshKOLBach As Double = 0
+    Public MojodiKOLBach As Double = 0
     Public CodeSherkat As Long = 1
+
     Public rptPath As String = objTools.ConvertNulls(objTools.DLookup("ReportPath", "tblGL_Sherkat", "CodeSherkat = " & CodeSherkat), "")
     Public imgPath As String = objTools.ConvertNulls(objTools.DLookup("ImagePath", "tblGL_Sherkat", "CodeSherkat = " & CodeSherkat), "")
     Public NameSherkat As String = objTools.ConvertNulls(objTools.DLookup("NameSherkat", "tblGL_Sherkat", "CodeSherkat = " & CodeSherkat), "")
@@ -152,6 +154,40 @@ Module mdlPublic
             cnSQL.Open()
 
             MojodiGhabelForoshKOLBach = cmSQL.ExecuteScalar
+
+
+            cnSQL.Close() : cnSQL = Nothing
+
+        Catch ex As Exception
+
+
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+    Public Sub GetMojodyForoshBach(ByVal ccKala As Long, ByVal ccAnbar As Integer, ByVal ShomarehBach As String, ByVal TarikhTolid As String, ByVal TarikhEngheza As String)
+
+
+        Dim strSqL As String = ""
+        Dim cmSQL As SqlCommand
+        Dim cnSQL As SqlConnection
+
+
+
+
+        Try
+
+            cnSQL = New SqlConnection(ConnectionString)
+
+
+            strSqL = " SELECT [dbo].[fnAN_GetMojodi_bachTarikh] (" & ccAnbar & ", " & ccKala & ", " & TarikhTolid & " , " & TarikhEngheza & " , " & CodeMahalFaal & ", " & CodeDoreh & ", " & TarikhEmrooz & ",replace('" & ShomarehBach & "','','')) "
+
+
+
+
+            cmSQL = New SqlCommand(strSqL, cnSQL)
+            cnSQL.Open()
+
+            MojodiKOLBach = cmSQL.ExecuteScalar
 
 
             cnSQL.Close() : cnSQL = Nothing
