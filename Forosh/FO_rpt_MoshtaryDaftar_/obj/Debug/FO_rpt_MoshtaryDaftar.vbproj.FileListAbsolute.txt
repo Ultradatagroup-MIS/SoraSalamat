@@ -15,3 +15,22 @@ E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_rpt_MoshtaryDaft
 E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.exe
 E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.xml
 E:\source 2012\PasargadJahrom\Pasargad Jahrom Project\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.pdb
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.vbproj.AssemblyReference.cache
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.frmFO_MoshtaryDaftar.resources
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.frmLevel1_Ostan.resources
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.frmLevel1_Shahr.resources
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.frmLevel3_Mantagheh.resources
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.frmLevel4_Mahaleh.resources
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.frmLevel5_Moshtary.resources
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.frmLevel6_MoshtaryDetail.resources
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.Resources.resources
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.vbproj.GenerateResource.cache
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.exe.licenses
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.vbproj.CoreCompileInputs.cache
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.exe
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.xml
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_MoshtaryDaftar.pdb
+C:\Builds\FO_rpt_MoshtaryDaftar.exe
+C:\Builds\FO_rpt_MoshtaryDaftar.pdb
+C:\Builds\FO_rpt_MoshtaryDaftar.xml
+C:\Git\SoraSalamat\Forosh\FO_rpt_MoshtaryDaftar_\obj\Debug\FO_rpt_M.809E7DFE.Up2Date
