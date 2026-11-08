@@ -22,6 +22,7 @@ Public Class frmFO_AddData
 
     Private _lastElat As Integer = 0             ' آخرین علت/نوع انتخاب‌شده، برای سطر بعد پیشنهاد می‌شود1
     Private _lastNoe As Integer = 0
+    Private Const DefaultElatMarjoee As Integer = 413588
 #End Region
 
 #Region "Load / Combo / Clear"
@@ -77,6 +78,8 @@ Public Class frmFO_AddData
         cmbBazaryab.ValueMember = "ccForoshandeh"
         cmbBazaryab.DisplayMember = "LN"
         cmbBazaryab.SelectedIndex = -1
+
+
 
         ' علت مرجوعی (برای ستون کشویی گرید)
         daSQL = New SqlDataAdapter("Select Code, Sharh From tblGL_ShenasehOmomi Where CodeAsli = 63 And CodeFarei <> 0 order by Sharh", ConnectionString)
@@ -693,7 +696,9 @@ Public Class frmFO_AddData
             row.Cells("IRC").Value = DBNull.Value
             row.Cells("GTIN").Value = DBNull.Value
             row.Cells("IsJayezeh").Value = False
-            If _lastElat > 0 Then row.Cells("sElatMarjoee").Value = _lastElat
+            'If _lastElat > 0 Then row.Cells("sElatMarjoee").Value = _lastElat
+            'If _lastNoe > 0 Then row.Cells("NoeMarjoee").Value = _lastNoe
+            row.Cells("sElatMarjoee").Value = DefaultElatMarjoee
             If _lastNoe > 0 Then row.Cells("NoeMarjoee").Value = _lastNoe
         Finally
             _isCalculating = False
@@ -982,6 +987,7 @@ Public Class frmFO_AddData
             TryGetNumber(row, "Tedad3", tedad)
             TryGetNumber(row, "Fee", fee)
             TryGetNumber(row, "sElatMarjoee", elat)
+            If elat <= 0 Then elat = DefaultElatMarjoee
             TryGetNumber(row, "NoeMarjoee", noe)
 
             Using con As New SqlConnection(ConnectionString)
