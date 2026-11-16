@@ -4,6 +4,7 @@
 Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
+Imports Forms_dll
 
 Public Class frmFO_AddData
 
@@ -1856,5 +1857,24 @@ Public Class frmFO_AddData
         objTools.DLookup("ccKala", "tblAn_Kala", "Faal = 1 AND CodeKala = " & c), 0)
         Return Convert.ToInt32(v)
     End Function
+
+    Private Sub btnDaftarMoshtary_Click(sender As Object, e As EventArgs) Handles btnDaftarMoshtary.Click
+        ' مشتری باید انتخاب شده باشد
+        Dim cc As Integer = 0
+        If txtCodeMoshtary.Tag IsNot Nothing AndAlso Not IsDBNull(txtCodeMoshtary.Tag) Then
+            cc = CInt(Val(txtCodeMoshtary.Tag.ToString()))
+        End If
+
+        If cc <= 0 Then
+            MessageBox.Show("ابتدا مشتری را انتخاب کنید")
+            txtCodeMoshtary.Focus()
+            Return
+        End If
+
+        Dim frm As New frmLevel6_MoshtaryDetail
+        frm.ccMoshtary = cc
+        NameMoshtary = Me.lblNameMoshtary.Text
+        frm.ShowDialog()
+    End Sub
 End Class
 

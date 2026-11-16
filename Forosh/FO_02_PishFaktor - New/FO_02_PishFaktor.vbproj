@@ -177,6 +177,12 @@
     <Compile Include="frmFO_PishFaktorSearch.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmLevel6_MoshtaryDetail.designer.vb">
+      <DependentUpon>frmLevel6_MoshtaryDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLevel6_MoshtaryDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="InsertAllKala_WithBachNumber.Designer.vb">
       <DependentUpon>InsertAllKala_WithBachNumber.vb</DependentUpon>
     </Compile>
@@ -236,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmFO_PishFaktorSearch.resx">
       <DependentUpon>frmFO_PishFaktorSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLevel6_MoshtaryDetail.resx">
+      <DependentUpon>frmLevel6_MoshtaryDetail.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InsertAllKala_WithBachNumber.resx">
       <DependentUpon>InsertAllKala_WithBachNumber.vb</DependentUpon>
