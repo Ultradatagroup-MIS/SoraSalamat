@@ -173,6 +173,12 @@
     <Compile Include="frmFO_ShowRassFaktorCheck.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmVosolKoli.Designer.vb">
+      <DependentUpon>frmVosolKoli.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmVosolKoli.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Gozaresh.Designer.vb">
       <DependentUpon>Gozaresh.vb</DependentUpon>
     </Compile>
@@ -236,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmFO_ShowRassFaktorCheck.resx">
       <DependentUpon>frmFO_ShowRassFaktorCheck.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVosolKoli.resx">
+      <DependentUpon>frmVosolKoli.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gozaresh.resx">
       <SubType>Designer</SubType>
