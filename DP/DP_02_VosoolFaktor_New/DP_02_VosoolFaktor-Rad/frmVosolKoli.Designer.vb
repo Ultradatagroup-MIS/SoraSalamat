@@ -35,7 +35,7 @@ Partial Class frmVosolKoli
         Dim GridEX1_Layout_3 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim GridEX1_Layout_4 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim GridEX1_Layout_5 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.cmbsNoeSanad = New System.Windows.Forms.ComboBox()
         Me.cmbShomarehHesab_S = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lblTarikhDP = New System.Windows.Forms.Label()
@@ -66,36 +66,36 @@ Partial Class frmVosolKoli
         Me.txtSearchBank = New System.Windows.Forms.TextBox()
         Me.txtSearchFard = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btnNewRecord = New System.Windows.Forms.Button()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.btnCancel = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cmbShomarehHesab_B = New System.Windows.Forms.ComboBox()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.lblNameMoshtary = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtCodeMoshtaryF = New System.Windows.Forms.TextBox()
-        Me.Label29 = New System.Windows.Forms.Label()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.cmbShomarehHesab_B = New System.Windows.Forms.ComboBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.btnCancel = New System.Windows.Forms.Button()
-        Me.btnNewRecord = New System.Windows.Forms.Button()
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.GridEXTitr = New Janus.Windows.GridEX.GridEX()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.GridEX1 = New Janus.Windows.GridEX.GridEX()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
-        Me.GroupBox5.SuspendLayout()
         CType(Me.GridEXTitr, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox5.SuspendLayout()
         CType(Me.GridEX1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'ComboBox1
+        'cmbsNoeSanad
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(55, 20)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(301, 21)
-        Me.ComboBox1.TabIndex = 0
+        Me.cmbsNoeSanad.FormattingEnabled = True
+        Me.cmbsNoeSanad.Location = New System.Drawing.Point(55, 20)
+        Me.cmbsNoeSanad.Name = "cmbsNoeSanad"
+        Me.cmbsNoeSanad.Size = New System.Drawing.Size(301, 21)
+        Me.cmbsNoeSanad.TabIndex = 0
         '
         'cmbShomarehHesab_S
         '
@@ -380,7 +380,7 @@ Partial Class frmVosolKoli
         Me.GroupBox1.Controls.Add(Me.btnNewRecord)
         Me.GroupBox1.Controls.Add(Me.Label29)
         Me.GroupBox1.Controls.Add(Me.btnCancel)
-        Me.GroupBox1.Controls.Add(Me.ComboBox1)
+        Me.GroupBox1.Controls.Add(Me.cmbsNoeSanad)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.cmbShomarehHesab_B)
         Me.GroupBox1.Controls.Add(Me.GroupBox3)
@@ -405,6 +405,79 @@ Partial Class frmVosolKoli
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "ثبت دریافتی ها"
+        '
+        'btnNewRecord
+        '
+        Me.btnNewRecord.AccessibleDescription = ""
+        Me.btnNewRecord.AccessibleName = ""
+        Me.btnNewRecord.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.btnNewRecord.Location = New System.Drawing.Point(278, 429)
+        Me.btnNewRecord.Name = "btnNewRecord"
+        Me.btnNewRecord.Size = New System.Drawing.Size(166, 42)
+        Me.btnNewRecord.TabIndex = 73
+        Me.btnNewRecord.Text = "&ذخیره"
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(379, 24)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(67, 13)
+        Me.Label29.TabIndex = 5
+        Me.Label29.Text = "نوع دریافتی :"
+        '
+        'btnCancel
+        '
+        Me.btnCancel.AccessibleDescription = ""
+        Me.btnCancel.AccessibleName = ""
+        Me.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.btnCancel.Location = New System.Drawing.Point(30, 429)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(126, 42)
+        Me.btnCancel.TabIndex = 74
+        Me.btnCancel.Text = "&صرفنظر"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(358, 86)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(78, 13)
+        Me.Label3.TabIndex = 71
+        Me.Label3.Text = "شماره حساب :"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'cmbShomarehHesab_B
+        '
+        Me.cmbShomarehHesab_B.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbShomarehHesab_B.Location = New System.Drawing.Point(55, 58)
+        Me.cmbShomarehHesab_B.Name = "cmbShomarehHesab_B"
+        Me.cmbShomarehHesab_B.Size = New System.Drawing.Size(301, 21)
+        Me.cmbShomarehHesab_B.TabIndex = 72
+        '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.txtShobehSanad)
+        Me.GroupBox3.Controls.Add(Me.Label11)
+        Me.GroupBox3.Controls.Add(Me.chkElectronic)
+        Me.GroupBox3.Controls.Add(Me.Label4)
+        Me.GroupBox3.Controls.Add(Me.txtSearchBank)
+        Me.GroupBox3.Controls.Add(Me.cmbBankSanad)
+        Me.GroupBox3.Controls.Add(Me.txtShomarehSanad)
+        Me.GroupBox3.Controls.Add(Me.mskSeriAdadi)
+        Me.GroupBox3.Controls.Add(Me.txtShomarehHesabSanad)
+        Me.GroupBox3.Controls.Add(Me.Label9)
+        Me.GroupBox3.Controls.Add(Me.Label15)
+        Me.GroupBox3.Controls.Add(Me.Label6)
+        Me.GroupBox3.Controls.Add(Me.txtCodeShobehSanad)
+        Me.GroupBox3.Controls.Add(Me.Label18)
+        Me.GroupBox3.Controls.Add(Me.Label7)
+        Me.GroupBox3.Controls.Add(Me.txtSayadi)
+        Me.GroupBox3.Location = New System.Drawing.Point(30, 268)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(414, 155)
+        Me.GroupBox3.TabIndex = 70
+        Me.GroupBox3.TabStop = False
         '
         'GroupBox2
         '
@@ -452,57 +525,6 @@ Partial Class frmVosolKoli
         Me.txtCodeMoshtaryF.TabIndex = 0
         Me.txtCodeMoshtaryF.Text = " "
         '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(379, 24)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(67, 13)
-        Me.Label29.TabIndex = 5
-        Me.Label29.Text = "نوع دریافتی :"
-        '
-        'GroupBox3
-        '
-        Me.GroupBox3.Controls.Add(Me.txtShobehSanad)
-        Me.GroupBox3.Controls.Add(Me.Label11)
-        Me.GroupBox3.Controls.Add(Me.chkElectronic)
-        Me.GroupBox3.Controls.Add(Me.Label4)
-        Me.GroupBox3.Controls.Add(Me.txtSearchBank)
-        Me.GroupBox3.Controls.Add(Me.cmbBankSanad)
-        Me.GroupBox3.Controls.Add(Me.txtShomarehSanad)
-        Me.GroupBox3.Controls.Add(Me.mskSeriAdadi)
-        Me.GroupBox3.Controls.Add(Me.txtShomarehHesabSanad)
-        Me.GroupBox3.Controls.Add(Me.Label9)
-        Me.GroupBox3.Controls.Add(Me.Label15)
-        Me.GroupBox3.Controls.Add(Me.Label6)
-        Me.GroupBox3.Controls.Add(Me.txtCodeShobehSanad)
-        Me.GroupBox3.Controls.Add(Me.Label18)
-        Me.GroupBox3.Controls.Add(Me.Label7)
-        Me.GroupBox3.Controls.Add(Me.txtSayadi)
-        Me.GroupBox3.Location = New System.Drawing.Point(30, 268)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(414, 155)
-        Me.GroupBox3.TabIndex = 70
-        Me.GroupBox3.TabStop = False
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(358, 86)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(78, 13)
-        Me.Label3.TabIndex = 71
-        Me.Label3.Text = "شماره حساب :"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'cmbShomarehHesab_B
-        '
-        Me.cmbShomarehHesab_B.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbShomarehHesab_B.Location = New System.Drawing.Point(55, 58)
-        Me.cmbShomarehHesab_B.Name = "cmbShomarehHesab_B"
-        Me.cmbShomarehHesab_B.Size = New System.Drawing.Size(301, 21)
-        Me.cmbShomarehHesab_B.TabIndex = 72
-        '
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.GridEXTitr)
@@ -514,40 +536,6 @@ Partial Class frmVosolKoli
         Me.GroupBox4.TabIndex = 2
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "لیست فاکتورهای مانده دار"
-        '
-        'btnCancel
-        '
-        Me.btnCancel.AccessibleDescription = ""
-        Me.btnCancel.AccessibleName = ""
-        Me.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.btnCancel.Location = New System.Drawing.Point(30, 429)
-        Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(126, 42)
-        Me.btnCancel.TabIndex = 74
-        Me.btnCancel.Text = "&صرفنظر"
-        '
-        'btnNewRecord
-        '
-        Me.btnNewRecord.AccessibleDescription = ""
-        Me.btnNewRecord.AccessibleName = ""
-        Me.btnNewRecord.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.btnNewRecord.Location = New System.Drawing.Point(278, 429)
-        Me.btnNewRecord.Name = "btnNewRecord"
-        Me.btnNewRecord.Size = New System.Drawing.Size(166, 42)
-        Me.btnNewRecord.TabIndex = 73
-        Me.btnNewRecord.Text = "&ذخیره"
-        '
-        'GroupBox5
-        '
-        Me.GroupBox5.Controls.Add(Me.GridEX1)
-        Me.GroupBox5.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox5.Location = New System.Drawing.Point(12, 309)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.GroupBox5.Size = New System.Drawing.Size(542, 250)
-        Me.GroupBox5.TabIndex = 3
-        Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "پرداختی فاکتورها"
         '
         'GridEXTitr
         '
@@ -586,6 +574,18 @@ Partial Class frmVosolKoli
         Me.GridEXTitr.TabIndex = 109
         Me.GridEXTitr.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
         Me.GridEXTitr.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.GridEX1)
+        Me.GroupBox5.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox5.Location = New System.Drawing.Point(12, 309)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.GroupBox5.Size = New System.Drawing.Size(542, 250)
+        Me.GroupBox5.TabIndex = 3
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "پرداختی فاکتورها"
         '
         'GridEX1
         '
@@ -638,18 +638,18 @@ Partial Class frmVosolKoli
         Me.Text = "وصول کلی"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox5.ResumeLayout(False)
         CType(Me.GridEXTitr, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox5.ResumeLayout(False)
         CType(Me.GridEX1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cmbsNoeSanad As ComboBox
     Friend WithEvents cmbShomarehHesab_S As ComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents lblTarikhDP As Label
