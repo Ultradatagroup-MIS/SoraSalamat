@@ -23,12 +23,12 @@ Partial Class frmVosolKoli
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmVosolKoli))
-        Dim GridEXTitr_Layout_0 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
-        Dim GridEXTitr_Layout_1 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
-        Dim GridEXTitr_Layout_2 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
-        Dim GridEXTitr_Layout_3 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
-        Dim GridEXTitr_Layout_4 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
-        Dim GridEXTitr_Layout_5 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
+        Dim GridEXFaktor_Layout_0 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
+        Dim GridEXFaktor_Layout_1 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
+        Dim GridEXFaktor_Layout_2 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
+        Dim GridEXFaktor_Layout_3 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
+        Dim GridEXFaktor_Layout_4 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
+        Dim GridEXFaktor_Layout_5 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim GridEX1_Layout_0 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim GridEX1_Layout_1 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim GridEX1_Layout_2 As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
@@ -57,7 +57,6 @@ Partial Class frmVosolKoli
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.cmbShobeh = New System.Windows.Forms.ComboBox()
         Me.chkElectronic = New System.Windows.Forms.CheckBox()
         Me.txtSayadi = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -77,14 +76,15 @@ Partial Class frmVosolKoli
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtCodeMoshtaryF = New System.Windows.Forms.TextBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.GridEXTitr = New Janus.Windows.GridEX.GridEX()
+        Me.GridEXFaktor = New Janus.Windows.GridEX.GridEX()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.GridEX1 = New Janus.Windows.GridEX.GridEX()
+        Me.txtTozihat = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
-        CType(Me.GridEXTitr, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridEXFaktor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
         CType(Me.GridEX1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -93,7 +93,7 @@ Partial Class frmVosolKoli
         '
         Me.cmbsNoeSanad.FormattingEnabled = True
         Me.cmbsNoeSanad.Location = New System.Drawing.Point(73, 25)
-        Me.cmbsNoeSanad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbsNoeSanad.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbsNoeSanad.Name = "cmbsNoeSanad"
         Me.cmbsNoeSanad.Size = New System.Drawing.Size(400, 25)
         Me.cmbsNoeSanad.TabIndex = 0
@@ -102,7 +102,7 @@ Partial Class frmVosolKoli
         '
         Me.cmbShomarehHesab_S.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbShomarehHesab_S.Location = New System.Drawing.Point(73, 98)
-        Me.cmbShomarehHesab_S.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbShomarehHesab_S.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbShomarehHesab_S.Name = "cmbShomarehHesab_S"
         Me.cmbShomarehHesab_S.Size = New System.Drawing.Size(400, 25)
         Me.cmbShomarehHesab_S.TabIndex = 33
@@ -132,7 +132,7 @@ Partial Class frmVosolKoli
         'mskTarikhDP
         '
         Me.mskTarikhDP.Location = New System.Drawing.Point(307, 230)
-        Me.mskTarikhDP.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.mskTarikhDP.Margin = New System.Windows.Forms.Padding(4)
         Me.mskTarikhDP.Mask = "####/##/##"
         Me.mskTarikhDP.Name = "mskTarikhDP"
         Me.mskTarikhDP.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
@@ -146,7 +146,7 @@ Partial Class frmVosolKoli
         '
         Me.cmbFard.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbFard.Location = New System.Drawing.Point(73, 164)
-        Me.cmbFard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbFard.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbFard.Name = "cmbFard"
         Me.cmbFard.Size = New System.Drawing.Size(400, 25)
         Me.cmbFard.TabIndex = 39
@@ -167,7 +167,7 @@ Partial Class frmVosolKoli
         Me.txtMablagh.FloatLength = CType(0, Byte)
         Me.txtMablagh.FloatSign = "/"
         Me.txtMablagh.Location = New System.Drawing.Point(307, 297)
-        Me.txtMablagh.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtMablagh.Margin = New System.Windows.Forms.Padding(4)
         Me.txtMablagh.MaxLength = CType(20, Byte)
         Me.txtMablagh.Name = "txtMablagh"
         Me.txtMablagh.SignText = ""
@@ -178,7 +178,7 @@ Partial Class frmVosolKoli
         '
         Me.txtShobehSanad.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtShobehSanad.Location = New System.Drawing.Point(15, 22)
-        Me.txtShobehSanad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtShobehSanad.Margin = New System.Windows.Forms.Padding(4)
         Me.txtShobehSanad.MaxLength = 30
         Me.txtShobehSanad.Name = "txtShobehSanad"
         Me.txtShobehSanad.Size = New System.Drawing.Size(153, 27)
@@ -199,7 +199,7 @@ Partial Class frmVosolKoli
         '
         Me.txtCodeShobehSanad.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCodeShobehSanad.Location = New System.Drawing.Point(15, 55)
-        Me.txtCodeShobehSanad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtCodeShobehSanad.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCodeShobehSanad.MaxLength = 10
         Me.txtCodeShobehSanad.Name = "txtCodeShobehSanad"
         Me.txtCodeShobehSanad.Size = New System.Drawing.Size(153, 27)
@@ -231,7 +231,7 @@ Partial Class frmVosolKoli
         'mskTarikhSanad
         '
         Me.mskTarikhSanad.Location = New System.Drawing.Point(307, 263)
-        Me.mskTarikhSanad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.mskTarikhSanad.Margin = New System.Windows.Forms.Padding(4)
         Me.mskTarikhSanad.Mask = "####/##/##"
         Me.mskTarikhSanad.Name = "mskTarikhSanad"
         Me.mskTarikhSanad.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
@@ -244,7 +244,7 @@ Partial Class frmVosolKoli
         'txtShomarehSanad
         '
         Me.txtShomarehSanad.Location = New System.Drawing.Point(267, 123)
-        Me.txtShomarehSanad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtShomarehSanad.Margin = New System.Windows.Forms.Padding(4)
         Me.txtShomarehSanad.MaxLength = 12
         Me.txtShomarehSanad.Name = "txtShomarehSanad"
         Me.txtShomarehSanad.Size = New System.Drawing.Size(167, 24)
@@ -255,7 +255,7 @@ Partial Class frmVosolKoli
         '
         Me.cmbBankSanad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbBankSanad.Location = New System.Drawing.Point(15, 118)
-        Me.cmbBankSanad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbBankSanad.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbBankSanad.Name = "cmbBankSanad"
         Me.cmbBankSanad.Size = New System.Drawing.Size(153, 25)
         Me.cmbBankSanad.TabIndex = 47
@@ -286,7 +286,7 @@ Partial Class frmVosolKoli
         '
         Me.txtShomarehHesabSanad.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtShomarehHesabSanad.Location = New System.Drawing.Point(267, 87)
-        Me.txtShomarehHesabSanad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtShomarehHesabSanad.Margin = New System.Windows.Forms.Padding(4)
         Me.txtShomarehHesabSanad.MaxLength = 25
         Me.txtShomarehHesabSanad.Name = "txtShomarehHesabSanad"
         Me.txtShomarehHesabSanad.Size = New System.Drawing.Size(167, 27)
@@ -326,20 +326,11 @@ Partial Class frmVosolKoli
         Me.Label12.Text = "شرح :"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'cmbShobeh
-        '
-        Me.cmbShobeh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple
-        Me.cmbShobeh.Location = New System.Drawing.Point(73, 198)
-        Me.cmbShobeh.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.cmbShobeh.Name = "cmbShobeh"
-        Me.cmbShobeh.Size = New System.Drawing.Size(400, 25)
-        Me.cmbShobeh.TabIndex = 60
-        '
         'chkElectronic
         '
         Me.chkElectronic.AutoSize = True
         Me.chkElectronic.Location = New System.Drawing.Point(305, 162)
-        Me.chkElectronic.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.chkElectronic.Margin = New System.Windows.Forms.Padding(4)
         Me.chkElectronic.Name = "chkElectronic"
         Me.chkElectronic.Size = New System.Drawing.Size(118, 21)
         Me.chkElectronic.TabIndex = 64
@@ -349,7 +340,7 @@ Partial Class frmVosolKoli
         'txtSayadi
         '
         Me.txtSayadi.Location = New System.Drawing.Point(267, 55)
-        Me.txtSayadi.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtSayadi.Margin = New System.Windows.Forms.Padding(4)
         Me.txtSayadi.MaxLength = 16
         Me.txtSayadi.Name = "txtSayadi"
         Me.txtSayadi.Size = New System.Drawing.Size(167, 24)
@@ -380,7 +371,7 @@ Partial Class frmVosolKoli
         'mskSeriAdadi
         '
         Me.mskSeriAdadi.Location = New System.Drawing.Point(267, 22)
-        Me.mskSeriAdadi.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.mskSeriAdadi.Margin = New System.Windows.Forms.Padding(4)
         Me.mskSeriAdadi.Mask = "000000"
         Me.mskSeriAdadi.Name = "mskSeriAdadi"
         Me.mskSeriAdadi.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
@@ -390,7 +381,7 @@ Partial Class frmVosolKoli
         'txtSearchBank
         '
         Me.txtSearchBank.Location = New System.Drawing.Point(15, 86)
-        Me.txtSearchBank.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtSearchBank.Margin = New System.Windows.Forms.Padding(4)
         Me.txtSearchBank.MaxLength = 100
         Me.txtSearchBank.Name = "txtSearchBank"
         Me.txtSearchBank.Size = New System.Drawing.Size(153, 24)
@@ -399,7 +390,7 @@ Partial Class frmVosolKoli
         'txtSearchFard
         '
         Me.txtSearchFard.Location = New System.Drawing.Point(73, 133)
-        Me.txtSearchFard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtSearchFard.Margin = New System.Windows.Forms.Padding(4)
         Me.txtSearchFard.MaxLength = 100
         Me.txtSearchFard.Name = "txtSearchFard"
         Me.txtSearchFard.Size = New System.Drawing.Size(400, 24)
@@ -407,6 +398,7 @@ Partial Class frmVosolKoli
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.txtTozihat)
         Me.GroupBox1.Controls.Add(Me.btnNewRecord)
         Me.GroupBox1.Controls.Add(Me.Label29)
         Me.GroupBox1.Controls.Add(Me.btnCancel)
@@ -422,16 +414,15 @@ Partial Class frmVosolKoli
         Me.GroupBox1.Controls.Add(Me.cmbFard)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.txtMablagh)
-        Me.GroupBox1.Controls.Add(Me.cmbShobeh)
         Me.GroupBox1.Controls.Add(Me.Label12)
         Me.GroupBox1.Controls.Add(Me.Label14)
         Me.GroupBox1.Controls.Add(Me.Label10)
         Me.GroupBox1.Controls.Add(Me.mskTarikhSanad)
         Me.GroupBox1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(765, 84)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.GroupBox1.Size = New System.Drawing.Size(620, 604)
         Me.GroupBox1.TabIndex = 0
@@ -444,7 +435,7 @@ Partial Class frmVosolKoli
         Me.btnNewRecord.AccessibleName = ""
         Me.btnNewRecord.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.btnNewRecord.Location = New System.Drawing.Point(371, 528)
-        Me.btnNewRecord.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnNewRecord.Margin = New System.Windows.Forms.Padding(4)
         Me.btnNewRecord.Name = "btnNewRecord"
         Me.btnNewRecord.Size = New System.Drawing.Size(221, 52)
         Me.btnNewRecord.TabIndex = 73
@@ -466,7 +457,7 @@ Partial Class frmVosolKoli
         Me.btnCancel.AccessibleName = ""
         Me.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.btnCancel.Location = New System.Drawing.Point(40, 528)
-        Me.btnCancel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(4)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(168, 52)
         Me.btnCancel.TabIndex = 74
@@ -487,7 +478,7 @@ Partial Class frmVosolKoli
         '
         Me.cmbShomarehHesab_B.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbShomarehHesab_B.Location = New System.Drawing.Point(73, 71)
-        Me.cmbShomarehHesab_B.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbShomarehHesab_B.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbShomarehHesab_B.Name = "cmbShomarehHesab_B"
         Me.cmbShomarehHesab_B.Size = New System.Drawing.Size(400, 25)
         Me.cmbShomarehHesab_B.TabIndex = 72
@@ -511,9 +502,9 @@ Partial Class frmVosolKoli
         Me.GroupBox3.Controls.Add(Me.Label7)
         Me.GroupBox3.Controls.Add(Me.txtSayadi)
         Me.GroupBox3.Location = New System.Drawing.Point(40, 330)
-        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox3.Size = New System.Drawing.Size(552, 191)
         Me.GroupBox3.TabIndex = 70
         Me.GroupBox3.TabStop = False
@@ -525,9 +516,9 @@ Partial Class frmVosolKoli
         Me.GroupBox2.Controls.Add(Me.txtCodeMoshtaryF)
         Me.GroupBox2.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(4, 10)
-        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.GroupBox2.Size = New System.Drawing.Size(1381, 66)
         Me.GroupBox2.TabIndex = 1
@@ -562,7 +553,7 @@ Partial Class frmVosolKoli
         '
         Me.txtCodeMoshtaryF.BackColor = System.Drawing.Color.LightGoldenrodYellow
         Me.txtCodeMoshtaryF.Location = New System.Drawing.Point(1125, 25)
-        Me.txtCodeMoshtaryF.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.txtCodeMoshtaryF.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCodeMoshtaryF.MaxLength = 15
         Me.txtCodeMoshtaryF.Name = "txtCodeMoshtaryF"
         Me.txtCodeMoshtaryF.Size = New System.Drawing.Size(139, 24)
@@ -571,65 +562,65 @@ Partial Class frmVosolKoli
         '
         'GroupBox4
         '
-        Me.GroupBox4.Controls.Add(Me.GridEXTitr)
+        Me.GroupBox4.Controls.Add(Me.GridEXFaktor)
         Me.GroupBox4.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox4.Location = New System.Drawing.Point(16, 84)
-        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox4.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.GroupBox4.Size = New System.Drawing.Size(723, 284)
         Me.GroupBox4.TabIndex = 2
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "لیست فاکتورهای مانده دار"
         '
-        'GridEXTitr
+        'GridEXFaktor
         '
-        Me.GridEXTitr.AllowChildTableGroups = True
-        Me.GridEXTitr.AllowDelete = Janus.Windows.GridEX.InheritableBoolean.[True]
-        Me.GridEXTitr.AllowDrop = True
-        Me.GridEXTitr.AllowRemoveColumns = Janus.Windows.GridEX.InheritableBoolean.[True]
-        Me.GridEXTitr.BackColor = System.Drawing.SystemColors.ScrollBar
-        Me.GridEXTitr.BorderStyle = Janus.Windows.GridEX.BorderStyle.RaisedLight3D
-        Me.GridEXTitr.BuiltInTextsData = resources.GetString("GridEXTitr.BuiltInTextsData")
-        Me.GridEXTitr.ColumnSetNavigation = Janus.Windows.GridEX.ColumnSetNavigation.ColumnSet
-        Me.GridEXTitr.DynamicFiltering = True
-        Me.GridEXTitr.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic
-        Me.GridEXTitr.FilterRowButtonStyle = Janus.Windows.GridEX.FilterRowButtonStyle.ConditionOperatorDropDown
-        Me.GridEXTitr.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges
-        Me.GridEXTitr.Font = New System.Drawing.Font("Tahoma", 9.75!)
-        Me.GridEXTitr.GroupByBoxVisible = False
-        Me.GridEXTitr.GroupRowVisualStyle = Janus.Windows.GridEX.GroupRowVisualStyle.Outlook2003
-        Me.GridEXTitr.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always
-        Me.GridEXTitr.KeepRowSettings = True
-        GridEXTitr_Layout_0.Key = "Layout1"
-        GridEXTitr_Layout_1.Key = "Layout2"
-        GridEXTitr_Layout_2.Key = "Layout3"
-        GridEXTitr_Layout_3.Key = "Layout4"
-        GridEXTitr_Layout_4.Key = "Layout5"
-        GridEXTitr_Layout_5.Key = "Layout6"
-        Me.GridEXTitr.Layouts.AddRange(New Janus.Windows.GridEX.GridEXLayout() {GridEXTitr_Layout_0, GridEXTitr_Layout_1, GridEXTitr_Layout_2, GridEXTitr_Layout_3, GridEXTitr_Layout_4, GridEXTitr_Layout_5})
-        Me.GridEXTitr.Location = New System.Drawing.Point(8, 25)
-        Me.GridEXTitr.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.GridEXTitr.Name = "GridEXTitr"
-        Me.GridEXTitr.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Blue
-        Me.GridEXTitr.RecordNavigator = True
-        Me.GridEXTitr.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.GridEXTitr.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.[True]
-        Me.GridEXTitr.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelection
-        Me.GridEXTitr.Size = New System.Drawing.Size(692, 252)
-        Me.GridEXTitr.TabIndex = 109
-        Me.GridEXTitr.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
-        Me.GridEXTitr.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        Me.GridEXFaktor.AllowChildTableGroups = True
+        Me.GridEXFaktor.AllowDelete = Janus.Windows.GridEX.InheritableBoolean.[True]
+        Me.GridEXFaktor.AllowDrop = True
+        Me.GridEXFaktor.AllowRemoveColumns = Janus.Windows.GridEX.InheritableBoolean.[True]
+        Me.GridEXFaktor.BackColor = System.Drawing.SystemColors.ScrollBar
+        Me.GridEXFaktor.BorderStyle = Janus.Windows.GridEX.BorderStyle.RaisedLight3D
+        Me.GridEXFaktor.BuiltInTextsData = resources.GetString("GridEXFaktor.BuiltInTextsData")
+        Me.GridEXFaktor.ColumnSetNavigation = Janus.Windows.GridEX.ColumnSetNavigation.ColumnSet
+        Me.GridEXFaktor.DynamicFiltering = True
+        Me.GridEXFaktor.FilterMode = Janus.Windows.GridEX.FilterMode.Automatic
+        Me.GridEXFaktor.FilterRowButtonStyle = Janus.Windows.GridEX.FilterRowButtonStyle.ConditionOperatorDropDown
+        Me.GridEXFaktor.FilterRowUpdateMode = Janus.Windows.GridEX.FilterRowUpdateMode.WhenValueChanges
+        Me.GridEXFaktor.Font = New System.Drawing.Font("Tahoma", 9.75!)
+        Me.GridEXFaktor.GroupByBoxVisible = False
+        Me.GridEXFaktor.GroupRowVisualStyle = Janus.Windows.GridEX.GroupRowVisualStyle.Outlook2003
+        Me.GridEXFaktor.GroupTotals = Janus.Windows.GridEX.GroupTotals.Always
+        Me.GridEXFaktor.KeepRowSettings = True
+        GridEXFaktor_Layout_0.Key = "Layout1"
+        GridEXFaktor_Layout_1.Key = "Layout2"
+        GridEXFaktor_Layout_2.Key = "Layout3"
+        GridEXFaktor_Layout_3.Key = "Layout4"
+        GridEXFaktor_Layout_4.Key = "Layout5"
+        GridEXFaktor_Layout_5.Key = "Layout6"
+        Me.GridEXFaktor.Layouts.AddRange(New Janus.Windows.GridEX.GridEXLayout() {GridEXFaktor_Layout_0, GridEXFaktor_Layout_1, GridEXFaktor_Layout_2, GridEXFaktor_Layout_3, GridEXFaktor_Layout_4, GridEXFaktor_Layout_5})
+        Me.GridEXFaktor.Location = New System.Drawing.Point(8, 25)
+        Me.GridEXFaktor.Margin = New System.Windows.Forms.Padding(4)
+        Me.GridEXFaktor.Name = "GridEXFaktor"
+        Me.GridEXFaktor.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Blue
+        Me.GridEXFaktor.RecordNavigator = True
+        Me.GridEXFaktor.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.GridEXFaktor.RowHeaders = Janus.Windows.GridEX.InheritableBoolean.[True]
+        Me.GridEXFaktor.SelectionMode = Janus.Windows.GridEX.SelectionMode.MultipleSelection
+        Me.GridEXFaktor.Size = New System.Drawing.Size(692, 252)
+        Me.GridEXFaktor.TabIndex = 109
+        Me.GridEXFaktor.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
+        Me.GridEXFaktor.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'GroupBox5
         '
         Me.GroupBox5.Controls.Add(Me.GridEX1)
         Me.GroupBox5.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox5.Location = New System.Drawing.Point(16, 380)
-        Me.GroupBox5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox5.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox5.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox5.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.GroupBox5.Size = New System.Drawing.Size(723, 308)
         Me.GroupBox5.TabIndex = 3
@@ -663,7 +654,7 @@ Partial Class frmVosolKoli
         GridEX1_Layout_5.Key = "Layout6"
         Me.GridEX1.Layouts.AddRange(New Janus.Windows.GridEX.GridEXLayout() {GridEX1_Layout_0, GridEX1_Layout_1, GridEX1_Layout_2, GridEX1_Layout_3, GridEX1_Layout_4, GridEX1_Layout_5})
         Me.GridEX1.Location = New System.Drawing.Point(8, 25)
-        Me.GridEX1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GridEX1.Margin = New System.Windows.Forms.Padding(4)
         Me.GridEX1.Name = "GridEX1"
         Me.GridEX1.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Blue
         Me.GridEX1.RecordNavigator = True
@@ -675,6 +666,14 @@ Partial Class frmVosolKoli
         Me.GridEX1.TotalRowPosition = Janus.Windows.GridEX.TotalRowPosition.BottomFixed
         Me.GridEX1.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
+        'txtTozihat
+        '
+        Me.txtTozihat.Location = New System.Drawing.Point(73, 196)
+        Me.txtTozihat.MaxLength = 100
+        Me.txtTozihat.Name = "txtTozihat"
+        Me.txtTozihat.Size = New System.Drawing.Size(402, 24)
+        Me.txtTozihat.TabIndex = 75
+        '
         'frmVosolKoli
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -684,7 +683,7 @@ Partial Class frmVosolKoli
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmVosolKoli"
         Me.Text = "وصول کلی"
         Me.GroupBox1.ResumeLayout(False)
@@ -694,7 +693,7 @@ Partial Class frmVosolKoli
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
-        CType(Me.GridEXTitr, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridEXFaktor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox5.ResumeLayout(False)
         CType(Me.GridEX1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -722,7 +721,6 @@ Partial Class frmVosolKoli
     Friend WithEvents Label9 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents Label12 As Label
-    Friend WithEvents cmbShobeh As ComboBox
     Friend WithEvents chkElectronic As CheckBox
     Friend WithEvents txtSayadi As TextBox
     Friend WithEvents Label18 As Label
@@ -743,6 +741,7 @@ Partial Class frmVosolKoli
     Friend WithEvents btnCancel As Button
     Friend WithEvents btnNewRecord As Button
     Friend WithEvents GroupBox5 As GroupBox
-    Friend WithEvents GridEXTitr As Janus.Windows.GridEX.GridEX
+    Friend WithEvents GridEXFaktor As Janus.Windows.GridEX.GridEX
     Friend WithEvents GridEX1 As Janus.Windows.GridEX.GridEX
+    Friend WithEvents txtTozihat As TextBox
 End Class

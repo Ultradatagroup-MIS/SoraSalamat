@@ -1,4 +1,6 @@
-﻿Public Class frmVosolKoli
+﻿Imports Janus.Windows.GridEX
+
+Public Class frmVosolKoli
 #Region "Variable AND Constant Declration"
     Const FormTableName = "tblDP_Amalyat"
     Const FormViewName = "qryDP_Amalyat"
@@ -72,6 +74,117 @@
 
     Private Sub btnNewRecord_Click(sender As Object, e As EventArgs) Handles btnNewRecord.Click
         If Not IsValidForm("All") Then Exit Sub
+
+        Try
+            _codeAmalyat = InsertDaryafti()
+        Catch ex As Exception
+            MsgBox("خطا در ثبت دریافتی: " & ex.Message,
+                   MsgBoxStyle.Critical Or MsgBoxStyle.MsgBoxRtlReading, "خطا")
+            Return
+        End Try
+
+        ' ثبت شد: سمت راست غیرفعال شود (فرم پاک نشود)
+        GroupBox1.Enabled = False      ' TODO: اسم GroupBox سمت راست
+        btnNewRecord.Enabled = False
+
+        LoadFaktorMandehDar()
+    End Sub
+    Private _codeAmalyat As Long = 0
+
+    Private Function InsertDaryafti() As Long
+        Dim noeCode As Integer = CInt(cmbsNoeSanad.SelectedValue)
+
+        Using cn As New SqlConnection(ConnectionString)
+            Using cmd As New SqlCommand("[Treasury].[spVosolFaktor_DaryaftKoli_Insert]", cn)
+                cmd.CommandType = CommandType.StoredProcedure
+
+                cmd.Parameters.AddWithValue("@CodeMahal", CodeMahalFaal)
+                cmd.Parameters.AddWithValue("@CodeDoreh", CodeDoreh)                 ' TODO: اسم متغیر عمومی
+                cmd.Parameters.AddWithValue("@NoeAmalyat", 1)
+                cmd.Parameters.AddWithValue("@ccMoshtary", txtCodeMoshtaryF.Tag)
+                cmd.Parameters.AddWithValue("@sNoeSanad", noeCode)
+
+                If noeCode = 65 Then
+                    cmd.Parameters.AddWithValue("@ccShomarehHesab", CInt(cmbShomarehHesab_B.SelectedValue))
+                Else
+                    cmd.Parameters.AddWithValue("@ccShomarehHesab", CInt(cmbShomarehHesab_S.SelectedValue))
+                End If
+
+
+                cmd.Parameters.AddWithValue("@CodeFard", IIf(IsNothing(cmbFard.SelectedValue), 0, cmbFard.SelectedValue))
+
+
+                cmd.Parameters.AddWithValue("@ShomarehResidMovaghat", 0.0)
+                cmd.Parameters.AddWithValue("@Noe2", 4417)
+                cmd.Parameters.AddWithValue("@TarikhDP", mskTarikhDP.Text)
+
+                If mskTarikhSanad.Text.Trim().Length = 0 Then
+                    cmd.Parameters.AddWithValue("@TarikhSanad", DBNull.Value)
+                Else
+                    cmd.Parameters.AddWithValue("@TarikhSanad", mskTarikhSanad.Text)
+                End If
+
+                ' ---- اطلاعات چک (فقط 64) ----
+                If noeCode = 64 Then
+
+                    cmd.Parameters.AddWithValue("@ShomarehSanad", IIf(Len(txtShomarehSanad.Text) = 0, "0", txtShomarehSanad.Text))
+                    cmd.Parameters.AddWithValue("@NameTarafSanad", "")
+
+                    Dim bankVal As Integer = 0
+                    If Not IsNothing(cmbBankSanad.SelectedValue) AndAlso Not IsDBNull(cmbBankSanad.SelectedValue) Then
+                        bankVal = CInt(cmbBankSanad.SelectedValue)
+                    End If
+                    cmd.Parameters.AddWithValue("@sBankSanad", bankVal)
+                    cmd.Parameters.AddWithValue("@ShomarehHesabSanad", IIf(Len(txtShomarehHesabSanad.Text) = 0, 0, txtShomarehHesabSanad.Text))
+                    cmd.Parameters.AddWithValue("@ShobehSanad", IIf(Len(txtShobehSanad.Text) = 0, 0, txtShobehSanad.Text))
+                    cmd.Parameters.AddWithValue("@CodeShobehSanad", IIf(Len(txtCodeShobehSanad.Text) = 0, 0, txtCodeShobehSanad.Text))
+                    cmd.Parameters.AddWithValue("@SeriAdadi", IIf(Len(mskSeriAdadi.Text) = 0, 0, mskSeriAdadi.Text))
+                    cmd.Parameters.AddWithValue("@ShomarehSayadi", IIf(Len(txtSayadi.Text) = 0, 0, txtSayadi.Text))
+                    cmd.Parameters.AddWithValue("@IsElectronic", IIf(chkElectronic.Checked, 1, 0))
+                Else
+                    cmd.Parameters.AddWithValue("@ShomarehSanad", "")
+                    cmd.Parameters.AddWithValue("@NameTarafSanad", "")
+                    cmd.Parameters.AddWithValue("@sBankSanad", 0)
+                    cmd.Parameters.AddWithValue("@ShomarehHesabSanad", "")
+                    cmd.Parameters.AddWithValue("@ShobehSanad", "")
+                    cmd.Parameters.AddWithValue("@CodeShobehSanad", "")
+                    cmd.Parameters.AddWithValue("@SeriAdadi", "")
+                    cmd.Parameters.AddWithValue("@ShomarehSayadi", "")
+                    cmd.Parameters.AddWithValue("@IsElectronic", 0)
+                End If
+
+                cmd.Parameters.AddWithValue("@TarikhVazeiat", TarikhEmrooz)
+                cmd.Parameters.AddWithValue("@Sharh", txtTozihat.Text)                 ' TODO: اسم کنترل شرح
+                cmd.Parameters.AddWithValue("@UserName", UserName)                   ' TODO: اسم متغیر عمومی
+
+                ' پارامتر خروجی: برای خروجی ناچار باید نوع و جهت مشخص بشه
+                Dim pOut As SqlParameter = cmd.Parameters.Add("@CodeAmalyat", SqlDbType.BigInt)
+                pOut.Direction = ParameterDirection.Output
+
+                cn.Open()
+                cmd.ExecuteNonQuery()
+
+                Return CLng(pOut.Value)
+            End Using
+        End Using
+    End Function
+
+    Private Sub btnSave_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnNewRecord.Click
+        If Not IsValidForm("All") Then Return
+
+        Try
+            _codeAmalyat = InsertDaryafti()
+        Catch ex As Exception
+            MsgBox("خطا در ثبت دریافتی: " & ex.Message,
+               MsgBoxStyle.Critical Or MsgBoxStyle.MsgBoxRtlReading, "خطا")
+            Return
+        End Try
+
+        ' ثبت شد: سمت راست غیرفعال شود (فرم پاک نشود)
+        GroupBox1.Enabled = False      ' TODO: اسم GroupBox سمت راست
+        btnNewRecord.Enabled = False
+
+        ' قدم بعدی: لود فاکتورهای مانده‌دار
     End Sub
     Private Function IsValidForm(ByVal CheckField As String) As Boolean
         IsValidForm = False
@@ -212,14 +325,11 @@
     End Function
 
     Private Sub frmVosolKoli_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        GroupBox3.Visible = False
         _loading = True
         LoadCombo()
         _loading = False
-        SetVisibilityByNoeSanad()
 
-
-        'ClearForm(False)
+        ClearForm()
 
         objTools.ChangeKbd(UD_Dll.mdlUtility.KBD.Latin)
     End Sub
@@ -368,5 +478,125 @@
                 CType(c, CheckBox).Checked = False
             End If
         Next
+    End Sub
+    Private Sub ClearForm()
+        _loading = True
+
+        ' ---------- مشتری ----------
+        txtCodeMoshtaryF.Text = ""
+        txtCodeMoshtaryF.Tag = Nothing
+        lblNameMoshtary.Text = ""
+
+        ' ---------- ثبت دریافتی ----------
+        cmbsNoeSanad.SelectedIndex = -1
+        cmbShomarehHesab_S.SelectedIndex = -1
+        cmbShomarehHesab_B.SelectedIndex = -1
+        cmbFard.SelectedIndex = -1
+        If cmbBankSanad.Items.Count > 0 Then cmbBankSanad.SelectedIndex = 0
+
+        mskTarikhDP.Text = ""
+        mskTarikhSanad.Text = ""
+        txtMablagh.Text = ""
+
+        ' ---------- فیلدهای چک ----------
+        ClearCheckFields()
+        GroupBox3.Visible = False
+
+        ' ---------- پاک کردن پیام‌های خطا ----------
+        ErrPro.SetError(txtCodeMoshtaryF, "")
+        ErrPro.SetError(cmbsNoeSanad, "")
+        ErrPro.SetError(cmbShomarehHesab_S, "")
+        ErrPro.SetError(cmbShomarehHesab_B, "")
+        ErrPro.SetError(mskTarikhDP, "")
+        ErrPro.SetError(mskTarikhSanad, "")
+        ErrPro.SetError(txtMablagh, "")
+
+        _loading = False
+
+        SetVisibilityByNoeSanad()
+        txtCodeMoshtaryF.Focus()
+    End Sub
+    Private _dtFaktor As DataTable
+
+    Private Sub LoadFaktorMandehDar()
+        Try
+            _dtFaktor = New DataTable("tblFaktorMandehDar")
+
+            Using cn As New SqlConnection(ConnectionString)
+                Using cmd As New SqlCommand("[Treasury].[spVosolFaktor_DaryaftKoli_LoadFaktorMandehDar]", cn)
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.Parameters.AddWithValue("@ccMoshtary", CInt(txtCodeMoshtaryF.Tag))
+                    Using da As New SqlDataAdapter(cmd)
+                        da.Fill(_dtFaktor)
+                    End Using
+                End Using
+            End Using
+            ' ستون تایید (محلی، در دیتابیس نیست)
+            Dim cTaeed As New DataColumn("Taeed", GetType(Boolean))
+            cTaeed.DefaultValue = False
+            _dtFaktor.Columns.Add(cTaeed)
+
+            SetGrid()
+            GridEXFaktor.DataSource = _dtFaktor
+
+
+        Catch ex As Exception
+            MsgBox("خطا در بارگذاری فاکتورهای مانده‌دار: " & ex.Message,
+               MsgBoxStyle.Critical Or MsgBoxStyle.MsgBoxRtlReading, "خطا")
+        End Try
+    End Sub
+
+    Private Sub SetGrid()
+        Dim col As GridEXColumn
+
+        With GridEXFaktor
+            .RootTable.Columns.Clear()
+            .AllowEdit = InheritableBoolean.True
+            .AllowAddNew = InheritableBoolean.False
+            .AllowDelete = InheritableBoolean.False
+            .RightToLeft = Windows.Forms.RightToLeft.Yes
+            .GroupByBoxVisible = False
+            .SelectionMode = SelectionMode.SingleSelection
+        End With
+
+        ' ---- ستون تایید (چک‌باکس) ----
+        col = GridEXFaktor.RootTable.Columns.Add("Taeed", ColumnType.CheckBox)
+        col.Caption = "تایید"
+        col.DataMember = "Taeed"
+        col.EditType = EditType.CheckBox
+        col.Width = 50
+        col.AllowSort = False
+
+        ' ---- شماره فاکتور ----
+        col = GridEXFaktor.RootTable.Columns.Add("FaktorShomareh", ColumnType.Text)
+        col.Caption = "شماره فاکتور"
+        col.DataMember = "FaktorShomareh"
+        col.Width = 100
+        col.EditType = EditType.NoEdit
+
+        ' ---- تاریخ فاکتور ----
+        col = GridEXFaktor.RootTable.Columns.Add("FaktorTarikh", ColumnType.Text)
+        col.Caption = "تاریخ فاکتور"
+        col.DataMember = "FaktorTarikh"
+        col.Width = 90
+        col.EditType = EditType.NoEdit
+
+        ' ---- مبلغ کل ----
+        col = GridEXFaktor.RootTable.Columns.Add("JamKol", ColumnType.Text)
+        col.Caption = "مبلغ کل"
+        col.DataMember = "JamKol"
+        col.Width = 110
+        col.EditType = EditType.NoEdit
+        col.FormatString = "#,##0"
+        col.TextAlignment = TextAlignment.Far
+
+        ' ---- مانده فاکتور ----
+        col = GridEXFaktor.RootTable.Columns.Add("MandehFaktor", ColumnType.Text)
+        col.Caption = "مانده فاکتور"
+        col.DataMember = "MandehFaktor"
+        col.Width = 110
+        col.EditType = EditType.NoEdit
+        col.FormatString = "#,##0"
+        col.TextAlignment = TextAlignment.Far
     End Sub
 End Class
