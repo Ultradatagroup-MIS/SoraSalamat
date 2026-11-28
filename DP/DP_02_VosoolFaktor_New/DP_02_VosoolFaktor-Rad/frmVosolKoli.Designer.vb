@@ -86,6 +86,7 @@ Partial Class frmVosolKoli
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.btnTasvieh = New System.Windows.Forms.Button()
         Me.chkOldFaktor = New System.Windows.Forms.CheckBox()
+        Me.btnLoad = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -527,6 +528,7 @@ Partial Class frmVosolKoli
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.btnLoad)
         Me.GroupBox2.Controls.Add(Me.Label13)
         Me.GroupBox2.Controls.Add(Me.Label8)
         Me.GroupBox2.Controls.Add(Me.lblNameMoshtary)
@@ -750,6 +752,15 @@ Partial Class frmVosolKoli
         Me.chkOldFaktor.Text = "قدیمی ترین فاکتور"
         Me.chkOldFaktor.UseVisualStyleBackColor = True
         '
+        'btnLoad
+        '
+        Me.btnLoad.Location = New System.Drawing.Point(20, 22)
+        Me.btnLoad.Name = "btnLoad"
+        Me.btnLoad.Size = New System.Drawing.Size(123, 28)
+        Me.btnLoad.TabIndex = 3
+        Me.btnLoad.Text = "بازخوانی"
+        Me.btnLoad.UseVisualStyleBackColor = True
+        '
         'frmVosolKoli
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -831,4 +842,5 @@ Partial Class frmVosolKoli
     Friend WithEvents GroupBox7 As GroupBox
     Friend WithEvents btnTasvieh As Button
     Friend WithEvents chkOldFaktor As CheckBox
+    Friend WithEvents btnLoad As Button
 End Class

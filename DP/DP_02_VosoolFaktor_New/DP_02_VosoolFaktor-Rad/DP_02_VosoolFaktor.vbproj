@@ -119,6 +119,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CheckInfo.vb" />
+    <Compile Include="frmDaryaftiList.Designer.vb">
+      <DependentUpon>frmDaryaftiList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDaryaftiList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDP_DaryaftSayer.designer.vb">
       <DependentUpon>frmDP_DaryaftSayer.vb</DependentUpon>
     </Compile>

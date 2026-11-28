@@ -332,7 +332,7 @@ Public Class frmVosolKoli
         _loading = False
 
         ClearForm()
-
+        btnTasvieh.Enabled = False
         objTools.ChangeKbd(UD_Dll.mdlUtility.KBD.Latin)
     End Sub
     Private Sub LoadCombo()
@@ -771,5 +771,10 @@ Public Class frmVosolKoli
         btnTasvieh.Enabled = False
 
         ClearForm()
+    End Sub
+
+    Private Sub btnLoad_Click(sender As Object, e As EventArgs) Handles btnLoad.Click
+        Dim f As New frmDaryaftiList()
+        f.ShowDialog()
     End Sub
 End Class
