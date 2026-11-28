@@ -120,7 +120,7 @@
   <data name="GridEXFaktor.BuiltInTextsData" xml:space="preserve">
     <value>&lt;LocalizableData ID="LocalizableStrings" Collection="true"&gt;&lt;GroupByBoxInfo&gt;برای ساختن گروه لطفاً ستون مورد نظر را به این قسمت بکشید...&lt;/GroupByBoxInfo&gt;&lt;RecordNavigator&gt;رکورد  | از&lt;/RecordNavigator&gt;&lt;/LocalizableData&gt;</value>
   </data>
-  <data name="GridEX1.BuiltInTextsData" xml:space="preserve">
+  <data name="GridEXPardakhti.BuiltInTextsData" xml:space="preserve">
     <value>&lt;LocalizableData ID="LocalizableStrings" Collection="true"&gt;&lt;GroupByBoxInfo&gt;برای ساختن گروه لطفاً ستون مورد نظر را به این قسمت بکشید...&lt;/GroupByBoxInfo&gt;&lt;RecordNavigator&gt;رکورد  | از&lt;/RecordNavigator&gt;&lt;/LocalizableData&gt;</value>
   </data>
 </root>

@@ -71,7 +71,7 @@ Public Class frmVosolKoli
         End Try
 
     End Sub
-
+    Private _mandehDaryafti As Double = 0
     Private Sub btnNewRecord_Click(sender As Object, e As EventArgs) Handles btnNewRecord.Click
         If Not IsValidForm("All") Then Exit Sub
 
@@ -83,11 +83,13 @@ Public Class frmVosolKoli
             Return
         End Try
 
-        ' ثبت شد: سمت راست غیرفعال شود (فرم پاک نشود)
+        _mandehDaryafti = CDbl(txtMablagh.Text.Replace(",", ""))
+        Label8.Text = _mandehDaryafti.ToString("#,##0")
         GroupBox1.Enabled = False      ' TODO: اسم GroupBox سمت راست
         btnNewRecord.Enabled = False
-
+        btnTasvieh.Enabled = True
         LoadFaktorMandehDar()
+
     End Sub
     Private _codeAmalyat As Long = 0
 
@@ -598,5 +600,176 @@ Public Class frmVosolKoli
         col.EditType = EditType.NoEdit
         col.FormatString = "#,##0"
         col.TextAlignment = TextAlignment.Far
+    End Sub
+    Private _dtPardakhti As DataTable
+
+    Private Sub btnTasvieh_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnTasvieh.Click
+        If _codeAmalyat = 0 Then
+            MsgBox("ابتدا دریافتی را ذخیره کنید.", MsgBoxStyle.Exclamation Or MsgBoxStyle.MsgBoxRtlReading, "پیام")
+            Return
+        End If
+
+        ' رشته‌ی فاکتورهای تیک‌خورده
+        Dim strFaktor As String = ""
+        Dim cnt As Integer = 0
+        Dim r As DataRow
+        For Each r In _dtFaktor.Rows
+            If Not IsDBNull(r("Taeed")) AndAlso CBool(r("Taeed")) Then
+                If cnt > 0 Then strFaktor &= ","
+                strFaktor &= r("ccFaktorTitr").ToString()
+                cnt += 1
+            End If
+        Next
+
+        If cnt = 0 Then
+            MsgBox("حداقل یک فاکتور را تیک بزنید.", MsgBoxStyle.Exclamation Or MsgBoxStyle.MsgBoxRtlReading, "پیام")
+            Return
+        End If
+
+        Dim oldFaktor As Integer = 0
+        If chkOldFaktor.Checked Then oldFaktor = 1
+
+        Try
+            ' 1) تسویه
+            Using cn As New SqlConnection(ConnectionString)
+                Using cmd As New SqlCommand("[Treasury].[spVosolFaktor_DaryaftKoli_Tasvieh]", cn)   ' TODO: اسم SP
+                    cmd.CommandType = CommandType.StoredProcedure
+                    cmd.Parameters.AddWithValue("@CodeAmalyat", _codeAmalyat)
+                    cmd.Parameters.AddWithValue("@StrFaktor", strFaktor)
+                    cmd.Parameters.AddWithValue("@OldFaktor", oldFaktor)
+                    cn.Open()
+                    cmd.ExecuteNonQuery()
+                End Using
+            End Using
+
+            ' 2) مانده‌ی دریافتی -> Label8
+            LoadMandeh()
+
+            ' 3) پرداختی‌های این دریافتی -> گرید پایین
+            LoadPardakhti()
+
+            ' 4) فاکتورهای مانده‌دار دوباره لود شوند
+            LoadFaktorMandehDar()
+
+        Catch ex As Exception
+            MsgBox("خطا در تسویه: " & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.MsgBoxRtlReading, "خطا")
+        End Try
+    End Sub
+    Private Sub LoadMandeh()
+        Dim dt As DataTable = ExecSP("[Treasury].[spVosolFaktor_DaryaftKoli_Mandeh]",
+                                     New SqlParameter("@CodeAmalyat", _codeAmalyat))     ' TODO: اسم SP و پارامتر
+        If dt.Rows.Count > 0 Then
+            ' TODO: اسم ستون مانده در خروجی SP
+            Label8.Text = CDbl(dt.Rows(0)("Mandeh")).ToString("#,##0")
+        End If
+    End Sub
+
+    Private Sub LoadPardakhti()
+        _dtPardakhti = ExecSP("[Treasury].[spVosolFaktor_DaryaftKoli_LoadPardakhti]",
+                              New SqlParameter("@CodeAmalyat", _codeAmalyat))            ' TODO: اسم SP و پارامتر
+        SetGridPardakhti()
+        GridEXPardakhti.DataSource = _dtPardakhti
+    End Sub
+    Private Function ExecSP(ByVal spName As String, ByVal ParamArray p() As SqlParameter) As DataTable
+        Dim dt As New DataTable()
+        Using cn As New SqlConnection(ConnectionString)
+            Using cmd As New SqlCommand(spName, cn)
+                cmd.CommandType = CommandType.StoredProcedure
+                Dim x As SqlParameter
+                For Each x In p
+                    cmd.Parameters.Add(x)
+                Next
+                Using da As New SqlDataAdapter(cmd)
+                    da.Fill(dt)
+                End Using
+            End Using
+        End Using
+        Return dt
+    End Function
+    Private Sub SetGridPardakhti()
+        Dim col As GridEXColumn
+
+        With GridEXPardakhti
+            .RootTable.Columns.Clear()
+            .AllowEdit = InheritableBoolean.False
+            .AllowAddNew = InheritableBoolean.False
+            .AllowDelete = InheritableBoolean.False
+            .RightToLeft = Windows.Forms.RightToLeft.Yes
+            .GroupByBoxVisible = False
+        End With
+
+        ' ---- شماره فاکتور ----
+        col = GridEXPardakhti.RootTable.Columns.Add("FaktorShomareh", ColumnType.Text)
+        col.Caption = "شماره فاکتور"
+        col.DataMember = "FaktorShomareh"
+        col.Width = 100
+        col.EditType = EditType.NoEdit
+
+        ' ---- تاریخ فاکتور ----
+        col = GridEXPardakhti.RootTable.Columns.Add("FaktorTarikh", ColumnType.Text)
+        col.Caption = "تاریخ فاکتور"
+        col.DataMember = "FaktorTarikh"
+        col.Width = 90
+        col.EditType = EditType.NoEdit
+
+        ' ---- مبلغ کل فاکتور ----
+        col = GridEXPardakhti.RootTable.Columns.Add("JamKol", ColumnType.Text)
+        col.Caption = "مبلغ کل"
+        col.DataMember = "JamKol"
+        col.Width = 110
+        col.EditType = EditType.NoEdit
+        col.FormatString = "#,##0"
+        col.TextAlignment = TextAlignment.Far
+
+        ' ---- مبلغ بسته‌شده ----
+        col = GridEXPardakhti.RootTable.Columns.Add("MablaghBastehShodeh", ColumnType.Text)
+        col.Caption = "مبلغ بسته‌شده"
+        col.DataMember = "MablaghBastehShodeh"
+        col.Width = 110
+        col.EditType = EditType.NoEdit
+        col.FormatString = "#,##0"
+        col.TextAlignment = TextAlignment.Far
+
+        ' ---- نوع دریافتی ----
+        col = GridEXPardakhti.RootTable.Columns.Add("NoeDaryafti", ColumnType.Text)
+        col.Caption = "نوع دریافتی"
+        col.DataMember = "NoeDaryafti"
+        col.Width = 110
+        col.EditType = EditType.NoEdit
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        ' اگه دریافتی ثبت شده و هنوز مبلغی از اون تخصیص داده نشده، هشدار بده
+        If _codeAmalyat <> 0 AndAlso _mandehDaryafti > 0 Then
+            Dim res As MsgBoxResult = MsgBox(
+            "مبلغ " & _mandehDaryafti.ToString("#,##0") & " از این دریافتی هنوز به فاکتوری بسته نشده است." & vbCrLf &
+            "آیا مایل به خروج هستید؟",
+            MsgBoxStyle.YesNo Or MsgBoxStyle.Question Or MsgBoxStyle.MsgBoxRtlReading Or MsgBoxStyle.MsgBoxRight, "تایید")
+            If res = MsgBoxResult.No Then Return
+        End If
+
+        ResetAll()
+    End Sub
+
+    Private Sub ResetAll()
+        ' وضعیت دریافتی
+        _codeAmalyat = 0
+        _mandehDaryafti = 0
+        Label8.Text = ""
+
+        ' گریدها
+        _dtFaktor = Nothing
+        _dtPardakhti = Nothing
+        GridEXFaktor.DataSource = Nothing
+        GridEXPardakhti.DataSource = Nothing
+
+        chkOldFaktor.Checked = False
+
+        ' فعال کردن دوباره‌ی سمت راست
+        GroupBox1.Enabled = True       ' TODO: اسم GroupBox سمت راست
+        btnNewRecord.Enabled = True
+        btnTasvieh.Enabled = False
+
+        ClearForm()
     End Sub
 End Class
